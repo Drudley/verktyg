@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SIE-fil till Excel – öppna SIE-fil gratis i webbläsaren</title>
+<meta name="description" content="Öppna SIE-fil i Excel på sekunder. Visa verifikationer, kontoplan och saldobalans från SIE 1–4 direkt i webbläsaren – filen laddas aldrig upp. Exportera till .xlsx.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/sie-till-excel/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/sie-till-excel/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="SIE-fil till Excel – öppna SIE-filer i webbläsaren">
+<meta property="og:description" content="Verifikationer, kontoplan, saldobalans och resultat per månad från din SIE-fil. Inget konto, ingen uppladdning.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1d4ed8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231d4ed8'/%3E%3Ctext x='16' y='22' font-size='14' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3ESIE%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/sie-till-excel/","name":"SIE-fil till Excel","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Öppna och läs SIE-filer (SIE 1–4) i webbläsaren och exportera verifikationer, kontoplan, saldobalans och resultat per månad till Excel. Filen lämnar aldrig datorn.",
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"SEK"}},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hur öppnar jag en SIE-fil i Excel?","acceptedAnswer":{"@type":"Answer","text":"Dra SIE-filen till rutan på sidan. Innehållet visas direkt, och med Excel-exporten får du en .xlsx med flikarna Info, Konton, Verifikationer, Transaktioner, Saldobalans och Resultat per månad. Excel kan inte läsa SIE-formatet direkt."}},
+ {"@type":"Question","name":"Vad är skillnaden mellan SIE typ 1, 2, 3 och 4?","acceptedAnswer":{"@type":"Answer","text":"SIE 1 innehåller årssaldon (ingående och utgående balanser och resultat per konto). SIE 2 lägger till periodsaldon per månad. SIE 3 lägger till saldon per objekt, till exempel kostnadsställe och projekt. SIE 4 innehåller dessutom alla verifikationer och transaktioner och är den vanligaste exporten från Fortnox, Visma, Bokio och andra bokföringsprogram."}},
+ {"@type":"Question","name":"Laddas min SIE-fil upp till en server?","acceptedAnswer":{"@type":"Answer","text":"Nej. Filen läses och omvandlas helt i din webbläsare med JavaScript. Ingenting skickas till någon server och sidan har ingen spårning."}},
+ {"@type":"Question","name":"Varför ser å, ä och ö konstiga ut när jag öppnar SIE-filen i Anteckningar?","acceptedAnswer":{"@type":"Answer","text":"SIE-filer sparas normalt med teckenkodningen PC8 (IBM CP437). Verktyget känner av kodningen automatiskt och hanterar även UTF-8 och Windows-1252."}},
+ {"@type":"Question","name":"Vilka filändelser har SIE-filer?","acceptedAnswer":{"@type":"Answer","text":"Exportfiler har oftast ändelsen .se eller .sie, och importfiler (SIE 4I) har .si. Alla läses av verktyget."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">SIE<span>→</span>Excel</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">SIE-fil till Excel</h1>
+    <p class="lead" data-i18n="lead">Öppna SIE-filen direkt i webbläsaren och få verifikationer, kontoplan, saldobalans och resultat per månad – redo för Excel. <strong>Filen lämnar aldrig din dator.</strong></p>
+  </section>
+
+  <section id="drop" class="drop" tabindex="0" role="button" aria-label="Välj SIE-fil">
+    <input id="file" type="file" accept=".se,.si,.sie,.txt,text/plain" hidden>
+    <p class="drop-main" data-i18n="drop">Släpp din SIE-fil här eller <u>välj fil</u></p>
+    <p class="muted small" data-i18n="dropsub">.se, .si, .sie · SIE 1–4 · PC8/CP437, UTF-8</p>
+    <button id="sample" class="link small" type="button" data-i18n="sample">Prova med en exempelfil</button>
+  </section>
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+
+  <section id="result" hidden>
+    <div class="company card">
+      <div>
+        <h2 id="c-name"></h2>
+        <p class="muted" id="c-meta"></p>
+      </div>
+      <div class="actions">
+        <label class="small"><span data-i18n="year">Räkenskapsår</span> <select id="year"></select></label>
+        <button id="export" class="btn" type="button"><span data-i18n="export">Ladda ner Excel (.xlsx)</span></button>
+      </div>
+    </div>
+    <div id="stats" class="stats"></div>
+    <div id="warn" class="warn" hidden></div>
+
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-tab="ver" aria-selected="true" data-i18n="t-ver">Verifikationer</button>
+      <button role="tab" data-tab="sb" data-i18n="t-sb">Saldobalans</button>
+      <button role="tab" data-tab="acc" data-i18n="t-acc">Kontoplan</button>
+      <button role="tab" data-tab="info" data-i18n="t-info">Företag</button>
+    </nav>
+    <div class="panel" id="p-ver">
+      <input id="q" class="search" type="search" placeholder="Sök text, konto, belopp, nummer…" data-i18n-ph="search">
+      <div class="tbl"><table id="ver-t"><thead><tr><th data-i18n="c-ver">Ver</th><th data-i18n="c-date">Datum</th><th data-i18n="c-text">Text</th><th class="num" data-i18n="c-amt">Belopp</th></tr></thead><tbody></tbody></table></div>
+      <button id="more" class="btn ghost" type="button" hidden data-i18n="more">Visa fler</button>
+    </div>
+    <div class="panel" id="p-sb" hidden>
+      <div class="tbl"><table id="sb-t"><thead><tr><th data-i18n="c-acc">Konto</th><th data-i18n="c-name">Namn</th><th class="num">IB</th><th class="num" data-i18n="c-per">Period</th><th class="num">UB</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div>
+    </div>
+    <div class="panel" id="p-acc" hidden>
+      <input id="qa" class="search" type="search" placeholder="Sök konto…" data-i18n-ph="searcha">
+      <div class="tbl"><table id="acc-t"><thead><tr><th data-i18n="c-acc">Konto</th><th data-i18n="c-name">Namn</th><th data-i18n="c-type">Typ</th><th>SRU</th></tr></thead><tbody></tbody></table></div>
+    </div>
+    <div class="panel" id="p-info" hidden><dl id="info-dl" class="dl"></dl></div>
+  </section>
+
+  <dialog id="paywall">
+    <h2 data-i18n="pw-h">Excel-export</h2>
+    <p data-i18n="pw-p">Exporten ger en .xlsx med flikarna Info, Konton, Verifikationer, Transaktioner, Saldobalans och Resultat per månad.</p>
+  </dialog>
+
+  <section class="faq">
+    <h2>Öppna SIE-fil i Excel – vanliga frågor</h2>
+    <details open><summary>Hur öppnar jag en SIE-fil i Excel?</summary><p>Excel kan inte läsa SIE-formatet direkt. Dra filen till rutan ovan så visas innehållet direkt. Med Excel-exporten får du en .xlsx med flikarna <em>Info, Konton, Verifikationer, Transaktioner, Saldobalans</em> och <em>Resultat per månad</em> – med riktiga datum och belopp som går att summera och filtrera.</p></details>
+    <details><summary>Vad är skillnaden mellan SIE typ 1, 2, 3 och 4?</summary>
+      <ul>
+        <li><strong>SIE 1 – årssaldon:</strong> ingående och utgående balans samt årets resultat per konto.</li>
+        <li><strong>SIE 2 – periodsaldon:</strong> som typ 1 plus saldon per månad.</li>
+        <li><strong>SIE 3 – objektsaldon:</strong> som typ 2 plus saldon per kostnadsställe, projekt m.m.</li>
+        <li><strong>SIE 4 – transaktioner:</strong> allt ovan plus samtliga verifikationer. Vanligast vid export från Fortnox, Visma, Bokio, Björn Lundén m.fl.</li>
+      </ul></details>
+    <details><summary>Laddas min fil upp någonstans?</summary><p>Nej. Filen läses och omvandlas helt i din webbläsare. Ingenting skickas till någon server, och sidan använder varken cookies eller spårning. Du kan till och med koppla bort internet när sidan har laddats.</p></details>
+    <details><summary>Varför blir å, ä och ö fel när jag öppnar filen i Anteckningar?</summary><p>SIE-filer sparas enligt standarden med teckenkodningen PC8 (IBM CP437). Verktyget känner av kodningen automatiskt och hanterar även filer i UTF-8 och Windows-1252.</p></details>
+    <details><summary>Vilka filändelser fungerar?</summary><p>Exportfiler heter oftast <code>.se</code> eller <code>.sie</code> och importfiler (SIE 4I) <code>.si</code>. Alla fungerar.</p></details>
+    <details><summary>Stämmer saldobalansen med bokföringsprogrammet?</summary><p>Saldobalansen räknas fram ur ingående balanser och verifikationer. Om filen även innehåller utgående balanser (#UB/#RES) jämförs de, och eventuella differenser visas i Excel-filen.</p></details>
+  </section>
+</main>
+<footer class="wrap muted small foot">SIE är en öppen standard från SIE-Gruppen. Verktyget är fristående. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/sie.js"></script>
+<script src="js/xlsx-writer.js"></script>
+<script src="js/export.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

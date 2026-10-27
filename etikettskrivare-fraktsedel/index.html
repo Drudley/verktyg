@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Skriva ut fraktsedel på etikettskrivare – Vinted, PostNord, Tradera (10×15)</title>
+<meta name="description" content="Gör om fraktsedeln från Vinted, Tradera, Blocket, PostNord, DHL, Budbee, Instabox eller Bring till en etikett i 100×150 mm för etikettskrivaren. Hittar etiketten på A4-sidan, vrider rätt och behåller skarpa streckkoder. Filen lämnar aldrig datorn.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; worker-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/etikettskrivare-fraktsedel/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/etikettskrivare-fraktsedel/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Fraktsedel till etikettskrivare – 100×150 mm">
+<meta property="og:description" content="Släpp A4-fraktsedeln från Vinted, Tradera eller PostNord – få en utskriftsklar etikett i 100×150 mm, 4×6 tum eller A4 med skärmärken. Direkt i webbläsaren.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0f766e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f766e'/%3E%3Crect x='9' y='5' width='14' height='22' rx='1' fill='white'/%3E%3Cpath d='M11 19h1v5h-1zm2 0h2v5h-2zm3 0h1v5h-1zm2 0h2v5h-2z' fill='%230f766e'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/etikettskrivare-fraktsedel/","name":"Fraktsedel till etikettskrivare","applicationCategory":"UtilitiesApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Beskär fraktsedlar (PDF) från Vinted, Tradera, Blocket, PostNord, DHL, Budbee, Instabox, Bring och DB Schenker till utskriftsklara etiketter i 100×150 mm, 4×6 tum eller A4 med skärmärken. Körs helt i webbläsaren.",
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"SEK"}},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hur skriver jag ut fraktsedeln från Vinted på en etikettskrivare?","acceptedAnswer":{"@type":"Answer","text":"Ladda ner fraktsedeln som PDF från Vinted och släpp den här. Verktyget hittar etiketten på sidan, vrider den rätt och gör en PDF i 100×150 mm. Skriv ut den på etikettskrivaren med pappersstorlek 100×150 mm (4×6 tum) och skalning 100 % eller faktisk storlek. Får du bara en QR-kod eller en kod i appen behöver du inte skriva ut något – ombudet skriver ut etiketten."}},
+ {"@type":"Question","name":"Kan jag använda en etikettskrivare för PostNords fraktsedlar?","acceptedAnswer":{"@type":"Answer","text":"Ja. PostNords vanliga etikett är 105×190 mm och den lilla 75×105 mm, och PostNord skriver ut A4 med upp till två etiketter per sida. Verktyget delar upp sidan i en etikett per sida. Har du 100×150 mm-etiketter skalas en 105×190-etikett ner till cirka 76 %; har du rullar i 105×190 mm kan du skriva ut från PostNord direkt med alternativet etikett."}},
+ {"@type":"Question","name":"Fungerar det med fraktsedlar från Tradera?","acceptedAnswer":{"@type":"Answer","text":"Ja. Traderas DHL-fraktsedel ligger upp och ner i övre vänstra hörnet av en A4-sida med instruktioner runt omkring. Verktyget känner igen layouten, beskär bort instruktionerna och vänder etiketten rätt. På många Tradera-försändelser behöver du inte skriva ut alls eftersom ombudet skriver ut etiketten."}},
+ {"@type":"Question","name":"Vilka inställningar ska jag använda på etikettskrivaren?","acceptedAnswer":{"@type":"Answer","text":"Välj pappersstorlek 100×150 mm (eller 4×6 tum om du valde det formatet), stående orientering och skalning 100 % / faktisk storlek – inte anpassa till sida. Termoskrivare med 300 dpi ger skarpast streckkoder, men 203 dpi fungerar för de flesta etiketter."}},
+ {"@type":"Question","name":"Laddas mina fraktsedlar upp någonstans?","acceptedAnswer":{"@type":"Answer","text":"Nej. PDF-filerna läses och beskärs helt i din webbläsare. Ingenting skickas till någon server, och sidan har varken cookies eller spårning."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Fraktsedel<span>→</span>etikett</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Skriv ut fraktsedeln på etikettskrivaren</h1>
+    <p class="lead" data-i18n="lead">Släpp fraktsedeln från Vinted, Tradera, Blocket, PostNord, DHL, Budbee, Instabox eller Bring. Verktyget hittar etiketten på A4-sidan, vrider den rätt och gör en skarp PDF i 100×150 mm. <strong>Filerna lämnar aldrig din dator.</strong></p>
+  </section>
+
+  <section class="card opts" aria-label="Utskriftsformat">
+    <div class="opt"><span class="lbl" data-i18n="fmt">Format</span>
+      <span class="seg" role="radiogroup">
+        <label><input type="radio" name="format" value="100x150"> <span>100×150 mm</span></label>
+        <label><input type="radio" name="format" value="4x6"> <span data-i18n="f-4x6">4×6 tum</span></label>
+        <label><input type="radio" name="format" value="a4"> <span data-i18n="f-a4">A4 med skärmärken</span></label>
+      </span></div>
+    <div class="opt"><label for="margin" class="lbl" data-i18n="margin">Marginal</label>
+      <select id="margin"><option value="0">0 mm</option><option value="2">2 mm</option><option value="4">4 mm</option></select></div>
+  </section>
+
+  <section id="drop" class="drop" tabindex="0" role="button" aria-label="Välj fraktsedlar (PDF)">
+    <input id="file" type="file" accept=".pdf,application/pdf,image/png,image/jpeg" multiple hidden>
+    <p class="drop-main" data-i18n="drop">Släpp fraktsedlar (PDF) här eller <u>välj filer</u></p>
+    <p class="muted small" data-i18n="dropsub">En eller flera PDF:er · även PNG/JPG · A4, Letter eller färdiga etikettsidor</p>
+    <button id="sample" class="link small" type="button" data-i18n="sample">Prova med en exempelfraktsedel</button>
+  </section>
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+
+  <section id="result" hidden>
+    <div class="card bar">
+      <div><h2 id="r-title"></h2><p class="muted small" id="r-meta"></p></div>
+      <div class="actions">
+        <button id="clear" class="btn ghost" type="button" data-i18n="clear">Rensa</button>
+        <button id="all" class="btn" type="button"></button>
+      </div>
+    </div>
+    <div id="warn" class="warn" hidden></div>
+    <div id="cards" class="cards"></div>
+    <p class="muted small" data-i18n="howto">Dra i den gröna ramen för att flytta den, eller i hörnen för att ändra storlek. Förhandsvisningen till höger visar etiketten som den hamnar på papperet.</p>
+  </section>
+
+  <p class="notice" data-i18n="notice"><strong>Kontrollera alltid utskriften:</strong> streckkoden måste gå att skanna. Vissa fraktbolag (t.ex. DHL) kräver att etiketten skrivs ut i originalstorlek – en nedskalad etikett kan i sällsynta fall avvisas. Skriv ut i 100 % / faktisk storlek.</p>
+
+  <dialog id="paywall">
+    <h2 data-i18n="pw-h">Slå ihop alla etiketter i en PDF</h2>
+    <p data-i18n="pw-p">Skriv ut alla fraktsedlar på en gång – en etikett per sida, i rätt ordning. Enstaka etiketter kan du alltid ladda ner gratis.</p>
+  </dialog>
+
+  <section class="faq">
+    <h2>Fraktsedel på etikettskrivare – vanliga frågor</h2>
+    <details open><summary>Hur skriver jag ut fraktsedeln från Vinted på en etikettskrivare?</summary>
+      <ol class="steps"><li>Öppna försändelsen i Vinted och ladda ner fraktsedeln som PDF.</li><li>Släpp PDF:en här. Etiketten hittas automatiskt och vrids rätt.</li><li>Klicka <em>Ladda ner</em> och skriv ut på etikettskrivaren med pappersstorlek 100×150 mm och skalning 100 %.</li></ol>
+      <p>Obs: med PostNord via Vinted får du ofta en QR-kod som ombudet skannar, och med Instabox en fraktkod – då finns ingen etikett att skriva ut. Vinted visar själv vilket sätt som gäller för din försändelse.</p></details>
+    <details><summary>Skriva ut fraktsedel från Vinted utan skrivare?</summary><p>Om Vinted ger dig en QR-kod eller kod kan ombudet skriva ut etiketten åt dig. Behöver du skriva ut själv räcker en vanlig skrivare och A4 – välj <em>A4 med skärmärken</em> så får du etiketten i 100×150 mm med hörnmarkeringar att klippa efter.</p></details>
+    <details><summary>PostNord på etikettskrivare – vilken storlek?</summary><p>PostNords standardetikett är 105×190 mm och den lilla 75×105 mm; bredden är alltid 105 mm. På A4 får det plats två standardetiketter. Verktyget lägger varje etikett på en egen sida. På 100×150 mm-papper skalas en 105×190-etikett ner till ungefär 76 % – streckkoden blir mindre men brukar fungera; kontrollera att den går att skanna. Har du etikettrullar i 105×190 mm kan du i stället välja utskriftsformatet etikett direkt hos PostNord.</p></details>
+    <details><summary>Tradera och etikettskrivare – fungerar det?</summary><p>Ja. Traderas DHL-fraktsedel ligger upp och ner i övre vänstra hörnet av A4-sidan, omgiven av instruktioner och streckade klipplinjer. Verktyget känner igen layouten, tar bara med själva etiketten och vänder den rätt. För många Tradera-försändelser behöver du inte skriva ut alls – ombudet skriver ut etiketten.</p></details>
+    <details><summary>Vilka inställningar ska jag ha i skrivardialogen?</summary><ul><li>Pappersstorlek: 100×150 mm (eller 4×6 in / 101,6×152,4 mm om du valde det).</li><li>Skala: <strong>100 % / Faktisk storlek</strong> – inte "Anpassa till sida".</li><li>Orientering: stående. Etiketten är redan vriden rätt i PDF:en.</li><li>Upplösning: 203 dpi fungerar oftast, 300 dpi ger skarpast streckkoder.</li></ul></details>
+    <details><summary>DHL, Budbee, Instabox, Bring och Schenker?</summary><p>Fraktsedlar som redan är i etikettstorlek (t.ex. A6 105×148 mm från Budbee/Instabox eller 103×199 mm från DHL) tas som hela sidan och anpassas till 100×150. A4-sidor med en eller flera etiketter (t.ex. fyra A6-etiketter per sida) delas upp så att varje etikett hamnar på en egen sida. DHL anger att privatetiketter ska skrivas ut i originalstorlek – kontrollera med DHL om du är osäker.</p></details>
+    <details><summary>Etiketten blev fel beskuren – vad gör jag?</summary><p>Dra i den gröna ramen över sidan för att flytta den och i hörnen för att ändra storlek. Välj vridning manuellt om etiketten hamnar på sidan eller upp och ner. <em>Återställ</em> tar tillbaka den automatiska beskärningen.</p></details>
+    <details><summary>Blir streckkoden suddig?</summary><p>Nej, i normalfallet inte. Etiketten kopieras som vektorgrafik från original-PDF:en, så text och streckkoder förblir lika skarpa som i originalet. Bara skannade eller lösenordsskyddade PDF:er och bilder läggs in som bild (300 dpi).</p></details>
+    <details><summary>Laddas mina fraktsedlar upp någonstans?</summary><p>Nej. Filerna läses och beskärs helt i din webbläsare – namn och adresser lämnar aldrig datorn. Sidan använder varken cookies eller spårning.</p></details>
+  </section>
+</main>
+<footer class="wrap muted small foot">Fristående verktyg – inte anslutet till Vinted, Tradera, Blocket, PostNord, DHL, Budbee, Instabox, Bring eller DB Schenker. Varumärkena tillhör sina respektive ägare. Ingen spårning · inga cookies. <a href="vendor/README.md">Licenser</a> · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/detect.js"></script>
+<script src="js/redact.js"></script>
+<script src="js/output.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

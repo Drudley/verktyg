@@ -1,0 +1,4 @@
+# Note: crawlers only read robots.txt at the host root (drudley.github.io/robots.txt); this copy is informational.
+User-agent: *
+Allow: /
+Sitemap: https://drudley.github.io/verktyg/sitemap.xml

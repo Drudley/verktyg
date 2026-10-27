@@ -1,0 +1,267 @@
+#FLAGGA 0
+#FORMAT PC8
+#SIETYP 4
+#PROGRAM "Testgenerator" 1.0
+#GEN 20260115 "NB"
+#FNR "TEST4"
+#ORGNR 556677-8899
+#ADRESS "Niklas Testsson" "Storgatan 1" "903 26 UmeÜ" "090-123456"
+#FNAMN "èkes ôlstuga & Sîner AB"
+#RAR 0 20250101 20251231
+#KPTYP BAS2014
+#VALUTA SEK
+#KONTO 1510 "Kundfordringar"
+#KTYP 1510 T
+#KONTO 1630 "Skattekonto"
+#KTYP 1630 T
+#KONTO 1910 "Kassa"
+#KTYP 1910 T
+#KONTO 1930 "Fîretagskonto / affÑrskonto"
+#KTYP 1930 T
+#KONTO 2081 "Aktiekapital"
+#KTYP 2081 S
+#KONTO 2091 "Balanserad vinst eller fîrlust"
+#KTYP 2091 S
+#KONTO 2099 "èrets resultat"
+#KTYP 2099 S
+#KONTO 2440 "Leverantîrsskulder"
+#KTYP 2440 S
+#KONTO 2611 "UtgÜende moms pÜ fîrsÑljning inom Sverige, 25 %"
+#KTYP 2611 S
+#KONTO 2641 "Debiterad ingÜende moms"
+#KTYP 2641 S
+#KONTO 2650 "Redovisningskonto fîr moms"
+#KTYP 2650 S
+#KONTO 2710 "Personalskatt"
+#KTYP 2710 S
+#KONTO 2731 "AvrÑkning lagstadgade sociala avgifter"
+#KTYP 2731 S
+#KONTO 3001 "FîrsÑljning inom Sverige, 25 % moms"
+#KTYP 3001 I
+#KONTO 3740 "ôres- och kronutjÑmning"
+#KTYP 3740 I
+#KONTO 4010 "Inkîp material och varor"
+#KTYP 4010 K
+#KONTO 5010 "Lokalhyra"
+#KTYP 5010 K
+#KONTO 5410 "Fîrbrukningsinventarier"
+#KTYP 5410 K
+#KONTO 5800 "Resekostnader"
+#KTYP 5800 K
+#KONTO 6110 "Kontorsmateriel"
+#KTYP 6110 K
+#KONTO 6212 "Mobiltelefon"
+#KTYP 6212 K
+#KONTO 6570 "Bankkostnader"
+#KTYP 6570 K
+#KONTO 7210 "Lîner till tjÑnstemÑn"
+#KTYP 7210 K
+#KONTO 7510 "Arbetsgivaravgifter 31,42 %"
+#KTYP 7510 K
+#KONTO 8999 "èrets resultat"
+#KTYP 8999 K
+#SRU 1510 7251
+#SRU 1630 7261
+#SRU 1910 7281
+#SRU 1930 7281
+#SRU 2081 7301
+#SRU 2091 7302
+#SRU 2099 7302
+#SRU 2440 7365
+#SRU 2611 7369
+#SRU 2641 7369
+#SRU 2650 7369
+#SRU 2710 7369
+#SRU 2731 7369
+#SRU 3001 7410
+#SRU 3740 7410
+#SRU 4010 7511
+#SRU 5010 7513
+#SRU 5410 7513
+#SRU 5800 7513
+#SRU 6110 7513
+#SRU 6212 7513
+#SRU 6570 7513
+#SRU 7210 7514
+#SRU 7510 7515
+#SRU 8999 7450
+#DIM 1 "KostnadsstÑlle"
+#DIM 6 "Projekt"
+#OBJEKT 1 "10" "UmeÜ"
+#OBJEKT 1 "20" "Stockholm"
+#OBJEKT 6 "P 1" "Projekt ô"
+#IB 0 1930 250000.00
+#IB 0 2081 -25000.00
+#IB 0 2091 -225000.00
+#UB 0 1930 -18266.51
+#UB 0 2081 -25000.00
+#UB 0 2091 -225000.00
+#UB 0 2611 -8768.65
+#UB 0 2641 27950.93
+#UB 0 2710 -63000.00
+#UB 0 2731 -65982.00
+#RES 0 3001 -35074.58
+#RES 0 4010 5277.60
+#RES 0 5010 72000.00
+#RES 0 5410 17613.37
+#RES 0 5800 25175.10
+#RES 0 6110 16912.74
+#RES 0 6570 180.00
+#RES 0 7210 210000.00
+#RES 0 7510 65982.00
+#VER A 1 20250101 "Hyra lokal UmeÜ" 20250101
+{
+   #TRANS 5010 {} 12000.00
+   #TRANS 2641 {} 3000.00
+   #TRANS 1930 {} -15000.00
+}
+#VER A 2 20250115 "Lîn \"mÜnadslîn\"" 20250115
+{
+   #TRANS 7210 {} 35000.00
+   #TRANS 7510 {} 10997.00
+   #TRANS 2710 {} -10500.00
+   #TRANS 2731 {} -10997.00
+   #TRANS 1930 {} -24500.00
+}
+#VER A 3 20250130 "Hyra lokal UmeÜ" 20250130
+{
+   #TRANS 5010 {} 12000.00
+   #TRANS 2641 {} 3000.00
+   #TRANS 1930 {} -15000.00
+}
+#VER A 4 20250213 "TÜgresa UmeÜ-Stockholm" 20250213
+{
+   #TRANS 5800 {} 18249.44
+   #TRANS 1930 {} -18249.44
+}
+#VER B 5 20250228 "Kontorsmaterial Clas Ohlson" 20250228
+{
+   #TRANS 4010 {1 "20" 6 "P 1"} 5277.60
+   #TRANS 2641 {} 1319.40
+   #TRANS 1930 {} -6597.00
+}
+#VER A 6 20250314 "Bankavgift Swedbank" 20250314
+{
+   #TRANS 6570 {} 45.00
+   #TRANS 1930 {} -45.00
+}
+#VER B 7 20250329 "Lîn \"mÜnadslîn\"" 20250329
+{
+   #TRANS 7210 {} 35000.00
+   #TRANS 7510 {} 10997.00
+   #TRANS 2710 {} -10500.00
+   #TRANS 2731 {} -10997.00
+   #TRANS 1930 {} -24500.00
+}
+#VER A 8 20250412 "Lîn \"mÜnadslîn\"" 20250412
+{
+   #TRANS 7210 {} 35000.00
+   #TRANS 7510 {} 10997.00
+   #TRANS 2710 {} -10500.00
+   #TRANS 2731 {} -10997.00
+   #TRANS 1930 {} -24500.00
+}
+#VER A 9 20250427 "Kaffe & fika mîte" 20250427
+{
+   #TRANS 5800 {} 6925.66
+   #TRANS 1930 {} -6925.66
+}
+#VER A 10 20250512 "SkÑrmar frÜn Dustin" 20250512
+{
+   #TRANS 6110 {1 "20" 6 "P 1"} 16912.74
+   #TRANS 2641 {} 4228.19
+   #TRANS 1930 {} -21140.93
+}
+#VER A 11 20250526 "FîrsÑljning ôberg & Co" 20250526
+{
+   #TRANS 1930 {} 7172.34
+   #TRANS 3001 {1 "10"} -5737.87
+   #TRANS 2611 {} -1434.47
+}
+#VER B 12 20250610 "Bankavgift Swedbank" 20250610
+{
+   #TRANS 6570 {} 45.00
+   #TRANS 1930 {} -45.00
+}
+#VER A 13 20250624 "Lîn \"mÜnadslîn\"" 20250624
+{
+   #TRANS 7210 {} 35000.00
+   #TRANS 7510 {} 10997.00
+   #TRANS 2710 {} -10500.00
+   #TRANS 2731 {} -10997.00
+   #TRANS 1930 {} -24500.00
+}
+#VER A 14 20250709 "Kontorsmaterial Clas Ohlson" 20250709
+{
+   #TRANS 5410 {1 "20" 6 "P 1"} 17613.37
+   #TRANS 2641 {} 4403.34
+   #TRANS 1930 {} -22016.71
+}
+#VER B 15 20250723 "Bankavgift Swedbank" 20250723
+{
+   #TRANS 6570 {} 45.00
+   #TRANS 1930 {} -45.00
+}
+#VER B 16 20250807 "Hyra lokal UmeÜ" 20250807
+{
+   #TRANS 5010 {} 12000.00
+   #TRANS 2641 {} 3000.00
+   #TRANS 1930 {} -15000.00
+}
+#VER B 17 20250821 "Hyra lokal UmeÜ" 20250821
+{
+   #TRANS 5010 {} 12000.00
+   #TRANS 2641 {} 3000.00
+   #TRANS 1930 {} -15000.00
+}
+#VER B 18 20250905 "Hyra lokal UmeÜ" 20250905
+{
+   #TRANS 5010 {} 12000.00
+   #TRANS 2641 {} 3000.00
+   #TRANS 1930 {} -15000.00
+}
+#VER A 19 20250920 "FîrsÑljning kund èkesson AB" 20250920
+{
+   #TRANS 1930 {} 6601.79
+   #TRANS 3001 {1 "10"} -5281.43
+   #TRANS 2611 {} -1320.36
+}
+#VER A 20 20251004 "Lîn \"mÜnadslîn\"" 20251004
+{
+   #TRANS 7210 {} 35000.00
+   #TRANS 7510 {} 10997.00
+   #TRANS 2710 {} -10500.00
+   #TRANS 2731 {} -10997.00
+   #TRANS 1930 {} -24500.00
+}
+#VER B 21 20251019 "Lîn \"mÜnadslîn\"" 20251019
+{
+   #TRANS 7210 {} 35000.00
+   #TRANS 7510 {} 10997.00
+   #TRANS 2710 {} -10500.00
+   #TRANS 2731 {} -10997.00
+   #TRANS 1930 {} -24500.00
+}
+#VER A 22 20251102 "Hyra lokal UmeÜ" 20251102
+{
+   #TRANS 5010 {} 12000.00
+   #TRANS 2641 {} 3000.00
+   #TRANS 1930 {} -15000.00
+}
+#VER A 23 20251117 "Bankavgift Swedbank" 20251117
+{
+   #TRANS 6570 {} 45.00
+   #TRANS 1930 {} -45.00
+}
+#VER A 24 20251201 "FîrsÑljning kund èkesson AB" 20251201
+{
+   #TRANS 1930 {} 20412.69
+   #TRANS 3001 {1 "10"} -16330.15
+   #TRANS 2611 {} -4082.54
+}
+#VER B 25 20251216 "FîrsÑljning kund èkesson AB" 20251216
+{
+   #TRANS 1930 {} 9656.41
+   #TRANS 3001 {1 "10"} -7725.13
+   #TRANS 2611 {} -1931.28
+}

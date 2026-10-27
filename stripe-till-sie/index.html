@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bokföra Stripe – gör om Stripe-utbetalningar till SIE-fil</title>
+<meta name="description" content="Bokför utbetalningar från Stripe på minuter: läs in Stripes CSV-export och få en balanserad SIE-fil med försäljning, moms och Stripe-avgifter per utbetalning. För Fortnox, Visma och andra program. Filen lämnar aldrig datorn.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/stripe-till-sie/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/stripe-till-sie/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Bokföra Stripe – Stripe-utbetalning till SIE-fil">
+<meta property="og:description" content="Stripe-CSV in, balanserade verifikationer ut (SIE 4). Försäljning, moms, avgifter, återbetalningar och tvister – direkt i webbläsaren.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#4f46e5">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%234f46e5'/%3E%3Ctext x='16' y='22' font-size='13' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3ESIE%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/stripe-till-sie/","name":"Stripe till SIE","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Gör om Stripes CSV-export (Payout reconciliation eller Balance transactions) till en balanserad SIE 4-fil för bokföring av Stripe-utbetalningar med försäljning, moms och avgifter. Körs helt i webbläsaren.",
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"SEK"}},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hur bokför man en utbetalning från Stripe?","acceptedAnswer":{"@type":"Answer","text":"Bokför försäljningen brutto, inte bara beloppet som kommer in på banken. Exempel för en utbetalning på 9 650 kr där kunderna betalat 10 000 kr inklusive 25 % moms och Stripe dragit 350 kr i avgift: debet 1930 Företagskonto 9 650, debet 6570 Bankkostnader 350, kredit 3001 Försäljning 8 000 och kredit 2611 Utgående moms 2 000. Verktyget gör detta automatiskt för varje utbetalning utifrån Stripes export."}},
+ {"@type":"Question","name":"Vilken fil ska jag exportera från Stripe?","acceptedAnswer":{"@type":"Answer","text":"Bäst är rapporten Payout reconciliation (itemized) under Rapporter i Stripe Dashboard. Exporten av saldotransaktioner (Balance transactions / All activity) fungerar också. Verktyget känner av formatet automatiskt och klarar komma- och semikolonseparerade filer."}},
+ {"@type":"Question","name":"Ska jag bokföra moms på Stripes avgifter?","acceptedAnswer":{"@type":"Answer","text":"Stripe fakturerar svenska företag från Irland utan svensk moms. Om avgiften ska beskattas med omvänd skattskyldighet eller är momsfri finansiell tjänst är en bedömningsfråga – kontrollera med din redovisningskonsult. Verktyget kan bokföra omvänd moms på konto 2645 och 2614 om du slår på det."}},
+ {"@type":"Question","name":"Kan jag importera SIE-filen i Fortnox eller Visma?","acceptedAnswer":{"@type":"Answer","text":"Filen följer SIE 4-standarden med verifikationer (#VER/#TRANS) och teckenkodningen PC8, som är det format Fortnox och Vismas program läser in vid import av verifikationer. Kontrollera alltid kontona och förhandsgranska före import."}},
+ {"@type":"Question","name":"Skickas min Stripe-export till en server?","acceptedAnswer":{"@type":"Answer","text":"Nej. CSV-filen läses och omvandlas helt i din webbläsare. Ingenting laddas upp och sidan har ingen spårning."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Stripe<span>→</span>SIE</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Bokföra Stripe-utbetalningar</h1>
+    <p class="lead" data-i18n="lead">Läs in Stripes CSV-export och få en balanserad SIE-fil med försäljning, moms och avgifter för varje utbetalning – klar att importera i bokföringsprogrammet. <strong>Filen lämnar aldrig din dator.</strong></p>
+  </section>
+
+  <section id="drop" class="drop" tabindex="0" role="button" aria-label="Välj Stripe CSV-fil">
+    <input id="file" type="file" accept=".csv,.txt,text/csv,text/plain" hidden>
+    <p class="drop-main" data-i18n="drop">Släpp din Stripe-CSV här eller <u>välj fil</u></p>
+    <p class="muted small" data-i18n="dropsub">Payout reconciliation (itemized) eller Balance transactions · komma eller semikolon</p>
+    <button id="sample" class="link small" type="button" data-i18n="sample">Prova med en exempelfil</button>
+  </section>
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+
+  <p class="notice" data-i18n="notice"><strong>Viktigt:</strong> Kontoplanen nedan är ett förslag enligt BAS. Kontrollera konton, momssats och hantering av avgifter, återbetalningar och tvister med din redovisningskonsult innan du importerar filen. Du ansvarar själv för din bokföring.</p>
+
+  <details class="card settings" id="settings">
+    <summary data-i18n="set-h">Inställningar och kontoplan</summary>
+    <div class="grid">
+      <label><span data-i18n="s-company">Företagsnamn</span><input type="text" id="s-company" autocomplete="organization"></label>
+      <label><span data-i18n="s-orgnr">Organisationsnummer</span><input type="text" id="s-orgnr" placeholder="556677-8899"></label>
+      <label><span data-i18n="s-grouping">En verifikation per</span>
+        <span class="seg"><label><input type="radio" name="grouping" value="payout"> <span data-i18n="g-payout">utbetalning</span></label><label><input type="radio" name="grouping" value="day"> <span data-i18n="g-day">dag</span></label></span></label>
+      <label><span data-i18n="s-vat">Moms på försäljning</span><select id="s-vatRate"><option value="25">25 %</option><option value="12">12 %</option><option value="6">6 %</option><option value="0" data-i18n="vat0">0 % (momsfritt/export)</option></select></label>
+      <label><span data-i18n="s-series">Verifikationsserie</span><input type="text" id="s-series" maxlength="4"></label>
+      <label><span data-i18n="s-startNo">Första verifikationsnummer</span><input type="number" id="s-startNo" min="1"></label>
+      <label><span data-i18n="s-fy">Räkenskapsåret börjar</span><select id="s-fyStartMonth"></select></label>
+      <label class="chk"><input type="checkbox" id="s-convertTz"> <span data-i18n="s-tz">Räkna om Stripes UTC-tider till svensk tid (datum)</span></label>
+      <label class="chk"><input type="checkbox" id="s-reverseCharge"> <span data-i18n="s-rc">Omvänd skattskyldighet (25 %) på Stripe-avgifter (Stripe Payments Europe, Irland)</span></label>
+    </div>
+    <h3 class="small" data-i18n="map-h">Kontoplan (BAS) – sparas i din webbläsare</h3>
+    <div class="tbl"><table class="map" id="map"><thead><tr><th data-i18n="m-role">Används för</th><th data-i18n="c-acc">Konto</th><th data-i18n="c-name">Namn</th></tr></thead><tbody></tbody></table></div>
+    <p class="row"><span id="map-err" class="small neg"></span><button id="reset" class="btn ghost" type="button" data-i18n="reset">Återställ standard</button></p>
+  </details>
+
+  <section id="result" hidden>
+    <div class="company card">
+      <div>
+        <h2 id="r-title"></h2>
+        <p class="muted" id="r-meta"></p>
+      </div>
+      <div class="actions">
+        <button id="export" class="btn" type="button"><span data-i18n="export">Ladda ner SIE-fil</span></button>
+      </div>
+    </div>
+    <div id="stats" class="stats"></div>
+    <div id="warn" class="warn" hidden></div>
+    <div class="panel card">
+      <div class="tbl"><table id="ver-t"><thead><tr><th data-i18n="c-ver">Ver / konto</th><th data-i18n="c-date">Datum / namn</th><th data-i18n="c-text">Text</th><th class="num" data-i18n="c-deb">Debet</th><th class="num" data-i18n="c-kre">Kredit</th></tr></thead><tbody></tbody></table></div>
+      <button id="more" class="btn ghost" type="button" hidden data-i18n="more">Visa fler</button>
+    </div>
+  </section>
+
+  <dialog id="paywall">
+    <h2 data-i18n="pw-h">Ladda ner SIE-fil</h2>
+    <p data-i18n="pw-p">Du får en SIE 4-fil (PC8) med alla verifikationer i förhandsgranskningen, redo för import.</p>
+  </dialog>
+
+  <section class="faq">
+    <h2>Bokföra Stripe – vanliga frågor</h2>
+    <details open><summary>Hur bokför man en utbetalning från Stripe?</summary>
+      <p>Bokför försäljningen <em>brutto</em>, inte bara det som kommer in på banken – Stripe har redan dragit sina avgifter. Exempel: kunderna har betalat 10 000 kr inkl. 25 % moms och Stripe har dragit 350 kr i avgifter, så 9 650 kr betalas ut:</p>
+      <div class="tbl"><table><thead><tr><th>Konto</th><th class="num">Debet</th><th class="num">Kredit</th></tr></thead><tbody>
+        <tr><td>1930 Företagskonto</td><td class="num">9 650,00</td><td></td></tr>
+        <tr><td>6570 Bankkostnader (Stripe-avgifter)</td><td class="num">350,00</td><td></td></tr>
+        <tr><td>3001 Försäljning 25 % moms</td><td></td><td class="num">8 000,00</td></tr>
+        <tr><td>2611 Utgående moms 25 %</td><td></td><td class="num">2 000,00</td></tr></tbody></table></div>
+      <p>Verktyget gör detta för varje utbetalning (eller varje dag) och tar även med återbetalningar, tvister och övriga Stripe-avgifter.</p></details>
+    <details><summary>Bokföra utbetalning från Stripe – vilken fil ska jag exportera?</summary>
+      <ol class="steps">
+        <li><strong>Rekommenderat:</strong> Stripe Dashboard → <em>Rapporter</em> → <em>Avstämning av utbetalningar</em> (Payout reconciliation) → ladda ner den <em>specificerade</em> (itemized) CSV-filen för perioden.</li>
+        <li>Alternativ: <em>Saldo</em>/<em>Transaktioner</em> → exportera saldotransaktioner (Balance transactions / All activity) som CSV. Den innehåller även utbetalningsraderna.</li>
+      </ol>
+      <p>Formatet känns igen automatiskt via kolumnnamnen (t.ex. <code>reporting_category</code>, <code>gross</code>, <code>fee</code>, <code>net</code>, <code>automatic_payout_id</code> eller <code>Type</code>, <code>Amount</code>, <code>Fee</code>, <code>Net</code>, <code>Transfer</code>). Filer som sparats om i svenska Excel (semikolon och decimalkomma) fungerar också.</p></details>
+    <details><summary>Per utbetalning eller per dag?</summary><p><strong>Per utbetalning</strong> ger en verifikation per bankinsättning och är lättast att stämma av mot kontoutdraget. Transaktioner som ännu inte betalats ut tas inte med. <strong>Per dag</strong> bokför allt på transaktionsdagen mot fordran på Stripe (1580), och utbetalningarna flyttar pengarna från 1580 till 1930 – bra om du vill ha försäljningen i rätt månad.</p></details>
+    <details><summary>Moms på Stripes avgifter – omvänd skattskyldighet?</summary><p>Stripe fakturerar svenska företag från Stripe Payments Europe Ltd på Irland, utan svensk moms. Om avgifterna ska redovisas med omvänd skattskyldighet eller är momsfria finansiella tjänster är en bedömningsfråga. Som standard bokförs ingen moms på avgifterna. Slår du på omvänd skattskyldighet bokförs 25 % på 2645 (ingående) och 2614 (utgående), vilket nollar ut varandra. Fråga din redovisningskonsult.</p></details>
+    <details><summary>Hur hanteras återbetalningar och tvister (chargebacks)?</summary><p>Återbetalningar bokas som minskad försäljning och moms (samma konton som försäljningen, eller ett eget konto om du anger det). Ett omtvistat belopp flyttas till en fordran (förslag 1680) och Stripes tvistavgift bokas som avgift. Vinner du tvisten återförs beloppet till samma konto; förlorar du behöver du själv boka bort fordran, t.ex. mot kundförluster.</p></details>
+    <details><summary>Vad händer med andra valutor än SEK?</summary><p>Version 1 hanterar fullt ut bara saldon i SEK. Betalningar som kunden gjort i euro eller annan valuta men som Stripe växlat till ditt SEK-saldo fungerar som vanligt. Rader där själva saldot är i en annan valuta (t.ex. ett separat EUR-saldo) tas inte med, och du får en tydlig varning.</p></details>
+    <details><summary>Kan jag importera filen i Fortnox, Visma eller Bokio?</summary><p>Filen följer SIE 4-standarden med verifikationer (#VER/#TRANS) och teckenkodningen PC8 och sparas som <code>.si</code> (importfil). Fortnox och Vismas program har import av verifikationer från SIE 4. Bokio importerar SIE-filer främst vid flytt av tidigare bokföring – kontrollera med Bokio. Räkenskapsåret måste finnas i programmet och vissa program numrerar om verifikationerna vid import.</p></details>
+    <details><summary>Laddas min Stripe-export upp någonstans?</summary><p>Nej. Filen läses och omvandlas helt i din webbläsare. Ingenting skickas till någon server, och sidan använder varken cookies eller spårning. Dina kontoinställningar sparas bara lokalt i webbläsaren.</p></details>
+  </section>
+</main>
+<footer class="wrap muted small foot">Fristående verktyg – inte anslutet till Stripe. Stripe är ett varumärke som tillhör Stripe, Inc. Förslagen till kontering är inte rådgivning. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/csv.js"></script>
+<script src="js/sie-writer.js"></script>
+<script src="js/stripe.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
