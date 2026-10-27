@@ -19,7 +19,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/stripe-till-sie/","name":"Stripe till SIE","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
  "description":"Gör om Stripes CSV-export (Payout reconciliation eller Balance transactions) till en balanserad SIE 4-fil för bokföring av Stripe-utbetalningar med försäljning, moms och avgifter. Körs helt i webbläsaren.",
- "offers":{"@type":"Offer","price":"0","priceCurrency":"SEK"}},
+ "offers":[{"@type":"Offer","price":"0","priceCurrency":"SEK","description":"Gratis grundfunktion"},{"@type":"Offer","price":"199","priceCurrency":"SEK","description":"Nedladdning av SIE-fil","url":"https://drudley.gumroad.com/l/qmhwbf"}]},
 {"@type":"FAQPage","mainEntity":[
  {"@type":"Question","name":"Hur bokför man en utbetalning från Stripe?","acceptedAnswer":{"@type":"Answer","text":"Bokför försäljningen brutto, inte bara beloppet som kommer in på banken. Exempel för en utbetalning på 9 650 kr där kunderna betalat 10 000 kr inklusive 25 % moms och Stripe dragit 350 kr i avgift: debet 1930 Företagskonto 9 650, debet 6570 Bankkostnader 350, kredit 3001 Försäljning 8 000 och kredit 2611 Utgående moms 2 000. Verktyget gör detta automatiskt för varje utbetalning utifrån Stripes export."}},
  {"@type":"Question","name":"Vilken fil ska jag exportera från Stripe?","acceptedAnswer":{"@type":"Answer","text":"Bäst är rapporten Payout reconciliation (itemized) under Rapporter i Stripe Dashboard. Exporten av saldotransaktioner (Balance transactions / All activity) fungerar också. Verktyget känner av formatet automatiskt och klarar komma- och semikolonseparerade filer."}},

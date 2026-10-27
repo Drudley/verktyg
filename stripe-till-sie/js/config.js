@@ -7,11 +7,11 @@
  * GUMROAD_PRODUCT_ID  product_id from the Gumroad product (licence keys enabled) — used by the licence verify API.
  */
 window.APP_CONFIG = {
-  PAYWALL_ENABLED: false,
+  PAYWALL_ENABLED: true,
   ALLOW_DEV_QUERY: false,
   PRICE_LABEL: '199 kr',
-  GUMROAD_PRODUCT_URL: '',
-  GUMROAD_PRODUCT_ID: '',
+  GUMROAD_PRODUCT_URL: 'https://drudley.gumroad.com/l/qmhwbf',
+  GUMROAD_PRODUCT_ID: 'u2-DFHMGUrMmcrK-u2FB8w==',
   STORAGE_KEY: 'stripe2sie_unlock_v1',
   SETTINGS_KEY: 'stripe2sie_settings_v1'
 };

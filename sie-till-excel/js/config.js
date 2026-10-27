@@ -7,11 +7,11 @@
  * GUMROAD_PRODUCT_ID  product_id from the Gumroad product (licence keys enabled) — used by the licence verify API.
  */
 window.SIE_CONFIG = {
-  PAYWALL_ENABLED: false,
+  PAYWALL_ENABLED: true,
   ALLOW_DEV_QUERY: false,
   PRICE_LABEL: '99 kr',
-  GUMROAD_PRODUCT_URL: '',
-  GUMROAD_PRODUCT_ID: '',
+  GUMROAD_PRODUCT_URL: 'https://drudley.gumroad.com/l/lxxxnl',
+  GUMROAD_PRODUCT_ID: 'R8Rv5-8RUOsD5OqQXMcCUg==',
   STORAGE_KEY: 'sie2xlsx_unlock_v1'
 };
 window.SIE_PAYWALL = window.PAYWALL.create(window.SIE_CONFIG);

@@ -7,11 +7,11 @@
  * GUMROAD_PRODUCT_ID  product_id from the Gumroad product (licence keys enabled) — used by the licence verify API.
  */
 window.APP_CONFIG = {
-  PAYWALL_ENABLED: false,
+  PAYWALL_ENABLED: true,
   ALLOW_DEV_QUERY: false,
   PRICE_LABEL: '79 kr',
-  GUMROAD_PRODUCT_URL: '',
-  GUMROAD_PRODUCT_ID: '',
+  GUMROAD_PRODUCT_URL: 'https://drudley.gumroad.com/l/zbhuhj',
+  GUMROAD_PRODUCT_ID: 'jJSQ6IfosMRX9ymKaWM8Aw==',
   STORAGE_KEY: 'fraktetikett_unlock_v1',
   SETTINGS_KEY: 'fraktetikett_settings_v1',
   MAX_PAGES_PER_FILE: 40
