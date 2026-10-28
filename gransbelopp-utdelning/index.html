@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gränsbelopp 2026 – räkna ut utdelning enligt nya 3:12-reglerna (K10)</title>
+<meta name="description" content="Räkna ut ditt gränsbelopp för 2026 enligt de nya 3:12-reglerna: grundbelopp 322 400 kr, lönebaserat utrymme, ränta på omkostnadsbelopp och sparat utdelningsutrymme – plus skatten på din utdelning. Gratis, utan konto, allt räknas i webbläsaren.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/gransbelopp-utdelning/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/gransbelopp-utdelning/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Gränsbelopp 2026 – 3:12-kalkylator för utdelning i fåmansbolag">
+<meta property="og:description" content="Nya 3:12-reglerna 2026: räkna gränsbelopp, skatt på utdelning och sparat utdelningsutrymme till K10. Alla belopp med källa från Skatteverket.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#b45309">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23b45309'/%3E%3Ctext x='16' y='21' font-size='11' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3E3:12%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/gransbelopp-utdelning/","name":"Gränsbelopp 2026 – 3:12-kalkylator","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Räknar ut gränsbelopp för kvalificerade aktier i fåmansföretag för inkomstår 2026 enligt de nya 3:12-reglerna (grundbelopp, lönebaserat utrymme, ränta på omkostnadsbelopp, sparat utdelningsutrymme) och skatten på utdelningen. Körs helt i webbläsaren.",
+ "offers":[{"@type":"Offer","price":"0","priceCurrency":"SEK","description":"Gratis grundfunktion"},{"@type":"Offer","price":"79","priceCurrency":"SEK","description":"Lön eller utdelning – optimering","url":"https://drudley.gumroad.com/l/acmta"}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hur stort är gränsbeloppet 2026?","acceptedAnswer":{"@type":"Answer","text":"Från inkomstår 2026 består gränsbeloppet av din andel av grundbeloppet (4 inkomstbasbelopp = 322 400 kr för hela bolaget), lönebaserat utrymme, ränta på den del av omkostnadsbeloppet som överstiger 100 000 kr (11,55 %) och sparat utdelningsutrymme. En ensamägare utan anställda och med litet omkostnadsbelopp får alltså 322 400 kr plus eventuellt sparat utrymme."}},
+ {"@type":"Question","name":"Hur räknar man ut lönebaserat utrymme 2026?","acceptedAnswer":{"@type":"Answer","text":"(löneunderlag 2025 × din ägarandel − 644 800 kr) × 50 %. 644 800 kr är åtta inkomstbasbelopp. Utrymmet får inte vara större än 50 gånger den kontanta lön som du eller en närstående fick från bolaget 2025. Löneuttagskravet och kravet på 4 procents ägande är borttagna."}},
+ {"@type":"Question","name":"Vad är skillnaden mot förenklingsregeln och huvudregeln?","acceptedAnswer":{"@type":"Answer","text":"Från inkomstår 2026 finns bara en beräkningsregel. Grundbeloppet ersätter förenklingsregeln och kan kombineras med lönebaserat utrymme. Du får högst ett grundbelopp sammanlagt för alla dina fåmansföretag."}},
+ {"@type":"Question","name":"Räknas sparat utdelningsutrymme upp med ränta 2026?","acceptedAnswer":{"@type":"Answer","text":"Nej. Från och med deklarationen 2027 (inkomstår 2026) förs sparat utdelningsutrymme vidare utan uppräkning."}},
+ {"@type":"Question","name":"Hur beskattas utdelning över gränsbeloppet?","acceptedAnswer":{"@type":"Answer","text":"Utdelning upp till gränsbeloppet beskattas med 20 % (två tredjedelar av 30 % kapitalskatt). Det som överstiger gränsbeloppet beskattas som lön i inkomstslaget tjänst, med kommunalskatt och eventuellt statlig skatt, upp till takbeloppet 90 inkomstbasbelopp (7 506 000 kr för 2026). Över takbeloppet beskattas utdelningen med 30 % i inkomstslaget kapital."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Gränsbelopp<span>·</span>3:12</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Gränsbelopp 2026 – räkna ut din utdelning enligt nya 3:12-reglerna</h1>
+    <p class="lead" data-i18n="lead">Fyll i några uppgifter om ditt fåmansbolag och få gränsbeloppet för inkomstår 2026, skatten på din utdelning och ditt sparade utdelningsutrymme till nästa år – steg för steg, med samma delar som på blankett K10. <strong>Inget konto, inget sparas på någon server.</strong></p>
+    <p><span class="pill" data-i18n="pill">Uppdaterad för inkomstår 2026 (deklarationen 2027)</span> <button id="sample" class="link small" type="button" data-i18n="sample">Prova med Skatteverkets exempel</button></p>
+  </section>
+
+  <div class="cols">
+    <section class="card form" id="form" aria-labelledby="f-h">
+      <h2 id="f-h" data-i18n="f-h">Dina uppgifter</h2>
+      <div class="grid">
+        <label class="chk"><input type="checkbox" id="ownedAtStart" checked> <span data-i18n="l-owned">Jag ägde aktierna vid ingången av 2026 (1 januari)</span></label>
+        <label><span data-i18n="l-share">Din ägarandel (%)</span><input type="text" inputmode="decimal" id="share" value="100"><span class="hint" data-i18n="h-share">Andel av aktierna vid årets ingång.</span></label>
+        <label><span data-i18n="l-other">Ägarandel i dina andra fåmansföretag (summa %)</span><input type="text" inputmode="decimal" id="otherShares" value="0"><span class="hint" data-i18n="h-other">Du får högst ett grundbelopp totalt. 0 om du bara har det här bolaget.</span></label>
+      </div>
+      <h3 data-i18n="f-lon">Löner 2025 (året före)</h3>
+      <div class="grid">
+        <label><span data-i18n="l-wages">Löneunderlag: kontanta löner i bolaget och dotterföretag (kr)</span><input type="text" inputmode="numeric" id="wages" value="0"><span class="hint" data-i18n="h-wages">Alla anställdas kontanta bruttolöner inkl. din egen. Inte förmåner eller pension.</span></label>
+        <label><span data-i18n="l-own">Högsta kontanta lön till dig eller en närstående (kr)</span><input type="text" inputmode="numeric" id="ownSalary" value="0"><span class="hint" data-i18n="h-own">Taket: lönebaserat utrymme ≤ 50 × denna lön.</span></label>
+        <label class="chk"><input type="checkbox" id="spouse"> <span data-i18n="l-spouse">Min make/maka äger också aktier i bolaget</span></label>
+        <label id="spouseRow" hidden><span data-i18n="l-spshare">Makens/makans ägarandel (%)</span><input type="text" inputmode="decimal" id="spouseShare" value="0"></label>
+      </div>
+      <h3 data-i18n="f-kap">Kapital och sparat utrymme</h3>
+      <div class="grid">
+        <label><span data-i18n="l-cost">Omkostnadsbelopp för dina aktier (kr)</span><input type="text" inputmode="numeric" id="cost" value="25000"><span class="hint" data-i18n="h-cost">Vad du betalat för aktierna plus ovillkorade aktieägartillskott. Ränta bara på delen över 100 000 kr.</span></label>
+        <label><span data-i18n="l-saved">Sparat utdelningsutrymme från K10 för 2025 (kr)</span><input type="text" inputmode="numeric" id="saved" value="0"><span class="hint" data-i18n="h-saved">Står på förra årets K10. Räknas inte längre upp med ränta.</span></label>
+        <label><span data-i18n="l-div">Planerad utdelning till dig 2026 (kr)</span><input type="text" inputmode="numeric" id="dividend" value="0"></label>
+      </div>
+      <details id="taxSettings">
+        <summary data-i18n="f-tax">Skatt på utdelning över gränsbeloppet (valfritt)</summary>
+        <div class="grid">
+          <label><span data-i18n="l-income">Din övriga förvärvsinkomst 2026, t.ex. lön (kr)</span><input type="text" inputmode="numeric" id="otherIncome" value="0"></label>
+          <label><span data-i18n="l-kommunal">Kommunalskatt (%)</span><input type="text" inputmode="decimal" id="kommunal" value="32,38"><span class="hint" data-i18n="h-kommunal">Kommun + region. Riksgenomsnitt 2026: 32,38 %.</span></label>
+          <label><span data-i18n="l-avgift">Begravnings- och kyrkoavgift (%)</span><input type="text" inputmode="decimal" id="avgift" value="0,292"><span class="hint" data-i18n="h-avgift">Begravningsavgift 0,292 % (Stockholm 0,070 %), plus ev. kyrkoavgift.</span></label>
+          <label><span data-i18n="l-born">Födelseår</span><input type="text" inputmode="numeric" id="birthYear" value="1985"></label>
+        </div>
+      </details>
+      <p class="row end"><button id="reset" class="btn ghost" type="button" data-i18n="reset">Rensa</button></p>
+    </section>
+
+    <section id="result" class="card" aria-live="polite">
+      <h2 data-i18n="r-h">Ditt gränsbelopp 2026</h2>
+      <p class="big" id="r-total">–</p>
+      <div class="tbl"><table class="calc" id="r-calc"><tbody></tbody></table></div>
+      <ul class="notes" id="r-notes"></ul>
+      <h3 data-i18n="r-div">Skatt på utdelningen</h3>
+      <div class="tbl"><table class="calc" id="r-tax"><tbody></tbody></table></div>
+      <p class="small muted" id="r-saved"></p>
+      <p class="row end"><button id="print" class="btn ghost" type="button" data-i18n="print">Skriv ut / spara som PDF</button></p>
+    </section>
+  </div>
+
+  <section class="card paid" id="opt" aria-labelledby="o-h">
+    <h2 id="o-h" data-i18n="o-h">Lön eller utdelning 2026 – hitta bästa fördelningen</h2>
+    <p class="small" data-i18n="o-p">Ange hur mycket pengar bolaget har att fördela mellan lön till dig och utdelning. Verktyget testar varje lönenivå med Skatteverkets exakta skatteregler för 2026 (grundavdrag, jobbskatteavdrag, statlig skatt, arbetsgivaravgifter, bolagsskatt 20,6 %) och visar vilken lön som ger mest pengar kvar efter skatt, samt hur lönen påverkar nästa års lönebaserade utrymme.</p>
+    <div class="grid">
+      <label><span data-i18n="l-pool">Belopp att fördela, före din lön, arbetsgivaravgifter och bolagsskatt (kr)</span><input type="text" inputmode="numeric" id="pool" value="1000000"></label>
+      <label><span data-i18n="l-ow">Andra anställdas kontanta löner 2026 (kr)</span><input type="text" inputmode="numeric" id="otherWages" value="0"><span class="hint" data-i18n="h-ow">Används för att visa lönebaserat utrymme 2027.</span></label>
+    </div>
+    <p class="row"><span class="small muted" data-i18n="o-uses">Använder gränsbeloppet, kommunalskatten och födelseåret ovan.</span><button id="optimize" class="btn" type="button"><span data-i18n="optimize">Räkna fram bästa lön och utdelning</span></button></p>
+    <div id="o-out" hidden>
+      <div class="best" id="o-best"></div>
+      <svg id="o-chart" class="chart" viewBox="0 0 720 240" role="img" aria-label="Netto efter skatt per lönenivå"></svg>
+      <div class="tbl"><table id="o-table"><thead><tr><th data-i18n="c-sal">Lön/år (per månad)</th><th class="num" data-i18n="c-ag">Arb.giv.avg.</th><th class="num" data-i18n="c-ctax">Bolagsskatt</th><th class="num" data-i18n="c-div">Utdelning</th><th class="num" data-i18n="c-tax">Din skatt</th><th class="num" data-i18n="c-net">Netto till dig</th><th class="num" data-i18n="c-next">Lönebaserat utrymme 2027</th></tr></thead><tbody></tbody></table></div>
+      <p class="small muted" data-i18n="o-assume">Förenklad ettårsmodell: allt som inte blir lön betalas ut som utdelning samma år, du får hela utdelningen och bolaget har inga andra kostnader. Värdet av pension, sjukpenninggrundande inkomst och föräldrapenning som lön ger ingår inte i nettot. Ålderspension: lön ger pensionsrätt, utdelning gör det inte.</p>
+    </div>
+  </section>
+
+  <dialog id="paywall">
+    <h2 data-i18n="pw-h">Lön eller utdelning – optimering</h2>
+    <p data-i18n="pw-p">Lås upp optimeringen: bästa lön och utdelning för 2026 med exakta skatteregler, jämförelsetabell, diagram och effekt på nästa års gränsbelopp.</p>
+  </dialog>
+
+  <section class="faq">
+    <h2>Gränsbelopp och 3:12-reglerna 2026 – vanliga frågor</h2>
+    <details open><summary>Vad är nytt i 3:12-reglerna från 2026?</summary>
+      <ul>
+        <li>Förenklingsregeln och huvudregeln ersätts av <strong>en</strong> beräkningsregel.</li>
+        <li><strong>Grundbelopp</strong> 4 inkomstbasbelopp = <strong>322 400 kr</strong> för hela bolaget, fördelat efter ägarandel. Du får högst ett grundbelopp totalt, även om du äger flera fåmansföretag.</li>
+        <li><strong>Lönebaserat utrymme</strong> = (löneunderlag × ägarandel − 644 800 kr) × 50 %. Löneuttagskravet och 4-procentskravet är borttagna, men utrymmet får inte överstiga 50 gånger din eller en närståendes kontanta lön.</li>
+        <li><strong>Ränta på omkostnadsbelopp</strong> bara på delen över 100 000 kr: statslåneräntan 2,55 % + 9 = 11,55 %.</li>
+        <li><strong>Sparat utdelningsutrymme</strong> räknas inte längre upp med ränta.</li>
+      </ul>
+      <p>Reglerna gäller från inkomstår 2026, alltså K10 i deklarationen som lämnas våren 2027.</p></details>
+    <details><summary>Hur räknar man ut gränsbeloppet? Exempel</summary>
+      <p>Skatteverkets exempel: Valter äger hela Rönnverket AB. Bolaget betalade 1 000 000 kr i kontanta löner 2025, varav 600 000 kr till Valter. Omkostnadsbeloppet är 25 000 kr och han har 750 000 kr i sparat utdelningsutrymme.</p>
+      <div class="tbl"><table><tbody>
+        <tr><td>Grundbelopp (100 % × 322 400)</td><td class="num">322 400</td></tr>
+        <tr><td>Lönebaserat utrymme ((1 000 000 − 644 800) × 50 %)</td><td class="num">177 600</td></tr>
+        <tr><td>Ränta på omkostnadsbelopp (under 100 000 kr)</td><td class="num">0</td></tr>
+        <tr><td>Sparat utdelningsutrymme</td><td class="num">750 000</td></tr>
+        <tr><td><strong>Gränsbelopp</strong></td><td class="num"><strong>1 250 000</strong></td></tr></tbody></table></div>
+      <p>Utdelningen på 100 000 kr ryms och beskattas med 20 % = 20 000 kr. Kvar till nästa år: 1 150 000 kr. Klicka på <em>Prova med Skatteverkets exempel</em> ovan för att se uträkningen.</p></details>
+    <details><summary>Vad är grundbeloppet om jag äger flera bolag?</summary><p>Du får sammanlagt högst ett grundbelopp (322 400 kr). Om dina ägarandelar i alla fåmansföretag tillsammans överstiger 100 % fördelas grundbeloppet proportionellt. Äger du 25 %, 75 % och 100 % i tre bolag (200 %) blir grundbeloppet 40 300, 120 900 och 161 200 kr. Fyll i summan av dina andelar i de andra bolagen i fältet för andra fåmansföretag.</p></details>
+    <details><summary>Hur fungerar lönebaserat utrymme för makar?</summary><p>Är två delägare i samma bolag gifta vid årets ingång räknar de lönebaserat utrymme gemensamt: (löneunderlag × er sammanlagda andel − 644 800 kr) × 50 %. Utrymmet fördelas sedan efter era ägarandelar. Avdraget på åtta inkomstbasbelopp görs alltså bara en gång.</p></details>
+    <details><summary>Hur beskattas utdelning över gränsbeloppet?</summary><p>Inom gränsbeloppet är skatten 20 %. Det som överstiger beskattas som tjänsteinkomst med kommunalskatt och, över skiktgränsen 643 000 kr i beskattningsbar inkomst, 20 % statlig skatt. Verktyget räknar ut skillnaden i din inkomstskatt med Skatteverkets regler för 2026 (grundavdrag, statlig skatt, public service-avgift) givet din övriga inkomst. Över takbeloppet 7 506 000 kr (90 inkomstbasbelopp, för dig och närstående per bolag och år) beskattas resten med 30 % i kapital.</p></details>
+    <details><summary>Jag startade bolaget under 2026 – får jag gränsbelopp?</summary><p>Nej. Du måste ha ägt aktierna vid ingången av inkomståret. Den som startar ett bolag den 1 februari 2026 får sitt första gränsbelopp för inkomstår 2027.</p></details>
+    <details><summary>Lön eller utdelning – vad lönar sig 2026?</summary><p>Oftast lönar det sig att ta lön upp till ungefär där jobbskatteavdraget slutar öka (cirka 478 000 kr/år) eller statlig skatt börjar (cirka 660 400 kr/år), och resten som utdelning inom gränsbeloppet. Men svaret beror på bolagets vinst, ditt gränsbelopp, din kommunalskatt och om du vill bygga lönebaserat utrymme till nästa år. Optimeringen ovan räknar på dina egna siffror.</p></details>
+    <details><summary>Skickas mina uppgifter någonstans?</summary><p>Nej. Allt räknas ut i din webbläsare. Inga uppgifter skickas till någon server och sidan har ingen spårning. Dina siffror sparas bara lokalt i webbläsaren så att de finns kvar nästa gång.</p></details>
+    <h2>Källor</h2>
+    <ul class="sources">
+      <li><a href="https://www.skatteverket.se/foretag/drivaforetag/foretagsformer/famansforetag/andradereglerinforinkomstdeklarationen2027.4.4a54dc8b19aa6175a152359.html" rel="noopener">Skatteverket: Ändrade regler för delägare i fåmansföretag inför inkomstdeklarationen 2027</a></li>
+      <li><a href="https://www.skatteverket.se/foretag/drivaforetag/foretagsformer/famansforetag/beloppochprocentsatser.4.34f3b0b713e2cf5455b7288.html" rel="noopener">Skatteverket: Belopp och procentsatser (blankett K10)</a></li>
+      <li><a href="https://www.skatteverket.se/foretag/drivaforetag/foretagsformer/famansforetag/raknautskattenpadinutdelning.4.b1014b415f3321c0de27ce.html" rel="noopener">Skatteverket: Räkna ut skatten på din utdelning</a></li>
+      <li><a href="https://www.skatteverket.se/foretag/etjansterochblanketter/blanketterbroschyrer/broschyrer/info/433.4.39f16f103821c58f680007825.html" rel="noopener">Skatteverket: Teknisk beskrivning för skattetabeller 2026 (SKV 433)</a></li>
+    </ul>
+  </section>
+</main>
+<footer class="wrap muted small foot">Fristående verktyg – inte anslutet till Skatteverket. Uträkningen är en uppskattning och inte skatterådgivning; kontrollera mot blankett K10 eller med din redovisningskonsult. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/k10.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
