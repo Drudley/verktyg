@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Revolut till K4 – SRU-fil för aktier, genomsnittsmetoden i SEK</title>
+<meta name="description" content="Gör K4-bilagan för Revolut-aktier: dra in kontoutdraget, få omkostnadsbelopp enligt genomsnittsmetoden i kronor och en SRU-fil att importera hos Skatteverket. Allt sker i webbläsaren.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/k4-revolut-aktier/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/k4-revolut-aktier/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Revolut till K4 – SRU-fil för dina aktieaffärer">
+<meta property="og:description" content="Genomsnittsmetoden i SEK med Riksbankens kurser, K4 avsnitt A och SRU-fil för filöverföring. Filen lämnar aldrig datorn.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0e7490">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e7490'/%3E%3Ctext x='16' y='22' font-size='14' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3EK4%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/k4-revolut-aktier/","name":"Revolut till K4 (SRU)","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Räkna fram K4-bilagan (avsnitt A) för aktier och ETF:er handlade via Revolut: genomsnittsmetoden per värdepapper, omräkning till kronor och SRU-fil för Skatteverkets filöverföring. Allt sker i webbläsaren.",
+ "offers":[{"@type":"Offer","price":"0","priceCurrency":"SEK","description":"Gratis grundfunktion"},{"@type":"Offer","price":"149","priceCurrency":"SEK","description":"K4-rader, SRU-fil och granskningsfil","url":"https://drudley.gumroad.com/l/rnjrl"}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hur deklarerar jag aktier från Revolut?","acceptedAnswer":{"@type":"Answer","text":"Revolut lämnar ingen kontrolluppgift till Skatteverket, så du redovisar själv varje försäljning på bilaga K4, avsnitt A. Omkostnadsbeloppet räknas med genomsnittsmetoden och alla belopp ska vara i svenska kronor."}},
+ {"@type":"Question","name":"Vilken fil ska jag ladda ner från Revolut?","acceptedAnswer":{"@type":"Answer","text":"Ladda ner kontoutdraget (Account statement) för aktiekontot i Revolut-appen som CSV eller Excel för hela perioden sedan kontot öppnades. Sammanställningen över stängda positioner (P&L) räcker inte eftersom köp av aktier du fortfarande äger saknas."}},
+ {"@type":"Question","name":"Vilken växelkurs används?","acceptedAnswer":{"@type":"Answer","text":"Varje köp och försäljning räknas om till kronor på affärsdagen. Verktyget använder kursen i Revolut-filen när den stämmer med Riksbankens dagskurs och annars Riksbankens mittkurs för dagen."}},
+ {"@type":"Question","name":"Hur importerar jag SRU-filen hos Skatteverket?","acceptedAnswer":{"@type":"Answer","text":"Logga in i e-tjänsten Inkomstdeklaration 1, välj att lägga till bilaga K4 via filöverföring och ladda upp INFO.SRU och BLANKETTER.SRU utan att byta namn på filerna. Granska bilagan innan du skriver under."}},
+ {"@type":"Question","name":"Laddas min fil upp till en server?","acceptedAnswer":{"@type":"Answer","text":"Nej. Filen läses och beräknas helt i din webbläsare. Ingenting skickas till någon server och sidan har ingen spårning."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Revolut<span>→</span>K4</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Revolut till K4 – SRU-fil för dina aktieaffärer</h1>
+    <p class="lead" data-i18n="lead">Dra in kontoutdraget från Revolut. Du får omkostnadsbelopp enligt <strong>genomsnittsmetoden</strong>, allt omräknat till kronor, och en <strong>SRU-fil</strong> för K4 att importera hos Skatteverket. <strong>Filen lämnar aldrig din dator.</strong></p>
+  </section>
+
+  <section id="drop" class="drop" tabindex="0" role="button" aria-label="Välj Revolut-fil">
+    <input id="file" type="file" accept=".csv,.xlsx,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden>
+    <p class="drop-main" data-i18n="drop">Släpp Revolut-filen här eller <u>välj fil</u></p>
+    <p class="muted small" data-i18n="dropsub">Revolut-appen → Aktier → ··· → Dokument → Kontoutdrag (Account statement) · CSV eller Excel · hela perioden</p>
+    <button id="sample" class="link small" type="button" data-i18n="sample">Prova med en syntetisk exempelfil</button>
+  </section>
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+
+  <section id="result" hidden>
+    <div class="company card">
+      <div>
+        <h2 id="r-title"></h2>
+        <p class="muted small" id="r-meta"></p>
+      </div>
+      <div class="actions">
+        <label class="small"><span data-i18n="year">Inkomstår</span> <select id="year"></select></label>
+      </div>
+      <div class="opts">
+        <label><input type="checkbox" id="perSale"> <span data-i18n="persale">En K4-rad per försäljning</span></label>
+        <label><input type="checkbox" id="rbOnly"> <span data-i18n="rbonly">Använd alltid Riksbankens kurs</span></label>
+      </div>
+    </div>
+    <div id="stats" class="stats"></div>
+    <div id="flags" class="flags" hidden></div>
+    <div id="info" class="info" hidden></div>
+
+    <h2 data-i18n="prev-h">Förhandsvisning per värdepapper</h2>
+    <div class="tbl card"><table id="prev-t"><thead><tr><th data-i18n="c-sec">Värdepapper</th><th class="num" data-i18n="c-qty">Antal sålda</th><th class="num" data-i18n="c-pris">Försäljningspris</th><th class="num" data-i18n="c-omk">Omkostnadsbelopp</th><th class="num" data-i18n="c-res">Vinst / förlust</th><th data-i18n="c-status">Status</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div>
+
+    <section id="paid" class="card paid">
+      <h2 data-i18n="paid-h">K4-rader, SRU-fil och granskningsfil</h2>
+      <p class="small" data-i18n="paid-p">K4 avsnitt A med högst 9 rader per blankett, <code>INFO.SRU</code> + <code>BLANKETTER.SRU</code> för Skatteverkets filöverföring och en Excel-fil med alla köp, försäljningar och genomsnittsberäkningar.</p>
+      <div class="row"><button id="k4-open" class="btn" type="button"><span data-i18n="open">Visa K4-rader och ladda ner SRU</span></button></div>
+      <div id="paid-out" hidden>
+        <div id="k4-pages"></div>
+        <p id="k4-round" class="hint" hidden data-i18n="round">Antal är avrundat till heltal i SRU-filen eftersom formatet bara tillåter heltal (bråkdelsaktier). Antalet påverkar inte skatten; belopp och vinst/förlust är exakta till hela kronor.</p>
+        <div class="who">
+          <h3 data-i18n="who-h">Uppgifter till SRU-filen</h3>
+          <p class="hint" data-i18n="who-p">Krävs i INFO.SRU och BLANKETTER.SRU. Sparas inte – finns bara i den här fliken.</p>
+          <div class="grid">
+            <label><span data-i18n="f-pnr">Personnummer (ÅÅÅÅMMDD-NNNN)</span><input type="text" id="f-pnr" inputmode="numeric" autocomplete="off" placeholder="19800101-1234"></label>
+            <label><span data-i18n="f-name">Namn</span><input type="text" id="f-name" autocomplete="name"></label>
+            <label><span data-i18n="f-zip">Postnummer</span><input type="text" id="f-zip" inputmode="numeric" autocomplete="postal-code" placeholder="123 45"></label>
+            <label><span data-i18n="f-city">Postort</span><input type="text" id="f-city" autocomplete="address-level2"></label>
+          </div>
+        </div>
+        <div class="dlrow">
+          <button id="dl-sru" class="btn" type="button" data-i18n="dl-sru">Ladda ner SRU-filer (INFO.SRU + BLANKETTER.SRU)</button>
+          <button id="dl-xlsx" class="btn ghost" type="button" data-i18n="dl-xlsx">Ladda ner granskningsfil (.xlsx)</button>
+        </div>
+        <p id="dl-msg" class="small" role="status"></p>
+      </div>
+    </section>
+
+    <div class="review">
+      <h3 data-i18n="rev-h">Granska innan du lämnar in</h3>
+      <ul>
+        <li data-i18n="rev-1">Kontrollera att filen innehåller <strong>alla köp sedan kontot öppnades</strong> – även från tidigare år och andra Revolut-konton. Saknade köp ger fel omkostnadsbelopp.</li>
+        <li data-i18n="rev-2">Split, avknoppningar, fusioner och namnbyten räknas inte automatiskt. Sådana värdepapper markeras och tas inte med i SRU-filen.</li>
+        <li data-i18n="rev-3">Valutavinster på USD-/EUR-saldo hos Revolut, utdelningar och utländsk källskatt redovisas separat och ingår inte här.</li>
+        <li data-i18n="rev-4">Öppna bilagan i e-tjänsten efter importen och jämför med granskningsfilen. Du ansvarar själv för uppgifterna i din deklaration.</li>
+      </ul>
+    </div>
+  </section>
+
+  <dialog id="paywall">
+    <h2 data-i18n="pw-h">K4-rader och SRU-fil</h2>
+    <p data-i18n="pw-p">Lås upp K4-raderna, SRU-filerna för Skatteverkets filöverföring och granskningsfilen i Excel. Förhandsvisningen är alltid gratis.</p>
+  </dialog>
+
+  <section class="faq">
+    <h2>Revolut och K4 – vanliga frågor</h2>
+    <details open><summary>Hur deklarerar jag aktier från Revolut?</summary><p>Revolut lämnar ingen kontrolluppgift till Skatteverket. Du redovisar därför själv alla försäljningar på <strong>bilaga K4, avsnitt A</strong> (marknadsnoterade aktier och fondandelar – även utländska ETF:er). Omkostnadsbeloppet räknas med <strong>genomsnittsmetoden</strong>: alla köp av samma värdepapper läggs ihop och vid varje försäljning dras en proportionell del av. Alla belopp ska vara i kronor och avrundas till hela kronor.</p></details>
+    <details><summary>Vilken fil ska jag ladda ner från Revolut?</summary><p>I Revolut-appen: <em>Aktier → ··· → Dokument → Kontoutdrag (Account statement)</em>. Välj CSV eller Excel och <strong>hela perioden</strong> sedan kontot öppnades. Verktyget läser både den äldre CSV-varianten (belopp som <code>$1,500.00</code>) och den nyare transaktionsloggen (belopp som <code>USD 1,500.00</code>, typer som <code>BUY - LIMIT</code>). Rapporten över stängda positioner (P&amp;L) räcker inte, eftersom köp av aktier du fortfarande äger saknas i den.</p></details>
+    <details><summary>Vilken växelkurs används?</summary><p>Varje köp och försäljning räknas om till kronor på affärsdagen. Kursen i Revolut-filen används när den stämmer (inom 5 %) med Riksbankens dagskurs; annars används Riksbankens mittkurs för dagen (närmast föregående bankdag). Du kan välja att alltid använda Riksbankens kurs. Kurstabellen följer med sidan – inga anrop görs.</p></details>
+    <details><summary>Ingår courtage och avgifter?</summary><p>Ja. Revolut-filens totalbelopp innehåller avgiften, så den läggs till omkostnadsbeloppet vid köp och dras från försäljningspriset vid försäljning. Förvaringsavgifter (custody fee) är inte avdragsgilla och tas inte med.</p></details>
+    <details><summary>Hur importerar jag SRU-filen hos Skatteverket?</summary><p>Logga in i e-tjänsten Inkomstdeklaration 1, välj att lägga till bilaga K4 via <em>filöverföring</em> och ladda upp <code>INFO.SRU</code> och <code>BLANKETTER.SRU</code> – byt inte namn på filerna. Har du fler än 9 försäljningsrader delas de upp på flera K4-blanketter i samma fil. Granska bilagan i e-tjänsten innan du skriver under.</p></details>
+    <details><summary>Vad hanteras inte?</summary><p>Split, avknoppningar, fusioner, överföringar in från andra mäklare och krypto (avsnitt D). Sådana poster markeras tydligt och värdepappret tas inte med från och med händelsen – räkna dem manuellt, till exempel med Skatteverkets beräkningshjälp för omkostnadsbelopp.</p></details>
+    <details><summary>Laddas min fil upp någonstans?</summary><p>Nej. Filen läses och beräknas helt i din webbläsare. Ingenting skickas till någon server, personnumret sparas inte och sidan använder varken cookies eller spårning.</p></details>
+  </section>
+</main>
+<footer class="wrap muted small foot">Fristående verktyg, inte kopplat till Revolut eller Skatteverket. Växelkurser: Sveriges riksbank. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/csv.js"></script>
+<script src="js/rates.js"></script>
+<script src="js/revolut.js"></script>
+<script src="js/k4.js"></script>
+<script src="js/sru.js"></script>
+<script src="js/messages.js"></script>
+<script src="js/xlsx-writer.js"></script>
+<script src="js/export.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
