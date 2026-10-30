@@ -27,7 +27,9 @@
     sv: { reading: 'Läser filen…', err: 'Kunde inte läsa filen: ', 'closed-positions': 'Det här är Revolut-rapporten över stängda positioner (P&L). Den saknar köp av aktier du fortfarande äger, så genomsnittsmetoden går inte att räkna. Ladda ner kontoutdraget (Account statement) för hela perioden i stället.',
       'no-header': 'Hittade inga Revolut-kolumner (Date, Ticker, Type, Quantity …). Är det kontoutdraget för aktiekontot?', 'missing-columns': 'Kolumner saknas: ', 'not-zip': 'Excel-filen kunde inte öppnas.', 'no-inflate': 'Webbläsaren kan inte läsa .xlsx – exportera CSV från Revolut i stället.',
       title: function (n) { return n + ' rader från Revolut'; }, meta: function (f, fmt, d1, d2) { return f + ' · ' + fmt + ' · ' + d1 + ' – ' + d2; },
-      fmt: { 'revolut-log-classic': 'Kontoutdrag (CSV)', 'revolut-log-ccy': 'Transaktionslogg (CSV)', 'revolut-log-classic-xlsx': 'Kontoutdrag (Excel)', 'revolut-log-ccy-xlsx': 'Transaktionslogg (Excel)' },
+      fmt: { 'revolut-log-classic': 'Kontoutdrag (CSV)', 'revolut-log-ccy': 'Transaktionslogg (CSV)', 'revolut-log-classic-xlsx': 'Kontoutdrag (Excel)', 'revolut-log-ccy-xlsx': 'Transaktionslogg (Excel)', 'revolut-crypto': 'Kontoutdrag krypto (CSV)', 'revolut-crypto-xlsx': 'Kontoutdrag krypto (Excel)' },
+      cryptoFile: 'Det här är Revolut-kontoutdraget för krypto. Krypto redovisas på K4 avsnitt D (övriga tillgångar) och räknas inte av verktyget – inga rader hamnar i SRU-filen för avsnitt A. Aktier och ETF:er: ladda ner kontoutdraget från Revolut-appen under Aktier (Stocks) i stället.',
+      qtyFix: function (n) { return 'Antal i ' + n + ' rader saknade decimaltecken (filen har öppnats i ett kalkylprogram med engelska inställningar) och har återställts från värde ÷ pris.'; },
       sales: 'Försäljningar', pris: 'Försäljningspris', omk: 'Omkostnadsbelopp', gain: 'Vinst', loss: 'Förlust', net: 'Netto', kr: ' kr',
       noSales: 'Inga försäljningar i filen – inget att redovisa på K4.', ok: 'Med i K4', blocked: 'Undantaget – hantera manuellt', partial: 'Delvis – se flaggor',
       flagsH: 'Kräver manuell hantering', ignH: 'Ignorerat (påverkar inte K4 avsnitt A)', ignRow: function (n, k) { return n + ' × ' + k; },
@@ -40,7 +42,9 @@
     en: { reading: 'Reading the file…', err: 'Could not read the file: ', 'closed-positions': 'This is Revolut\'s closed-positions (P&L) report. It lacks buys of shares you still hold, so the average cost cannot be calculated. Download the Account statement for the full period instead.',
       'no-header': 'No Revolut columns found (Date, Ticker, Type, Quantity …). Is this the stock account statement?', 'missing-columns': 'Missing columns: ', 'not-zip': 'The Excel file could not be opened.', 'no-inflate': 'This browser cannot read .xlsx – export CSV from Revolut instead.',
       title: function (n) { return n + ' rows from Revolut'; }, meta: function (f, fmt, d1, d2) { return f + ' · ' + fmt + ' · ' + d1 + ' – ' + d2; },
-      fmt: { 'revolut-log-classic': 'Account statement (CSV)', 'revolut-log-ccy': 'Transaction log (CSV)', 'revolut-log-classic-xlsx': 'Account statement (Excel)', 'revolut-log-ccy-xlsx': 'Transaction log (Excel)' },
+      fmt: { 'revolut-log-classic': 'Account statement (CSV)', 'revolut-log-ccy': 'Transaction log (CSV)', 'revolut-log-classic-xlsx': 'Account statement (Excel)', 'revolut-log-ccy-xlsx': 'Transaction log (Excel)', 'revolut-crypto': 'Crypto statement (CSV)', 'revolut-crypto-xlsx': 'Crypto statement (Excel)' },
+      cryptoFile: 'This is Revolut\'s crypto account statement. Crypto is reported in K4 section D (other assets) and is not calculated by this tool – no rows go into the section A SRU file. For shares and ETFs, download the account statement under Stocks in the Revolut app instead.',
+      qtyFix: function (n) { return 'Quantities in ' + n + ' rows had lost their decimal separator (the file was opened in a spreadsheet with English settings) and were restored from value ÷ price.'; },
       sales: 'Sales', pris: 'Sale price', omk: 'Cost basis', gain: 'Gain', loss: 'Loss', net: 'Net', kr: ' kr',
       noSales: 'No sales in the file – nothing to report on K4.', ok: 'In K4', blocked: 'Excluded – handle manually', partial: 'Partial – see flags',
       flagsH: 'Needs manual handling', ignH: 'Ignored (does not affect K4 section A)', ignRow: function (n, k) { return n + ' × ' + k; },
@@ -128,6 +132,8 @@
     } else fl.hidden = true;
     // info
     var ig = Object.keys(res.ignored), info = [];
+    if (/^revolut-crypto/.test(p.format)) info.push('<p class="notice">' + esc(t('cryptoFile')) + '</p>');
+    if (p.qtyRestored) info.push('<p class="small">' + esc(t('qtyFix')(p.qtyRestored)) + '</p>');
     if (ig.length) info.push('<strong>' + esc(t('ignH')) + '</strong><ul>' + ig.map(function (k) { return '<li>' + esc(t('ignRow')(res.ignored[k], k)) + (/CUSTODY/.test(k) ? ' – ' + esc(t('custody')) : /DIVIDEND/.test(k) ? ' – ' + esc(t('div')) : '') + '</li>'; }).join('') + '</ul>');
     info.push('<p class="small">' + esc(t('fx')(res.fxUsage)) + '</p>');
     if (y !== '2026') info.push('<p class="small">' + esc(t('oldYear').replace('%y', y)) + '</p>');
