@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Återbetalning av källskatt – Finland, Norge, Danmark och Schweiz från Avanza/Nordnet</title>
+<meta name="description" content="Se hur mycket utländsk källskatt du kan få tillbaka på finska (Nordea, Sampo), norska, danska och schweiziska utdelningar. Dra in transaktionsfilen från Avanza eller Nordnet – du får belopp och sista dag per land och år och ett färdigt underlag till ansökan. Allt sker i webbläsaren.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/aterbetalning-kallskatt/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/aterbetalning-kallskatt/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Återbetalning av källskatt – Finland, Norge, Danmark och Schweiz">
+<meta property="og:description" content="Dra in transaktionsfilen från Avanza eller Nordnet och se hur mycket källskatt över 15 % du kan få tillbaka, och senast när. Filen lämnar aldrig datorn.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#7c3aed">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%237c3aed'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3E%25%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/aterbetalning-kallskatt/","name":"Källskatt tillbaka","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Räknar fram hur mycket utländsk källskatt över avtalets 15 % du kan få tillbaka på utdelningar från Finland, Norge, Danmark och Schweiz, utifrån transaktionsfilen från Avanza eller Nordnet, med sista dag per land och år och underlag i EUR, NOK, DKK och CHF. Allt sker i webbläsaren.",
+ "offers":[{"@type":"Offer","price":"0","priceCurrency":"SEK","description":"Gratis grundfunktion"},{"@type":"Offer","price":"99","priceCurrency":"SEK","description":"Underlag per utdelning, checklista och Excel","url":"https://drudley.gumroad.com/l/kallskatt"}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hur får jag tillbaka finsk källskatt på Nordea-utdelningen?","acceptedAnswer":{"@type":"Answer","text":"Nordea, Sampo och Nokia är finska bolag. På ISK och aktie- och fondkonto drar många banker 35 % finsk källskatt, men skatteavtalet med Finland ger bara rätt till 15 %. Mellanskillnaden, 20 % av bruttoutdelningen, söker du tillbaka hos finska Skatteförvaltningen (Vero) med blankett 6164r och bilaga 6167r, senast tre år efter utgången av året då utdelningen betalades."}},
+ {"@type":"Question","name":"Hur får jag tillbaka norsk källskatt?","acceptedAnswer":{"@type":"Answer","text":"Norge drar 25 % på utdelningar. Med skatteavtalet blir det 15 %, så 10 % av bruttoutdelningen kan sökas tillbaka hos Skatteetaten. Vänta cirka fyra månader efter utbetalningen och ansök senast fem år efter utgången av utdelningsåret."}},
+ {"@type":"Question","name":"Hur får jag tillbaka dansk källskatt?","acceptedAnswer":{"@type":"Answer","text":"Danmark drar 27 %. Skillnaden ner till 15 % söks hos Skattestyrelsen med blankett 06.030. Preskriptionstiden är fem år från det att skatten drogs, efter en dom i danska Högsta domstolen 2026."}},
+ {"@type":"Question","name":"Kan jag få tillbaka källskatt på ISK?","acceptedAnswer":{"@type":"Answer","text":"Ja. Källskatten dras oavsett kontotyp och du som äger aktierna kan söka tillbaka det som dragits över avtalets 15 %. I en kapitalförsäkring eller pensionsförsäkring är det försäkringsbolaget som äger aktierna, så där kan du inte själv ansöka. Verktyget utesluter sådana konton som standard."}},
+ {"@type":"Question","name":"Vilken fil ska jag ladda ner från Avanza eller Nordnet?","acceptedAnswer":{"@type":"Answer","text":"Transaktionsexporten som CSV för hela perioden du vill kontrollera, gärna fem år bakåt. Hos Avanza finns den under transaktionerna (Exportera), hos Nordnet under Transaktioner och notor (Exportera). Verktyget känner igen båda formaten, även Nordnets UTF-16-fil."}},
+ {"@type":"Question","name":"Laddas min fil upp till en server?","acceptedAnswer":{"@type":"Answer","text":"Nej. Filen läses och beräknas helt i din webbläsare. Ingenting skickas till någon server och sidan har ingen spårning."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Källskatt<span>↩</span>tillbaka</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Få tillbaka utländsk källskatt – Finland, Norge, Danmark och Schweiz</h1>
+    <p class="lead" data-i18n="lead">Har du Nordea, Sampo, norska eller danska aktier på ISK eller aktie- och fondkonto? Då har du troligen betalat <strong>20–25 % för mycket källskatt</strong>. Dra in transaktionsfilen från <strong>Avanza eller Nordnet</strong> så ser du hur mycket du kan få tillbaka per land och år, och <strong>senast när</strong> du måste ansöka. <strong>Filen lämnar aldrig din dator.</strong></p>
+  </section>
+
+  <section id="drop" class="drop" tabindex="0" role="button" aria-label="Välj transaktionsfil">
+    <input id="file" type="file" multiple accept=".csv,.txt,text/csv,text/plain" hidden>
+    <p class="drop-main" data-i18n="drop">Släpp transaktionsfilen från Avanza eller Nordnet här eller <u>välj fil</u></p>
+    <p class="muted small" data-i18n="dropsub">CSV-export av transaktioner, gärna fem år bakåt · flera filer går bra (t.ex. flera konton eller år)</p>
+    <button id="sample" class="link small" type="button" data-i18n="sample">Prova med en syntetisk exempelfil</button>
+  </section>
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+
+  <section id="result" hidden>
+    <div class="company card">
+      <div>
+        <h2 id="r-title"></h2>
+        <p class="muted small" id="r-meta"></p>
+      </div>
+      <div class="actions">
+        <button id="add" class="btn ghost small" type="button" data-i18n="add">Lägg till fler filer</button>
+      </div>
+      <div class="opts" id="accts"></div>
+    </div>
+    <div id="stats" class="stats"></div>
+    <div id="flags" class="flags" hidden></div>
+    <div id="info" class="info" hidden></div>
+
+    <h2 data-i18n="sum-h">Att söka tillbaka per land och år</h2>
+    <div class="tbl card"><table id="sum-t"><thead><tr><th data-i18n="c-country">Land</th><th data-i18n="c-year">År</th><th class="num" data-i18n="c-n">Utdelningar</th><th class="num" data-i18n="c-wh">Dragen skatt</th><th class="num" data-i18n="c-back">Att få tillbaka</th><th class="num" data-i18n="c-sek">ca kronor</th><th data-i18n="c-status">Status</th><th data-i18n="c-dl">Sista dag</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div>
+    <div id="other" class="info" hidden></div>
+
+    <section id="paid" class="card paid">
+      <h2 data-i18n="paid-h">Underlag till ansökan, checklista och Excel</h2>
+      <p class="small" data-i18n="paid-p">Varje utdelning med antal aktier, utdelning per aktie, brutto, dragen skatt och belopp att återfå i <strong>den valuta myndigheten vill ha</strong> (EUR till Vero 6164r/6167r, NOK till Skatteetaten, DKK till Skattestyrelsen, CHF till ESTV Form 80), en checklista per land, en utskriftsvänlig bilaga och en Excel-fil.</p>
+      <div class="row"><button id="spec-open" class="btn" type="button"><span data-i18n="open">Visa underlag per utdelning</span></button></div>
+      <div id="paid-out" hidden>
+        <div id="spec"></div>
+        <div class="dlrow">
+          <button id="dl-xlsx" class="btn" type="button" data-i18n="dl-xlsx">Ladda ner Excel-fil (.xlsx)</button>
+          <button id="print" class="btn ghost" type="button" data-i18n="print">Skriv ut bilaga / spara som PDF</button>
+        </div>
+        <p id="dl-msg" class="small" role="status"></p>
+      </div>
+    </section>
+
+    <div class="review">
+      <h3 data-i18n="rev-h">Kontrollera innan du skickar</h3>
+      <ul>
+        <li data-i18n="rev-1">Jämför varje belopp med bankens <strong>utdelningsavi eller årsbesked</strong>. Myndigheterna vill ha beloppen i sin valuta – där filen bara har kronor räknas de om med Riksbankens kurs på utbetalningsdagen och markeras.</li>
+        <li data-i18n="rev-2">Landet bestäms av ISIN-koden (FI, NO, DK, CH). Skattesatsen kontrolleras mot den lagstadgade och avvikelser flaggas. Har banken redan dragit bara 15 % finns inget att hämta.</li>
+        <li data-i18n="rev-3">Kapitalförsäkring och pension ägs av försäkringsbolaget – du kan inte söka själv. Sådana konton är bortvalda som standard.</li>
+        <li data-i18n="rev-4">Har du redan fått avräkning för hela källskatten i deklarationen och sedan får pengar tillbaka ska avräkningen bara gälla 15 %. Du ansvarar själv för dina ansökningar och din deklaration.</li>
+      </ul>
+    </div>
+  </section>
+
+  <dialog id="paywall">
+    <h2 data-i18n="pw-h">Underlag, checklista och Excel</h2>
+    <p data-i18n="pw-p">Lås upp underlaget per utdelning i rätt valuta, checklistan per land, utskriftsbilagan och Excel-filen. Sammanställningen per land och år är alltid gratis.</p>
+  </dialog>
+
+  <section class="faq">
+    <h2>Återbetalning av källskatt – vanliga frågor</h2>
+    <details open><summary>Varför har jag betalat för mycket källskatt?</summary><p>Utdelningar från utländska bolag beskattas först i bolagets land. Sverige har skatteavtal som begränsar den skatten till <strong>15 %</strong> för den som bor i Sverige, men många banker kan inte visa vem som äger aktierna och drar därför hela den lagstadgade skatten: <strong>35 % i Finland och Schweiz, 25 % i Norge och 27 % i Danmark</strong>. Mellanskillnaden kan du söka tillbaka själv.</p></details>
+    <details><summary>Hur får jag tillbaka finsk källskatt på Nordea, Sampo eller Nokia?</summary><p>Nordea, Sampo och Nokia är finska bolag även om du köpt dem på Stockholmsbörsen. Har 35 % dragits kan du få tillbaka <strong>20 % av bruttoutdelningen</strong> från finska Skatteförvaltningen (Vero) med blankett <strong>6164r</strong> och bilaga <strong>6167r</strong> (en per år), med beloppen i euro. Ansök senast <strong>tre år efter utgången av utdelningsåret</strong> – utdelningar från 2023 måste alltså vara inne senast 31 december 2026. Belopp under 10 euro betalas inte ut.</p></details>
+    <details><summary>Hur får jag tillbaka norsk källskatt?</summary><p>Norge drar 25 %. Med avtalet blir det 15 %, så <strong>10 %</strong> av bruttoutdelningen kan sökas tillbaka hos <strong>Skatteetaten</strong>, digitalt eller på papper. Du behöver bland annat ISIN, utbetalningsdag, antal aktier, belopp i NOK, bankens förvaltarkonto i VPS (fråga banken) och hemvistintyg. Vänta cirka fyra månader efter utbetalningen och ansök senast fem år efter utdelningsåret.</p></details>
+    <details><summary>Hur får jag tillbaka dansk och schweizisk källskatt?</summary><p>Danmark drar 27 %; skillnaden ner till 15 % söks hos Skattestyrelsen med blankett <strong>06.030</strong> inom fem år från att skatten drogs. Schweiz drar 35 %; 20 % söks tillbaka hos ESTV med <strong>Form 80</strong> inom tre år efter utdelningsåret.</p></details>
+    <details><summary>Gäller det ISK och kapitalförsäkring?</summary><p>På <strong>ISK och aktie- och fondkonto</strong> äger du aktierna och kan söka tillbaka själv. På ISK går det dessutom sällan att få full avräkning i deklarationen, så återbetalning är ofta enda sättet att få pengarna. I en <strong>kapitalförsäkring</strong> eller pensionsförsäkring äger försäkringsbolaget aktierna – där kan du inte ansöka. Verktyget väljer bort sådana konton automatiskt (du kan ändra det).</p></details>
+    <details><summary>Vad är ett hemvistintyg?</summary><p>Ett intyg från Skatteverket om att du är bosatt i Sverige enligt skatteavtalet. De flesta länder vill ha det med ansökan. Du beställer det hos Skatteverket.</p></details>
+    <details><summary>Vilken fil ska jag ladda ner?</summary><p><strong>Avanza:</strong> transaktionerna som CSV (Exportera) för hela perioden. <strong>Nordnet:</strong> Transaktioner och notor → Exportera. Ta med <strong>fem år bakåt</strong> så att alla år som inte är preskriberade kommer med. Flera filer (konton eller perioder) kan läggas till; dubbletter rensas bort.</p></details>
+    <details><summary>Hur räknas beloppen?</summary><p>Varje utdelning paras ihop med sin rad för utländsk källskatt. Att få tillbaka = dragen skatt − 15 % av bruttoutdelningen. Beloppet i myndighetens valuta tas från antal aktier × utdelning per aktie när filen har det, annars räknas kronbeloppet om med <strong>Riksbankens mittkurs</strong> på utbetalningsdagen. Kurstabellen följer med sidan – inga anrop görs.</p></details>
+    <details><summary>Laddas min fil upp någonstans?</summary><p>Nej. Filen läses och beräknas helt i din webbläsare. Ingenting skickas till någon server och sidan använder varken cookies eller spårning.</p></details>
+  </section>
+</main>
+<footer class="wrap muted small foot">Fristående verktyg, inte kopplat till Avanza, Nordnet eller någon skattemyndighet. Växelkurser: Sveriges riksbank. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/csv.js"></script>
+<script src="js/rates.js"></script>
+<script src="js/kallskatt.js"></script>
+<script src="js/xlsx-writer.js"></script>
+<script src="js/export.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
