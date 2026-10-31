@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>eToro till K4 – SRU-fil för aktier, krypto och CFD:er</title>
+<meta name="description" content="Gör K4-bilagan från ditt eToro-kontoutdrag: aktier och ETF:er med genomsnittsmetoden i kronor, krypto i avsnitt D, CFD:er och blankning per position, utdelningar med källskatt – och en SRU-fil för Skatteverket. Allt sker i webbläsaren.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/k4-etoro-aktier/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/k4-etoro-aktier/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="eToro till K4 – SRU-fil för aktier, krypto och CFD:er">
+<meta property="og:description" content="Genomsnittsmetoden i SEK med Riksbankens USD-kurser, K4 avsnitt A, C och D, utdelningar med källskatt och SRU-fil för filöverföring. Filen lämnar aldrig datorn.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#15803d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2315803d'/%3E%3Ctext x='16' y='22' font-size='14' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3EK4%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/k4-etoro-aktier/","name":"eToro till K4 (SRU)","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Räkna fram K4-bilagan från eToros kontoutdrag (Account Statement): aktier och ETF:er med genomsnittsmetoden (avsnitt A), krypto (avsnitt D), CFD:er, hävstång och blankning per stängd position, utdelningar med utländsk källskatt och SRU-fil för Skatteverkets filöverföring. Allt sker i webbläsaren.",
+ "offers":[{"@type":"Offer","price":"0","priceCurrency":"SEK","description":"Gratis grundfunktion"},{"@type":"Offer","price":"149","priceCurrency":"SEK","description":"K4-rader, SRU-fil och granskningsfil","url":"https://drudley.gumroad.com/l/wzvzrq"}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hur deklarerar jag aktier från eToro?","acceptedAnswer":{"@type":"Answer","text":"eToro lämnar ingen kontrolluppgift till Skatteverket, så du redovisar själv varje försäljning på bilaga K4. Riktiga aktier och ETF:er redovisas i avsnitt A med genomsnittsmetoden, krypto i avsnitt D. Alla belopp räknas om från dollar till kronor med kursen på affärsdagen."}},
+ {"@type":"Question","name":"Vilken fil ska jag ladda ner från eToro?","acceptedAnswer":{"@type":"Answer","text":"Kontoutdraget (Account Statement) som Excel-fil: Settings → Account → Account Statement (eller Portfolio → History → kontoutdrag). Välj ett startdatum vid kontots start och slutdatum 31 december det år du deklarerar, så finns alla köp med."}},
+ {"@type":"Question","name":"Hur deklareras CFD:er från eToro?","acceptedAnswer":{"@type":"Answer","text":"Skatteverket behandlar CFD:er som terminer: resultatet per stängd position inklusive overnight-avgifter redovisas. Marknadsnoterade CFD:er på aktier och index hör till avsnitt A, valuta till C och råvaror, krypto och onoterade CFD:er till D. Skatteverket skriver att eToro inte har uttalat sig om dess CFD:er är marknadsnoterade, så verktyget använder avsnitt D som standard och låter dig välja A."}},
+ {"@type":"Question","name":"Hur deklarerar jag utdelningar och källskatt från eToro?","acceptedAnswer":{"@type":"Answer","text":"Utdelningar är inte K4. Bruttoutdelningen i kronor deklareras i ruta 7.2 och den utländska källskatten kan avräknas, normalt högst 15 procent. Verktyget räknar fram båda beloppen från fliken Dividends."}},
+ {"@type":"Question","name":"Hur importerar jag SRU-filen hos Skatteverket?","acceptedAnswer":{"@type":"Answer","text":"Logga in i e-tjänsten Inkomstdeklaration 1, välj att lägga till bilaga K4 via filöverföring och ladda upp INFO.SRU och BLANKETTER.SRU utan att byta namn på filerna. Granska bilagan innan du skriver under."}},
+ {"@type":"Question","name":"Laddas min fil upp till en server?","acceptedAnswer":{"@type":"Answer","text":"Nej. Filen läses och beräknas helt i din webbläsare. Ingenting skickas till någon server och sidan har ingen spårning."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">eToro<span>→</span>K4</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">eToro till K4 – SRU-fil för aktier, krypto och CFD:er</h1>
+    <p class="lead" data-i18n="lead">Dra in kontoutdraget från eToro. Riktiga aktier och ETF:er räknas med <strong>genomsnittsmetoden</strong> i kronor, krypto hamnar i avsnitt D, CFD:er och blankning redovisas per position och utdelningar visas med källskatt. Du får en <strong>SRU-fil</strong> för K4 att importera hos Skatteverket. <strong>Filen lämnar aldrig din dator.</strong></p>
+  </section>
+
+  <section id="drop" class="drop" tabindex="0" role="button" aria-label="Välj eToro-fil">
+    <input id="file" type="file" multiple accept=".xlsx,.csv,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden>
+    <p class="drop-main" data-i18n="drop">Släpp eToro-kontoutdraget här eller <u>välj fil</u></p>
+    <p class="muted small" data-i18n="dropsub">Account Statement (.xlsx) från kontots start · eller flikarna Closed Positions, Account Activity och Dividends sparade som CSV</p>
+    <button id="sample" class="link small" type="button" data-i18n="sample">Prova med en syntetisk exempelfil</button>
+  </section>
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+
+  <section id="result" hidden>
+    <div class="company card">
+      <div>
+        <h2 id="r-title"></h2>
+        <p class="muted small" id="r-meta"></p>
+      </div>
+      <div class="actions">
+        <label class="small"><span data-i18n="year">Inkomstår</span> <select id="year"></select></label>
+        <button id="add" class="btn ghost small" type="button" data-i18n="add">Lägg till fler filer</button>
+      </div>
+      <div class="opts">
+        <label><input type="checkbox" id="perSale"> <span data-i18n="persale">En K4-rad per försäljning</span></label>
+        <label><input type="checkbox" id="cfdA"> <span data-i18n="cfda">CFD:er på aktier/index i avsnitt A (som marknadsnoterade)</span></label>
+      </div>
+    </div>
+    <div id="stats" class="stats"></div>
+    <div id="flags" class="flags" hidden></div>
+    <div id="info" class="info" hidden></div>
+
+    <h2 data-i18n="prev-h">Förhandsvisning per instrument</h2>
+    <div class="tbl card"><table id="prev-t"><thead><tr><th data-i18n="c-avs">Avsnitt</th><th data-i18n="c-sec">Instrument</th><th class="num" data-i18n="c-qty">Antal sålt</th><th class="num" data-i18n="c-pris">Försäljningspris</th><th class="num" data-i18n="c-omk">Omkostnadsbelopp</th><th class="num" data-i18n="c-res">Vinst / förlust</th><th data-i18n="c-status">Status</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div>
+
+    <div id="div-box" hidden>
+      <h2 data-i18n="div-h">Utdelningar och källskatt (inte K4)</h2>
+      <div class="tbl card"><table id="div-t"><thead><tr><th data-i18n="d-sec">Innehav</th><th class="num" data-i18n="d-n">Antal utd.</th><th class="num" data-i18n="d-gross">Brutto (ruta 7.2)</th><th class="num" data-i18n="d-wht">Källskatt (avräkning)</th><th class="num" data-i18n="d-net">Netto</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div>
+    </div>
+
+    <section id="paid" class="card paid">
+      <h2 data-i18n="paid-h">K4-rader, SRU-fil och granskningsfil</h2>
+      <p class="small" data-i18n="paid-p">K4 avsnitt A, C och D (9, 7 och 7 rader per blankett), <code>INFO.SRU</code> + <code>BLANKETTER.SRU</code> för Skatteverkets filöverföring och en Excel-fil med varje köp, försäljning, genomsnittsberäkning, CFD-position och utdelning.</p>
+      <div class="row"><button id="k4-open" class="btn" type="button"><span data-i18n="open">Visa K4-rader och ladda ner SRU</span></button></div>
+      <div id="paid-out" hidden>
+        <div id="k4-pages"></div>
+        <p id="k4-round" class="hint" hidden data-i18n="round">Antal är avrundat till heltal i SRU-filen eftersom formatet bara tillåter heltal (bråkdelsaktier). Antalet påverkar inte skatten; belopp och vinst/förlust är exakta till hela kronor.</p>
+        <div class="who">
+          <h3 data-i18n="who-h">Uppgifter till SRU-filen</h3>
+          <p class="hint" data-i18n="who-p">Krävs i INFO.SRU och BLANKETTER.SRU. Sparas inte – finns bara i den här fliken.</p>
+          <div class="grid">
+            <label><span data-i18n="f-pnr">Personnummer (ÅÅÅÅMMDD-NNNN)</span><input type="text" id="f-pnr" inputmode="numeric" autocomplete="off" placeholder="19800101-1234"></label>
+            <label><span data-i18n="f-name">Namn</span><input type="text" id="f-name" autocomplete="name"></label>
+            <label><span data-i18n="f-zip">Postnummer</span><input type="text" id="f-zip" inputmode="numeric" autocomplete="postal-code" placeholder="123 45"></label>
+            <label><span data-i18n="f-city">Postort</span><input type="text" id="f-city" autocomplete="address-level2"></label>
+          </div>
+        </div>
+        <div class="dlrow">
+          <button id="dl-sru" class="btn" type="button" data-i18n="dl-sru">Ladda ner SRU-filer (INFO.SRU + BLANKETTER.SRU)</button>
+          <button id="dl-xlsx" class="btn ghost" type="button" data-i18n="dl-xlsx">Ladda ner granskningsfil (.xlsx)</button>
+        </div>
+        <p id="dl-msg" class="small" role="status"></p>
+      </div>
+    </section>
+
+    <div class="review">
+      <h3 data-i18n="rev-h">Granska innan du lämnar in</h3>
+      <ul>
+        <li data-i18n="rev-1">Kontrollera att kontoutdraget börjar <strong>vid kontots start</strong>. Genomsnittsmetoden behöver alla köp av samma aktie, även i positioner som fortfarande är öppna eller stängdes tidigare år.</li>
+        <li data-i18n="rev-2">CFD:er, hävstång och blankning redovisas per stängd position. Om eToros CFD:er på aktier och index räknas som marknadsnoterade (avsnitt A) eller inte (avsnitt D) är oklart – verktyget använder D som standard. Kontrollera.</li>
+        <li data-i18n="rev-3">Utdelningar, källskatt och räntor är inte K4. De visas separat och deklareras i ruta 7.2 respektive som avräkning av utländsk skatt. Valutaeffekter på USD-saldot räknas inte. Där den skattemässiga behandlingen är osäker säger verktyget det: kontrollera de punkterna.</li>
+        <li data-i18n="rev-4">Öppna bilagan i e-tjänsten efter importen och jämför med granskningsfilen. Du ansvarar själv för uppgifterna i din deklaration.</li>
+      </ul>
+    </div>
+  </section>
+
+  <dialog id="paywall">
+    <h2 data-i18n="pw-h">K4-rader och SRU-fil</h2>
+    <p data-i18n="pw-p">Lås upp K4-raderna, SRU-filerna för Skatteverkets filöverföring och granskningsfilen i Excel. Förhandsvisningen är alltid gratis.</p>
+  </dialog>
+
+  <section class="faq">
+    <h2>eToro och K4 – vanliga frågor</h2>
+    <details open><summary>Hur deklarerar jag aktier från eToro?</summary><p>eToro lämnar ingen kontrolluppgift till Skatteverket. Du redovisar därför själv alla försäljningar på <strong>bilaga K4</strong>. <strong>Riktiga aktier och ETF:er</strong> (köpta utan hävstång) redovisas i <strong>avsnitt A</strong> med <strong>genomsnittsmetoden</strong>: alla köp av samma aktie läggs ihop, även om eToro visar dem som separata positioner, och vid varje försäljning dras en proportionell del av omkostnadsbeloppet av. Alla belopp räknas om från dollar till kronor och avrundas till hela kronor.</p></details>
+    <details><summary>Vilken fil ska jag ladda ner från eToro?</summary><p>Kontoutdraget (<em>Account Statement</em>) som <strong>Excel-fil</strong>: <em>Settings → Account → Account Statement</em> (på vissa konton under <em>Portfolio → History</em>). Välj startdatum vid <strong>kontots start</strong> och slutdatum 31 december det år du deklarerar. Filen innehåller flikarna Closed Positions, Account Activity och Dividends, som verktyget läser. Har du sparat flikarna som CSV går det också – dra in alla på en gång. PDF-versionen och eToros <em>Tax Report</em> räcker inte.</p></details>
+    <details><summary>Varför skiljer sig resultatet från eToros "Profit"?</summary><p>eToro räknar vinst per position. Svenska regler kräver genomsnittsmetoden per aktie, så har du köpt samma aktie flera gånger till olika kurser fördelas omkostnadsbeloppet annorlunda. Dessutom räknas varje köp och försäljning om till kronor med kursen på respektive dag, så valutaförändringen mellan köp och försäljning ingår i vinsten. Summan över hela innehavstiden blir densamma i dollar.</p></details>
+    <details><summary>Hur hanteras krypto?</summary><p>Riktiga kryptopositioner (utan hävstång) redovisas i <strong>avsnitt D</strong> med genomsnittsmetoden per kryptotillgång, precis som aktier. Krypto som du har flyttat till eToro Money eller en egen plånbok syns inte i Closed Positions och måste läggas till manuellt. Staking-belöningar listas separat som inkomst.</p></details>
+    <details><summary>Hur deklareras CFD:er, hävstång och blankning?</summary><p>eToro öppnar alla positioner med hävstång och alla korta positioner som <strong>CFD-kontrakt</strong>. Skatteverket behandlar CFD:er som terminer: resultatet per stängd position redovisas, och overnight-avgifter och utdelningsjusteringar ingår. CFD:er på <strong>valuta</strong> hör till avsnitt C, på <strong>råvaror och krypto</strong> till D. CFD:er på <strong>aktier och index</strong> hör till A om de är marknadsnoterade, annars D – och Skatteverket skriver uttryckligen att eToro inte har uttalat sig om det. Verktyget använder därför <strong>avsnitt D som standard</strong> och flaggar det; du kan välja avsnitt A. Kontrollera med Skatteverket om du är osäker.</p></details>
+    <details><summary>Hur deklarerar jag utdelningar och källskatt?</summary><p>Utdelningar är inte K4. Verktyget läser fliken Dividends och räknar fram <strong>bruttoutdelningen</strong> (netto plus innehållen källskatt) i kronor, som deklareras i <strong>ruta 7.2</strong>, och den <strong>utländska källskatten</strong> i kronor, som du kan begära avräkning för – normalt högst 15 % enligt skatteavtalet. Utdelningsjusteringar på CFD:er ingår i stället i CFD-resultatet.</p></details>
+    <details><summary>Vilken växelkurs används?</summary><p>eToro-kontot är i dollar. Varje köp, försäljning, CFD-resultat och utdelning räknas om med <strong>Riksbankens mittkurs för USD</strong> på affärsdagen (närmast föregående bankdag). Kurstabellen följer med sidan – inga anrop görs.</p></details>
+    <details><summary>Hur importerar jag SRU-filen hos Skatteverket?</summary><p>Logga in i e-tjänsten Inkomstdeklaration 1, välj att lägga till bilaga K4 via <em>filöverföring</em> och ladda upp <code>INFO.SRU</code> och <code>BLANKETTER.SRU</code> – byt inte namn på filerna. Har du fler rader än som ryms (9 i avsnitt A, 7 i C och D) delas de upp på flera K4-blanketter i samma fil. Granska bilagan i e-tjänsten innan du skriver under.</p></details>
+    <details><summary>Vad hanteras inte?</summary><p>Valutavinster på själva USD-saldot, krypto som flyttats in eller ut, aktiesplit eller namnbyten som eToro bokför som nya positioner, och köp före kontoutdragets startdatum. Positioner som öppnades före startdatumet flaggas. Räkna sådant manuellt, till exempel med Skatteverkets beräkningshjälp för omkostnadsbelopp.</p></details>
+    <details><summary>Laddas min fil upp någonstans?</summary><p>Nej. Filen läses och beräknas helt i din webbläsare. Ingenting skickas till någon server, personnumret sparas inte och sidan använder varken cookies eller spårning.</p></details>
+  </section>
+</main>
+<footer class="wrap muted small foot">Fristående verktyg, inte kopplat till eToro eller Skatteverket. Växelkurser: Sveriges riksbank. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/csv.js"></script>
+<script src="js/rates.js"></script>
+<script src="js/xlsx-read.js"></script>
+<script src="js/k4.js"></script>
+<script src="js/etoro.js"></script>
+<script src="js/sru.js"></script>
+<script src="js/messages.js"></script>
+<script src="js/xlsx-writer.js"></script>
+<script src="js/export.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
