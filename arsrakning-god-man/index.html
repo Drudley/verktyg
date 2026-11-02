@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Årsräkning god man – sammanställ kontoutdraget automatiskt (Excel)</title>
+<meta name="description" content="Gör årsräkningen som god man eller förvaltare snabbare: dra in kontoutdraget från Swedbank, SEB, Handelsbanken, Nordea, ICA Banken, Länsförsäkringar eller Danske Bank. Transaktionerna sorteras i årsräkningens inkomster och utgifter, med kontroll att A + B = C + D. Allt sker i webbläsaren.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/arsrakning-god-man/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/arsrakning-god-man/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Årsräkning från kontoutdrag – för gode män och förvaltare">
+<meta property="og:description" content="Dra in kontoutdraget och få inkomster och utgifter summerade i årsräkningens ordning, med balanskontroll A + B = C + D. Filen lämnar aldrig datorn.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0369a1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230369a1'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3E%C3%85%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/arsrakning-god-man/","name":"Årsräkning från kontoutdrag","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Sammanställer huvudmannens kontoutdrag till årsräkningens inkomster och utgifter för gode män och förvaltare: läser exportfiler från svenska banker, föreslår kategorier som går att ändra, räknar fram ingående och utgående saldo och kontrollerar att A + B = C + D. Allt sker i webbläsaren.",
+ "offers":[{"@type":"Offer","price":"0","priceCurrency":"SEK","description":"Gratis grundfunktion"},{"@type":"Offer","price":"129","priceCurrency":"SEK","description":"Excel-underlag, utskrift och sparade regler","url":"https://drudley.gumroad.com/l/arsrakning"}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hur gör jag årsräkningen som god man snabbare?","acceptedAnswer":{"@type":"Answer","text":"Exportera årets transaktioner från huvudmannens bank som CSV eller Excel och dra in filen i verktyget. Varje rad sorteras i årsräkningens kategorier – pension, bostadstillägg, hyra, omvårdnadsavgift, el, försäkring och så vidare – och du ser summorna i blankettens ordning med kontrollen A + B = C + D. Du rättar de rader som hamnat fel och för över summorna till överförmyndarens blankett."}},
+ {"@type":"Question","name":"Vilka banker fungerar?","acceptedAnswer":{"@type":"Answer","text":"Verktyget letar själv upp kolumnerna för datum, text, belopp och saldo, så de flesta exportfiler fungerar. Det har förinställningar för Swedbank och Sparbanken, SEB, Handelsbanken, Nordea, ICA Banken, Länsförsäkringar och Danske Bank. Flera konton och filer kan läggas till."}},
+ {"@type":"Question","name":"Är det här den officiella årsräkningsblanketten?","acceptedAnswer":{"@type":"Answer","text":"Nej. Varje överförmyndare har sin egen blankett eller e-tjänst. Verktyget ger ett underlag med summor per kategori som du för över. Kontrollera alltid kategorierna mot din egen överförmyndares blankett."}},
+ {"@type":"Question","name":"Ska pensionen redovisas före eller efter skatt?","acceptedAnswer":{"@type":"Answer","text":"Skattepliktiga inkomster som pension redovisas före skatt (brutto) och skatten som en utgift. På kontoutdraget syns bara nettot, så fyll i den avdragna skatten från kontrolluppgiften – verktyget lägger då till den både bland inkomsterna och som skatt bland utgifterna."}},
+ {"@type":"Question","name":"Laddas huvudmannens kontoutdrag upp någonstans?","acceptedAnswer":{"@type":"Answer","text":"Nej. Filen läses och räknas helt i din webbläsare. Ingenting skickas till någon server och sidan har ingen spårning."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Årsräkning<span>·</span>från kontoutdrag</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Årsräkning för god man – från kontoutdrag till färdiga summor</h1>
+    <p class="lead" data-i18n="lead">Dra in huvudmannens kontoutdrag från banken. Varje transaktion sorteras i <strong>årsräkningens inkomster och utgifter</strong> – pension, bostadstillägg, hyra, omvårdnadsavgift, el, försäkring, fickpengar, arvode – och du ser summorna i blankettens ordning med kontrollen <strong>A + B = C + D</strong>. <strong>Allt sker i din webbläsare – kontoutdraget lämnar aldrig datorn.</strong></p>
+  </section>
+
+  <section id="drop" class="drop" tabindex="0" role="button" aria-label="Välj kontoutdrag">
+    <input id="file" type="file" multiple accept=".csv,.txt,.xlsx,.xls,text/csv,text/plain,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden>
+    <p class="drop-main" data-i18n="drop">Släpp kontoutdraget (CSV eller Excel) här eller <u>välj fil</u></p>
+    <p class="muted small" data-i18n="dropsub">Swedbank/Sparbanken, SEB, Handelsbanken, Nordea, ICA Banken, Länsförsäkringar, Danske Bank m.fl. · flera konton och filer går bra</p>
+    <button id="sample" class="link small" type="button" data-i18n="sample">Prova med ett syntetiskt exempel</button>
+  </section>
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+
+  <section id="result" hidden>
+    <div id="print-head" class="print-only"></div>
+    <div class="company card">
+      <div>
+        <h2 id="r-title"></h2>
+        <p class="muted small" id="r-meta"></p>
+      </div>
+      <div class="actions">
+        <button id="add" class="btn ghost small" type="button" data-i18n="add">Lägg till fler konton/filer</button>
+      </div>
+      <div class="opts period">
+        <label><span data-i18n="per-l">Period</span> <select id="year"></select></label>
+        <span id="custom" hidden><label><span data-i18n="from-l">Från</span> <input id="from" type="date"></label> <label><span data-i18n="to-l">Till</span> <input id="to" type="date"></label></span>
+      </div>
+    </div>
+
+    <h2 data-i18n="acc-h">Konton och saldon</h2>
+    <div class="tbl card"><table id="acc-t"><thead><tr><th data-i18n="c-inc">Med</th><th data-i18n="c-acc">Konto</th><th data-i18n="c-bank">Bank</th><th class="num" data-i18n="c-rows">Rader</th><th class="num" data-i18n="c-open">Ingående saldo (A)</th><th class="num" data-i18n="c-close">Utgående saldo (D)</th></tr></thead><tbody></tbody></table></div>
+    <p class="muted small" data-i18n="acc-p">Saldot hämtas från saldokolumnen i filen. Saknas den, eller vill du ändra, skriv in beloppet från bankens årsbesked. Ge två filer samma kontonamn så slås de ihop (t.ex. två halvår).</p>
+
+    <details class="card adj">
+      <summary data-i18n="adj-h">Skatt som dragits före utbetalning (brutto-redovisning)</summary>
+      <p class="small" data-i18n="adj-p">Pension, lön och sjukersättning ska redovisas <strong>före skatt</strong>, men kontoutdraget visar bara nettot. Fyll i den avdragna skatten från kontrolluppgiften (och skatten på ränta från bankens årsbesked) – beloppet läggs då till både bland inkomsterna och som skatt bland utgifterna, så balansen påverkas inte.</p>
+      <div class="opts">
+        <label><span data-i18n="adj-pl">Avdragen skatt på pension/lön/sjukersättning</span> <input id="adj-p" class="amt" inputmode="decimal" placeholder="0,00"></label>
+        <label><span data-i18n="adj-rl">Avdragen skatt på ränta</span> <input id="adj-r" class="amt" inputmode="decimal" placeholder="0,00"></label>
+      </div>
+    </details>
+
+    <div id="stats" class="stats"></div>
+    <div id="flags" class="flags" hidden></div>
+    <div id="info" class="info" hidden></div>
+
+    <h2 data-i18n="sum-h">Sammanställning i årsräkningens ordning</h2>
+    <div id="check" class="check"></div>
+    <div class="tbl card"><table id="sum-t"><tbody></tbody></table></div>
+
+    <h2 data-i18n="tx-h">Transaktioner – kontrollera kategorierna</h2>
+    <p class="muted small" data-i18n="tx-p">Ändra kategorin på en rad i listan. Finns det fler rader med samma text kan du ändra alla på en gång med knappen bredvid. Överföringar mellan två konton som båda är med i årsräkningen sätts som ”Överföring mellan egna konton” och räknas inte.</p>
+    <div class="opts filters">
+      <input id="q" class="search" type="search" data-i18n-ph="q-ph" placeholder="Sök text eller belopp">
+      <select id="fcat"></select>
+    </div>
+    <div class="tbl card txw"><table id="tx-t"><thead><tr><th data-i18n="c-date">Datum</th><th data-i18n="c-acc2">Konto</th><th data-i18n="c-text">Text</th><th class="num" data-i18n="c-amt">Belopp</th><th data-i18n="c-cat">Kategori</th></tr></thead><tbody></tbody></table></div>
+    <p id="tx-more" class="muted small"></p>
+
+    <section id="paid" class="card paid">
+      <h2 data-i18n="paid-h">Excel, utskrift och sparade regler</h2>
+      <p class="small" data-i18n="paid-p">En Excel-fil med <strong>sammanställningen i blankettens ordning</strong>, specifikation per kategori, en lista över övriga utgifter och alla transaktioner – att bifoga eller spara. En utskriftsvänlig sammanställning, och <strong>dina egna regler sparade till nästa år</strong> (i webbläsaren eller som fil).</p>
+      <div class="row"><button id="spec-open" class="btn" type="button"><span data-i18n="open">Visa specifikation, Excel och regler</span></button></div>
+      <div id="paid-out" hidden>
+        <div id="spec"></div>
+        <div class="dlrow">
+          <button id="dl-xlsx" class="btn" type="button" data-i18n="dl-xlsx">Ladda ner Excel-fil (.xlsx)</button>
+          <button id="print" class="btn ghost" type="button" data-i18n="print">Skriv ut / spara som PDF</button>
+        </div>
+        <div class="rules">
+          <h3 data-i18n="rules-h">Mina regler</h3>
+          <p class="small muted" data-i18n="rules-p">Regler går före de inbyggda nyckelorden. ”Alla liknande” skapar en regel automatiskt. Spara reglerna så kategoriseras nästa års kontoutdrag direkt.</p>
+          <ul id="rules-list"></ul>
+          <div class="opts">
+            <label><span data-i18n="rule-kw">Om texten innehåller</span> <input id="rule-kw" type="text" autocomplete="off"></label>
+            <label><span data-i18n="rule-cat">→ kategori</span> <select id="rule-cat"></select></label>
+            <button id="rule-add" class="btn ghost small" type="button" data-i18n="rule-add">Lägg till regel</button>
+          </div>
+          <div class="dlrow">
+            <button id="rules-save" class="btn ghost small" type="button" data-i18n="rules-save">Spara reglerna i webbläsaren</button>
+            <button id="rules-export" class="btn ghost small" type="button" data-i18n="rules-export">Spara reglerna som fil (.json)</button>
+            <button id="rules-import" class="btn ghost small" type="button" data-i18n="rules-import">Läs in regelfil</button>
+            <input id="rules-file" type="file" accept=".json,application/json" hidden>
+          </div>
+        </div>
+        <p id="dl-msg" class="small" role="status"></p>
+      </div>
+    </section>
+
+    <div class="review">
+      <h3 data-i18n="rev-h">Kontrollera innan du lämnar in</h3>
+      <ul>
+        <li data-i18n="rev-1">Det här är ett <strong>underlag, inte en officiell blankett</strong>. Varje överförmyndare har sin egen blankett eller e-tjänst med lite olika rader – för över summorna dit och <strong>kontrollera kategorierna mot din överförmyndares blankett och anvisningar</strong>.</li>
+        <li data-i18n="rev-2">Skattepliktiga inkomster redovisas <strong>före skatt</strong>. Fyll i avdragen skatt från kontrolluppgifterna ovan och bifoga kontrolluppgifter, underlag för bostadstillägg m.m. enligt överförmyndarens anvisningar.</li>
+        <li data-i18n="rev-3">Ingående och utgående saldo ska stämma med bankens årsbesked. Går A + B och C + D inte ihop saknas oftast rader (filen täcker inte hela året) eller så räknas en överföring till ett konto som inte är med.</li>
+        <li data-i18n="rev-4">Kategorierna är förslag utifrån texten på kontoutdraget. Gå igenom ”Övriga inkomster” och ”Övriga utgifter” särskilt – där hamnar allt som inte känns igen. Du ansvarar själv för redovisningen.</li>
+      </ul>
+    </div>
+  </section>
+
+  <dialog id="paywall">
+    <h2 data-i18n="pw-h">Excel, utskrift och sparade regler</h2>
+    <p data-i18n="pw-p">Lås upp Excel-filen med sammanställning och specifikationer, utskriftsvyn och möjligheten att spara dina regler till nästa år. Inläsning, kategorisering och summorna på skärmen är alltid gratis.</p>
+  </dialog>
+
+  <section class="faq">
+    <h2>Årsräkning som god man – vanliga frågor</h2>
+    <details open><summary>Hur fungerar verktyget?</summary><p>Exportera huvudmannens transaktioner för hela året från internetbanken (CSV eller Excel) och dra in filen. Verktyget hittar kolumnerna för <strong>datum, text, belopp och saldo</strong>, föreslår en kategori för varje rad utifrån texten (Pensionsmyndigheten → pension, hyresvärden → hyra, kommunen → omvårdnadsavgift …) och summerar allt i årsräkningens ordning: <strong>A</strong> tillgångar vid årets början, <strong>B</strong> inkomster, <strong>C</strong> utgifter och <strong>D</strong> tillgångar vid årets slut. Du rättar det som hamnat fel och för över summorna.</p></details>
+    <details><summary>Vad betyder A + B = C + D?</summary><p>Saldot vid årets början (A) plus årets inkomster (B) ska vara lika mycket som årets utgifter (C) plus saldot vid årets slut (D). Det är överförmyndarens kontroll av att alla pengar är redovisade. Verktyget räknar ut både sidorna och visar skillnaden om det inte går ihop.</p></details>
+    <details><summary>Vilka banker fungerar?</summary><p>De flesta, eftersom verktyget letar upp kolumnerna själv. Det finns förinställningar för <strong>Swedbank och Sparbanken, SEB, Handelsbanken, Nordea, ICA Banken, Länsförsäkringar och Danske Bank</strong>. Gamla .xls-filer behöver sparas om som .xlsx eller CSV. PDF-kontoutdrag går inte att läsa – välj export till CSV eller Excel i internetbanken.</p></details>
+    <details><summary>Huvudmannen har flera konton – hur gör jag?</summary><p>Lägg till en fil per konto. Saldot räknas per konto och summeras i A och D. Pengar som flyttas mellan två konton som båda är med markeras som <strong>överföring mellan egna konton</strong> och räknas varken som inkomst eller utgift. Överföringar till huvudmannens eget fickpengakonto som du inte redovisar räknas däremot som fickpengar/privata medel.</p></details>
+    <details><summary>Ska pension redovisas brutto eller netto?</summary><p>Brutto, alltså före skatt, och skatten som utgift. Kontoutdraget visar bara nettot – fyll därför i den avdragna skatten från kontrolluppgiften så läggs den till på båda sidor.</p></details>
+    <details><summary>Är det här överförmyndarens blankett?</summary><p>Nej. Varje kommun eller överförmyndarnämnd har sin egen blankett eller e-tjänst, med lite olika rader. Verktyget ger ett <strong>underlag</strong> med summor per kategori som du för över. Kontrollera alltid mot din egen överförmyndares blankett och anvisningar.</p></details>
+    <details><summary>Laddas kontoutdraget upp någonstans?</summary><p>Nej. Filen läses och räknas helt i din webbläsare. Ingenting skickas till någon server och sidan använder varken cookies eller spårning. Sparade regler ligger bara i din webbläsare eller i en fil du själv sparar.</p></details>
+  </section>
+</main>
+<footer class="wrap muted small foot">Fristående verktyg, inte kopplat till någon bank, kommun eller överförmyndare. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/csv.js"></script>
+<script src="js/xlsx-read.js"></script>
+<script src="js/arsrakning.js"></script>
+<script src="js/xlsx-writer.js"></script>
+<script src="js/export.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

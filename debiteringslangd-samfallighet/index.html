@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Debiteringslängd för samfällighetsförening – fördela efter andelstal, avier med OCR och Swish</title>
+<meta name="description" content="Gör debiteringslängden för samfällighets- eller vägföreningen från medlemslistan: fördela uttaxeringen efter andelstal per verksamhetsgren, öresjustering som summerar exakt, utskriftsklar debiteringslängd enligt 42 § och avier med OCR och Swish-QR. Allt sker i webbläsaren.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/debiteringslangd-samfallighet/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/debiteringslangd-samfallighet/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Debiteringslängd och avier för samfällighetsföreningar">
+<meta property="og:description" content="Medlemslista med andelstal in – debiteringslängd per verksamhetsgren och avier med OCR och Swish ut. Registret lämnar aldrig datorn.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#4d7c0f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%234d7c0f'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/debiteringslangd-samfallighet/","name":"Debiteringslängd och avier för samfällighetsföreningar","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Fördelar samfällighetsföreningens uttaxering efter andelstal per verksamhetsgren eller gemensamhetsanläggning, med öresjustering enligt största rest-metoden så att raderna summerar exakt. Skapar debiteringslängd enligt 42 § lagen om förvaltning av samfälligheter och avier med OCR-nummer och Swish-QR. Allt sker i webbläsaren.",
+ "offers":[{"@type":"Offer","price":"0","priceCurrency":"SEK","description":"Gratis grundfunktion"},{"@type":"Offer","price":"149","priceCurrency":"SEK","description":"Debiteringslängd, avier med OCR och Swish, avprickning och Excel","url":"https://drudley.gumroad.com/l/debiteringslangd"}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Vad är en debiteringslängd?","acceptedAnswer":{"@type":"Answer","text":"Debiteringslängden är den förteckning som styrelsen i en samfällighetsförening upprättar och lägger fram på föreningsstämman när medlemmarnas bidrag ska tas ut. Enligt 42 § lagen (1973:1150) om förvaltning av samfälligheter ska den ange det belopp som uttaxeras, vad som belöper på varje medlem och när betalning ska ske. Har föreningen flera verksamhetsgrenar med olika andelstal redovisas varje gren för sig."}},
+ {"@type":"Question","name":"Hur fördelas uttaxeringen efter andelstal?","acceptedAnswer":{"@type":"Answer","text":"Varje fastighets andel av beloppet är dess andelstal delat med summan av alla andelstal i verksamhetsgrenen. Eftersom beloppen avrundas till öre eller hela kronor fördelar verktyget avrundningsresten med största rest-metoden, så att summan av alla rader blir exakt det uttaxerade beloppet."}},
+ {"@type":"Question","name":"Kan föreningen ha olika andelstal för drift och underhåll?","acceptedAnswer":{"@type":"Answer","text":"Ja. Lägg andelstalen i var sin kolumn i medlemslistan, till exempel drift och underhåll eller GA:1 och GA:2. Varje kolumn blir en verksamhetsgren med eget belopp eller egna budgetposter, och debiteringslängden redovisar grenarna var för sig."}},
+ {"@type":"Question","name":"Kan avierna få OCR-nummer och Swish?","acceptedAnswer":{"@type":"Answer","text":"Ja. Verktyget räknar fram ett OCR-nummer per fastighet med kontrollsiffra enligt 10-modul och valfri längdsiffra, och ritar en Swish-QR-kod med föreningens Swishnummer, beloppet och OCR-numret som meddelande. QR-koden skapas i webbläsaren utan att något skickas iväg. OCR-kontroll på bankgirot kräver avtal med föreningens bank."}},
+ {"@type":"Question","name":"Laddas medlemsregistret upp någonstans?","acceptedAnswer":{"@type":"Answer","text":"Nej. Listan läses och räknas helt i din webbläsare. Ingenting skickas till någon server, och sparade register och avprickningar ligger bara i din webbläsare eller i en fil du själv sparar."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Debiteringslängd<span>·</span>för samfälligheter</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Debiteringslängd och avier för samfällighetsföreningen – direkt från medlemslistan</h1>
+    <p class="lead" data-i18n="lead">Dra in medlemsförteckningen med fastighet, ägare och <strong>andelstal</strong> (gärna flera kolumner, t.ex. drift och underhåll eller GA:1 och GA:2), skriv in vad som ska uttaxeras – så fördelas beloppet per fastighet med <strong>öresjustering som summerar exakt</strong>. Sedan blir det en debiteringslängd enligt 42 § och avier med OCR och Swish. <strong>Allt sker i din webbläsare – registret lämnar aldrig datorn.</strong></p>
+  </section>
+
+  <section id="drop" class="drop" tabindex="0" role="button" aria-label="Välj medlemslista">
+    <input id="file" type="file" accept=".csv,.txt,.tsv,.xlsx,text/csv,text/plain,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden>
+    <p class="drop-main" data-i18n="drop">Släpp medlemslistan (Excel eller CSV) här eller <u>välj fil</u></p>
+    <p class="muted small" data-i18n="dropsub">Kolumner: fastighet, ägare, adress och en eller flera kolumner med andelstal · rubrikraden letas upp automatiskt</p>
+    <button id="sample" class="link small" type="button" data-i18n="sample">Prova med ett syntetiskt exempel</button>
+  </section>
+  <details class="card paste">
+    <summary data-i18n="paste-h">…eller klistra in från Excel / Google Kalkylark</summary>
+    <textarea id="paste" rows="6" spellcheck="false" data-i18n-ph="paste-ph" placeholder="Fastighet&#9;Ägare&#9;Adress&#9;Andelstal drift&#9;Andelstal underhåll"></textarea>
+    <div class="row end"><button id="paste-go" class="btn ghost small" type="button" data-i18n="paste-go">Läs in</button></div>
+  </details>
+  <p id="saved-row" class="small" hidden><button id="reg-load" class="link small" type="button"></button></p>
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+
+  <section id="result" hidden>
+    <div class="company card">
+      <div>
+        <h2 id="r-title"></h2>
+        <p class="muted small" id="r-meta"></p>
+      </div>
+      <div class="opts">
+        <label><span data-i18n="f-l">Förening</span> <input id="s-forening" type="text" autocomplete="off"></label>
+        <label><span data-i18n="y-l">År</span> <input id="s-year" type="text" inputmode="numeric" maxlength="4" class="yr"></label>
+        <label><span data-i18n="u-l">Avrunda till</span> <select id="s-unit"><option value="1" data-i18n="u-ore">öre</option><option value="100" data-i18n="u-kr">hela kronor</option></select></label>
+      </div>
+    </div>
+
+    <h2 data-i18n="g-h">Verksamhetsgrenar och belopp att uttaxera</h2>
+    <p class="muted small" data-i18n="g-p">Varje kolumn med andelstal blir en verksamhetsgren. Skriv in beloppet som ska uttaxeras – en summa eller flera budgetposter från utgifts- och inkomststaten. ”Lika per fastighet” fördelar en avgift lika mellan alla.</p>
+    <div id="grenar" class="grenar"></div>
+    <div class="row"><button id="gren-add" class="btn ghost small" type="button" data-i18n="g-add">Lägg till verksamhetsgren</button></div>
+
+    <div id="check" class="check"></div>
+    <div id="stats" class="stats"></div>
+    <div id="flags" class="flags" hidden></div>
+    <div id="info" class="info" hidden></div>
+
+    <h2 data-i18n="p-h">Förhandsvisning – belopp per fastighet</h2>
+    <div class="tbl card prevw"><table id="prev-t"><thead></thead><tbody></tbody><tfoot></tfoot></table></div>
+
+    <section id="paid" class="card paid">
+      <h2 data-i18n="paid-h">Debiteringslängd, avier med OCR och Swish, avprickning</h2>
+      <p class="small" data-i18n="paid-p">En <strong>utskriftsklar debiteringslängd</strong> med det som 42 § kräver – uttaxerat belopp, belopp per fastighet och verksamhetsgren, förfallodag och betalningssätt, stämmobeslut och framläggande. <strong>En avi per medlem</strong> med bankgiro/plusgiro, OCR-nummer och Swish-QR. <strong>Avprickning och restlista</strong> som sparas i webbläsaren, Excel-fil och registret sparat till nästa år.</p>
+      <div class="row"><button id="paid-open" class="btn" type="button"><span data-i18n="open">Skapa debiteringslängd och avier</span></button></div>
+      <div id="paid-out" hidden>
+        <h3 data-i18n="set-h">Uppgifter till debiteringslängd och avier</h3>
+        <div class="grid">
+          <label><span data-i18n="s-orgnr">Organisationsnummer</span><input id="s-orgnr" type="text" autocomplete="off" placeholder="7179xx-xxxx"></label>
+          <label><span data-i18n="s-due">Förfallodag</span><input id="s-due" type="date"></label>
+          <label><span data-i18n="s-stamma">Föreningsstämma (datum)</span><input id="s-stamma" type="date"></label>
+          <label><span data-i18n="s-paragraf">Paragraf i stämmoprotokollet</span><input id="s-paragraf" type="text" autocomplete="off" placeholder="§ 9"></label>
+          <label><span data-i18n="s-upprattad">Upprättad av styrelsen (datum)</span><input id="s-upprattad" type="date"></label>
+          <label><span data-i18n="s-bankgiro">Bankgiro</span><input id="s-bankgiro" type="text" autocomplete="off" placeholder="123-4567"></label>
+          <label><span data-i18n="s-plusgiro">Plusgiro</span><input id="s-plusgiro" type="text" autocomplete="off" placeholder="12 34 56-7"></label>
+          <label><span data-i18n="s-swish">Swishnummer</span><input id="s-swish" type="text" autocomplete="off" placeholder="123 xxx xx xx"></label>
+          <label><span data-i18n="s-kontakt">Kontakt på avin (kassör, e-post/telefon)</span><input id="s-kontakt" type="text" autocomplete="off"></label>
+          <label class="chk"><input id="s-ocr" type="checkbox" checked> <span data-i18n="s-ocr">OCR-nummer på avierna</span></label>
+          <label class="chk"><input id="s-len" type="checkbox" checked> <span data-i18n="s-len">Med längdsiffra (variabel längdkontroll)</span></label>
+          <label><span data-i18n="s-prefix">OCR börjar med (t.ex. året)</span><input id="s-prefix" type="text" inputmode="numeric" maxlength="8" autocomplete="off"></label>
+          <label class="chk"><input id="s-usenr" type="checkbox" checked> <span data-i18n="s-usenr">Använd medlemsnummer i OCR (annars radens ordning)</span></label>
+        </div>
+        <p class="hint" data-i18n="ocr-hint">OCR-numret = början + medlemsnummer + längdsiffra + kontrollsiffra (10-modul). Hård OCR-kontroll på bankgirot kräver avtal med banken – annars fungerar numret som referens. Kontrollera med banken vilken kontroll ert bankgiro har.</p>
+        <div id="pay-msg" class="flags" hidden></div>
+
+        <div class="docsec">
+          <div class="row"><h3 data-i18n="dl-h">Debiteringslängd</h3><button id="print-dl" class="btn ghost small" type="button" data-i18n="print-dl">Skriv ut / spara som PDF</button></div>
+          <div id="doc-dl" class="docwrap"></div>
+        </div>
+        <div class="docsec">
+          <div class="row"><h3 data-i18n="avi-h">Avier</h3><button id="print-avi" class="btn ghost small" type="button" data-i18n="print-avi">Skriv ut alla avier</button></div>
+          <p class="muted small" id="avi-meta"></p>
+          <div id="doc-avi" class="docwrap avis"></div>
+        </div>
+        <div class="docsec">
+          <div class="row"><h3 data-i18n="rest-h">Avprickning och restlista</h3><button id="print-rest" class="btn ghost small" type="button" data-i18n="print-rest">Skriv ut restlista</button></div>
+          <p class="muted small" data-i18n="rest-p">Skriv in inbetalt belopp och datum, eller tryck ”Betald”. Avprickningen sparas i den här webbläsaren.</p>
+          <div id="rest-sum" class="stats"></div>
+          <label class="small chk-inline"><input id="rest-open" type="checkbox"> <span data-i18n="rest-open">Visa bara obetalda</span></label>
+          <div class="tbl card"><table id="rest-t"><thead><tr><th data-i18n="c-fast">Fastighet</th><th data-i18n="c-agare">Ägare</th><th data-i18n="c-ref">OCR</th><th class="num" data-i18n="c-att">Att betala</th><th class="num" data-i18n="c-paid">Betalt</th><th data-i18n="c-date">Datum</th><th class="num" data-i18n="c-left">Kvar</th><th data-i18n="c-st">Status</th></tr></thead><tbody></tbody></table></div>
+        </div>
+        <div class="dlrow">
+          <button id="dl-xlsx" class="btn" type="button" data-i18n="dl-xlsx">Ladda ner Excel-fil (.xlsx)</button>
+          <button id="reg-save" class="btn ghost" type="button" data-i18n="reg-save">Spara registret i webbläsaren</button>
+          <button id="reg-export" class="btn ghost" type="button" data-i18n="reg-export">Spara registret som fil (.json)</button>
+          <button id="reg-import" class="btn ghost" type="button" data-i18n="reg-import">Läs in registerfil</button>
+          <button id="reg-next" class="btn ghost" type="button" data-i18n="reg-next">Kopiera registret till nästa år</button>
+          <input id="reg-file" type="file" accept=".json,application/json" hidden>
+        </div>
+        <p id="dl-msg" class="small" role="status"></p>
+      </div>
+    </section>
+
+    <div class="review">
+      <h3 data-i18n="rev-h">Kontrollera före stämman</h3>
+      <ul>
+        <li data-i18n="rev-1">Verktyget hjälper styrelsen att <strong>upprätta</strong> debiteringslängden. Den ska <strong>framläggas på föreningsstämman</strong> (42 § lagen om förvaltning av samfälligheter) och bygga på den utgifts- och inkomststat som stämman godkänt (41 §). Det är stämman och era stadgar som avgör uttaxeringen – stadgarna kan föreskriva ett annat förfarande.</li>
+        <li data-i18n="rev-2">Kontrollera <strong>andelstalen mot lantmäteriets anläggningsbeslut</strong> eller föreningens register, och att rätt andelstal används för rätt verksamhetsgren. Har en fastighet bytt ägare är det den nya ägaren som ska stå på avin.</li>
+        <li data-i18n="rev-3">En medlem som anser att uttaxeringen är fel kan begära rättelse hos mark- och miljödomstolen <strong>inom fyra veckor</strong> från stämman där längden framlades. Debiterade och förfallna belopp kan sedan drivas in hos Kronofogden (46 §) – därför ska längden vara korrekt och framlagd.</li>
+        <li data-i18n="rev-4">Verktyget ger ingen juridisk rådgivning. Ni ansvarar själva för debiteringslängden, beloppen och avierna.</li>
+      </ul>
+    </div>
+  </section>
+
+  <dialog id="paywall">
+    <h2 data-i18n="pw-h">Debiteringslängd, avier och avprickning</h2>
+    <p data-i18n="pw-p">Lås upp utskriftsklar debiteringslängd, avier med OCR och Swish-QR, avprickning och restlista, Excel-filen och registret sparat till nästa år. Inläsning, fördelning och förhandsvisningen är alltid gratis.</p>
+  </dialog>
+
+  <section class="faq">
+    <h2>Debiteringslängd och uttaxering – vanliga frågor</h2>
+    <details open><summary>Vad är en debiteringslängd?</summary><p>När en samfällighetsförening tar ut bidrag av medlemmarna – uttaxering – upprättar styrelsen en <strong>debiteringslängd</strong> och lägger fram den på föreningsstämman, om inte stadgarna säger något annat. Enligt <strong>42 § lagen (1973:1150) om förvaltning av samfälligheter</strong> ska längden ange det belopp som uttaxeras, vad som belöper på varje medlem och när betalning ska ske. Uttaxeringen bygger på den utgifts- och inkomststat som stämman har godkänt (41 §).</p></details>
+    <details><summary>Hur fungerar verktyget?</summary><p>Dra in medlemsförteckningen som Excel- eller CSV-fil, eller klistra in den. Verktyget hittar kolumnerna för <strong>fastighet, ägare, adress och andelstal</strong>. Varje kolumn med andelstal blir en verksamhetsgren där du skriver in beloppet som ska uttaxeras, som en summa eller som budgetposter. Beloppet fördelas efter andelstal och du ser direkt vad varje fastighet ska betala och att allt summerar exakt.</p></details>
+    <details><summary>Hur räknas beloppet per fastighet ut?</summary><p>Fastighetens belopp = uttaxerat belopp × fastighetens andelstal ÷ summan av alla andelstal i verksamhetsgrenen. Eftersom resultatet avrundas till öre eller hela kronor blir det nästan alltid några ören över eller under. Verktyget använder <strong>största rest-metoden</strong>: alla får det avrundade nedåt, och de fastigheter som har störst rest får en öre (eller krona) extra tills summan stämmer exakt.</p></details>
+    <details><summary>Föreningen har flera gemensamhetsanläggningar eller olika andelstal för drift och underhåll</summary><p>Ha andelstalen i var sin kolumn, till exempel <em>Andelstal drift</em> och <em>Andelstal underhåll</em> eller <em>GA:1</em> och <em>GA:2</em>. Varje kolumn blir en egen verksamhetsgren med eget belopp, och debiteringslängden redovisar grenarna var för sig, som 42 § tredje stycket kräver när kostnaderna fördelas olika. En fastighet som inte deltar i en anläggning har andelstal 0 där.</p></details>
+    <details><summary>Hur blir OCR-numret och Swish-koden?</summary><p>OCR-numret byggs av en början (t.ex. året), medlemsnumret, en <strong>längdsiffra</strong> och en <strong>kontrollsiffra enligt 10-modul</strong> – samma regler som Bankgirot använder. Swish-QR-koden innehåller föreningens Swishnummer, beloppet och OCR-numret som meddelande, och ritas i webbläsaren utan att något skickas till Swish. Hård OCR-kontroll på bankgirot kräver ett avtal med banken.</p></details>
+    <details><summary>Kan obetalda avgifter drivas in hos Kronofogden?</summary><p>Enligt <strong>46 § andra stycket</strong> får debiterade och förfallna belopp tas ut enligt utsökningsbalken, alltså som om det fanns en dom – förutsatt att debiteringslängden har framlagts på stämman och att domstolen inte beslutat annat vid en rättelsetalan. En medlem som vill angripa uttaxeringen ska väcka talan inom fyra veckor från stämman. Restlistan i verktyget visar vilka som inte har betalat.</p></details>
+    <details><summary>Laddas medlemsregistret upp någonstans?</summary><p>Nej. Listan läses och räknas helt i din webbläsare. Ingenting skickas till någon server och sidan använder varken cookies eller spårning. Sparade register och avprickningar ligger bara i din webbläsare eller i en fil du själv sparar – bra eftersom registret innehåller grannarnas namn och adresser.</p></details>
+  </section>
+</main>
+<footer class="wrap muted small foot">Fristående verktyg, inte kopplat till Lantmäteriet, Bankgirot, Swish eller någon förening. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
+<div id="print-root"></div>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/csv.js"></script>
+<script src="js/xlsx-read.js"></script>
+<script src="js/debitering.js"></script>
+<script src="js/qr.js"></script>
+<script src="js/xlsx-writer.js"></script>
+<script src="js/export.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
