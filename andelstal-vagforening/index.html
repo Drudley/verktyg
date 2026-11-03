@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Andelstal för vägförening – räkna med tonkilometermetoden (Lantmäteriets schabloner 2025)</title>
+<meta name="description" content="Gratis kalkylator för andelstal i vägförening och vägsamfällighet: tonkilometermetoden med Lantmäteriets schabloner från 2025 – permanentbostad, fritidshus, skog och mer – väglängd, minsta väglängd och direktutfart. Andel i procent, export till Excel och CSV.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/andelstal-vagforening/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/andelstal-vagforening/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Andelstal för vägförening – tonkilometermetoden">
+<meta property="og:description" content="Räkna andelstal per fastighet med Lantmäteriets schabloner 2025: ton per år × använd väglängd. Gratis, i webbläsaren.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#a16207">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23a16207'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/andelstal-vagforening/","name":"Andelstal för vägförening – tonkilometermetoden","applicationCategory":"UtilitiesApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Räknar andelstal per fastighet för en enskild väg med tonkilometermetoden: ton per år enligt Lantmäteriets schabloner från 2025 gånger använd väglängd i kilometer, med minsta väglängd, reduktionsfaktor för direktutfart och andel i procent som summerar till 100. Export till Excel och CSV. Allt sker i webbläsaren.",
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"SEK"}},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hur räknas andelstal i en vägförening?","acceptedAnswer":{"@type":"Answer","text":"Vanligast är tonkilometermetoden: den vikt i ton som fastigheten bedöms belasta vägen med under ett år multipliceras med den väglängd i kilometer som används för resor till och från fastigheten. Fastighetens andel av kostnaderna är dess tonkilometer delat med summan för alla deltagande fastigheter. Vikten bestäms oftast med Lantmäteriets schabloner per typ av fastighet."}},
+ {"@type":"Question","name":"Vilka schabloner gäller för permanentbostad och fritidshus?","acceptedAnswer":{"@type":"Answer","text":"Enligt Lantmäteriets PM 2025 om tonkilometermetoden är schablonen 2 500 ton per år för en permanentbostad, 1 800 ton för fritidsbostad med intensiv användning, 900 ton vid normal användning och 450 ton vid låg användning, 1 500 ton per lägenhet i flerfamiljshus och 100 ton för en obebyggd fastighet."}},
+ {"@type":"Question","name":"Vad händer om fastigheten ligger nära den allmänna vägen?","acceptedAnswer":{"@type":"Answer","text":"Lantmäteriets PM 2025 föreslår att väglängden kan sättas till 0,3 kilometer när den verkliga väglängden är kortare, så att andelstalet inte blir oskäligt lågt. Vid direktutfart till allmän väg kan man först använda minsta väglängd och sedan en reduktionsfaktor, till exempel 0,5 för en permanentbostad."}},
+ {"@type":"Question","name":"Blir andelstalen från kalkylatorn gällande?","acceptedAnswer":{"@type":"Answer","text":"Nej. Kalkylatorn är ett hjälpmedel. I en gemensamhetsanläggning bestäms andelstalen vid lantmäteriförrättningen och står i anläggningsbeslutet. Vill föreningen ändra andelstal krävs en ny förrättning eller en överenskommelse som Lantmäteriet godkänner enligt 43 § anläggningslagen."}},
+ {"@type":"Question","name":"Hur gör jag debiteringslängd när andelstalen är klara?","acceptedAnswer":{"@type":"Answer","text":"Ladda ner andelstalslistan som CSV och läs in den i verktyget Debiteringslängd och avier för samfällighetsföreningar på samma webbplats. Där fördelas det belopp stämman beslutat att uttaxera efter andelstalen, och du får debiteringslängd och avier."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Andelstal<span>·</span>vägförening</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Andelstal för vägförening – räkna med tonkilometermetoden</h1>
+    <p class="lead" data-i18n="lead">Fyll i fastigheterna längs vägen – typ (permanentbostad, fritidshus, skog …), antal och <strong>väglängd</strong> – så räknas <strong>andelstal i tonkilometer</strong> med Lantmäteriets schabloner från 2025, och andelen i procent som summerar exakt till 100. Allt räknas i din webbläsare.</p>
+    <p id="free-note" class="free-note" data-i18n="free">Gratis – inget konto, ingen uppladdning, ingen spårning.</p>
+  </section>
+
+  <aside class="cta card" id="cta-top">
+    <p><strong data-i18n="cta-h">Ska ni ta ut avgiften efter andelstalen?</strong> <span data-i18n="cta-p">Läs in listan i <a href="../debiteringslangd-samfallighet/">Debiteringslängd och avier för samfällighetsföreningar</a> – uttaxeringen fördelas per fastighet med öresjustering, och du får debiteringslängd och avier med OCR och Swish.</span></p>
+  </aside>
+
+  <section class="card calc" aria-labelledby="calc-h">
+    <div class="row wrapr">
+      <h2 id="calc-h" data-i18n="calc-h">Fastigheter längs vägen</h2>
+      <div class="actions">
+        <button id="sample" class="btn ghost small" type="button" data-i18n="sample">Prova med ett syntetiskt exempel</button>
+        <button id="clear" class="link small" type="button" data-i18n="clear">Töm listan</button>
+      </div>
+    </div>
+    <p class="muted small" data-i18n="calc-p">En rad per typ av trafik. Har en fastighet både bostad och skog, skriv två rader med samma fastighetsbeteckning – raderna läggs ihop. <em>Antal</em> är antal hushåll, lägenheter eller båtplatser – eller hektar för skog, åker och bete. <em>Väglängd</em> är sträckan i km på föreningens väg från fastighetens anslutning till där vägen slutar (oftast vid allmän väg). <em>Faktor</em> är valfri (t.ex. 0,5 vid direktutfart).</p>
+    <div class="tbl"><table id="in-t">
+      <thead><tr><th data-i18n="c-fast">Fastighet</th><th data-i18n="c-agare">Ägare (valfritt)</th><th data-i18n="c-typ">Typ</th><th class="num" data-i18n="c-antal">Antal</th><th class="num" data-i18n="c-km">Väglängd (km)</th><th class="num" data-i18n="c-faktor">Faktor</th><th class="num" id="c-val">Tonkm</th><th><span class="sr" data-i18n="c-del">Ta bort</span></th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <div class="row"><button id="add-row" class="btn ghost small" type="button" data-i18n="add">Lägg till rad</button><span class="muted small" id="saved-note" data-i18n="saved">Listan sparas automatiskt i den här webbläsaren.</span></div>
+
+    <details class="paste">
+      <summary data-i18n="paste-h">Klistra in från Excel / Google Kalkylark</summary>
+      <p class="muted small" data-i18n="paste-p">Kolumner: Fastighet, Ägare, Typ, Antal, Väglängd, Faktor (rubrikrad valfri). Typ kan vara t.ex. ”permanent”, ”fritidshus”, ”obebyggd”, ”skog 5” eller namnet i listan.</p>
+      <textarea id="paste" rows="5" spellcheck="false" placeholder="Fastighet&#9;Ägare&#9;Typ&#9;Antal&#9;Väglängd&#9;Faktor"></textarea>
+      <div class="row end"><button id="paste-go" class="btn ghost small" type="button" data-i18n="paste-go">Lägg till raderna</button></div>
+    </details>
+
+    <details class="opts-d" open>
+      <summary data-i18n="opt-h">Inställningar</summary>
+      <div class="grid">
+        <label class="chk"><input id="o-minkm-on" type="checkbox" checked> <span data-i18n="o-minkm">Minsta väglängd</span> <input id="o-minkm" type="text" inputmode="decimal" value="0,3" class="sm"> km</label>
+        <label class="chk"><input id="o-nodist" type="checkbox"> <span data-i18n="o-nodist">Räkna utan väglängd (bara ton per år)</span></label>
+        <label><span data-i18n="o-minandel">Lägsta andelstal per fastighet (valfritt)</span><input id="o-minandel" type="text" inputmode="decimal" placeholder="0"></label>
+        <label><span data-i18n="o-dec">Decimaler i andelstalet</span><select id="o-dec"><option value="0">0</option><option value="1">1</option><option value="2">2</option></select></label>
+        <label><span data-i18n="o-amount">Belopp att fördela, kr (valfritt)</span><input id="o-amount" type="text" inputmode="decimal" placeholder="t.ex. 85 000"></label>
+      </div>
+    </details>
+
+    <details class="cats-d">
+      <summary data-i18n="cats-h">Schabloner (ton per år) – ändra eller lägg till egen typ</summary>
+      <p class="muted small" data-i18n="cats-p">Förifyllt med Lantmäteriets rekommendationer i PM 2025. Ändra ett tontal om er förrättning använt ett annat värde, eller lägg till en egen typ.</p>
+      <div class="tbl"><table id="cat-t"><thead><tr><th data-i18n="k-typ">Typ</th><th class="num" data-i18n="k-ton">Ton per år</th><th data-i18n="k-unit">Per</th><th data-i18n="k-src">Källa</th></tr></thead><tbody></tbody></table></div>
+      <div class="row"><button id="cat-add" class="btn ghost small" type="button" data-i18n="cat-add">Lägg till egen typ</button><button id="cat-reset" class="link small" type="button" data-i18n="cat-reset">Återställ schablonerna</button></div>
+    </details>
+  </section>
+
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+
+  <section id="result" hidden>
+    <h2 id="r-title" data-i18n="r-h">Andelstal per fastighet</h2>
+    <div id="check" class="check"></div>
+    <div id="stats" class="stats"></div>
+    <div id="flags" class="flags" hidden></div>
+    <div class="tbl card"><table id="res-t"><thead></thead><tbody></tbody><tfoot></tfoot></table></div>
+    <div class="dlrow">
+      <button id="dl-csv" class="btn" type="button" data-i18n="dl-csv">Ladda ner för Debiteringslängd (.csv)</button>
+      <button id="dl-xlsx" class="btn ghost" type="button" data-i18n="dl-xlsx">Ladda ner Excel-fil (.xlsx)</button>
+      <button id="copy" class="btn ghost" type="button" data-i18n="copy">Kopiera tabellen</button>
+    </div>
+    <p id="dl-msg" class="small" role="status"></p>
+    <aside class="cta card big" id="cta-debl">
+      <h3 data-i18n="cta2-h">Nästa steg: debiteringslängd och avier</h3>
+      <p data-i18n="cta2-p">CSV-filen ovan har kolumnerna <em>Fastighet</em>, <em>Ägare</em> och <em>Andelstal väg</em> – precis det som <strong>Debiteringslängd och avier för samfällighetsföreningar</strong> läser in. Där fördelar du beloppet som stämman beslutat att uttaxera, med öresjustering som summerar exakt, och får en debiteringslängd enligt 42 § och avier med OCR och Swish-QR. Lägg till adresser i filen innan, så hamnar de på avierna.</p>
+      <p><a class="btn" id="cta-link" href="../debiteringslangd-samfallighet/" data-i18n="cta2-go">Öppna Debiteringslängd →</a></p>
+    </aside>
+  </section>
+
+  <section class="prose" id="metod">
+    <h2>Så räknas andelstal med tonkilometermetoden</h2>
+    <p>En enskild väg som flera fastigheter använder förvaltas ofta som en <strong>gemensamhetsanläggning</strong> av en samfällighetsförening – även äldre vägföreningar och vägsamfälligheter räknas i dag som gemensamhetsanläggningar. Varje deltagande fastighet har ett <strong>andelstal</strong> som avgör hur stor del av kostnaderna den bär. Enligt <strong>15 § anläggningslagen</strong> bestäms andelstalet för <em>utförandet</em> främst efter den nytta fastigheten har av anläggningen och andelstalet för <em>driften</em> främst efter i vilken omfattning fastigheten beräknas använda den. Ofta används samma andelstal för båda.</p>
+    <p>För vägar använder Lantmäteriet oftast <strong>tonkilometermetoden</strong>: den vikt i ton som fastigheten bedöms belasta vägen med under ett år multipliceras med den väglängd i kilometer som används för resor till och från fastigheten. Varje fastighets andel är dess tonkilometer delat med summan för alla fastigheter.</p>
+    <p class="formula">andelstal (tonkm) = antal × ton per år (schablon) × använd väglängd (km) × ev. faktor<br>andel i % = fastighetens andelstal ÷ summan av alla andelstal × 100</p>
+    <h3>Lantmäteriets schabloner 2025 (urval)</h3>
+    <div class="tbl"><table class="plain">
+      <thead><tr><th>Typ av fastighet</th><th class="num">Ton per år</th></tr></thead>
+      <tbody>
+        <tr><td>Permanentbostad (ett hushåll)</td><td class="num">2 500</td></tr>
+        <tr><td>Komplementbostad som hyrs ut varaktigt</td><td class="num">1 300</td></tr>
+        <tr><td>Fritidsbostad – intensiv / normal / låg användning</td><td class="num">1 800 / 900 / 450</td></tr>
+        <tr><td>Flerfamiljshus, per lägenhet</td><td class="num">1 500</td></tr>
+        <tr><td>Obebyggd fastighet</td><td class="num">100</td></tr>
+        <tr><td>Småbåtshamn, per båtplats</td><td class="num">400</td></tr>
+        <tr><td>Teknisk anläggning (besök 1 gång/månad – 2 gånger/vecka)</td><td class="num">500–1 100</td></tr>
+        <tr><td>Produktiv skogsmark, per hektar (tillväxtområde 1–6)</td><td class="num">15–42</td></tr>
+      </tbody>
+    </table></div>
+    <p class="muted small">Källa: Lantmäteriet, <em>PM 2025 – Schabloner vid tillämpning av tonkilometermetoden</em> (LM2025/006319, 2025-05-23), tabell 1, 2, 7–10, 14 och 15. För jordbruk med mer än 20 hektar åker (30 hektar i Gss), hästgårdar, skolor, golfbanor m.m. räknas tontalet i det enskilda fallet – lägg då in en egen typ.</p>
+    <h3>Korta väglängder och direktutfart</h3>
+    <p>En strikt tillämpning kan ge oskäligt låga andelstal för fastigheter nära vägens slut. PM 2025 föreslår att väglängden då sätts till <strong>0,3 km</strong>: 1 × 2 500 ton × 0,1 km = 250 tonkm ändras till 1 × 2 500 × 0,3 = 750 tonkm. Har fastigheten <strong>direktutfart</strong> till allmän väg kan man först använda minsta väglängd och sedan en <strong>reduktionsfaktor</strong> – erfarenhetsmässigt 0,5 för en permanentbostad när gemensamma nyttigheter finns i normal omfattning, annars 0,3: 1 × 2 500 × 0,3 × 0,5 = 375 tonkm. Kalkylatorn räknar på samma sätt (minsta väglängd kan stängas av, faktorn skriver du per rad).</p>
+    <p>I områden med samlad bebyggelse och flera utfarter kan fördelningen göras <strong>utan hänsyn till väglängden</strong>, i de enklaste fallen med samma andelstal för alla. Välj då ”Räkna utan väglängd”. PM 2025 nämner också att andelstalet kan sättas till en <strong>lägsta nivå</strong> när det annars inte ens täcker kostnaden för utdebiteringen – det är vad ”Lägsta andelstal” gör.</p>
+    <h3>Fritidshus: samma kategori i hela området</h3>
+    <p>Enligt PM 2025 ska normalt samma användningskategori för fritidsbostäder gälla i hela båtnadsområdet, inte fastighet för fastighet. Kalkylatorn varnar om listan blandar kategorierna.</p>
+    <div class="note card">
+      <p><strong>Ett hjälpmedel – inte en förrättning.</strong> Gällande andelstal i en gemensamhetsanläggning bestäms av Lantmäteriet vid förrättningen och står i anläggningsbeslutet. Ändrade andelstal kräver en omprövning (ny förrättning) eller en överenskommelse som Lantmäteriet godkänner enligt 43 § anläggningslagen. Använd kalkylatorn för att förstå och kontrollera andelstal, ta fram underlag till en överenskommelse eller fördela kostnader i en väg som inte är en gemensamhetsanläggning – inte som ett beslut. Verktyget ger ingen juridisk rådgivning.</p>
+    </div>
+    <h3>Källor</h3>
+    <ul class="src">
+      <li>Lantmäteriet: <a href="https://www.lantmateriet.se/globalassets/fastigheter/samfalligheter/tonkm.pdf" rel="noopener">PM 2025 – Schabloner vid tillämpning av tonkilometermetoden</a> (pdf, LM2025/006319, 2025-05-23)</li>
+      <li>Lantmäteriet: <a href="https://www.lantmateriet.se/sv/fastighet-och-mark/samfallighet--aga-och-anvanda-gemensamt/enskilda-vagar/" rel="noopener">Enskilda vägar</a> – tonkilometermetoden och fördelning av kostnader</li>
+      <li>Lantmäteriet: <a href="https://www.lantmateriet.se/sv/om-lantmateriet/nyheter-och-sociala-medier/nyheter/uppdaterad-metod-ger-mer-exakta-andelstal-och-kostnader-for-vagforeningar/" rel="noopener">Uppdaterad metod ger mer exakta andelstal och kostnader för vägföreningar</a> (23 juni 2025)</li>
+      <li>Lantmäteriet: <a href="https://www.lantmateriet.se/sv/fastighet-och-mark/samfallighet--aga-och-anvanda-gemensamt/gemensamhetsanlaggningar/andra-andelstal/andra-andelstal-enligt-overenskommelse-43--al/" rel="noopener">Ändra andelstal enligt överenskommelse (43 § AL)</a></li>
+      <li><a href="https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/anlaggningslag-19731149_sfs-1973-1149/" rel="noopener">Anläggningslag (1973:1149)</a>, 15 § (grunder för andelstal) och 43 § (överenskommelse)</li>
+    </ul>
+    <p class="muted small">Kontrollerat mot källorna 2026-11-03.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Andelstal i vägförening – vanliga frågor</h2>
+    <details open><summary>Hur räknas andelstal i en vägförening?</summary><p>Vanligast är <strong>tonkilometermetoden</strong>: fastighetens beräknade trafik i ton per år gånger den väglängd i kilometer som används för resor till och från fastigheten. Trafiken sätts normalt med Lantmäteriets schabloner per typ av fastighet, inte genom att någon mäter trafiken. Andelen av kostnaderna är fastighetens tonkilometer delat med summan för alla deltagande fastigheter.</p></details>
+    <details><summary>Vilka schabloner gäller 2025 och framåt?</summary><p>Lantmäteriet uppdaterade schablonerna i PM 2025: permanentbostad 2 500 ton per år (tidigare 2 100), fritidsbostad 1 800 / 900 / 450 ton beroende på användning, flerfamiljshus 1 500 ton per lägenhet, obebyggd fastighet 100 ton och produktiv skogsmark 15–42 ton per hektar beroende på tillväxtområde. Alla värden finns förifyllda i kalkylatorn och kan ändras.</p></details>
+    <details><summary>Vad är skillnaden mellan andelstal för drift och utförande?</summary><p>Andelstalet för <strong>utförande</strong> (att bygga eller förbättra vägen) bestäms främst efter nyttan, andelstalet för <strong>drift</strong> (underhåll, snöröjning) främst efter beräknad användning (15 § anläggningslagen). Om nyttan motsvarar användningen kan samma andelstalsserie användas för båda, vilket är vanligt för vägar.</p></details>
+    <details><summary>Vad räknas som väglängd?</summary><p>Den sträcka på föreningens väg som används för resor till och från fastigheten – oftast från fastighetens anslutning till punkten där den gemensamma vägen slutar vid allmän väg. Vid vägnät med flera anslutningar kan Lantmäteriet till exempel välja den kortaste väglängden för alla eller fördela trafiken på olika utfartsriktningar. Är väglängden kortare än 0,3 km kan den höjas till 0,3 km.</p></details>
+    <details><summary>Kan föreningen själv ändra andelstalen?</summary><p>Inte på egen hand. Styrelsen och den berörda fastighetsägaren kan komma överens om ändrade andelstal, men överenskommelsen måste godkännas av Lantmäteriet för att gälla (43 § anläggningslagen). Annars krävs en omprövning genom en lantmäteriförrättning. Kalkylatorn kan ge underlag till ett sådant förslag.</p></details>
+    <details><summary>Hur gör jag sedan debiteringslängd och avier?</summary><p>Ladda ner andelstalen som CSV och läs in filen i <a href="../debiteringslangd-samfallighet/">Debiteringslängd och avier för samfällighetsföreningar</a>. Där skriver du in vad som ska uttaxeras, ser vad varje fastighet ska betala, och kan skapa debiteringslängd och avier med OCR och Swish.</p></details>
+    <details><summary>Skickas uppgifterna någonstans?</summary><p>Nej. Allt räknas i din webbläsare och listan sparas bara i den här webbläsarens lokala lagring. Sidan använder inga cookies och ingen spårning.</p></details>
+  </section>
+</main>
+<footer class="wrap muted small foot">Fristående verktyg, inte kopplat till Lantmäteriet eller någon förening. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
+<script src="js/config.js"></script>
+<script src="js/csv.js"></script>
+<script src="js/xlsx-writer.js"></script>
+<script src="js/andelstal.js"></script>
+<script src="js/sample.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
