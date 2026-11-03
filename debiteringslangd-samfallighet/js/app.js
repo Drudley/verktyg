@@ -12,6 +12,7 @@
 
   var EN = {
     h1: 'Debiteringslängd and payment notices for a Swedish joint property association (samfällighetsförening)',
+    'styrelse-link': 'Does the association pay board fees? <a href="../styrelsearvode-forening/">Work out tax and employer contributions on the board fee</a> (Swedish).',
     lead: 'Drop in the member list with property, owner and <strong>andelstal</strong> (share numbers – several columns are fine, e.g. running costs and maintenance, or GA:1 and GA:2), enter what is to be charged, and the amount is split per property with <strong>rounding that adds up exactly</strong>. Then you get a debiteringslängd per § 42 of the Swedish Act on joint property management and payment notices with OCR and Swish. <strong>Everything happens in your browser – the register never leaves your computer.</strong>',
     drop: 'Drop the member list (Excel or CSV) here or <u>choose a file</u>', dropsub: 'Columns: property, owner, address and one or more andelstal columns · the header row is found automatically',
     sample: 'Try a synthetic example', 'paste-h': '…or paste from Excel / Google Sheets', 'paste-go': 'Read',

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Styrelsearvode i förening – skatt, arbetsgivaravgift och AGI (2026)</title>
+<meta name="description" content="Gratis kalkylator för styrelsearvode i ideell förening, idrottsförening, BRF och samfällighetsförening 2025–2027: 1 000-kronorsgränsen, 30 % skatt, arbetsgivaravgift efter födelseår, idrottsersättning under ett halvt prisbasbelopp, fördelning av arvodet – och vad som ska stå i fälten 011, 131, 001 och 023 i arbetsgivardeklarationen.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/styrelsearvode-forening/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/styrelsearvode-forening/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Styrelsearvode i förening – skatt, arbetsgivaravgift och AGI">
+<meta property="og:description" content="Fördela arvodet, räkna skatt och arbetsgivaravgift per ledamot och se fälten i arbetsgivardeklarationen. Gratis, i webbläsaren.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#9d174d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%239d174d'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/styrelsearvode-forening/","name":"Styrelsearvode i förening – skatt, arbetsgivaravgift och AGI","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Fördelar ett styrelsearvode mellan ordförande, kassör och ledamöter, räknar 30 % skatteavdrag och arbetsgivaravgift efter födelseår, tillämpar 1 000-kronorsgränsen och idrottsersättning under ett halvt prisbasbelopp, och visar fälten 001, 011, 131, 010 och 023 i arbetsgivardeklarationen eller KU10. Allt sker i webbläsaren.",
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"SEK"}},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hur mycket skatt ska dras på styrelsearvode i en förening?","acceptedAnswer":{"@type":"Answer","text":"Om föreningen betalar ut 1 000 kronor eller mer under året till en person ska föreningen dra skatt och betala arbetsgivaravgift. Är arvodet en sidoinkomst dras 30 procent; är det mottagarens huvudsakliga inkomst dras skatt enligt skattetabellen. Arbetsgivaravgiften är 31,42 procent 2026, 10,21 procent för den som är född 1938–1958 och ingen avgift för den som är född 1937 eller tidigare."}},
+ {"@type":"Question","name":"Måste föreningen betala arbetsgivaravgift om arvodet är under 1 000 kronor?","acceptedAnswer":{"@type":"Answer","text":"Nej. Under 1 000 kronor per person och år blir det varken skatteavdrag eller arbetsgivaravgift. Är beloppet 100 kronor eller mer ska föreningen ändå lämna uppgift om det: i arbetsgivardeklarationen i fält 131 eller på kontrolluppgift KU10 i fält 031 (och styrelsearvodet även i fält 023) senast den 31 januari året efter."}},
+ {"@type":"Question","name":"Gäller idrottsersättningen på ett halvt prisbasbelopp även styrelsen?","acceptedAnswer":{"@type":"Answer","text":"Nej. Gränsen på ett halvt prisbasbelopp (29 600 kronor 2026, 29 800 kronor 2027) gäller idrottsutövare som tränare, ledare, domare och funktionärer i en idrottsförening. Styrelseledamöter, kansli och kökspersonal omfattas inte – för dem gäller 1 000-kronorsgränsen."}},
+ {"@type":"Question","name":"När ska föreningen betala skatten och arbetsgivaravgiften på arvodet?","acceptedAnswer":{"@type":"Answer","text":"Arbetsgivardeklarationen ska lämnas och betalningen finnas på skattekontot senast den 12 i månaden efter utbetalningen. För utbetalningar i juli och december gäller den 17 augusti respektive 17 januari. Infaller dagen på en helg eller helgdag flyttas den till närmast följande vardag."}},
+ {"@type":"Question","name":"Får en styrelseledamot fakturera arvodet från sitt företag?","acceptedAnswer":{"@type":"Answer","text":"Normalt inte. Styrelseuppdraget är personligt och arvodet beskattas som inkomst av tjänst hos ledamoten, även om hen har F-skatt eller ett aktiebolag (HFD 2017 ref. 41). Regeringen tillsatte i september 2026 en utredning om beskattningen av styrelsearvoden som ska redovisas senast den 31 oktober 2027, men reglerna har inte ändrats."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Styrelse<span>·</span>arvode</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Styrelsearvode i förening – skatt, arbetsgivaravgift och arbetsgivardeklaration</h1>
+    <p class="lead" data-i18n="lead">För kassören i en <strong>ideell förening, idrottsförening, bostadsrättsförening eller samfällighetsförening</strong>: fördela arvodet som stämman beslutat, och se per person om <strong>1 000-kronorsgränsen</strong> passeras, hur mycket <strong>skatt</strong> som ska dras, vilken <strong>arbetsgivaravgift</strong> föreningen betalar och vad som ska stå i <strong>fälten 011, 131, 001 och 023</strong> – plus sista dag att betala.</p>
+    <p id="free-note" class="free-note" data-i18n="free">Gratis – inget konto, ingen uppladdning, ingen spårning.</p>
+  </section>
+
+  <aside class="cta card" id="cta-top">
+    <p><strong data-i18n="cta-h">Kassör i en samfällighetsförening?</strong> <span data-i18n="cta-p">Gör årets uttaxering i <a href="../debiteringslangd-samfallighet/">Debiteringslängd och avier</a> – andelstal per verksamhetsgren, öresjustering och avier med OCR och Swish-QR. Styrelsearvodet och arbetsgivaravgiften läggs in som kostnad i budgeten.</span></p>
+  </aside>
+
+  <section class="card calc" id="calc">
+    <div class="row"><h2 data-i18n="calc-h">Utbetalningen</h2>
+      <div class="actions"><button id="sample" class="btn ghost small" type="button" data-i18n="sample">Visa exempel</button><button id="clear" class="link" type="button" data-i18n="clear">Rensa</button></div></div>
+    <div class="grid">
+      <label><span data-i18n="l-date">Utbetalningsdag</span><input type="date" id="f-date"></label>
+      <label><span data-i18n="l-type">Typ av förening</span>
+        <select id="f-type">
+          <option value="ideell" data-i18n="t-ideell">Ideell förening</option>
+          <option value="idrott" data-i18n="t-idrott">Idrottsförening</option>
+          <option value="brf" data-i18n="t-brf">Bostadsrättsförening (BRF)</option>
+          <option value="samf" data-i18n="t-samf">Samfällighetsförening / vägförening</option>
+          <option value="ek" data-i18n="t-ek">Annan ekonomisk förening</option>
+        </select></label>
+      <label class="chk"><input type="checkbox" id="f-registered"> <span data-i18n="l-registered">Föreningen är registrerad som arbetsgivare</span></label>
+    </div>
+    <fieldset>
+      <legend data-i18n="split-h">Fördela ett totalbelopp (valfritt)</legend>
+      <div class="split">
+        <label><span data-i18n="l-total">Totalt, kr</span><input type="text" id="f-total" inputmode="decimal" placeholder="59 200"></label>
+        <label><span data-i18n="l-pbb">… eller antal prisbasbelopp</span><input type="text" id="f-pbb" inputmode="decimal" placeholder="1"></label>
+        <div class="radios" role="radiogroup">
+          <label><input type="radio" name="basis" value="arvode" checked> <span data-i18n="b-arvode">beloppet är arvodet</span></label>
+          <label><input type="radio" name="basis" value="budget"> <span data-i18n="b-budget">beloppet är budgeten inkl. arbetsgivaravgifter</span></label>
+        </div>
+        <button id="distribute" class="btn small" type="button" data-i18n="distribute">Fördela efter vikt</button>
+      </div>
+      <p class="hint" data-i18n="split-hint">Fyller i kolumnen ”Arvode nu” efter vikterna – summan blir exakt totalbeloppet. Standardvikter: ordförande 3, kassör 2, sekreterare 1,5, ledamot 1, suppleant 0,5.</p>
+    </fieldset>
+    <div class="tbl"><table id="people">
+      <thead><tr><th data-i18n="c-name">Namn</th><th data-i18n="c-role">Uppdrag</th><th data-i18n="c-born">Född (år)</th><th data-i18n="c-w">Vikt</th><th data-i18n="c-arvode">Arvode nu, kr</th><th data-i18n="c-earlier">Tidigare i år, kr</th><th data-i18n="c-main">Huvud­inkomst</th><th data-i18n="c-tax">Skatt enl. tabell, kr</th><th></th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <div class="actions"><button id="add" class="btn ghost small" type="button" data-i18n="add">+ Lägg till person</button></div>
+    <p class="hint" data-i18n="hint">”Tidigare i år” = arvode eller annan ersättning för arbete som föreningen redan betalat ut till personen under kalenderåret (för 1 000-kronorsgränsen). Kryssa ”Huvudinkomst” bara om arvodet är personens huvudsakliga inkomst – då dras skatt enligt skattetabellen i stället för 30 %. Skriv inte personnummer här.</p>
+    <p class="muted small" data-i18n="saved">Uppgifterna sparas automatiskt i den här webbläsaren.</p>
+  </section>
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+
+  <section class="card" id="result" hidden>
+    <h2 id="r-title">Resultat</h2>
+    <div id="check" class="check ok"></div>
+    <div class="stats" id="stats"></div>
+    <div id="flags" class="flags" hidden></div>
+    <h3 id="res-h">Per person</h3>
+    <div class="tbl"><table class="res" id="res-t"><thead></thead><tbody></tbody><tfoot></tfoot></table></div>
+    <h3 id="huvud-h">Arbetsgivaravgifter (huvuduppgift)</h3>
+    <p id="huvud-p" class="muted small"></p>
+    <div class="tbl"><table class="plain" id="huvud-t"><tbody></tbody></table></div>
+    <div id="ku" hidden><h3 id="ku-h">Alternativ: kontrolluppgift KU10</h3><p id="ku-p" class="muted small"></p><div class="tbl"><table class="plain" id="ku-t"><tbody></tbody></table></div></div>
+    <div id="beskeds"></div>
+    <h3 id="proto-h">Text till budget eller stämmoprotokoll</h3>
+    <pre class="copy" id="proto"></pre>
+    <div class="dlrow"><button id="print" class="btn" type="button">Skriv ut underlag</button><button id="copy" class="btn ghost" type="button">Kopiera tabellen</button><button id="copy-proto" class="btn ghost" type="button">Kopiera texten</button></div>
+    <p id="dl-msg" class="status"></p>
+    <aside class="cta big" id="cta-deb">
+      <h3 data-i18n="cta2-h">Nästa steg för samfälligheten: uttaxeringen</h3>
+      <p data-i18n="cta2-p">Arvodet och arbetsgivaravgifterna är en kostnad i budgeten som stämman fastställer – och som tas ut av medlemmarna efter andelstal. <strong>Debiteringslängd och avier</strong> fördelar uttaxeringen per verksamhetsgren med öresjustering som summerar exakt och skriver debiteringslängden enligt 42 § och avier med OCR och Swish-QR.</p>
+      <p><a class="btn" href="../debiteringslangd-samfallighet/" data-i18n="cta2-go">Öppna Debiteringslängd →</a> <a href="../andelstal-vagforening/" data-i18n="cta2-and">Andelstal för vägförening (gratis)</a></p>
+    </aside>
+  </section>
+
+  <section class="prose">
+    <h2>Så beskattas styrelsearvode i en förening</h2>
+    <p>Arvode till styrelseledamöter, revisorer och andra förtroendevalda är <strong>lön</strong> skattemässigt – det spelar ingen roll om föreningen är ideell, en bostadsrättsförening eller en samfällighetsförening. Det som avgör vad föreningen ska göra är hur mycket den betalar ut till <strong>varje person under kalenderåret</strong>:</p>
+    <div class="tbl"><table class="plain">
+      <thead><tr><th>Ersättning per person och år</th><th>Skatteavdrag</th><th>Arbetsgivaravgift</th><th>Redovisas</th></tr></thead>
+      <tbody>
+        <tr><td>under 100 kr</td><td>nej</td><td>nej</td><td>behövs inte</td></tr>
+        <tr><td>100–999 kr</td><td>nej</td><td>nej</td><td>AGI fält 131 eller KU10 fält 031 (+ 023)</td></tr>
+        <tr><td>1 000 kr eller mer</td><td>30 % (sidoinkomst) eller skattetabell</td><td>ja, efter födelseår</td><td>AGI fält 011 och 001 (+ 023)</td></tr>
+      </tbody>
+    </table></div>
+    <p class="formula">Kassören får 6 000 kr → skatt 1 800 kr, netto 4 200 kr, arbetsgivaravgift 1 885 kr (31,42 %), föreningens kostnad 7 885 kr</p>
+    <p>Fält 023 (”del av ersättningen som är styrelsearvode”) fylls i för styrelseledamöter och suppleanter, men inte för revisorer, valberedning eller tränare. Ören stryks – arbetsgivardeklarationen fylls i med hela kronor.</p>
+    <h3>När 1 000-kronorsgränsen passeras under året</h3>
+    <p>Har någon fått till exempel 600 kr i våras (redovisat i fält 131) och får 500 kr till i höst, blir hela årets ersättning avgiftspliktig. Kalkylatorn gör som i Skatteverkets exempel: i den månad gränsen passeras redovisas <strong>hela beloppet i fält 011</strong> (1 100 kr), det tidigare avgiftsfria beloppet i <strong>fält 010 Avräkning från avgiftsfri ersättning</strong> (600 kr) och skatt dras på det som betalas ut nu. Du kan i stället rätta varje tidigare månad för sig.</p>
+    <h3>Arbetsgivaravgift efter födelseår</h3>
+    <div class="tbl"><table class="plain">
+      <thead><tr><th>Mottagaren är född</th><th class="num">Avgift</th></tr></thead>
+      <tbody>
+        <tr><td>1959 eller senare (2026) · 1958 eller senare (2025)</td><td class="num">31,42 %</td></tr>
+        <tr><td>1938–1958 (2026) · 1938–1957 (2025) – ålderspensionsavgift</td><td class="num">10,21 %</td></tr>
+        <tr><td>2003–2007, utbetalning 1 april–31 december 2026, upp till 25 000 kr/månad (2027 t.o.m. 30 september: född 2004–2008)</td><td class="num">20,81 %</td></tr>
+        <tr><td>1937 eller tidigare</td><td class="num">0 %</td></tr>
+      </tbody>
+    </table></div>
+    <h3>Idrottsförening: idrottsersättning upp till ett halvt prisbasbelopp</h3>
+    <p>I en idrottsförening är ersättning till <strong>tränare, ledare, instruktörer, domare, materialförvaltare och tävlingsfunktionärer</strong> avgiftsfri och utan skatteavdrag så länge den är under ett halvt prisbasbelopp per person och år: <strong>29 400 kr (2025), 29 600 kr (2026) och 29 800 kr (2027)</strong>. Mottagaren tar själv upp den i sin deklaration. Når ersättningen gränsen blir hela beloppet avgiftspliktigt. Regeln gäller <strong>inte styrelsen</strong>, kansli, vaktmästare eller kökspersonal – och inte schack, bridge eller e-sport.</p>
+    <h3>Fördela arvodet och räkna med avgifterna i budgeten</h3>
+    <p>Stämman beslutar ofta om ett totalbelopp – till exempel ett prisbasbelopp (59 200 kr 2026, 59 600 kr 2027) – som styrelsen fördelar. Kalkylatorn fördelar efter vikter och avrundar så att summan blir exakt. Väljer du ”budgeten inkl. arbetsgivaravgifter” räknas arvodet fram så att arvode plus avgift ryms i budgeten – mottagarens födelseår ger rätt procentsats.</p>
+    <h3>Registrering, utlägg och bilersättning</h3>
+    <p>Ska föreningen dra skatt eller betala arbetsgivaravgift måste den vara <strong>registrerad som arbetsgivare</strong> (blankett SKV 4620) innan första utbetalningen och lämna arbetsgivardeklaration varje månad som den betalar ut lön. Ersättning för utlägg mot kvitto är inte lön. Milersättning för egen bil är skattefri upp till 25 kr per mil; det som överstiger är lön och ska räknas in i arvodet.</p>
+    <h3>Fakturera styrelsearvodet?</h3>
+    <p>Ett styrelseuppdrag är personligt, och arvodet beskattas hos ledamoten som inkomst av tjänst även om hen har F-skatt eller ett eget bolag (HFD 2017 ref. 41). Regeringen tillsatte den 2 september 2026 en utredning om beskattningen av styrelsearvoden; den ska redovisas senast den 31 oktober 2027. Tills vidare gäller reglerna ovan.</p>
+    <div class="note card">
+      <p><strong>Ett hjälpmedel, inte en deklaration.</strong> Kalkylatorn lämnar inga uppgifter till Skatteverket. Den visar vad som ska stå i fälten enligt Skatteverkets information för 2025–2026; 2027 räknas med samma regler och flaggas som preliminärt. Kontrollera alltid mot Skatteverket – särskilt om någon har jämkning, SINK eller A-SINK, eller om föreningen är en stor arbetsgivare.</p>
+    </div>
+    <h3>Källor</h3>
+    <ul class="src">
+      <li>Skatteverket: <a href="https://www.skatteverket.se/foreningar/driva/ideellforening/betalautersattningienideellforening.4.6f9866931215a607a4f80009169.html" rel="noopener">Betala ut ersättning i en ideell förening</a> (1 000 kr, 100 kr, fält 131, KU10 031/023, idrottsersättning 29 600 kr)</li>
+      <li>Skatteverket: <a href="https://www.skatteverket.se/foretag/arbetsgivare/arbetsgivaravgifterochskatteavdrag/skatteavdrag/skatteavdragmed30procent.4.5c1163881590be297b511bc9.html" rel="noopener">Skatteavdrag med 30 procent</a> (sidoinkomster)</li>
+      <li>Skatteverket: <a href="https://www.skatteverket.se/foretag/arbetsgivare/arbetsgivaravgifterochskatteavdrag/arbetsgivaravgifter.4.233f91f71260075abe8800020817.html" rel="noopener">Arbetsgivaravgifter</a> (31,42 %, 10,21 %, 20,81 % för 19–23-åringar 1 april 2026–30 september 2027)</li>
+      <li>Skatteverket och Svenska Padelförbundet: <em>Idrottsföreningen betalar ut ersättning</em> (2025-12-16) – exempel på individuppgifter med fälten 001, 011, 131, 023 och 010</li>
+      <li>Regeringen: <a href="https://www.regeringen.se/pressmeddelanden/2026/09/ny-utredning-om-beskattningen-av-styrelsearvoden/" rel="noopener">Ny utredning om beskattningen av styrelsearvoden</a> (2 september 2026) och förordning (2026:1779) om prisbasbelopp för 2027 (59 600 kr)</li>
+    </ul>
+    <p class="muted small">Kontrollerat mot källorna 2026-11-03.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Styrelsearvode – vanliga frågor</h2>
+    <details><summary>Hur mycket skatt ska dras på styrelsearvode i en förening?</summary><p>Betalar föreningen ut 1 000 kr eller mer under året till personen dras 30 % om arvodet är en sidoinkomst, annars skatt enligt skattetabellen. Föreningen betalar dessutom arbetsgivaravgift: 31,42 % 2026, 10,21 % för den som är född 1938–1958 och ingen avgift för den som är född 1937 eller tidigare.</p></details>
+    <details><summary>Måste föreningen betala arbetsgivaravgift om arvodet är under 1 000 kronor?</summary><p>Nej. Men är beloppet 100 kr eller mer ska det redovisas – i arbetsgivardeklarationen i fält 131 eller på kontrolluppgift KU10 i fält 031 och, för styrelsearvode, även i fält 023. Kontrolluppgiften lämnas senast den 31 januari året efter.</p></details>
+    <details><summary>Gäller idrottsersättningen på ett halvt prisbasbelopp även styrelsen?</summary><p>Nej. Den gäller idrottsutövare som tränare, ledare, domare och funktionärer i en idrottsförening (29 600 kr 2026, 29 800 kr 2027). För styrelsen gäller 1 000-kronorsgränsen.</p></details>
+    <details><summary>När ska skatten och arbetsgivaravgiften betalas?</summary><p>Senast den 12 i månaden efter utbetalningen, och den 17 augusti respektive 17 januari för utbetalningar i juli och december. Infaller dagen på en helg eller helgdag gäller närmast följande vardag.</p></details>
+    <details><summary>Får en styrelseledamot fakturera arvodet från sitt företag?</summary><p>Normalt inte – styrelsearvode beskattas hos ledamoten som inkomst av tjänst (HFD 2017 ref. 41). En statlig utredning ska lämna förslag senast den 31 oktober 2027, men reglerna gäller oförändrade tills vidare.</p></details>
+    <details><summary>Vad kostar ett styrelsearvode för föreningen?</summary><p>Arvodet plus arbetsgivaravgiften. 6 000 kr till en ledamot född 1959 eller senare kostar 7 885 kr; till en ledamot född 1950 kostar det 6 612 kr. Skatten (1 800 kr vid 30 %) betalas av mottagaren men föreningen drar den och betalar in den.</p></details>
+  </section>
+</main>
+<footer class="foot muted small wrap"><p data-i18n="foot">Gratis verktyg. Uppgifterna stannar i din webbläsare. Inget här är skatterådgivning.</p></footer>
+<script src="js/config.js"></script>
+<script src="js/styrelse.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
