@@ -7,6 +7,7 @@
   var MAXROWS = 600;
   var EN = {
     h1: 'Annual account for Swedish guardians (god man) – from bank statement to finished totals',
+    'arvode-link': 'Paid a fee as god man or förvaltare? <a href="../arvode-god-man/">Work out tax and employer contributions on the fee</a> (Swedish).',
     lead: 'Drop the bank export for the person you represent. Every transaction is sorted into the <strong>income and expense categories of the årsräkning</strong> – pension, housing supplement, rent, care fees, electricity, insurance, pocket money, guardian fee – and you get the totals in the form\'s order with the check <strong>A + B = C + D</strong>. <strong>Everything runs in your browser – the statement never leaves your computer.</strong>',
     drop: 'Drop the bank export (CSV or Excel) here or <u>choose a file</u>', dropsub: 'Swedbank/Sparbanken, SEB, Handelsbanken, Nordea, ICA Banken, Länsförsäkringar, Danske Bank and more · several accounts and files are fine',
     sample: 'Try a synthetic example', add: 'Add more accounts/files', 'per-l': 'Period', 'from-l': 'From', 'to-l': 'To',
