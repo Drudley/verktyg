@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kontrollbalansräkning från SIE-fil – räkna ut om halva aktiekapitalet är förbrukat</title>
+<meta name="description" content="Läs in SIE-filen från bokföringsprogrammet och se om eget kapital har sjunkit under hälften av aktiekapitalet – justerat eget kapital per månad, obeskattade reserver uppdelade, kontrollbalansräkning enligt 25 kap. 14 § ABL och tidsfrister för kontrollstämman. Allt sker i webbläsaren.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/kontrollbalansrakning/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/kontrollbalansrakning/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Kontrollbalansräkning från SIE-fil – är halva aktiekapitalet förbrukat?">
+<meta property="og:description" content="SIE-fil in – justerat eget kapital per månad, kapitalprövning mot halva aktiekapitalet, kontrollbalansräkning och tidsfrister ut. Bokföringen lämnar aldrig datorn.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#991b1b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23991b1b'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3EK%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/kontrollbalansrakning/","name":"Kontrollbalansräkning från SIE-fil","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Läser en SIE-fil från bokföringsprogrammet och räknar ut justerat eget kapital per månadsskifte, med obeskattade reserver uppdelade i eget kapital och uppskjuten skatt, och jämför med hälften av det registrerade aktiekapitalet enligt 25 kap. 13 § aktiebolagslagen. Skapar en kontrollbalansräkning med särskilt redovisade justeringar enligt 25 kap. 14 §, tidsfrister för kontrollstämmorna och texter till kallelse och protokoll. Allt sker i webbläsaren.",
+ "offers":[{"@type":"Offer","price":"0","priceCurrency":"SEK","description":"Gratis grundfunktion"},{"@type":"Offer","price":"99","priceCurrency":"SEK","description":"Kontrollbalansräkning med justeringar, tidsfrister, kallelse/protokoll och Excel","url":"https://drudley.gumroad.com/l/kontrollbalansrakning"}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"När måste man upprätta en kontrollbalansräkning?","acceptedAnswer":{"@type":"Answer","text":"Enligt 25 kap. 13 § aktiebolagslagen ska styrelsen genast upprätta en kontrollbalansräkning och låta revisorn granska den när det finns skäl att anta att bolagets eget kapital understiger hälften av det registrerade aktiekapitalet. Eget kapital räknas då enligt 14 §, bland annat med 79,4 procent av de obeskattade reserverna som eget kapital."}},
+ {"@type":"Question","name":"Hur räknar man ut om hälften av aktiekapitalet är förbrukat?","acceptedAnswer":{"@type":"Answer","text":"Ta bokfört eget kapital inklusive periodens resultat, lägg till de obeskattade reserverna minus uppskjuten skatt (20,6 procent) och eventuella tillåtna justeringar enligt 25 kap. 14 §. Är summan lägre än hälften av det registrerade aktiekapitalet – till exempel 12 500 kr vid ett aktiekapital på 25 000 kr – är kapitalet förbrukat i lagens mening."}},
+ {"@type":"Question","name":"Vilka justeringar får göras i en kontrollbalansräkning?","acceptedAnswer":{"@type":"Answer","text":"Enligt 25 kap. 14 § får tillgångar tas upp till ett högre värde och skulder till ett lägre värde om det är förenligt med god redovisningssed, tillgångar får tas upp till nettoförsäljningsvärdet, och vissa skulder för statligt stöd behöver inte redovisas. Justeringarna ska redovisas särskilt."}},
+ {"@type":"Question","name":"Vad händer om man inte gör en kontrollbalansräkning?","acceptedAnswer":{"@type":"Answer","text":"Styrelseledamöter som inte upprättar och låter granska kontrollbalansräkningen, kallar till kontrollstämma eller ansöker om likvidation i tid blir solidariskt och personligt ansvariga för de förpliktelser som uppstår för bolaget under tiden (25 kap. 18 §)."}},
+ {"@type":"Question","name":"Laddas bokföringen upp någonstans?","acceptedAnswer":{"@type":"Answer","text":"Nej. SIE-filen läses och räknas helt i din webbläsare. Ingenting skickas till någon server, och sidan använder varken cookies eller spårning."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Kontrollbalansräkning<span>·</span>från SIE</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Kontrollbalansräkning – är halva aktiekapitalet förbrukat?</h1>
+    <p class="lead" data-i18n="lead">Dra in <strong>SIE-filen</strong> från Fortnox, Visma, Bokio, Björn Lundén eller något annat bokföringsprogram. Du ser direkt <strong>justerat eget kapital per månadsskifte</strong> – med periodens resultat och obeskattade reserver uppdelade i eget kapital och uppskjuten skatt – jämfört med <strong>hälften av aktiekapitalet</strong> (25 kap. 13 § ABL). <strong>Allt sker i din webbläsare – bokföringen lämnar aldrig datorn.</strong></p>
+  </section>
+
+  <section id="drop" class="drop" tabindex="0" role="button" aria-label="Välj SIE-fil">
+    <input id="file" type="file" accept=".se,.si,.sie,.txt" hidden>
+    <p class="drop-main" data-i18n="drop">Släpp SIE-filen här eller <u>välj fil</u></p>
+    <p class="muted small" data-i18n="dropsub">.se · SIE 4 med verifikationer ger eget kapital per månad · SIE 1–3 ger läget vid årets slut · PC8/CP437, UTF-8</p>
+    <button id="sample" class="link small" type="button" data-i18n="sample">Prova med ett syntetiskt exempel</button>
+  </section>
+  <details id="manual" class="card paste manual">
+    <summary data-i18n="man-h">…eller fyll i siffrorna från balansrapporten</summary>
+    <p class="muted small" data-i18n="man-p">Belopp i kronor. Eget kapital ska inkludera årets resultat hittills (även om det inte är bokslutat).</p>
+    <div class="grid">
+      <label><span data-i18n="m-ak">Registrerat aktiekapital</span><input id="m-ak" type="text" inputmode="decimal" value="25 000"></label>
+      <label><span data-i18n="m-ek">Övrigt eget kapital inkl. resultat</span><input id="m-ek" type="text" inputmode="decimal" placeholder="t.ex. -20 000"></label>
+      <label><span data-i18n="m-or">Obeskattade reserver</span><input id="m-or" type="text" inputmode="decimal" placeholder="0"></label>
+      <label><span data-i18n="m-avs">Avsättningar</span><input id="m-avs" type="text" inputmode="decimal" placeholder="0"></label>
+      <label><span data-i18n="m-lang">Långfristiga skulder</span><input id="m-lang" type="text" inputmode="decimal" placeholder="0"></label>
+      <label><span data-i18n="m-kort">Kortfristiga skulder</span><input id="m-kort" type="text" inputmode="decimal" placeholder="0"></label>
+      <label><span data-i18n="m-date">Per datum</span><input id="m-date" type="date"></label>
+    </div>
+    <div class="row end"><button id="man-go" class="btn ghost small" type="button" data-i18n="man-go">Räkna</button></div>
+  </details>
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+
+  <section id="result" hidden>
+    <div class="company card">
+      <div>
+        <h2 id="r-title"></h2>
+        <p class="muted small" id="r-meta"></p>
+      </div>
+      <div class="opts">
+        <label><span data-i18n="d-l">Per datum</span> <select id="s-date"></select></label>
+        <label><span data-i18n="ak-l">Registrerat aktiekapital</span> <input id="s-ak" type="text" inputmode="decimal" class="yr"></label>
+      </div>
+    </div>
+
+    <div id="verdict" class="verdict"></div>
+    <div id="stats" class="stats"></div>
+    <div id="flags" class="flags" hidden></div>
+    <div id="info" class="info" hidden></div>
+
+    <h2 data-i18n="c-h">Så räknas eget kapital enligt 25 kap. 14 §</h2>
+    <div class="tbl card"><table id="calc-t" class="calc"><tbody></tbody></table></div>
+
+    <div id="month-sec">
+      <h2 data-i18n="mo-h">Justerat eget kapital per månadsskifte</h2>
+      <p class="muted small" data-i18n="mo-p">Bokfört eget kapital + periodens resultat + 79,4 % av obeskattade reserverna, utan värderingsjusteringar. Rött = under hälften av aktiekapitalet. Den första röda raden är ungefär när styrelsen senast borde ha upprättat en kontrollbalansräkning.</p>
+      <div class="tbl card"><table id="month-t"><thead><tr><th data-i18n="c-date">Datum</th><th class="num" data-i18n="c-ekb">Bokfört EK</th><th class="num" data-i18n="c-or">+ Reserver (79,4 %)</th><th class="num" data-i18n="c-ekj">Justerat EK</th><th class="num" data-i18n="c-half">Halva AK</th><th data-i18n="c-st">Status</th></tr></thead><tbody></tbody></table></div>
+    </div>
+
+    <section id="paid" class="card paid">
+      <h2 data-i18n="paid-h">Kontrollbalansräkning, justeringar, tidsfrister och stämmotexter</h2>
+      <p class="small" data-i18n="paid-p">Lägg in <strong>justeringar enligt 25 kap. 14 §</strong> (övervärden, nettoförsäljningsvärden, statligt stöd) med motivering och uppskjuten skatt. Få en <strong>utskriftsklar kontrollbalansräkning</strong> – bokfört, justering och KBR-värde per post, justeringarna särskilt redovisade, kapitalprövning och underskrifter – plus <strong>tidsfrister</strong> för första och andra kontrollstämman, <strong>kallelse och protokoll</strong> och en Excel-fil.</p>
+      <div class="row"><button id="paid-open" class="btn" type="button"><span data-i18n="open">Gör kontrollbalansräkningen</span></button></div>
+      <div id="paid-out" hidden>
+        <h3 data-i18n="adj-h">Justeringar enligt 25 kap. 14 §</h3>
+        <p class="muted small" data-i18n="adj-p">Positivt belopp = posten blir större (t.ex. +50 000 på en fastighet med övervärde); negativt = mindre (t.ex. -10 000 på en skuld för statligt stöd som inte behöver redovisas). ”Skatt” drar av 20,6 % uppskjuten skatt på uppvärderingar – försiktigt och vanligt, stäm av med revisorn.</p>
+        <div id="adj-list"></div>
+        <div class="row"><button id="adj-add" class="btn ghost small" type="button" data-i18n="adj-add">Lägg till justering</button></div>
+
+        <h3 data-i18n="b-h">Bolag, styrelse och datum</h3>
+        <div class="grid">
+          <label><span data-i18n="b-name">Bolagets namn</span><input id="b-name" type="text" autocomplete="off"></label>
+          <label><span data-i18n="b-org">Organisationsnummer</span><input id="b-org" type="text" autocomplete="off"></label>
+          <label><span data-i18n="b-ort">Ort</span><input id="b-ort" type="text" autocomplete="off"></label>
+          <label><span data-i18n="b-board">Styrelseledamöter (en per rad)</span><textarea id="b-board" rows="3"></textarea></label>
+          <label><span data-i18n="b-kbr">KBR upprättad</span><input id="b-kbr" type="date"></label>
+          <label><span data-i18n="b-st1">Första kontrollstämma</span><input id="b-st1" type="date"></label>
+          <label class="chk"><input id="b-rev" type="checkbox" checked> <span data-i18n="b-rev">Bolaget har revisor</span></label>
+          <label class="chk"><input id="b-k3" type="checkbox"> <span data-i18n="b-k3">Bolaget tillämpar K3 (annars K2)</span></label>
+        </div>
+
+        <div id="p-verdict" class="verdict"></div>
+
+        <div class="docsec">
+          <div class="row"><h3 data-i18n="doc-h">Kontrollbalansräkning</h3><button id="print-kbr" class="btn ghost small" type="button" data-i18n="print">Skriv ut / spara som PDF</button></div>
+          <div class="docwrap"><div id="kbr-doc" class="doc"></div></div>
+        </div>
+        <div class="docsec">
+          <h3 data-i18n="tl-h">Tidsfrister</h3>
+          <div class="tbl card"><table id="tl-t" class="tl"><tbody></tbody></table></div>
+        </div>
+        <div class="docsec">
+          <div class="row"><h3 data-i18n="kal-h">Kallelse till första kontrollstämma</h3><button id="copy-kal" class="btn ghost small" type="button" data-i18n="copy">Kopiera</button></div>
+          <div id="kal-txt" class="txt"></div>
+        </div>
+        <div class="docsec">
+          <div class="row"><h3 data-i18n="pro-h">Protokoll från kontrollstämma (mall)</h3><button id="copy-pro" class="btn ghost small" type="button" data-i18n="copy">Kopiera</button></div>
+          <div id="pro-txt" class="txt"></div>
+        </div>
+        <div class="dlrow"><button id="dl-xlsx" class="btn" type="button" data-i18n="xlsx">Ladda ner Excel (.xlsx)</button><button id="save" class="btn ghost" type="button" data-i18n="save">Spara justeringar i webbläsaren</button></div>
+      </div>
+      <p class="small"><span data-i18n="price-note">Kapitalprövningen och månadstabellen är alltid gratis.</span></p>
+    </section>
+
+    <div class="review">
+      <h3 data-i18n="rev-h">Innan styrelsen skriver under</h3>
+      <ul>
+        <li data-i18n="rev-1">Kontrollbalansräkningen upprättas enligt årsredovisningslagen och bolagets vanliga redovisningsprinciper (K2 eller K3) – <strong>gör periodens bokslutsposter först</strong>: avskrivningar, periodiseringar, lagervärdering, upplupna kostnader och skatt.</li>
+        <li data-i18n="rev-2">Har bolaget revisor ska den <strong>granska</strong> kontrollbalansräkningen och yttrandet läggas fram på stämman. Utan revisor: 1 kap. 12 b § – revisorsreglerna gäller bara bolag som har revisor.</li>
+        <li data-i18n="rev-3">Ett <strong>efterställt lån</strong> eller ett lån från ägaren räknas inte som eget kapital. Eget kapital återställs med t.ex. aktieägartillskott, nyemission, minskning av aktiekapitalet eller vinst.</li>
+        <li data-i18n="rev-4">Verktyget ger ingen juridisk rådgivning. Styrelsen ansvarar för värderingarna och för att fristerna hålls.</li>
+      </ul>
+    </div>
+  </section>
+
+  <dialog id="paywall">
+    <h2 data-i18n="pw-h">Kontrollbalansräkning och kontrollstämma</h2>
+    <p data-i18n="pw-p">Lås upp justeringar enligt 25 kap. 14 §, den utskriftsklara kontrollbalansräkningen, tidsfrister, kallelse och protokoll och Excel-filen. Inläsning, kapitalprövning och månadstabellen är alltid gratis.</p>
+  </dialog>
+
+  <section class="faq">
+    <h2>Kontrollbalansräkning – vanliga frågor</h2>
+    <details open><summary>När måste man upprätta en kontrollbalansräkning?</summary><p>Enligt <strong>25 kap. 13 § aktiebolagslagen</strong> ska styrelsen <strong>genast</strong> upprätta en kontrollbalansräkning och låta bolagets revisor granska den när det finns skäl att anta att eget kapital understiger <strong>hälften av det registrerade aktiekapitalet</strong>. Samma sak gäller om bolaget vid verkställighet av ett beslut inte kan betala. Med ett aktiekapital på 25 000 kr går gränsen alltså vid 12 500 kr – det räcker med en förlust på några tiotusentals kronor det första året.</p></details>
+    <details><summary>Hur räknar verktyget ut eget kapital?</summary><p>Bokfört eget kapital (konton 2010–2099) plus <strong>periodens resultat</strong> från resultatkontona fram till valt datum – resultatet är ju inte bokslutat mitt i året. Till det läggs <strong>obeskattade reserver</strong> (21xx) minus uppskjuten skatt, alltså 79,4 % av reserverna (bolagsskatt 20,6 %), eftersom 14 § säger att reserverna ska delas upp i eget kapital och uppskjuten skatteskuld. I kontrollbalansräkningen kan sedan tillåtna justeringar läggas till.</p></details>
+    <details><summary>Vilka justeringar är tillåtna?</summary><p>Enligt <strong>25 kap. 14 §</strong> får tillgångar tas upp till ett högre värde och skulder till ett lägre värde än i balansräkningen om det är förenligt med god redovisningssed (pensionsåtaganden har en särskild regel), tillgångar får tas upp till <strong>nettoförsäljningsvärdet</strong>, och en skuld för statligt stöd som inte behöver betalas tillbaka i vissa fall behöver inte redovisas. Justeringarna ska <strong>redovisas särskilt</strong> – verktyget gör en egen tabell med motivering för varje justering.</p></details>
+    <details><summary>Räknas ett lån från ägaren eller ett efterställt lån som eget kapital?</summary><p>Nej. Ett lån är en skuld även om det är efterställt eller räntefritt. Vill ägaren rädda kapitalet krävs ett <strong>aktieägartillskott</strong> (ovillkorat eller villkorat, som bokas mot eget kapital), en <strong>nyemission</strong> eller kvittning av lånet mot nya aktier. Ett alternativ är att minska aktiekapitalet.</p></details>
+    <details><summary>Vad ska hända efter kontrollbalansräkningen?</summary><p>Visar kontrollbalansräkningen att eget kapital är lägre än hälften ska styrelsen <strong>snarast möjligt</strong> kalla till en <strong>första kontrollstämma</strong> som beslutar om bolaget ska gå i likvidation. Kontrollbalansräkningen och revisorns yttrande läggs fram där. Beslutas inte likvidation ska en <strong>andra kontrollstämma</strong> hållas inom <strong>åtta månader</strong> med en ny, granskad kontrollbalansräkning, som då måste visa att eget kapital uppgår till <strong>minst hela</strong> det registrerade aktiekapitalet. Annars ska styrelsen ansöka hos tingsrätten om likvidation inom två veckor (16–17 §§).</p></details>
+    <details><summary>Vilket ansvar har styrelsen?</summary><p>Försummar styrelsen att upprätta kontrollbalansräkning, låta revisorn granska den, kalla till kontrollstämma eller ansöka om likvidation blir ledamöterna <strong>solidariskt och personligt ansvariga</strong> för de förpliktelser som uppstår för bolaget under tiden (25 kap. 18 §). Ansvaret gäller inte om styrelsen kan visa att eget kapital faktiskt inte understeg hälften.</p></details>
+    <details><summary>Kallelse och handlingar inför kontrollstämman</summary><p>Kontrollstämman är oftast en extra bolagsstämma: kallelse tidigast <strong>sex veckor</strong> och senast <strong>två veckor</strong> före (7 kap. 20 §), och eftersom stämman ska ta ställning till likvidation ska kallelsen även <strong>skickas med post</strong> till varje aktieägare med känd adress (7 kap. 23 §). Förslaget, kontrollbalansräkningen och revisorns yttrande ska hållas tillgängliga minst två veckor före stämman (25 kap. 6 §). Bolagsordningen kan ha egna regler.</p></details>
+    <details><summary>Laddas bokföringen upp någonstans?</summary><p>Nej. SIE-filen läses och räknas helt i din webbläsare. Ingenting skickas till någon server och sidan använder varken cookies eller spårning. Sparade justeringar ligger bara i din webbläsare.</p></details>
+  </section>
+  <p class="muted small" data-i18n="sie-link">Vill du se hela bokföringen i Excel? <a href="../sie-till-excel/">Öppna SIE-filen i SIE till Excel</a>.</p>
+</main>
+<footer class="wrap muted small foot">Fristående verktyg, inte kopplat till Bolagsverket, Skatteverket, BFN eller något bokföringsprogram. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
+<div id="print-root"></div>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/sie.js"></script>
+<script src="js/xlsx-writer.js"></script>
+<script src="js/kbr.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
