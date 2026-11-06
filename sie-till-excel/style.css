@@ -55,3 +55,5 @@ code{background:#f1f5f9;padding:1px 4px;border-radius:4px}
 .pw-keyrow input{flex:1 1 220px;min-width:0;padding:9px 10px;border:1px solid #cbd5e1;border-radius:8px;font:inherit;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px}
 .pw-msg.ok{color:#047857}.pw-msg.err{color:#b91c1c}
 .launch-note{margin:6px 0 0}
+
+.explain{margin:36px 0 0}.explain h2{font-size:24px}.explain p{color:#334155;max-width:760px}

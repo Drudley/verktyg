@@ -9,7 +9,33 @@
     year: 'Fiscal year', export: 'Download Excel (.xlsx)', 't-ver': 'Vouchers', 't-sb': 'Trial balance', 't-acc': 'Accounts', 't-info': 'Company',
     search: 'Search text, account, amount, number…', searcha: 'Search account…', 'c-ver': 'Voucher', 'c-date': 'Date', 'c-text': 'Text', 'c-amt': 'Amount',
     'c-acc': 'Account', 'c-name': 'Name', 'c-per': 'Period', 'c-type': 'Type', more: 'Show more', 'pw-h': 'Excel export',
-    'pw-p': 'The export gives you an .xlsx with the sheets Info, Konton, Verifikationer, Transaktioner, Saldobalans and Resultat per månad.', close: 'Close'
+    'pw-p': 'The export gives you an .xlsx with the sheets Info, Konton, Verifikationer, Transaktioner, Saldobalans and Resultat per månad.', close: 'Close',
+    'ex-h': 'How SIE file to Excel works',
+    'ex-1': 'SIE is an open Swedish file format for accounting data. Excel cannot open it directly. This tool reads <strong>SIE types 1, 2, 3 and 4</strong> entirely in the browser: drop the file (<code>.se</code>, <code>.si</code> or <code>.sie</code>) and you see vouchers, the chart of accounts, the trial balance and company details at once. Nothing is sent to any server – you can go offline once the page has loaded.',
+    'ex-2': 'The preview is free. The Excel export gives you an <code>.xlsx</code> with six sheets you can filter and sum in Excel: <strong>Info</strong> (company name, organisation number, SIE type, program, detected encoding, currency, chart of accounts type, fiscal years and any warnings), <strong>Konton</strong> (number, name, type, SRU code and opening and closing balance or result per year), <strong>Verifikationer</strong> (series, number, date, text, registration date, debit total, line count and whether the voucher balances), <strong>Transaktioner</strong> (account, debit, credit, amount, objects, quantity and type), <strong>Saldobalans</strong> and <strong>Resultat per månad</strong>.',
+    'ex-3': 'The trial balance is calculated from opening balances (<code>#IB</code>) and the period movement. If the file has vouchers for the current year (typically a SIE 4 file) the transactions are summed; otherwise the file\'s closing balances (<code>#UB</code>) and results (<code>#RES</code>) are used. A mismatch against the file\'s own <code>#UB</code>/<code>#RES</code> is marked next to the closing balance on screen, and the Differens column in the Excel file shows the amount. Monthly P&amp;L uses income and expense accounts (type income or expense, or BAS accounts 3–8 if the type is missing), either from the vouchers or from period balances (<code>#PSALDO</code>) when there are no vouchers.',
+    'faq-h': 'Open a SIE file in Excel – common questions',
+    'faq1-s': 'How do I open a SIE file in Excel?',
+    'faq1-p': 'Excel cannot read the SIE format directly. Drop the file on the box above and the contents are shown at once. The Excel export gives you an .xlsx with the sheets <em>Info, Konton, Verifikationer, Transaktioner, Saldobalans</em> and <em>Resultat per månad</em> – with real dates and amounts you can sum and filter.',
+    'faq2-s': 'What is the difference between SIE types 1, 2, 3 and 4?',
+    'faq2-p': '<li><strong>SIE 1 – annual balances:</strong> opening and closing balances and the year\'s result per account.</li><li><strong>SIE 2 – period balances:</strong> type 1 plus balances per month.</li><li><strong>SIE 3 – object balances:</strong> type 2 plus balances per cost centre, project and similar.</li><li><strong>SIE 4 – transactions:</strong> all of the above plus every voucher. The most common export from Fortnox, Visma, Bokio, Björn Lundén and others.</li>',
+    'faq3-s': 'How do I export a SIE file from Fortnox or Visma?',
+    'faq3-p': 'Most Swedish accounting programs can export a SIE 4 file, including Fortnox, Visma, Bokio and Björn Lundén. In the program, look for export or SIE and choose <strong>SIE 4</strong> so that the vouchers are included (SIE 1–3 contain balances only). The file is usually named <code>.se</code> or <code>.sie</code>. Drop it on the box above. The tool reads the SIE format in the file; it is not connected to Fortnox, Visma or any other program and does not sign in anywhere.',
+    'faq4-s': 'What if the file is SIE 1, 2 or 3?',
+    'faq4-p': 'Then there are no vouchers to show. The Vouchers tab says so, and you look at the trial balance and chart of accounts instead. In Excel the Verifikationer and Transaktioner sheets are empty except for the headers. Period balances in a SIE 2 file are used for monthly P&amp;L.',
+    'faq5-s': 'How is the trial balance calculated?',
+    'faq5-p': 'Opening balances come from <code>#IB</code> (income-statement accounts start at zero). Period movement is the sum of the transactions when the file has vouchers for the current year, otherwise the difference between the file\'s closing balance and the opening balance. Closing balance is opening plus movement. If the file also has <code>#UB</code> or <code>#RES</code> they are compared: a mismatch is marked with a warning triangle next to the closing balance on screen, and the Differens column in the Excel file shows the amount.',
+    'faq6-s': 'Is my file uploaded anywhere?',
+    'faq6-p': 'No. The file is read and converted entirely in your browser. Nothing is sent to any server, and the page uses neither cookies nor tracking. You can even go offline once the page has loaded.',
+    'faq7-s': 'Why do å, ä and ö look wrong when I open the file in Notepad?',
+    'faq7-p': 'SIE files are normally saved with the PC8 (IBM CP437) encoding. The tool detects the encoding automatically and also handles UTF-8 and Windows-1252 files.',
+    'faq8-s': 'Which file extensions work?',
+    'faq8-p': 'Export files are usually named <code>.se</code> or <code>.sie</code> and import files (SIE 4I) <code>.si</code>. The tool reads all of them. The SIE standard primarily uses PC8, but UTF-8 (including with a BOM) and Windows-1252 also appear in exports and are recognised.',
+    'faq9-s': 'Can I choose the fiscal year?',
+    'faq9-p': 'Yes. If the file contains several years (<code>#RAR</code>) they appear in the Fiscal year menu. Vouchers in a SIE 4 file belong to the current year (year 0). Vouchers that do not balance are listed among the warnings and get Nej in the Balanserar column in the Excel file.',
+    'faq10-s': 'What does the tool not do?',
+    'faq10-p': 'It does not write a SIE file back, change the books or send anything to Skatteverket or the accounting program. Period budgets (<code>#PBUDGET</code>) are skipped. Object balances per cost centre or project (<code>#OIB</code>, <code>#OUB</code> and <code>#PSALDO</code> with objects) are read, but the Excel file has no separate object report – objects appear as a column on the transaction rows.'
+
   };
   var SV = {};
   var T = {
