@@ -21,7 +21,7 @@
     'rev-2': 'Splits, spin-offs, mergers, ticker changes and transfers in from elsewhere are not calculated automatically. Such holdings are flagged and left out of the SRU file.',
     'rev-3': 'Currency balances are calculated as section C holdings from the account statement. Dividends, interest and foreign withholding tax are not K4 – interest and rewards are listed separately. Where the tax treatment is uncertain the tool says so: check those points.',
     'rev-4': 'Open the form in the e-service after the import and compare it with the review workbook. You are responsible for the figures in your tax return.',
-    'pw-h': 'K4 rows and SRU file', 'pw-p': 'Unlock the K4 rows, the SRU files for Skatteverket\'s file upload and the Excel review workbook. The preview is always free.'
+    'pw-h': 'K4 rows and SRU file', 'pw-p': 'Unlock the K4 rows, the SRU files for Skatteverket\'s file upload and the Excel review workbook. The preview is always free.', 'cta': 'Free preview → 149 kr one-time for the SRU file. Built for Swedish K4 rules; the file never leaves your computer.'
   };
   var T = {
     sv: { reading: 'Läser filen…', err: 'Kunde inte läsa filen: ', 'closed-positions': 'Det här är Revolut-rapporten över stängda positioner (P&L). Den saknar köp av aktier du fortfarande äger, så genomsnittsmetoden går inte att räkna. Ladda ner kontoutdraget (Account statement) för hela perioden i stället.',

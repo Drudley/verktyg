@@ -22,7 +22,7 @@
     'rev-2': 'CFDs, leverage and short positions are reported per closed position. Whether eToro\'s CFDs on shares and indices count as market-listed (section A) or not (section D) is unclear – the tool uses D by default. Please check.',
     'rev-3': 'Dividends, withholding tax and interest are not K4. They are shown separately and go in box 7.2 and the foreign tax credit. Currency effects on the USD balance are not calculated. Where the tax treatment is uncertain the tool says so: check those points.',
     'rev-4': 'Open the form in the e-service after the import and compare it with the review workbook. You are responsible for the figures in your tax return.',
-    'pw-h': 'K4 rows and SRU file', 'pw-p': 'Unlock the K4 rows, the SRU files for Skatteverket\'s file upload and the Excel review workbook. The preview is always free.'
+    'pw-h': 'K4 rows and SRU file', 'pw-p': 'Unlock the K4 rows, the SRU files for Skatteverket\'s file upload and the Excel review workbook. The preview is always free.', 'cta': 'Free preview → 149 kr one-time for the SRU file. Built for Swedish K4 rules; the file never leaves your computer.'
   };
   var T = {
     sv: { reading: 'Läser filen…', err: 'Kunde inte läsa filen: ', 'no-header': 'Hittade inga kända eToro-kolumner. Använd kontoutdraget (Account Statement) som Excel-fil – inte PDF-versionen eller Tax Report.',

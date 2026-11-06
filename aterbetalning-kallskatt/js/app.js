@@ -18,7 +18,7 @@
     'rev-2': 'The country comes from the ISIN code (FI, NO, DK, CH). The tax rate is checked against the statutory rate and deviations are flagged. If the bank already withheld only 15 % there is nothing to reclaim.',
     'rev-3': 'Endowment insurance (KF) and pension accounts are owned by the insurer – you cannot claim yourself. Such accounts are deselected by default.',
     'rev-4': 'If you already got a credit for the full withholding tax in your Swedish return and then receive a refund, the credit should only cover 15 %. You are responsible for your own claims and tax return.',
-    'pw-h': 'Specification, checklist and Excel', 'pw-p': 'Unlock the per-dividend specification in the right currency, the checklist per country, the printable annex and the Excel file. The summary per country and year is always free.'
+    'pw-h': 'Specification, checklist and Excel', 'pw-p': 'Unlock the per-dividend specification in the right currency, the checklist per country, the printable annex and the Excel file. The summary per country and year is always free.', 'fi-deadline': 'Finland: dividends from 2023 – the last day to reclaim the withholding tax is 31 December 2026.', 'cta': 'Free preview → 99 kr one-time for the specification and Excel file. Everything runs in your browser; the file never leaves your computer.'
   };
   var T = {
     sv: { reading: 'Läser filen…', err: 'Kunde inte läsa filen: ', 'unknown-format': 'Känner inte igen filen. Använd transaktionsexporten (CSV) från Avanza eller Nordnet.', 'missing-columns': 'Kolumner saknas i filen: ', xlsx: 'Det här är en Excel-fil. Exportera transaktionerna som CSV i stället.',

@@ -7,6 +7,9 @@ body{margin:0;font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif
 .brand{font-weight:800;color:var(--fg);text-decoration:none;font-size:18px}.brand span{color:var(--b);margin:0 2px}
 h1{font-size:clamp(28px,5vw,40px);margin:28px 0 8px;line-height:1.15}
 .lead{margin:0 0 20px;color:#334155;max-width:720px}
+.cta{margin:0 0 16px;max-width:720px;font-weight:600;color:var(--fg)}
+.hero .cta{margin:-8px 0 16px}
+.paid .cta{margin:8px 0 0;max-width:none}
 .muted{color:var(--mu)}.small{font-size:14px}
 .drop{border:2px dashed #94a3b8;border-radius:var(--r);background:#fff;padding:36px 16px;text-align:center;cursor:pointer;transition:.15s}
 .drop:hover,.drop.over,.drop:focus{border-color:var(--b);background:#ecfeff;outline:none}
