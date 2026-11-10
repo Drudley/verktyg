@@ -33,7 +33,8 @@
     'rev-3': 'A <strong>subordinated loan</strong> or a loan from the owner is not equity. Equity is restored by e.g. a shareholder contribution, a new share issue, reducing the share capital or profit.',
     'rev-4': 'The tool gives no legal advice. The board is responsible for the valuations and for meeting the deadlines.',
     'pw-h': 'Kontrollbalansräkning and control meeting', 'pw-p': 'Unlock adjustments under ch. 25 § 14, the print-ready kontrollbalansräkning, deadlines, notice and minutes and the Excel file. Reading, the capital test and the month table are always free.',
-    'sie-link': 'Want the whole ledger in Excel? <a href="../sie-till-excel/">Open the SIE file in SIE to Excel</a>.'
+    'sie-link': 'Want the whole ledger in Excel? <a href="../sie-till-excel/">Open the SIE file in SIE to Excel</a>.',
+    'pension-link': 'Before you close the books you can also work out how much the company may contribute to occupational pension in <a href="../pensionsavsattning-aktiebolag/">Pension contribution in a limited company</a>.'
   };
   var SV = {};
   var T = {

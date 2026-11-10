@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pensionsavsättning i aktiebolag – avdragsutrymme och särskild löneskatt</title>
+<meta name="description" content="Räkna ut hur mycket ditt aktiebolag får sätta av till tjänstepension 2025–2027: 35 % av lönen, tak 10 prisbasbelopp, särskild löneskatt 24,26 % och underlag till bokföring och INK2. Allt i webbläsaren.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/pensionsavsattning-aktiebolag/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/pensionsavsattning-aktiebolag/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Pensionsavsättning i aktiebolag – avdragsutrymme och särskild löneskatt">
+<meta property="og:description" content="Räkna avdragsutrymme, särskild löneskatt och jämför med lön eller kvar i bolaget. Underlaget skapas i webbläsaren.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#155e75">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23155e75'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/pensionsavsattning-aktiebolag/","name":"Pensionsavsättning i aktiebolag – avdragsutrymme och särskild löneskatt","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Räknar avdragsutrymmet för tjänstepension i aktiebolag enligt huvudregeln (35 procent av pensionsgrundande lön, högst 10 prisbasbelopp), särskild löneskatt 24,26 procent, kvarvarande utrymme per anställd och ett underlag för bokföring och inkomstdeklaration 2. Allt sker i webbläsaren.",
+ "offers":[{"@type":"Offer","price":"0","priceCurrency":"SEK","description":"Gratis grundfunktion"},{"@type":"Offer","price":"99","priceCurrency":"SEK","description":"Jämförelse, bokföringsförslag, INK2-underlag och Excel","url":"https://drudley.gumroad.com/l/pensionsavsattning"}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hur mycket får ett aktiebolag sätta av till tjänstepension?","acceptedAnswer":{"@type":"Answer","text":"Enligt huvudregeln får bolaget dra av pensionskostnaden med högst 35 procent av den anställdas pensionsgrundande lön, dock högst 10 prisbasbelopp. För beskattningsår som gått ut under 2026 är taket 592 000 kronor. Bolaget får välja årets eller föregående års lön, beroende på vilket som ger störst utrymme. Avdraget räknas per person och får inte slås ihop."}},
+ {"@type":"Question","name":"Vad är särskild löneskatt på pensionskostnader?","acceptedAnswer":{"@type":"Answer","text":"Aktiebolaget betalar särskild löneskatt med 24,26 procent på pensionskostnaden. Underlaget tas upp på första sidan av inkomstdeklaration 2 och skatten debiteras på slutskattebeskedet. Skatten tas även ut på premier som överstiger avdragsutrymmet, och den särskilda löneskatten är själv avdragsgill."}},
+ {"@type":"Question","name":"När måste premien vara betald för att avdraget ska gälla i år?","acceptedAnswer":{"@type":"Answer","text":"För att avdraget ska hamna på årets resultat ska pensionen normalt vara tryggad under beskattningsåret, typiskt genom att premien betalas innan räkenskapsåret stängs. Många gör en extra insättning i december. Stäm av tidpunkten med pensionsbolaget och din redovisningskonsult."}},
+ {"@type":"Question","name":"Räknas en kapitalförsäkring eller direktpension som avdragsgill tjänstepension?","acceptedAnswer":{"@type":"Answer","text":"Nej. En kapitalförsäkring som bolaget tecknar för att säkerställa en pensionsutfästelse är inte en avdragsgill tryggandeform. Vid direktpension kommer avdragsrätten först när pensionen betalas ut. Verktyget räknar bara på premier och andra trygganden som ryms inom de fyra avdragsgilla formerna."}},
+ {"@type":"Question","name":"Vad är kompletteringsregeln?","acceptedAnswer":{"@type":"Answer","text":"Kompletteringsregeln kan ge ett större avdrag än huvudregeln när ett pensionsavtal ändras vid förtida avgång eller när pensionsutfästelserna är otillräckligt tryggade. Beräkningen beror på avtalad pensionsnivå, ålder och redan tryggad pension. Verktyget räknar inte kompletteringsregeln – den kräver underlag som den här kalkylatorn inte tar in."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Pensionsavsättning<span>·</span>aktiebolag</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Pensionsavsättning i aktiebolag – avdragsutrymme och särskild löneskatt</h1>
+    <p class="lead" data-i18n="lead">Skriv in lönen för dig och eventuella anställda – så räknas <strong>avdragsutrymmet enligt huvudregeln</strong> (35&nbsp;% av lönen, högst 10 prisbasbelopp), <strong>särskild löneskatt 24,26&nbsp;%</strong> och vad som är kvar att sätta av före bokslutet. Jämför med att ta ut mer lön eller lämna pengarna i bolaget, och ladda ner ett underlag till bokföringen och INK2.</p>
+  </section>
+
+  <section class="card calc" id="calc">
+    <div class="row"><h2 data-i18n="calc-h">Bolaget och avsättningen</h2>
+      <div class="actions"><button id="sample" class="btn ghost small" type="button" data-i18n="sample">Skatteverkets exempel</button><button id="clear" class="link small" type="button" data-i18n="clear">Rensa</button></div></div>
+    <div class="grid">
+      <label><span data-i18n="l-year">Beskattningsår</span><select id="f-year"><option value="2025">2025</option><option value="2026" selected>2026</option><option value="2027">2027</option></select></label>
+      <label><span data-i18n="l-co">Bolagets namn (valfritt)</span><input type="text" id="f-co" autocomplete="organization"></label>
+      <label><span data-i18n="l-org">Organisationsnummer (valfritt)</span><input type="text" id="f-org" inputmode="numeric" placeholder="559999-0000" autocomplete="off"></label>
+    </div>
+    <p class="hint" data-i18n="h-year">Taket 10 prisbasbelopp följer det beskattningsår du räknar på, även om du använder föregående års lön som underlag.</p>
+
+    <div class="row people-h"><h3 data-i18n="pe-h">Anställda (inklusive ägare som tar ut lön)</h3>
+      <button id="add" class="btn ghost small" type="button" data-i18n="add">Lägg till person</button></div>
+    <div id="people"></div>
+    <p class="hint" data-i18n="h-salary">Lön är den pensionsgrundande ersättningen enligt pensionsavtalet. Bilförmån räknas med om avtalet säger det. Utdelning räknas inte.</p>
+    <p class="muted small" data-i18n="saved">Uppgifterna sparas bara i den här webbläsaren. Inget skickas iväg.</p>
+  </section>
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+
+  <section id="result" class="card" hidden>
+    <h2 id="r-title">Resultat</h2>
+    <p id="r-meta" class="muted small"></p>
+    <div id="check" class="check ok"></div>
+    <div class="stats" id="stats"></div>
+    <div id="flags" class="flags" hidden></div>
+    <div class="tbl"><table id="per-t"><thead></thead><tbody></tbody><tfoot></tfoot></table></div>
+
+    <section id="paid">
+      <h2 data-i18n="paid-h">Jämförelse, bokföring och Excel-underlag</h2>
+      <p class="small" data-i18n="paid-p">Jämför den planerade extra premien (den del som ryms i avdragsutrymmet) med samma belopp som lön eller kvar som vinst i bolaget. Få ett <strong>bokföringsförslag</strong> med konton, underlag till <strong>särskild löneskatt på INK2</strong> och en <strong>Excel-fil</strong> att spara tillsammans med bokslutet.</p>
+      <div class="row"><button id="paid-open" class="btn" type="button"><span data-i18n="open">Visa jämförelse och underlag</span></button></div>
+      <div id="paid-out" hidden>
+        <h3 data-i18n="cmp-h">Jämförelse för den planerade extra premien</h3>
+        <p id="cmp-p" class="muted small"></p>
+        <div class="tbl"><table id="cmp-t"><thead></thead><tbody></tbody></table></div>
+        <p class="hint" data-i18n="cmp-note">Bolagets kostnad och bolagsskatteeffekt (20,6&nbsp;%). Lön beskattas hos mottagaren som inkomst av tjänst redan i år; pensionen beskattas när den betalas ut. Värdet av allmän pension, sjukpenninggrundande inkomst och 3:12-utrymme ingår inte här – räkna utdelning i <a href="../gransbelopp-utdelning/">Gränsbelopp 3:12</a>.</p>
+        <h3 data-i18n="bok-h">Bokföringsförslag och INK2</h3>
+        <div id="bok" class="besked"></div>
+        <div class="dlrow"><button id="print" class="btn" type="button" data-i18n="print">Skriv ut underlag</button><button id="xlsx" class="btn ghost" type="button" data-i18n="xlsx">Ladda ner Excel</button></div>
+        <p id="dl-msg" class="status"></p>
+      </div>
+    </section>
+  </section>
+
+  <aside class="cta card" id="cta-312">
+    <p><strong data-i18n="cta-h">Fundera du också på lön eller utdelning?</strong> <span data-i18n="cta-p">När avsättningen är klar kan du räkna gränsbeloppet och skatten på utdelning i <a href="../gransbelopp-utdelning/">Gränsbelopp 2026 – 3:12-kalkylatorn</a>. Inför bokslutet: <a href="../kontrollbalansrakning/">Kontrollbalansräkning från SIE-fil</a> visar om halva aktiekapitalet är förbrukat.</span></p>
+  </aside>
+
+  <section class="prose">
+    <h2>Så räknas avdragsutrymmet för tjänstepension</h2>
+    <p>Ett aktiebolag som tryggar tjänstepension för en anställd – inklusive ägaren, så länge ägaren tar ut lön – får dra av kostnaden i inkomstdeklarationen, men bara upp till ett tak. Taket kallas avdragsutrymme och räknas <strong>per person</strong>, inte på bolagets samlade lönesumma.</p>
+    <p>Enligt <strong>huvudregeln</strong> är utrymmet <strong>35 procent</strong> av den pensionsgrundande lönen, dock högst <strong>10 prisbasbelopp</strong>. För beskattningsår som har gått ut under 2026 är prisbasbeloppet 59&nbsp;200 kronor och taket därför <strong>592&nbsp;000 kronor</strong>. För 2025 är taket 588&nbsp;000 kronor och för 2027, 596&nbsp;000 kronor.</p>
+    <p class="formula">Lön 380&nbsp;000 kr → 35&nbsp;% = 133&nbsp;000 kr (under taket 592&nbsp;000 kr)</p>
+    <p>Det är Skatteverkets eget exempel: en anställd med 380&nbsp;000 kronor i lön 2026 och 325&nbsp;000 kronor året före. Bolaget väljer det högre underlaget, alltså årets lön, och får dra av faktiska pensionskostnader med högst 133&nbsp;000 kronor. Klicka på <em>Skatteverkets exempel</em> ovan för att se samma räkning, plus särskild löneskatt på en avsättning som utnyttjar hela utrymmet.</p>
+    <h3>Årets eller föregående års lön</h3>
+    <p>När utrymmet räknas får arbetsgivaren fritt välja den anställdas lön under det aktuella beskattningsåret eller under det föregående. Det är praktiskt om lönen har varierat: den som arbetat deltid i år kan fortfarande sätta av utifrån fjolårets högre lön. Verktyget väljer automatiskt det år som ger störst utrymme och talar om vilket.</p>
+    <p>Med lön menas den <strong>pensionsgrundande ersättningen enligt pensionsavtalet</strong>. Bilförmån, bonus och andra tillägg räknas alltså bara med om avtalet säger att de är pensionsgrundande. <strong>Utdelning räknas inte</strong> – utan lön finns inget avdragsutrymme, oavsett hur stor vinst bolaget gör.</p>
+    <h3>Särskild löneskatt 24,26&nbsp;%</h3>
+    <p>På pensionskostnaden betalar bolaget <strong>särskild löneskatt med 24,26 procent</strong>. Skattesatsen är densamma 2026 och 2027. Underlaget tas upp på första sidan av <strong>inkomstdeklaration 2</strong>, och skatten debiteras på slutskattebeskedet tillsammans med bolagets övriga skatter.</p>
+    <p class="formula">Premie 200&nbsp;000 kr → särskild löneskatt 48&nbsp;520 kr (24,26&nbsp;%)</p>
+    <p>Det är återigen Skatteverkets exempel. Observera två saker som är lätta att missa. För det första tas skatten ut på <strong>hela premien</strong>, även den del som inte ryms i avdragsutrymmet. För det andra är den särskilda löneskatten <strong>själv avdragsgill</strong>. I kalkylen minskar alltså bolagsskatten både av den avdragsgilla premien och av löneskatten.</p>
+    <p>Särskild löneskatt är lägre än vanliga arbetsgivaravgifter (31,42&nbsp;% 2026). Det är en av anledningarna till att en extra pensionsavsättning i december kan vara billigare för bolaget än samma belopp som lön – men mottagaren får pengarna senare, och lön ger dessutom pensionsrätt i det allmänna systemet upp till taket.</p>
+    <h3>Vad som räknas som tryggande</h3>
+    <p>Avdraget förutsätter att pensionen <strong>tryggas</strong> i någon av fyra former: premie till en tjänstepensionsförsäkring, avsättning i balansräkningen enligt tryggandelagen med kreditförsäkring eller motsvarande garanti, överföring till en pensionsstiftelse, eller överföring till vissa utländska tjänstepensionsinstitut. En <strong>kapitalförsäkring</strong> som bolaget äger för att säkerställa en utfästelse är <strong>inte</strong> en avdragsgill tryggandeform. Vid <strong>direktpension</strong> kommer avdraget först när pensionen betalas ut.</p>
+    <h3>När ska premien vara betald?</h3>
+    <p>För att avdraget ska hamna på årets resultat ska tryggandet normalt ske under beskattningsåret. I praktiken betyder det ofta att premien är betald, eller i varje fall fakturerad och bokförd enligt god redovisningssed, innan räkenskapsåret stängs. Många ägarledda bolag gör därför en extra insättning i december, när årets lön och resultat är kända. Stäm av sista betalningsdag med pensionsbolaget – vissa kräver att pengarna är framme innan bokslutet läggs, andra följer fakturadatum.</p>
+    <h3>Kompletteringsregeln räknas inte här</h3>
+    <p>Utöver huvudregeln finns en <strong>kompletteringsregel</strong> som kan ge ett större avdrag när ett pensionsavtal ändras vid förtida avgång, eller när pensionsutfästelserna är otillräckligt tryggade. Då jämförs kostnaden med taket för en högsta pensionsförmån, som beror på löneskikt och pensionsålder, och redan tryggad pension räknas av. Den beräkningen kräver mer underlag än den här kalkylatorn tar in. Behöver du kompletteringsregeln: gå till pensionsrådgivaren och Skatteverkets tabell för beskattningsåret.</p>
+    <h3>Så använder du underlaget</h3>
+    <p>Förhandsvisningen – utrymme, kvar att sätta av och särskild löneskatt per person – är gratis. När du låser upp får du en jämförelse av bolagets kostnad, ett bokföringsförslag med typiska BAS-konton (7410 pensionspremier, 7530 särskild löneskatt, 1940 bank eller 2514 skuld) och en Excel-fil med samma siffror. Kontona är exempel; följ bolagets kontoplan. Underlaget är ett hjälpmedel, inte skatterådgivning, och ersätter inte Blankett INK2 eller en genomgång med redovisningskonsulten.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Pensionsavsättning i aktiebolag – vanliga frågor</h2>
+    <details open><summary>Hur mycket får ett aktiebolag sätta av till tjänstepension?</summary><p>Enligt huvudregeln högst <strong>35 procent</strong> av den anställdas pensionsgrundande lön, dock inte mer än <strong>10 prisbasbelopp</strong> (592&nbsp;000 kronor för beskattningsår som gått ut under 2026). Utrymmet räknas per person. Bolaget får välja årets eller föregående års lön.</p></details>
+    <details><summary>Vad är särskild löneskatt på pensionskostnader?</summary><p>En skatt på <strong>24,26 procent</strong> av pensionskostnaden. Underlaget tas upp på sidan 1 i inkomstdeklaration 2 och skatten debiteras på slutskattebeskedet. Den tas ut även på premier över avdragsutrymmet, och skatten är själv avdragsgill.</p></details>
+    <details><summary>När måste premien vara betald för att avdraget ska gälla i år?</summary><p>Pensionen ska normalt vara <strong>tryggad under beskattningsåret</strong>. Många betalar en extra premie i december, innan böckerna stängs. Fråga pensionsbolaget vad som gäller för just ditt avtal, och stäm av med redovisningskonsulten.</p></details>
+    <details><summary>Räknas en kapitalförsäkring eller direktpension?</summary><p><strong>Nej.</strong> En kapitalförsäkring som bolaget tecknar för att säkerställa en pensionsutfästelse är inte en avdragsgill tryggandeform. Vid direktpension kommer avdragsrätten först när pensionen betalas ut.</p></details>
+    <details><summary>Kan jag slå ihop lönen för flera anställda?</summary><p><strong>Nej.</strong> Avdraget räknas per person mot den personens eget utrymme. En stor premie för någon som tagit ut låg lön kan inte räddas av att en kollega har ett outnyttjat utrymme.</p></details>
+    <details><summary>Vad är kompletteringsregeln?</summary><p>En särskild regel som i vissa fall ger mer avdrag än huvudregeln, typiskt vid förtida pension eller otillräckligt tryggade utfästelser. Verktyget räknar den inte – den kräver mer underlag om avtalad förmån och redan tryggad pension.</p></details>
+    <details><summary>Skickas mina uppgifter någonstans?</summary><p><strong>Nej.</strong> Allt räknas i din webbläsare. Inga filer eller siffror skickas till någon server, och sidan har varken cookies eller spårning. Det som sparas ligger bara lokalt i webbläsaren.</p></details>
+  </section>
+
+  <section class="prose">
+    <h2>Källor</h2>
+    <ul class="src">
+      <li><a href="https://www.skatteverket.se/foretag/drivaforetag/foretagsformer/aktiebolag/pensionskostnader.4.6e8a1495181dad54084429.html" rel="noopener">Skatteverket: Pensionskostnader för anställda</a> (huvudregeln, kompletteringsregeln, exempel 133&nbsp;000 kr, tryggandeformerna)</li>
+      <li><a href="https://www.skatteverket.se/foretag/drivaforetag/foretagsformer/aktiebolag/sarskildloneskatt.4.6e8a1495181dad540843a8.html" rel="noopener">Skatteverket: Särskild löneskatt</a> (24,26&nbsp;%, underlag till INK2, exempel 48&nbsp;520 kr)</li>
+      <li><a href="https://www.skatteverket.se/foretag/skatterochavdrag/beloppochprocent/2026.106.1522bf3f19aea8075ba3294.html" rel="noopener">Skatteverket: Belopp och procent, inkomstår 2026</a> (prisbasbelopp 59&nbsp;200 kr)</li>
+    </ul>
+  </section>
+</main>
+<footer class="wrap muted small foot">Fristående verktyg – inte anslutet till Skatteverket eller något pensionsbolag. Uträkningen är ett hjälpmedel, inte skatterådgivning; kontrollera mot INK2 och med din redovisningskonsult. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
+
+<dialog id="paywall">
+  <h2 data-i18n="pw-h">Jämförelse, bokföring och Excel-underlag</h2>
+  <p data-i18n="pw-p">Lås upp jämförelsen mellan pension, lön och kvar i bolaget, bokföringsförslaget, underlaget till INK2 och Excel-filen. Avdragsutrymme och särskild löneskatt per person är alltid gratis.</p>
+</dialog>
+<div id="print-root"></div>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/xlsx-writer.js"></script>
+<script src="js/pension.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
