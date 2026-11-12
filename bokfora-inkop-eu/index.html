@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bokföra inköp från EU och utlandet – omvänd moms och momsrutor (2026)</title>
+<meta name="description" content="Bokför fakturor från utländska leverantörer: varor och tjänster från EU, tjänster från USA, import och omvänd moms i Sverige. Få kontering på 4515/4535/4531/4545, 2614/2645 och rutorna 20–24, 30–32, 50, 60–62 och 48 i momsdeklarationen.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/bokfora-inkop-eu/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/bokfora-inkop-eu/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Bokföra inköp från EU och utlandet – omvänd moms">
+<meta property="og:description" content="Omvänd moms, kontering och momsrutor för fakturor från EU, USA och import – med SIE-fil. Allt i webbläsaren.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1d4ed8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231d4ed8'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/bokfora-inkop-eu/","name":"Bokföra inköp från EU och utlandet – omvänd moms","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Räknar omvänd moms (omvänd betalningsskyldighet) och importmoms på fakturor från utländska leverantörer: varor och tjänster från andra EU-länder, tjänster från länder utanför EU, import av varor och omvänd moms inom Sverige. Ger kontering på BAS-kontona 4515–4547, 4415–4427, 2614–2635, 2645 och 2647 samt beloppen till rutorna 20–24, 30–32, 48, 50 och 60–62 i momsdeklarationen och en SIE-fil.",
+ "offers":[{"@type":"Offer","price":"0","priceCurrency":"SEK","description":"Gratis grundfunktion"},{"@type":"Offer","price":"79","priceCurrency":"SEK","description":"Kontering, SIE-fil, momsrutor i Excel och utskrift","url":"https://drudley.gumroad.com/l/inkoputland"}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hur bokför man köp av tjänster från EU?","acceptedAnswer":{"@type":"Answer","text":"En tjänst från ett annat EU-land faktureras utan moms, och köparen räknar själv ut den svenska momsen – omvänd moms. Kostnaden bokförs på till exempel 4535 Inköp av tjänster från annat EU-land, 25 %, momsen bokförs som utgående på 2614 och som ingående på 2645. Beloppet utan moms redovisas i ruta 21, momsen i ruta 30 och avdraget i ruta 48."}},
+ {"@type":"Question","name":"Vilken ruta i momsdeklarationen gäller tjänster från USA?","acceptedAnswer":{"@type":"Answer","text":"Tjänster från ett land utanför EU, till exempel programvara, molntjänster och annonser från ett amerikanskt bolag, redovisas i ruta 22. Den utgående momsen redovisas i ruta 30, 31 eller 32 och avdraget för ingående moms i ruta 48."}},
+ {"@type":"Question","name":"Hur bokför man varor köpta från ett annat EU-land?","acceptedAnswer":{"@type":"Answer","text":"Varor från ett annat EU-land redovisas i ruta 20 med den svenska momsen i ruta 30–32 och avdraget i ruta 48. Kostnaden bokförs på 4515, 4516 eller 4517 beroende på momssats, den utgående momsen på 2614, 2624 eller 2634 och den ingående på 2645."}},
+ {"@type":"Question","name":"Hur redovisas importmoms?","acceptedAnswer":{"@type":"Answer","text":"För den som är momsregistrerad redovisas momsen på import av varor från länder utanför EU i momsdeklarationen: beskattningsunderlaget i ruta 50, inklusive tull och frakt till Sverige, momsen i ruta 60, 61 eller 62 och avdraget i ruta 48."}},
+ {"@type":"Question","name":"Vad gör jag om den utländska leverantören tagit ut moms?","acceptedAnswer":{"@type":"Answer","text":"Då är det inte omvänd moms. Utländsk moms får inte dras av i den svenska momsdeklarationen. Den kan i stället ibland sökas tillbaka från det andra landet, för EU-länder via Skatteverkets e-tjänst. Be leverantören om en faktura utan moms med ditt momsregistreringsnummer."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Omvänd moms<span>·</span>utlandet</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Bokföra inköp från EU och utlandet – omvänd moms</h1>
+    <p class="lead" data-i18n="lead">Lägg in fakturorna från utländska leverantörer – annonser och programvara från Irland och USA, varor från Tyskland, import från Kina – och byggtjänster med omvänd moms. Verktyget räknar <strong>omvänd moms och importmoms</strong>, konterar på rätt <strong>BAS-konton</strong> och summerar beloppen till <strong>rutorna 20–24, 30–32, 50, 60–62 och 48</strong> i momsdeklarationen.</p>
+  </section>
+
+  <section class="card calc" id="calc">
+    <div class="row"><h2 data-i18n="calc-h">Företaget och perioden</h2>
+      <div class="actions"><button id="sample" class="btn ghost small" type="button" data-i18n="sample">Visa exempel</button><button id="clear" class="link small" type="button" data-i18n="clear">Rensa</button></div></div>
+    <div class="grid">
+      <label><span data-i18n="l-co">Företagets namn (valfritt)</span><input type="text" id="f-co" autocomplete="organization"></label>
+      <label><span data-i18n="l-org">Organisationsnummer (valfritt)</span><input type="text" id="f-org" inputmode="numeric" placeholder="559999-0000" autocomplete="off"></label>
+      <label><span data-i18n="l-period">Momsperiod (valfritt)</span><input type="text" id="f-period" placeholder="2026-10" autocomplete="off"></label>
+      <label><span data-i18n="l-ded">Avdragsrätt för ingående moms, %</span><input type="text" id="f-ded" inputmode="decimal" value="100"></label>
+      <label><span data-i18n="l-serie">Verifikationsserie</span><input type="text" id="f-serie" value="A"></label>
+      <label><span data-i18n="l-nr">Första verifikationsnummer</span><input type="text" id="f-nr" inputmode="numeric" value="1"></label>
+    </div>
+    <div class="row people-h"><h3 data-i18n="it-h">Fakturor</h3>
+      <button id="add" class="btn ghost small" type="button" data-i18n="add">Lägg till faktura</button></div>
+    <div id="people"></div>
+    <p class="hint" data-i18n="h-items">Skriv fakturabeloppet <strong>utan moms</strong> i fakturans valuta och kursen du använder. Lämna kostnadskonto tomt så används BAS-kontot för typen (4515, 4535, 4531, 4545 …). För import: lägg tull och frakt till Sverige i ”tull och frakt” – de ingår i underlaget men bokförs när de betalas.</p>
+    <p class="muted small" data-i18n="saved">Uppgifterna sparas bara i den här webbläsaren. Inget skickas iväg.</p>
+  </section>
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+
+  <section id="result" class="card" hidden>
+    <h2 id="r-title">Resultat</h2>
+    <p id="r-meta" class="muted small"></p>
+    <div id="check" class="check ok"></div>
+    <div class="stats" id="stats"></div>
+    <div id="flags" class="flags" hidden></div>
+    <h3 data-i18n="box-h">Momsdeklarationen</h3>
+    <div class="tbl"><table id="box-t"><thead></thead><tbody></tbody></table></div>
+    <h3 data-i18n="inv-h">Per faktura</h3>
+    <div class="tbl"><table id="per-t"><thead></thead><tbody></tbody><tfoot></tfoot></table></div>
+
+    <section id="paid">
+      <h2 data-i18n="paid-h">Kontering, SIE-fil och momsunderlag</h2>
+      <p class="small" data-i18n="paid-p">Få <strong>konteringen per faktura</strong> (kostnad, leverantörsskuld, 2614/2615 och 2645), en <strong>SIE-fil</strong> att läsa in i Fortnox, Visma, Bokio eller annat program och ett <strong>Excel-underlag</strong> med rutorna och fakturorna att spara med momsdeklarationen.</p>
+      <div class="row"><button id="paid-open" class="btn" type="button"><span data-i18n="open">Visa kontering och underlag</span></button></div>
+      <div id="paid-out" hidden>
+        <h3 data-i18n="ver-h">Kontering</h3>
+        <div id="ver" class="besked"></div>
+        <div class="dlrow"><button id="sie" class="btn" type="button" data-i18n="sie">Ladda ner SIE-fil</button><button id="xlsx" class="btn ghost" type="button" data-i18n="xlsx">Ladda ner Excel</button><button id="print" class="btn ghost" type="button" data-i18n="print">Skriv ut momsunderlag</button></div>
+        <p id="dl-msg" class="status"></p>
+      </div>
+    </section>
+  </section>
+
+  <aside class="cta card">
+    <p><strong data-i18n="cta-h">Fler filer till bokföringen:</strong> <span data-i18n="cta-p"><a href="../stripe-till-sie/">Bokföra Stripe – utbetalning till SIE</a> gör utbetalningsrapporten från Stripe till en SIE-fil, med valbar omvänd moms på Stripes avgifter från Irland.<span data-needs="representation-moms"> Momsen på representation räknar du i <a href="../representation-moms/">Representation – moms och avdrag</a>.</span></span></p>
+  </aside>
+
+  <section class="prose">
+    <h2>Vad är omvänd moms?</h2>
+    <p>När ett svenskt momsregistrerat företag köper varor från ett annat EU-land, eller tjänster från ett utländskt företag, tar säljaren i regel inte ut någon moms. I stället ska <strong>köparen själv räkna ut och redovisa den svenska momsen</strong> – det kallas <strong>omvänd betalningsskyldighet</strong> eller omvänd moms. Momsen redovisas som utgående moms och dras samtidigt av som ingående moms, så för ett företag med full avdragsrätt blir nettot noll. Men beloppen ska ändå in i rätt rutor i momsdeklarationen, och det är där det ofta blir fel.</p>
+    <p>Typiska exempel är annonser hos de stora plattformarna som fakturerar från Irland, programvara och molntjänster från USA och varor från en tysk grossist. Samma mekanism finns inom Sverige för byggtjänster och vissa varor, som mobiltelefoner och metallskrot.</p>
+    <h3>Rutorna i momsdeklarationen</h3>
+    <ul>
+      <li><strong>Ruta 20</strong> – inköp av varor från ett annat EU-land.</li>
+      <li><strong>Ruta 21</strong> – inköp av tjänster från ett annat EU-land enligt huvudregeln.</li>
+      <li><strong>Ruta 22</strong> – inköp av tjänster från ett land utanför EU.</li>
+      <li><strong>Ruta 23</strong> och <strong>24</strong> – inköp av varor respektive tjänster i Sverige där köparen är betalningsskyldig, till exempel byggtjänster.</li>
+      <li><strong>Ruta 30, 31 och 32</strong> – den utgående momsen på inköpen i ruta 20–24, med 25, 12 respektive 6 procent.</li>
+      <li><strong>Ruta 50</strong> – beskattningsunderlaget för import av varor från länder utanför EU, och <strong>ruta 60, 61 och 62</strong> den utgående momsen på importen.</li>
+      <li><strong>Ruta 48</strong> – den ingående moms du får dra av, inklusive den omvända momsen.</li>
+    </ul>
+    <p>Rutan 49 – moms att betala eller få tillbaka – räknas som summan av den utgående momsen minus ruta 48. Verktyget visar hur mycket fakturorna påverkar den. Beloppen i deklarationen anges i hela kronor, och ören stryks.</p>
+    <h3>Så bokförs fakturan</h3>
+    <p>Varje faktura bokförs i två steg. Först själva kostnaden mot leverantörsskulden eller banken: en tjänst från ett EU-land på <strong>4535</strong>, från ett land utanför EU på <strong>4531</strong>, varor från EU på <strong>4515</strong> och import på <strong>4545</strong> – med 12- och 6-procentskonton bredvid. Sedan den omvända momsen: utgående moms på <strong>2614</strong> (12 procent 2624, 6 procent 2634) eller <strong>2615</strong> för import, och lika mycket ingående moms på <strong>2645 Beräknad ingående moms på förvärv från utlandet</strong>. Vid omvänd moms inom Sverige används <strong>2647</strong>. Vill du ha kostnaden på ett eget konto, till exempel 5420 Programvaror, skriver du det i fältet för kostnadskonto – rutorna i deklarationen påverkas inte av vilket kostnadskonto du väljer.</p>
+    <h3>Valuta och kurs</h3>
+    <p>Fakturor i euro eller dollar räknas om till kronor. Använd samma kurs som i bokföringen, till exempel Riksbankens eller bankens kurs för fakturadagen. Momsen räknas på beloppet i kronor. Verktyget tar fakturabeloppet i originalvaluta och kursen, och visar kronbeloppet per faktura.</p>
+    <h3>När ska momsen redovisas?</h3>
+    <p>Omvänd moms på tjänster redovisas för den period då tjänsten utförts eller betalats. För varor från ett annat EU-land redovisas momsen för den period då fakturan utfärdades, men senast för perioden som omfattar den 15:e i månaden efter leveransen. Importmoms redovisas för den period då Tullverket beslutat om tullen. Lägg in fakturorna för en period i taget så blir rutorna rätt.</p>
+    <h3>Utländsk moms på fakturan</h3>
+    <p>Har den utländska leverantören tagit ut sin egen moms är det inte omvänd moms, och den utländska momsen får inte dras av i den svenska deklarationen. Be om en ny faktura utan moms med ditt <strong>momsregistreringsnummer</strong> (SE…01), eller sök tillbaka momsen från det andra landet. Sådana fakturor ska inte läggas in här.</p>
+    <h3>Begränsad avdragsrätt</h3>
+    <p>Bedriver företaget delvis momsfri verksamhet, till exempel sjukvård eller finansiella tjänster, får bara en del av den ingående momsen dras av. Skriv avdragsrätten i procent, så bokförs den del som inte får dras av som kostnad och ruta 48 blir lägre än den utgående momsen.</p>
+    <h3>Gratis och betalt</h3>
+    <p>Rutorna i momsdeklarationen och uträkningen per faktura är gratis. När du låser upp får du konteringen, SIE-filen med en verifikation per faktura och ett Excel-underlag med rutor, fakturor, kontering och källor. Verktyget är ett hjälpmedel, inte skatterådgivning.</p>
+  </section>
+
+  <section class="prose faq">
+    <h2>Vanliga frågor</h2>
+    <details><summary>Behöver enskild firma redovisa omvänd moms?</summary><p><strong>Ja</strong>, om firman är momsregistrerad. Även den som inte är momsregistrerad kan bli skyldig att redovisa moms på tjänster från utlandet, men får då inget avdrag.</p></details>
+    <details><summary>Ska köpet också redovisas i periodisk sammanställning?</summary><p><strong>Nej.</strong> Periodisk sammanställning gäller försäljning till andra EU-länder, inte inköp.</p></details>
+    <details><summary>Vad gäller för mindre köp med kort, som en app-prenumeration?</summary><p>Samma regler. Om kvittot saknar moms och kommer från ett utländskt bolag ska omvänd moms redovisas, även för små belopp.</p></details>
+    <details><summary>Skickas mina uppgifter någonstans?</summary><p><strong>Nej.</strong> Allt räknas i webbläsaren och sparas bara lokalt tills du rensar.</p></details>
+  </section>
+
+  <section class="prose src">
+    <h2>Källor</h2>
+    <ul>
+      <li><a href="https://www.skatteverket.se/foretagochorganisationer/moms/deklareramoms/fyllaiblanketterna.4.3a2a542410ab40a421c80004214.html" rel="noopener">Skatteverket: Fylla i momsdeklarationen</a> (rutorna 20–24, 30–32, 48, 49, 50, 60–62, hela kronor)</li>
+      <li>Mervärdesskattelagen (2023:200) – omvänd betalningsskyldighet, unionsinternt förvärv och import</li>
+      <li><a href="https://www.bas.se/kontoplaner/" rel="noopener">BAS kontoplan 2026</a> (4415–4427, 4515–4547, 2614–2635, 2645, 2647)</li>
+    </ul>
+  </section>
+</main>
+<footer class="wrap muted small foot">Fristående verktyg – inte anslutet till Skatteverket eller något bokföringsprogram. Uträkningen är ett hjälpmedel; stäm av mot redovisningskonsult vid tveksamma fall. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
+
+<dialog id="paywall">
+  <h2 data-i18n="pw-h">Kontering, SIE-fil och momsunderlag</h2>
+  <p data-i18n="pw-p">Lås upp konteringen per faktura, SIE-filen och Excel-underlaget till momsdeklarationen. Rutorna och uträkningen per faktura är alltid gratis.</p>
+</dialog>
+<div id="print-root"></div>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/kit.js"></script>
+<script src="js/xlsx-writer.js"></script>
+<script src="js/sie-writer.js"></script>
+<script src="js/omvand.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

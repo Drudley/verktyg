@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bokföra skattekontot – Skatteverkets fil till SIE-fil (2026)</title>
+<meta name="description" content="Läs in kontoutdraget från skattekontot (CSV, Excel eller .skv) och få varje rad konterad på 1630 mot rätt konto – arbetsgivaravgifter, personalskatt, moms, F-skatt, ränta – med saldoavstämning och SIE-fil. Allt i webbläsaren.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/bokfora-skattekonto/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/bokfora-skattekonto/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Bokföra skattekontot – Skatteverkets fil till SIE-fil">
+<meta property="og:description" content="Kontoutdraget från skattekontot konterat rad för rad, avstämt mot saldot och klart att läsa in som SIE-fil. Filen lämnar aldrig webbläsaren.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0f766e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f766e'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/bokfora-skattekonto/","name":"Bokföra skattekontot – Skatteverkets fil till SIE-fil","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Läser kontoutdraget från Skatteverkets skattekonto (CSV, Excel, .skv eller inklistrade rader), konterar varje transaktion på konto 1630 mot arbetsgivaravgifter 2731, personalskatt 2710, moms 2650, F-skatt 2518, skatteskuld 2510, ränta 8314/8423 och bank 1930, stämmer av mot in- och utgående saldo och skapar en SIE-fil med en verifikation per rad. Allt sker i webbläsaren.",
+ "offers":[{"@type":"Offer","price":"0","priceCurrency":"SEK","description":"Gratis grundfunktion"},{"@type":"Offer","price":"99","priceCurrency":"SEK","description":"SIE-fil med en verifikation per rad, Excel och avstämning","url":"https://drudley.gumroad.com/l/skattekonto"}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hur bokför man skattekontot?","acceptedAnswer":{"@type":"Answer","text":"Skattekontot bokförs som en fordran på konto 1630 Avräkning för skatter och avgifter. Varje händelse på kontot bokförs för sig: en inbetalning i debet 1630 och kredit 1930, en debitering av till exempel arbetsgivaravgifter i debet 2731 och kredit 1630. Saldot på 1630 ska då stämma med saldot på skattekontot."}},
+ {"@type":"Question","name":"Vilket konto används för debiterad preliminärskatt?","acceptedAnswer":{"@type":"Answer","text":"Ett aktiebolag bokför den debiterade preliminärskatten (F-skatten) i debet på 2518 Betald F-skatt och kredit 1630. I bokslutet kvittas 2518 mot den beräknade skatten på 2512. I en enskild firma är skatten privat och bokförs som eget uttag på 2013."}},
+ {"@type":"Question","name":"Hur bokförs ränta på skattekontot?","acceptedAnswer":{"@type":"Answer","text":"Intäktsränta på skattekontot är skattefri och bokförs på 8314 Skattefria ränteintäkter. Kostnadsränta är inte avdragsgill och bokförs på 8423 Räntekostnader för skatter och avgifter. Båda ska justeras i inkomstdeklarationen."}},
+ {"@type":"Question","name":"Hur laddar man ner kontoutdraget från skattekontot?","acceptedAnswer":{"@type":"Answer","text":"Logga in på Skatteverkets e-tjänst Skattekonto, välj Transaktioner och fliken Bokförda, välj period och ladda ner filen. Filen kan läsas in här som den är. Det går också att kopiera raderna från sidan och klistra in dem."}},
+ {"@type":"Question","name":"Varför stämmer inte 1630 med skattekontot?","acceptedAnswer":{"@type":"Answer","text":"Vanliga orsaker är att en transaktion bokats på fel datum, att räntor inte bokförts, att en inbetalning bokförts två gånger eller att en debitering bokats som skuld utan att den dragits från skattekontot. Med alla rader från kontoutdraget bokförda en och en ska saldot stämma dag för dag."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Skattekontot<span>·</span>SIE</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Bokföra skattekontot – från Skatteverkets fil till SIE</h1>
+    <p class="lead" data-i18n="lead">Läs in kontoutdraget från skattekontot. Varje rad får sitt <strong>konto</strong> – arbetsgivaravgifter, personalskatt, moms, F-skatt, ränta och inbetalningar – och saldot <strong>stäms av</strong> mot in- och utgående saldo. Ladda ner allt som en <strong>SIE-fil med en verifikation per rad</strong> och läs in den i bokföringsprogrammet.</p>
+  </section>
+
+  <section class="card calc" id="calc">
+    <div class="row"><h2 data-i18n="calc-h">Kontoutdraget</h2>
+      <div class="actions"><button id="sample" class="btn ghost small" type="button" data-i18n="sample">Visa exempel</button><button id="clear" class="link small" type="button" data-i18n="clear">Rensa</button></div></div>
+    <div id="drop" class="drop" tabindex="0" role="button" aria-label="Välj fil">
+      <p class="drop-main" data-i18n="drop">Släpp filen från skattekontot här eller klicka för att välja</p>
+      <p class="muted small" data-i18n="drop-p">CSV eller Excel från e-tjänsten Skattekonto, eller den äldre .skv-filen.</p>
+      <input type="file" id="file" accept=".csv,.skv,.txt,.xlsx" hidden>
+    </div>
+    <details class="paste"><summary data-i18n="paste-s">…eller klistra in rader från e-tjänsten</summary>
+      <textarea id="paste" data-i18n-ph="paste-ph" placeholder="2026-07-12  Arbetsgivaravgift juni 2026  -15 710"></textarea>
+      <button id="paste-go" class="btn ghost small" type="button" data-i18n="paste-go">Läs in raderna</button>
+    </details>
+    <div class="grid">
+      <label><span data-i18n="l-type">Företagsform</span><select id="f-type"><option value="AB" data-i18n="o-ab">Aktiebolag, ekonomisk förening, HB</option><option value="EF" data-i18n="o-ef">Enskild firma</option></select></label>
+      <label><span data-i18n="l-sk">Konto för skattekontot</span><input type="text" id="f-sk" inputmode="numeric" value="1630"></label>
+      <label><span data-i18n="l-bank">Bankkonto</span><input type="text" id="f-bank" inputmode="numeric" value="1930"></label>
+      <label><span data-i18n="l-serie">Verifikationsserie</span><input type="text" id="f-serie" value="A"></label>
+      <label><span data-i18n="l-nr">Första verifikationsnummer</span><input type="text" id="f-nr" inputmode="numeric" value="1"></label>
+    </div>
+    <p class="muted small" data-i18n="saved">Filen läses bara i den här webbläsaren. Inget skickas iväg.</p>
+  </section>
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+
+  <section id="result" class="card" hidden>
+    <h2 id="r-title">Resultat</h2>
+    <p id="r-meta" class="muted small"></p>
+    <div id="check" class="check ok"></div>
+    <div class="stats" id="stats"></div>
+    <div id="flags" class="flags" hidden></div>
+    <h3 data-i18n="sum-h">Per konto</h3>
+    <div class="tbl"><table id="sum-t"><thead></thead><tbody></tbody><tfoot></tfoot></table></div>
+    <h3 data-i18n="rows-h">Transaktioner</h3>
+    <p class="hint" data-i18n="rows-p">Ändra kontot på en rad om du bokför annorlunda. Rader utan konto (gula) måste få ett konto innan filen kan skapas.</p>
+    <div class="tbl"><table id="rows-t"><thead></thead><tbody></tbody></table></div>
+
+    <section id="paid">
+      <h2 data-i18n="paid-h">SIE-fil, Excel och avstämning</h2>
+      <p class="small" data-i18n="paid-p">Få <strong>en verifikation per rad</strong> som SIE-fil att läsa in i Fortnox, Visma, Bokio eller annat program, ett <strong>Excel-underlag</strong> med konteringar och avstämning, och en utskrift att spara med bokföringen.</p>
+      <div class="row"><button id="paid-open" class="btn" type="button"><span data-i18n="open">Visa verifikationer och filer</span></button></div>
+      <div id="paid-out" hidden>
+        <h3 data-i18n="ver-h">Verifikationer</h3>
+        <div id="ver" class="besked"></div>
+        <div class="dlrow"><button id="sie" class="btn" type="button" data-i18n="sie">Ladda ner SIE-fil</button><button id="xlsx" class="btn ghost" type="button" data-i18n="xlsx">Ladda ner Excel</button><button id="print" class="btn ghost" type="button" data-i18n="print">Skriv ut avstämning</button></div>
+        <p id="dl-msg" class="status"></p>
+      </div>
+    </section>
+  </section>
+
+  <aside class="cta card">
+    <p><strong data-i18n="cta-h">Fler filer till bokföringen:</strong> <span data-i18n="cta-p"><a href="../stripe-till-sie/">Stripe till SIE</a> gör samma sak med utbetalningsrapporten från Stripe, och <a href="../sie-till-excel/">SIE till Excel</a> visar hela bokföringen som kalkylblad när du vill kontrollera att 1630 stämmer.</span></p>
+  </aside>
+
+  <section class="prose">
+    <h2>Så fungerar skattekontot i bokföringen</h2>
+    <p>Alla skatter och avgifter som ett företag betalar till Skatteverket går genom <strong>skattekontot</strong>. Arbetsgivaravgifter, avdragen skatt för de anställda, moms och preliminärskatt dras från kontot, och företagets inbetalningar, överskjutande skatt och ränta läggs till. I bokföringen speglas skattekontot av ett eget konto, normalt <strong>1630 Avräkning för skatter och avgifter (skattekonto)</strong>. När varje händelse på skattekontot är bokförd för sig stämmer saldot på 1630 med Skatteverkets saldo, dag för dag.</p>
+    <p>I praktiken är det just detta som tar tid. Kontoutdraget har ofta tjugo eller trettio rader per kvartal, och varje rad ska konteras: en inbetalning mot banken, arbetsgivaravgifterna mot avräkningskontot för sociala avgifter, personalskatten mot 2710, momsen mot redovisningskontot. Många bokföringsprogram kan hämta transaktionerna själva, men långt ifrån alla – och i en del program måste filen först skrivas om till programmets egen mall. Det här verktyget läser filen som den är och skapar en <strong>SIE-fil</strong>, det standardformat som alla svenska bokföringsprogram kan läsa in.</p>
+    <h3>Kontering rad för rad</h3>
+    <p>Verktyget känner igen texterna i Skatteverkets kontoutdrag och föreslår konto. Regeln är densamma för varje rad: ökar raden saldot på skattekontot debiteras 1630, minskar den saldot krediteras 1630. Motkontot väljs efter vad raden gäller.</p>
+    <ul>
+      <li><strong>Inbetalning bokförd</strong> och <strong>Utbetalning</strong> – mot bankkontot, normalt 1930.</li>
+      <li><strong>Arbetsgivaravgift</strong> – mot 2731 Avräkning lagstadgade sociala avgifter, där avgiften bokades när lönen betalades.</li>
+      <li><strong>Avdragen skatt</strong> – mot 2710 Personalskatt.</li>
+      <li><strong>Moms</strong> – mot 2650 Redovisningskonto för moms, dit momsen flyttades när deklarationen gjordes.</li>
+      <li><strong>Debiterad preliminärskatt</strong> – i ett aktiebolag mot 2518 Betald F-skatt. I en enskild firma är skatten ägarens egen och bokförs som eget uttag på 2013.</li>
+      <li><strong>Slutlig skatt</strong> – i ett aktiebolag mot 2510 Skatteskulder. I en enskild firma som eget uttag (2013) eller egen insättning (2018).</li>
+      <li><strong>Särskild löneskatt</strong> på pensionskostnader – mot 2514.</li>
+      <li><strong>Intäktsränta</strong> – 8314 Skattefria ränteintäkter. <strong>Kostnadsränta</strong> – 8423 Räntekostnader för skatter och avgifter.</li>
+      <li><strong>Förseningsavgift</strong>, skattetillägg och kontrollavgift – 6992 Övriga externa kostnader, ej avdragsgilla.</li>
+    </ul>
+    <p>Rader som verktyget inte känner igen markeras gula. Välj konto för dem i listan – du kan också ändra kontot på vilken rad som helst om ni bokför på ett annat sätt.</p>
+    <h3>Räntan på skattekontot</h3>
+    <p>Skatteverket beräknar <strong>intäktsränta</strong> när det finns ett överskott på kontot och <strong>kostnadsränta</strong> vid underskott. Intäktsräntan är skattefri och kostnadsräntan får inte dras av. Därför bokförs de på egna konton – 8314 och 8423 – så att de är lätta att justera i inkomstdeklarationen: intäktsräntan dras av och kostnadsräntan läggs tillbaka. Detsamma gäller förseningsavgifter och skattetillägg, som inte heller är avdragsgilla.</p>
+    <h3>Avstämning mot saldot</h3>
+    <p>Kontoutdraget innehåller ingående och utgående saldo. Verktyget kontrollerar att ingående saldo plus alla rader blir utgående saldo, så att inga rader saknas i filen. Har filen ett löpande saldo per rad används det i stället. Stämmer det inte visas skillnaden – då saknas troligen rader i början eller slutet av perioden. När du har läst in SIE-filen ska saldot på 1630 i bokföringen vara detsamma som utgående saldo på skattekontot, förutsatt att 1630 stämde vid periodens början.</p>
+    <h3>Så laddar du ner filen</h3>
+    <p>Logga in på <strong>e-tjänsten Skattekonto</strong> hos Skatteverket, välj <strong>Transaktioner</strong> och fliken <strong>Bokförda</strong>, välj period och ladda ner. Filen läses in direkt här, oavsett om det är CSV, Excel eller den äldre .skv-filen. Det går också att markera raderna på sidan, kopiera och klistra in dem i rutan ovan. Välj en period som börjar dagen efter den senast bokförda raden, så blir ingenting dubbelbokat.</p>
+    <h3>Gratis och betalt</h3>
+    <p>Inläsningen, konteringen per rad, summeringen per konto och saldoavstämningen är gratis. När du låser upp får du verifikationerna, SIE-filen med en verifikation per rad och ett Excel-underlag med transaktioner, konteringar, summering och avstämning. Verktyget är ett hjälpmedel – kontrollera konteringen mot hur ni bokför löner och moms.</p>
+  </section>
+
+  <section class="prose faq">
+    <h2>Vanliga frågor</h2>
+    <details><summary>Ska man bokföra skattekontot varje månad?</summary><p>Det enklaste är att bokföra kontoutdraget löpande, till exempel en gång i månaden efter den 12:e då arbetsgivaravgifter och moms dras. Senast vid bokslutet ska 1630 stämma med skattekontot.</p></details>
+    <details><summary>Behöver en enskild firma bokföra skattekontot?</summary><p>Många enskilda firmor bokför bara betalningarna, eftersom F-skatten är privat. Har firman anställda eller moms är det ändå tydligare att bokföra kontot – välj ”Enskild firma” så går preliminärskatten mot eget uttag.</p></details>
+    <details><summary>Varför 2518 och inte 2510 för F-skatten?</summary><p>2518 samlar den F-skatt som betalats under året. I bokslutet ställs den mot bolagets beräknade skatt, och skillnaden blir skuld eller fordran. 2510 används för slutlig skatt enligt beslut.</p></details>
+    <details><summary>Vilka program kan läsa SIE-filen?</summary><p>Fortnox, Visma eEkonomi, Bokio, BL Bokföring och de flesta andra svenska bokföringsprogram kan läsa in verifikationer från en SIE 4-fil.</p></details>
+    <details><summary>Skickas mina uppgifter någonstans?</summary><p><strong>Nej.</strong> Filen läses och räknas i webbläsaren och lämnar aldrig datorn.</p></details>
+  </section>
+
+  <section class="prose src">
+    <h2>Källor</h2>
+    <ul>
+      <li><a href="https://www.skatteverket.se/foretag/skatterochavdrag/skattekontobetalaochfatillbaka.4.6a6688231259309ff1f800029122.html" rel="noopener">Skatteverket: Skattekonto – betala och få tillbaka skatt</a></li>
+      <li><a href="https://www.skatteverket.se/foretag/skatterochavdrag/skattekontobetalaochfatillbaka/ranta.106.233f91f71260075abe8800010888.html" rel="noopener">Skatteverket: Ränta på skattekontot</a> (intäktsräntan är skattefri, kostnadsräntan ger inget avdrag)</li>
+      <li><a href="https://www.bas.se/kontoplaner/" rel="noopener">BAS kontoplan 2026</a> (1630, 2510, 2514, 2518, 2650, 2710, 2731, 6992, 8314, 8423)</li>
+    </ul>
+  </section>
+</main>
+<footer class="wrap muted small foot">Fristående verktyg – inte anslutet till Skatteverket eller något bokföringsprogram. Konteringen är ett hjälpmedel; stäm av mot er bokföring och redovisningskonsult. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
+
+<dialog id="paywall">
+  <h2 data-i18n="pw-h">SIE-fil, Excel och avstämning</h2>
+  <p data-i18n="pw-p">Lås upp verifikationerna, SIE-filen med en verifikation per rad och Excel-underlaget. Inläsning, kontering och saldoavstämning är alltid gratis.</p>
+</dialog>
+<div id="print-root"></div>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/kit.js"></script>
+<script src="js/csv.js"></script>
+<script src="js/xlsx-read.js"></script>
+<script src="js/xlsx-writer.js"></script>
+<script src="js/sie-writer.js"></script>
+<script src="js/skattekonto.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

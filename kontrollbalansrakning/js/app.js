@@ -34,7 +34,7 @@
     'rev-4': 'The tool gives no legal advice. The board is responsible for the valuations and for meeting the deadlines.',
     'pw-h': 'Kontrollbalansräkning and control meeting', 'pw-p': 'Unlock adjustments under ch. 25 § 14, the print-ready kontrollbalansräkning, deadlines, notice and minutes and the Excel file. Reading, the capital test and the month table are always free.',
     'sie-link': 'Want the whole ledger in Excel? <a href="../sie-till-excel/">Open the SIE file in SIE to Excel</a>.',
-    'pension-link': 'Before you close the books you can also work out how much the company may contribute to occupational pension in <a href="../pensionsavsattning-aktiebolag/">Pension contribution in a limited company</a>.'
+    'pension-link': 'Before you close the books you can also work out how much the company may contribute to occupational pension in <a href="../pensionsavsattning-aktiebolag/">Pension contribution in a limited company</a>.<span data-needs="semesterloneskuld"> The holiday pay liability is in <a href="../semesterloneskuld/">Holiday pay liability at year-end</a>.</span>'
   };
   var SV = {};
   var T = {

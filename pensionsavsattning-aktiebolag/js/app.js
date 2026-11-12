@@ -29,7 +29,7 @@
     print: 'Print pack',
     xlsx: 'Download Excel',
     'cta-h': 'Also thinking about salary or dividends?',
-    'cta-p': 'When the contribution is settled you can work out the dividend allowance and the tax on dividends in <a href="../gransbelopp-utdelning/">Gränsbelopp 2026 – the 3:12 calculator</a>. Before closing the books: <a href="../kontrollbalansrakning/">Kontrollbalansräkning from a SIE file</a> shows whether half the share capital has been used up.',
+    'cta-p': 'When the contribution is settled you can work out the dividend allowance and the tax on dividends in <a href="../gransbelopp-utdelning/">Gränsbelopp 2026 – the 3:12 calculator</a>. Before closing the books: <a href="../kontrollbalansrakning/">Kontrollbalansräkning from a SIE file</a> shows whether half the share capital has been used up.<span data-needs="semesterloneskuld"> If the company has employees, <a href="../semesterloneskuld/">Holiday pay liability at year-end</a> works out the liability and employer contributions with a ready journal entry.</span>',
     'pw-h': 'Comparison, bookkeeping and Excel pack',
     'pw-p': 'Unlock the comparison of pension, salary and profit left in the company, the bookkeeping suggestion, the INK2 basis and the Excel file. Deduction room and special payroll tax per person are always free.',
     'ph-name': 'Name (optional)',

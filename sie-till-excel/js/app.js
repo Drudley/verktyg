@@ -4,6 +4,8 @@
   var doc = null, year = '0', verList = [], verShown = 0, PAGE = 100, lang = 'sv';
   var nf = new Intl.NumberFormat('sv-SE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   var EN = {
+    /*needs:bokfora-skattekonto*/'link-sk': 'Does 1630 not match? <a href="../bokfora-skattekonto/">Book the tax account</a> turns Skatteverket’s statement into a SIE file with one journal entry per row.',/*/needs*/
+    /*needs:representation-moms*/'link-rep': 'Entertainment on 6071/6072 or 7631/7632? <a href="../representation-moms/">Entertainment – VAT and deductions</a> works out deductible VAT and cost per occasion.',/*/needs*/
     h1: 'SIE file to Excel', lead: 'Open a Swedish SIE accounting file in your browser and get vouchers, chart of accounts, trial balance and monthly P&L – ready for Excel. <strong>The file never leaves your computer.</strong>',
     drop: 'Drop your SIE file here or <u>choose file</u>', dropsub: '.se, .si, .sie · SIE 1–4 · PC8/CP437, UTF-8', sample: 'Try a sample file',
     year: 'Fiscal year', export: 'Download Excel (.xlsx)', 't-ver': 'Vouchers', 't-sb': 'Trial balance', 't-acc': 'Accounts', 't-info': 'Company',

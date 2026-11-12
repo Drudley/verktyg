@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Semesterlöneskuld i bokslutet – beräkna semesterskuld och bokför (2026)</title>
+<meta name="description" content="Beräkna semesterlöneskulden per anställd inför bokslutet 2026: sparade, outtagna och intjänade dagar, semestertillägg 0,43 %, procentregeln 12 % och arbetsgivaravgifter – med bokföring på 2920/2940 och SIE-fil. Allt i webbläsaren.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/semesterloneskuld/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/semesterloneskuld/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Semesterlöneskuld i bokslutet – beräkna semesterskuld och bokför">
+<meta property="og:description" content="Semesterlöneskuld per anställd med arbetsgivaravgifter, förändring mot förra årets skuld, verifikation och SIE-fil. Uppgifterna lämnar aldrig webbläsaren.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#9a3412">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%239a3412'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/semesterloneskuld/","name":"Semesterlöneskuld i bokslutet – beräkna semesterskuld och bokför","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Beräknar semesterlöneskulden per anställd vid bokslut: sparade och outtagna semesterdagar och intjänade dagar under pågående intjänandeår enligt sammalöneregeln eller procentregeln, semestertillägg och arbetsgivaravgifter. Ger förändringen mot ingående skuld, en verifikation på konto 2920, 2940, 7290 och 7519 och en SIE-fil. Allt sker i webbläsaren.",
+ "offers":[{"@type":"Offer","price":"0","priceCurrency":"SEK","description":"Gratis grundfunktion"},{"@type":"Offer","price":"99","priceCurrency":"SEK","description":"Bokslutsverifikation, SIE-fil, Excel-underlag och utskrift","url":"https://drudley.gumroad.com/l/semesterloneskuld"}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hur räknar man ut semesterlöneskulden?","acceptedAnswer":{"@type":"Answer","text":"Semesterlöneskulden är antalet semesterdagar som de anställda har tjänat in men inte tagit ut, gånger värdet av en dag, plus arbetsgivaravgifter. Med sammalöneregeln är en dag värd en dagslön (ofta 4,6 procent av månadslönen) plus semestertillägget 0,43 procent av månadslönen. Med procentregeln är semesterlönen 12 procent av den semesterlönegrundande lönen."}},
+ {"@type":"Question","name":"Vilka dagar ska ingå i semesterlöneskulden vid bokslutet?","acceptedAnswer":{"@type":"Answer","text":"Sparade dagar från tidigare år, betalda dagar för det pågående semesteråret som ännu inte tagits ut och de dagar som tjänats in under det pågående intjänandeåret fram till bokslutsdagen. Med semesterlagens intjänandeår från 1 april har en heltidsanställd vid årsskiftet tjänat in nio tolftedelar av 25 dagar, alltså 18,75 dagar."}},
+ {"@type":"Question","name":"Hur bokför man semesterlöneskulden?","acceptedAnswer":{"@type":"Answer","text":"Vid bokslutet justeras skulden till beräknat belopp. Ökningen bokförs i debet på 7290 Förändring av semesterlöneskuld och kredit på 2920 Upplupna semesterlöner. Arbetsgivaravgifterna på förändringen bokförs i debet på 7519 och kredit på 2940. Minskar skulden blir posterna omvända."}},
+ {"@type":"Question","name":"Ska arbetsgivaravgifter räknas på semesterlöneskulden?","acceptedAnswer":{"@type":"Answer","text":"Ja. Skulden ska motsvara kostnaden när dagarna betalas ut, och då betalar arbetsgivaren arbetsgivaravgifter. Normalt 31,42 procent 2026, 10,21 procent för den som fyllt 67 vid årets ingång och 20,81 procent för 19–23-åringar på lön upp till 25 000 kronor i månaden från 1 april 2026."}},
+ {"@type":"Question","name":"Behöver ett aktiebolag utan anställda räkna semesterlöneskuld?","acceptedAnswer":{"@type":"Answer","text":"En ägare som är anställd i sitt eget aktiebolag omfattas i regel inte av semesterlagen om hen är företagsledare med ägarinflytande, och många bolag bokar därför ingen semesterlöneskuld för ägaren. Har bolaget avtalat semester med ägaren eller har andra anställda ska skulden bokas."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Semesterlöneskuld<span>·</span>bokslut</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Semesterlöneskuld i bokslutet – beräkna semesterskulden och bokför</h1>
+    <p class="lead" data-i18n="lead">Skriv in månadslön och semesterdagar för varje anställd. Verktyget räknar <strong>semesterlöneskulden per person</strong> – sparade, outtagna och intjänade dagar enligt <strong>sammalöneregeln</strong> eller <strong>procentregeln 12&nbsp;%</strong> – plus <strong>arbetsgivaravgifter</strong>, och jämför med förra årets skuld. Ladda ner verifikationen som SIE-fil och ett Excel-underlag till revisorn.</p>
+  </section>
+
+  <section class="card calc" id="calc">
+    <div class="row"><h2 data-i18n="calc-h">Bolaget och bokslutet</h2>
+      <div class="actions"><button id="sample" class="btn ghost small" type="button" data-i18n="sample">Visa exempel</button><button id="clear" class="link small" type="button" data-i18n="clear">Rensa</button></div></div>
+    <div class="grid">
+      <label><span data-i18n="l-co">Bolagets namn (valfritt)</span><input type="text" id="f-co" autocomplete="organization"></label>
+      <label><span data-i18n="l-org">Organisationsnummer (valfritt)</span><input type="text" id="f-org" inputmode="numeric" placeholder="559999-0000" autocomplete="off"></label>
+      <label><span data-i18n="l-closing">Bokslutsdag</span><input type="text" id="f-closing" inputmode="numeric" placeholder="2026-12-31" value="2026-12-31"></label>
+      <label><span data-i18n="l-start">Intjänandeåret börjar</span><select id="f-start"><option value="apr" data-i18n="o-apr">1 april (semesterlagen)</option><option value="jan" data-i18n="o-jan">1 januari (kalenderår)</option></select></label>
+      <label><span data-i18n="l-per">Betalda semesterdagar per år</span><input type="text" id="f-per" inputmode="decimal" value="25"></label>
+    </div>
+    <h3 data-i18n="day-h">Värdet av en semesterdag (sammalöneregeln)</h3>
+    <div class="preset"><button type="button" class="btn ghost small" data-preset="lag" data-i18n="p-lag">Semesterlagen: 4,6 % + 0,43 %</button><button type="button" class="btn ghost small" data-preset="avtal" data-i18n="p-avtal">Tjänstemannaavtal: 4,6 % + 0,8 %</button><button type="button" class="btn ghost small" data-preset="d21" data-i18n="p-d21">Månadslön / 21 + 0,43 %</button></div>
+    <div class="grid">
+      <label><span data-i18n="l-day">Dagslön, % av månadslönen</span><input type="text" id="f-day" inputmode="decimal" value="4,6"></label>
+      <label><span data-i18n="l-add">Semestertillägg per dag, % av månadslönen</span><input type="text" id="f-add" inputmode="decimal" value="0,43"></label>
+      <label><span data-i18n="l-ibs">Bokförd skuld 2920 före bokslut, kr</span><input type="text" id="f-ibs" inputmode="decimal" placeholder="0"></label>
+      <label><span data-i18n="l-iba">Bokförda avgifter 2940 före bokslut, kr</span><input type="text" id="f-iba" inputmode="decimal" placeholder="0"></label>
+    </div>
+
+    <div class="row people-h"><h3 data-i18n="pe-h">Anställda</h3>
+      <button id="add" class="btn ghost small" type="button" data-i18n="add">Lägg till anställd</button></div>
+    <div id="people"></div>
+    <p class="hint" data-i18n="h-people">Lämna ”intjänade dagar” tomt så räknas de fram från bokslutsdagen. Procentregeln är för timavlönade och rörlig lön: fyll i semesterlönegrundande lön för förra intjänandeåret och hittills i år.</p>
+    <p class="muted small" data-i18n="saved">Uppgifterna sparas bara i den här webbläsaren. Inget skickas iväg.</p>
+  </section>
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+
+  <section id="result" class="card" hidden>
+    <h2 id="r-title">Resultat</h2>
+    <p id="r-meta" class="muted small"></p>
+    <div id="check" class="check ok"></div>
+    <div class="stats" id="stats"></div>
+    <div id="flags" class="flags" hidden></div>
+    <div class="tbl"><table id="per-t"><thead></thead><tbody></tbody><tfoot></tfoot></table></div>
+
+    <section id="paid">
+      <h2 data-i18n="paid-h">Verifikation, SIE-fil och Excel-underlag</h2>
+      <p class="small" data-i18n="paid-p">Få <strong>bokslutsverifikationen</strong> för förändringen mot bokförd skuld (7290/2920 och 7519/2940), en <strong>SIE-fil</strong> att läsa in i Fortnox, Visma, Bokio eller annat program och ett <strong>Excel-underlag per anställd</strong> att spara som bokslutsbilaga.</p>
+      <div class="row"><button id="paid-open" class="btn" type="button"><span data-i18n="open">Visa verifikation och underlag</span></button></div>
+      <div id="paid-out" hidden>
+        <h3 data-i18n="ver-h">Bokslutsverifikation</h3>
+        <div id="ver" class="besked"></div>
+        <div class="dlrow"><button id="sie" class="btn" type="button" data-i18n="sie">Ladda ner SIE-fil</button><button id="xlsx" class="btn ghost" type="button" data-i18n="xlsx">Ladda ner Excel</button><button id="print" class="btn ghost" type="button" data-i18n="print">Skriv ut bokslutsbilaga</button></div>
+        <p id="dl-msg" class="status"></p>
+      </div>
+    </section>
+  </section>
+
+  <aside class="cta card">
+    <p><strong data-i18n="cta-h">Mer inför bokslutet:</strong> <span data-i18n="cta-p"><a href="../pensionsavsattning-aktiebolag/">Pensionsavsättning i aktiebolag</a> räknar avdragsutrymmet och den särskilda löneskatten före årsskiftet, och <a href="../kontrollbalansrakning/">Kontrollbalansräkning från SIE-fil</a> visar om halva aktiekapitalet är förbrukat.</span></p>
+  </aside>
+
+  <section class="prose">
+    <h2>Vad är semesterlöneskuld?</h2>
+    <p>Varje dag en anställd arbetar tjänar hen in rätt till betald semester. Så länge dagarna inte är uttagna är de en skuld från företaget till den anställda – en <strong>semesterlöneskuld</strong>, ibland kallad semesterskuld. Vid bokslutet ska skulden värderas till vad det kommer att kosta när dagarna tas ut eller betalas som semesterersättning, och bokas upp som en upplupen kostnad i balansräkningen. Skulden ska också ha med de <strong>arbetsgivaravgifter</strong> som betalas när semesterlönen betalas ut.</p>
+    <p>Lönesystem räknar ofta skulden automatiskt, men i mindre bolag sköts lönen i ett enkelt program eller av en byrå, och inför bokslutet blir det ägaren eller redovisningskonsulten som ska räkna fram och stämma av beloppet. Det är det här verktyget gör: du skriver in lön och dagar, och får skulden per person, totalen, förändringen mot vad som redan är bokfört och en färdig verifikation.</p>
+    <h3>Vilka dagar räknas med?</h3>
+    <p>Semesterlagen bygger på ett <strong>intjänandeår</strong> och ett <strong>semesterår</strong>, båda från 1 april till 31 mars. Dagarna tjänas in det ena året och tas ut det följande. Vid ett bokslut den 31 december finns därför tre sorters dagar som ska med:</p>
+    <ul>
+      <li><strong>Sparade dagar</strong> från tidigare år. Den som har fler än 20 betalda dagar får spara överskjutande dagar, och de ska tas ut inom fem år.</li>
+      <li><strong>Outtagna betalda dagar</strong> för det pågående semesteråret, det vill säga dagar som tjänades in förra intjänandeåret men inte har tagits ut ännu.</li>
+      <li><strong>Intjänade dagar</strong> under det pågående intjänandeåret fram till bokslutsdagen. Med intjänandeår från 1 april har en heltidsanställd den 31 december tjänat in nio tolftedelar av 25 dagar, alltså 18,75 dagar. Lämnar du fältet tomt räknar verktyget fram antalet från bokslutsdagen.</li>
+    </ul>
+    <p>Många företag har ett <strong>förskjutet semesterår</strong> där intjänandeåret är kalenderåret. Då har alla årets 25 dagar tjänats in vid årsskiftet. Välj ”1 januari” så räknas det rätt.</p>
+    <h3>Sammalöneregeln: dagslön plus semestertillägg</h3>
+    <p>För den som har fast månadslön gäller <strong>sammalöneregeln</strong>: under semestern får den anställda sin vanliga lön plus ett <strong>semestertillägg på 0,43 procent av månadslönen</strong> för varje betald semesterdag. Kollektivavtal för tjänstemän ger ofta 0,8 procent. När skulden ska värderas behöver du dessutom värdet av en dagslön – det vanliga är <strong>4,6 procent av månadslönen</strong>, men en del räknar månadslönen delad med 21. Du väljer själv, och kan ändra procentsatserna.</p>
+    <p class="formula">35&nbsp;000 kr × (4,6&nbsp;% + 0,43&nbsp;%) = 1&nbsp;760,50 kr per dag</p>
+    <p>En anställd med 35&nbsp;000 kronor i månadslön och 26,75 dagar att fordra ger då en skuld på 47&nbsp;093 kronor, plus 31,42 procent i arbetsgivaravgifter, 14&nbsp;797 kronor. Med månadslön delad med 21 blir en dag i stället värd 1&nbsp;817,17 kronor.</p>
+    <h3>Procentregeln: 12 procent för timlön och rörlig lön</h3>
+    <p>För timavlönade, för den som har en rörlig lönedel på minst tio procent och för den som har ändrat sysselsättningsgrad gäller <strong>procentregeln</strong>: semesterlönen är <strong>12 procent</strong> av den semesterlönegrundande lönen under intjänandeåret. Skulden blir då 12 procent av lönen som tjänats in hittills i år, plus värdet av outtagna dagar från förra året (12 procent av förra årets lön delat med antalet betalda dagar).</p>
+    <h3>Arbetsgivaravgifter på skulden</h3>
+    <p>Skulden ska räknas inklusive arbetsgivaravgifter. 2026 är den vanliga avgiften <strong>31,42 procent</strong>. Den som fyllt 67 vid årets ingång (född 1938–1958) har bara ålderspensionsavgift, 10,21 procent, och för den som är född 1937 eller tidigare betalas ingen avgift. Från 1 april 2026 gäller dessutom en tillfälligt sänkt avgift på <strong>20,81 procent</strong> för 19–23-åringar på lön upp till 25&nbsp;000 kronor i månaden. Välj avgift per person.</p>
+    <h3>Så bokförs semesterlöneskulden</h3>
+    <p>Under året bokförs semesterlönen som vanlig lön. Vid bokslutet justeras skulden på <strong>2920 Upplupna semesterlöner</strong> till det beräknade beloppet, med motkonto <strong>7290 Förändring av semesterlöneskuld</strong>. Avgifterna justeras på <strong>2940</strong> mot <strong>7519 Sociala avgifter för semester- och löneskulder</strong>. Har skulden minskat sedan förra bokslutet blir posterna omvända. Fyll i vad som står bokfört på 2920 och 2940 innan bokslutet, så räknar verktyget fram förändringen och bygger verifikationen.</p>
+    <h3>Ägare i aktiebolag</h3>
+    <p>En ägare som är företagsledare i sitt eget aktiebolag omfattas oftast inte av semesterlagen. Många fåmansbolag bokar därför ingen semesterlöneskuld för ägaren – men har ni avtalat om semester, eller har bolaget andra anställda, ska skulden med. Lämna ägaren utanför listan om ingen semester är avtalad.</p>
+    <h3>Gratis och betalt</h3>
+    <p>Skulden per person, totalen och arbetsgivaravgifterna är gratis. När du låser upp får du bokslutsverifikationen, SIE-filen och Excel-underlaget med en flik per del: sammanfattning, anställda, verifikation och källor. Uträkningen är ett hjälpmedel, inte lönerådgivning – stäm av mot lönesystemet och kollektivavtalet.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Semesterlöneskuld – vanliga frågor</h2>
+    <details open><summary>Hur räknar man ut semesterlöneskulden?</summary><p>Antalet dagar som tjänats in men inte tagits ut, gånger värdet av en dag, plus arbetsgivaravgifter. Med sammalöneregeln är en dag värd en dagslön (oftast 4,6&nbsp;% av månadslönen) plus semestertillägget 0,43&nbsp;%. Med procentregeln är semesterlönen 12&nbsp;% av den semesterlönegrundande lönen.</p></details>
+    <details><summary>Vilka dagar ska med i skulden vid bokslutet?</summary><p>Sparade dagar, outtagna betalda dagar för det pågående semesteråret och dagar som tjänats in hittills under det pågående intjänandeåret.</p></details>
+    <details><summary>Hur bokför man semesterlöneskulden?</summary><p>Ökning: debet 7290, kredit 2920 för skulden och debet 7519, kredit 2940 för avgifterna. Minskning: omvänt.</p></details>
+    <details><summary>Ska arbetsgivaravgifter med?</summary><p><strong>Ja.</strong> 31,42&nbsp;% 2026 för de flesta, 10,21&nbsp;% för den som fyllt 67 vid årets ingång och 20,81&nbsp;% för 19–23-åringar på lön upp till 25&nbsp;000 kr/mån från 1 april 2026.</p></details>
+    <details><summary>Vad är skillnaden mellan semesterlön och semesterersättning?</summary><p>Semesterlön betalas när semestern tas ut. Semesterersättning betalas i pengar när anställningen upphör och dagarna inte har tagits ut. Skulden i bokslutet täcker båda fallen.</p></details>
+    <details><summary>Skickas mina uppgifter någonstans?</summary><p><strong>Nej.</strong> Allt räknas i webbläsaren. Namn och löner sparas bara lokalt i den här webbläsaren tills du rensar dem.</p></details>
+  </section>
+
+  <section class="prose src">
+    <h2>Källor</h2>
+    <ul>
+      <li><a href="https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/semesterlag-1977480_sfs-1977-480/" rel="noopener">Semesterlag (1977:480)</a> (3, 4, 16 a, 16 b och 18 §§)</li>
+      <li><a href="https://www.skatteverket.se/foretag/arbetsgivare/arbetsgivaravgifterochskatteavdrag/arbetsgivaravgifter.4.233f91f71260075abe8800020817.html" rel="noopener">Skatteverket: Arbetsgivaravgifter</a> (31,42&nbsp;%, 10,21&nbsp;%, 20,81&nbsp;% för 19–23 år)</li>
+      <li><a href="https://www.bas.se/kontoplaner/" rel="noopener">BAS kontoplan 2026</a> (2920, 2940, 7290, 7519)</li>
+    </ul>
+  </section>
+</main>
+<footer class="wrap muted small foot">Fristående verktyg – inte anslutet till Skatteverket eller något lönesystem. Uträkningen är ett hjälpmedel; stäm av mot lönesystem, avtal och redovisningskonsult. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
+
+<dialog id="paywall">
+  <h2 data-i18n="pw-h">Verifikation, SIE-fil och Excel-underlag</h2>
+  <p data-i18n="pw-p">Lås upp bokslutsverifikationen, SIE-filen och Excel-underlaget per anställd. Skulden per person och arbetsgivaravgifterna är alltid gratis.</p>
+</dialog>
+<div id="print-root"></div>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/kit.js"></script>
+<script src="js/xlsx-writer.js"></script>
+<script src="js/sie-writer.js"></script>
+<script src="js/semester.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

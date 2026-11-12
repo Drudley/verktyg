@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Representation 2026 – räkna avdragsgill moms och bokför (6071/6072)</title>
+<meta name="description" content="Räkna avdragsgill moms och kostnad för representation 2026: 300-kronorsgränsen, proportionering eller schablon 46/33 kr med alkohol, enklare förtäring 60 kr, golf och teater 180 kr, gåvor 300 kr – med kontering på 6071/6072/7631/7632 och SIE-fil.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/representation-moms/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/representation-moms/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Representation – avdragsgill moms och bokföring 2026">
+<meta property="og:description" content="Avdragsgill moms och kostnad per representationstillfälle med de nya matmomsreglerna från 1 april 2026, kontering och SIE-fil. Allt i webbläsaren.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#a21caf">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23a21caf'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3ER%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/representation-moms/","name":"Representation – avdragsgill moms och bokföring","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Räknar avdragsgill ingående moms och avdragsgill kostnad för extern och intern representation enligt Skatteverkets regler 2026: underlag högst 300 kronor per person för mat och dryck, proportionering eller schablon 46 eller 33 kronor vid alkohol, 180 kronor för teater, golf och kringkostnader, enklare förtäring högst 60 kronor och representationsgåvor 300 kronor. Ger kontering på 6071, 6072, 7631, 7632 och 2641 och en SIE-fil.",
+ "offers":[{"@type":"Offer","price":"0","priceCurrency":"SEK","description":"Gratis grundfunktion"},{"@type":"Offer","price":"79","priceCurrency":"SEK","description":"Kontering, SIE-fil, Excel och representationsunderlag","url":"https://drudley.gumroad.com/l/representation"}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hur mycket moms får man dra av vid representation?","acceptedAnswer":{"@type":"Answer","text":"Vid måltider och annan förtäring får du dra av momsen på högst 300 kronor exklusive moms per person och tillfälle. Med bara mat och alkoholfri dryck på restaurang (12 procent) blir det högst 36 kronor per person. Ingår alkohol ska 300 kronor proportioneras efter de faktiska kostnaderna, eller så används schablonen 46 kronor (mat 12 procent) eller 33 kronor (mat 6 procent) per person."}},
+ {"@type":"Question","name":"Är representation avdragsgill i deklarationen?","acceptedAnswer":{"@type":"Answer","text":"Måltider som lunch och middag är inte avdragsgilla vid inkomstbeskattningen, vare sig vid extern eller intern representation. Enklare förtäring som kaffe och bulle är avdragsgill med högst 60 kronor per person. Teater, greenfee och liknande är avdragsgilla med högst 180 kronor per person och representationsgåvor med högst 300 kronor."}},
+ {"@type":"Question","name":"Vilka konton används för representation?","acceptedAnswer":{"@type":"Answer","text":"Extern representation bokförs på 6071 Representation, avdragsgill och 6072 Representation, ej avdragsgill. Intern representation, till exempel personalfest, på 7631 och 7632. Den avdragsgilla momsen bokförs på 2641 Debiterad ingående moms. Den moms som inte får dras av läggs på kostnadskontot för ej avdragsgill representation."}},
+ {"@type":"Question","name":"Vad gäller för representationsmomsen efter matmomssänkningen 2026?","acceptedAnswer":{"@type":"Answer","text":"Från 1 april 2026 är momsen på livsmedel 6 procent, medan restaurangtjänster har kvar 12 procent. Gränsen 300 kronor per person gäller som tidigare. Med mat på 6 procent och alkohol blir schablonen 33 kronor per person, och med bara mat på 6 procent blir avdraget högst 18 kronor per person."}},
+ {"@type":"Question","name":"Vad ska stå på underlaget för representation?","acceptedAnswer":{"@type":"Answer","text":"Kvittot ska kompletteras med datum, syftet med representationen och vilka som deltog, med namn och företag. Utan den anteckningen kan avdraget för momsen ifrågasättas."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Representation<span>·</span>moms</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Representation – räkna avdragsgill moms och bokför</h1>
+    <p class="lead" data-i18n="lead">Lägg in kvittona från affärsmiddagar, fika, golf, personalfester och kundgåvor. Verktyget räknar <strong>avdragsgill moms</strong> (300-kronorsgränsen, proportionering eller schablon 46/33 kr) och <strong>avdragsgill kostnad</strong> per tillfälle med reglerna för 2026, och konterar på <strong>6071/6072, 7631/7632 och 2641</strong>.</p>
+  </section>
+
+  <section class="card calc" id="calc">
+    <div class="row"><h2 data-i18n="calc-h">Företaget</h2>
+      <div class="actions"><button id="sample" class="btn ghost small" type="button" data-i18n="sample">Visa exempel</button><button id="clear" class="link small" type="button" data-i18n="clear">Rensa</button></div></div>
+    <div class="grid">
+      <label><span data-i18n="l-co">Företagets namn (valfritt)</span><input type="text" id="f-co" autocomplete="organization"></label>
+      <label><span data-i18n="l-org">Organisationsnummer (valfritt)</span><input type="text" id="f-org" inputmode="numeric" placeholder="559999-0000" autocomplete="off"></label>
+      <label><span data-i18n="l-moms">Momsregistrerad verksamhet</span><select id="f-moms"><option value="ja" data-i18n="o-ja">Ja – rätt till momsavdrag</option><option value="nej" data-i18n="o-nej">Nej – ingen momsavdragsrätt</option></select></label>
+      <label><span data-i18n="l-pay">Betalt från konto</span><input type="text" id="f-pay" inputmode="numeric" value="1930"></label>
+      <label><span data-i18n="l-serie">Verifikationsserie</span><input type="text" id="f-serie" value="A"></label>
+      <label><span data-i18n="l-nr">Första verifikationsnummer</span><input type="text" id="f-nr" inputmode="numeric" value="1"></label>
+    </div>
+    <div class="row people-h"><h3 data-i18n="it-h">Representationstillfällen</h3>
+      <button id="add" class="btn ghost small" type="button" data-i18n="add">Lägg till tillfälle</button></div>
+    <div id="people"></div>
+    <p class="hint" data-i18n="h-items">Skriv beloppen <strong>exklusive moms</strong> per momssats, som de står på kvittot. Restaurangmat har 12&nbsp;%, livsmedel och mat utan servering 6&nbsp;% från 1 april 2026, alkohol och det mesta annat 25&nbsp;%, greenfee och teater 6&nbsp;%.</p>
+    <p class="muted small" data-i18n="saved">Uppgifterna sparas bara i den här webbläsaren. Inget skickas iväg.</p>
+  </section>
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+
+  <section id="result" class="card" hidden>
+    <h2 id="r-title">Resultat</h2>
+    <p id="r-meta" class="muted small"></p>
+    <div id="check" class="check ok"></div>
+    <div class="stats" id="stats"></div>
+    <div id="flags" class="flags" hidden></div>
+    <div class="tbl"><table id="per-t"><thead></thead><tbody></tbody><tfoot></tfoot></table></div>
+
+    <section id="paid">
+      <h2 data-i18n="paid-h">Kontering, SIE-fil och representationsunderlag</h2>
+      <p class="small" data-i18n="paid-p">Få <strong>konteringen per tillfälle</strong> (6071/6072, 7631/7632, 2641), en <strong>SIE-fil</strong> att läsa in i Fortnox, Visma, Bokio eller annat program, ett <strong>Excel-underlag</strong> och ett utskrivbart <strong>representationsunderlag</strong> med syfte, deltagare och uträkning att spara med kvittot.</p>
+      <div class="row"><button id="paid-open" class="btn" type="button"><span data-i18n="open">Visa kontering och underlag</span></button></div>
+      <div id="paid-out" hidden>
+        <h3 data-i18n="ver-h">Kontering</h3>
+        <div id="ver" class="besked"></div>
+        <div class="dlrow"><button id="sie" class="btn" type="button" data-i18n="sie">Ladda ner SIE-fil</button><button id="xlsx" class="btn ghost" type="button" data-i18n="xlsx">Ladda ner Excel</button><button id="print" class="btn ghost" type="button" data-i18n="print">Skriv ut representationsunderlag</button></div>
+        <p id="dl-msg" class="status"></p>
+      </div>
+    </section>
+  </section>
+
+  <aside class="cta card">
+    <p><strong data-i18n="cta-h">Mer moms och bokföring:</strong> <span data-i18n="cta-p"><a href="../sie-till-excel/">SIE till Excel</a> visar hela bokföringen som kalkylblad – bra när du vill se vad som ligger på 6072 och 7632 inför deklarationen.<span data-needs="bokfora-inkop-eu"> Köper du från utlandet räknar <a href="../bokfora-inkop-eu/">Bokföra inköp från EU och utlandet</a> omvänd moms och momsrutorna.</span></span></p>
+  </aside>
+
+  <section class="prose">
+    <h2>Vad räknas som representation?</h2>
+    <p>Representation är utgifter för att bjuda kunder, leverantörer, samarbetspartner eller anställda – en affärslunch, en middag efter en förhandling, kaffe och bulle på ett kundmöte, en golfrunda, teaterbiljetter, en blomsterbukett när en kund firar jubileum eller en personalfest. När gästerna kommer utifrån kallas det <strong>extern representation</strong>, när det gäller de egna anställda <strong>intern representation</strong>. För att det ska räknas som representation måste kostnaden ha ett <strong>omedelbart samband med verksamheten</strong>: syftet ska vara att inleda eller upprätthålla affärsförbindelser, eller personalvård som en personalfest.</p>
+    <p>Reglerna skiljer sig åt för momsen och för inkomstskatten, och det är därför representation ofta blir fel i bokföringen. Momsen har en gräns per person och tillfälle; inkomstskatten tillåter inget avdrag alls för måltider, men däremot för enklare förtäring, aktiviteter och gåvor upp till vissa belopp. Verktyget räknar båda delarna för varje tillfälle.</p>
+    <h3>Momsen: högst 300 kronor per person</h3>
+    <p>För mat och dryck får du dra av momsen på ett <strong>underlag på högst 300 kronor exklusive moms per person och tillfälle</strong>. Är allt restaurangmat med 12 procent moms blir avdraget högst 36 kronor per person. Från <strong>1 april 2026</strong> är momsen på livsmedel 6 procent – det gäller till exempel färdiglagad mat utan servering och fikabröd från bageriet – och då blir avdraget högst 18 kronor per person. Restaurangbesök med servering har kvar 12 procent.</p>
+    <p>När kostnaden är högre än 300 kronor per person och det ingår <strong>alkohol</strong> med 25 procent ska de 300 kronorna fördelas – <strong>proportioneras</strong> – efter de faktiska kostnaderna för mat och alkohol. Skatteverkets eget exempel: en middag för tre med mat för 900 kronor och starköl för 600 kronor exklusive moms. Underlaget blir 900 kronor, varav 60 procent mat och 40 procent öl, och avdraget 12 procent på 540 kronor plus 25 procent på 360 kronor, alltså <strong>154,80 kronor</strong>.</p>
+    <p>I stället för att proportionera får du använda en <strong>schablon</strong>: <strong>46 kronor per person</strong> när maten har 12 procent och <strong>33 kronor per person</strong> när maten har 6 procent (även när kvittot har alla tre momssatserna). Schablonen får bara användas när kostnaden är minst 300 kronor exklusive moms per person och den debiterade momsen är minst lika stor som schablonen. Välj ”bästa” så räknar verktyget båda och tar det högsta tillåtna avdraget.</p>
+    <h3>Aktiviteter, kringkostnader och gåvor</h3>
+    <p>För <strong>teaterbesök, greenfee och liknande</strong> och för <strong>kringkostnader vid personalfest</strong> – hyra av lokal, möbler eller musik – är underlaget för momsavdraget högst <strong>180 kronor exklusive moms per person</strong>. En greenfee med 6 procent moms ger därför högst 10,80 kronor i avdrag per person. För <strong>representationsgåvor</strong>, till exempel blommor till en kunds jubileum, är underlaget högst 300 kronor per gåva.</p>
+    <h3>Inkomstskatten: vad får dras av som kostnad?</h3>
+    <ul>
+      <li><strong>Lunch, middag och andra måltider</strong> – inget avdrag, varken vid extern eller intern representation.</li>
+      <li><strong>Enklare förtäring</strong> som kaffe, te, kakor, frukt och en enklare smörgås – avdrag med högst <strong>60 kronor per person</strong>. Kostar det mer per person är det inte längre av mindre värde och då får inget dras av alls. Alkohol är aldrig avdragsgill.</li>
+      <li><strong>Teater, golf och liknande</strong> och kringkostnader vid personalfest – avdrag med högst <strong>180 kronor per person</strong>.</li>
+      <li><strong>Representationsgåvor</strong> – avdrag med högst <strong>300 kronor</strong> per gåva. Gåvor vid helger och personliga högtidsdagar räknas inte som representation.</li>
+    </ul>
+    <h3>Så bokförs representationen</h3>
+    <p>Den avdragsgilla momsen bokförs på <strong>2641 Debiterad ingående moms</strong> och tas med i fält 48 i momsdeklarationen. Den avdragsgilla kostnaden bokförs på <strong>6071 Representation, avdragsgill</strong> – eller <strong>7631</strong> för intern representation – och resten, inklusive den moms som inte får dras av, på <strong>6072</strong> respektive <strong>7632, ej avdragsgill</strong>. Ej avdragsgill representation läggs sedan tillbaka i inkomstdeklarationen. Till varje kvitto ska du anteckna <strong>syftet och vilka som deltog</strong> – det är därför verktyget har fält för just det.</p>
+    <h3>Personalfester</h3>
+    <p>En personalfest är intern representation. Momsen på mat och dryck får dras av med samma 300-kronorsgräns, men själva måltiden är inte avdragsgill i deklarationen. För de anställda är festen skattefri om den är öppen för alla och det inte blir fler än två fester om året.</p>
+    <h3>Gratis och betalt</h3>
+    <p>Uträkningen per tillfälle och totalerna är gratis. När du låser upp får du konteringen, SIE-filen med en verifikation per tillfälle, Excel-underlaget och ett utskrivbart representationsunderlag per tillfälle. Verktyget är ett hjälpmedel, inte skatterådgivning.</p>
+  </section>
+
+  <section class="prose faq">
+    <h2>Vanliga frågor</h2>
+    <details><summary>Räknas dricks in?</summary><p>Dricks har ingen moms och påverkar inte momsavdraget. Bokför den separat på ej avdragsgill representation, 6072 eller 7632.</p></details>
+    <details><summary>Ska jag räkna med mig själv i antalet personer?</summary><p><strong>Ja.</strong> Alla som deltog räknas, även du och dina kollegor.</p></details>
+    <details><summary>Kan jag välja schablon fast proportionering ger mer?</summary><p>Ja, schablonen är en förenkling som du får välja. Välj ”bästa” så används det högsta av de två avdragen som är tillåtna.</p></details>
+    <details><summary>Skickas mina uppgifter någonstans?</summary><p><strong>Nej.</strong> Allt räknas i webbläsaren och sparas bara lokalt tills du rensar.</p></details>
+  </section>
+
+  <section class="prose src">
+    <h2>Källor</h2>
+    <ul>
+      <li><a href="https://www.skatteverket.se/foretagochorganisationer/moms/kopavarorochtjanster/representation.4.15532c7b1442f256baec84b.html" rel="noopener">Skatteverket: Avdrag för moms vid representation</a> (300 kr, 180 kr, gåvor, 60 kr enklare förtäring, 6 % livsmedel från 1 april 2026)</li>
+      <li><a href="https://lagen.nu/rs/skv/8-125142-2026" rel="noopener">Skatteverkets ställningstagande dnr 8-125142-2026</a> (proportionering, schablon 46 kr och 33 kr)</li>
+      <li>13 kap. 24–25 §§ mervärdesskattelagen (2023:200) och 16 kap. 2 § inkomstskattelagen (1999:1229)</li>
+      <li><a href="https://www.bas.se/kontoplaner/" rel="noopener">BAS kontoplan 2026</a> (6071, 6072, 7631, 7632, 2641)</li>
+    </ul>
+  </section>
+</main>
+<footer class="wrap muted small foot">Fristående verktyg – inte anslutet till Skatteverket eller något bokföringsprogram. Uträkningen är ett hjälpmedel; stäm av mot redovisningskonsult vid tveksamma fall. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
+
+<dialog id="paywall">
+  <h2 data-i18n="pw-h">Kontering, SIE-fil och representationsunderlag</h2>
+  <p data-i18n="pw-p">Lås upp konteringen, SIE-filen, Excel-underlaget och representationsunderlaget att spara med kvittona. Uträkningen av avdragsgill moms och kostnad är alltid gratis.</p>
+</dialog>
+<div id="print-root"></div>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/kit.js"></script>
+<script src="js/xlsx-writer.js"></script>
+<script src="js/sie-writer.js"></script>
+<script src="js/representation.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
