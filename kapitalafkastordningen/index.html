@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kapitalafkastordningen – beregn kapitalafkastgrundlag og kapitalafkast 2026</title>
+<meta name="description" content="Opgør kapitalafkastgrundlaget aktiv for aktiv efter virksomhedsskatteloven § 22 a, beregn kapitalafkastet med 2026-satsen på 2 %, loftet efter personlig indkomst og negativ nettokapitalindkomst – og se, hvorfor forældrekøb ikke tæller med. Alt sker i browseren.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/kapitalafkastordningen/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/kapitalafkastordningen/">
+<meta property="og:locale" content="da_DK">
+<meta property="og:title" content="Kapitalafkastordningen – kapitalafkastgrundlag og kapitalafkast">
+<meta property="og:description" content="Kapitalafkastgrundlag aktiv for aktiv, kapitalafkast med årets sats, loft og ægtefæller efter VSL § 22 a. Filen forlader aldrig din computer.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0f766e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f766e'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3EK%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/kapitalafkastordningen/","name":"Kapitalafkastordningen – kapitalafkastgrundlag og kapitalafkast","applicationCategory":"FinanceApplication","operatingSystem":"Browser","inLanguage":"da-DK",
+ "description":"Beregner kapitalafkastet i kapitalafkastordningen efter virksomhedsskatteloven § 22 a: kapitalafkastgrundlaget opgjort aktiv for aktiv med de rigtige værdier, nettoreglen for varelager, varedebitorer og varekreditorer, udelukkelse af kontanter, fordringer, aktier og forældrekøbsboliger, årets kapitalafkastsats, forholdsmæssigt afkast for kortere år, loftet efter personlig nettoindkomst og negativ nettokapitalindkomst samt fordeling mellem ægtefæller.",
+ "offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis grundfunktion"},{"@type":"Offer","price":"9","priceCurrency":"EUR","description":"Opgørelse til skattemappen, aktivliste (CSV) og Excel","url":"https://drudley.gumroad.com/l/kapitalafkast"}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hvad er kapitalafkastsatsen for 2026?","acceptedAnswer":{"@type":"Answer","text":"Skattestyrelsen har fastsat kapitalafkastsatsen for 2026 til 2 % (SKM2026.414.SKTST). Satsen var 2 % i 2025, 4 % i 2024 og 3 % i 2023. Samme sats gælder i virksomhedsordningen og kapitalafkastordningen."}},
+ {"@type":"Question","name":"Hvordan opgøres kapitalafkastgrundlaget?","acceptedAnswer":{"@type":"Answer","text":"Som værdien ved indkomstårets begyndelse af de aktiver, der udelukkende bruges erhvervsmæssigt: fast ejendom til den kontante anskaffelsessum, driftsmidler til saldoværdien og øvrige aktiver efter virksomhedsskattelovens § 3, stk. 4. Gælden trækkes ikke fra. Kontanter, fordringer og aktier tæller ikke med, og varelager, varedebitorer og igangværende arbejde tæller kun med, i det omfang de overstiger varekreditorerne."}},
+ {"@type":"Question","name":"Kan jeg bruge kapitalafkastordningen ved forældrekøb?","acceptedAnswer":{"@type":"Answer","text":"Nej, ikke for selve boligen. Fast ejendom, der stilles til rådighed som bolig for forældre, bedsteforældre, børn eller børnebørn og deres ægtefæller, indgår ikke i kapitalafkastgrundlaget (virksomhedsskatteloven § 22 a, stk. 8). Kapitalafkastet af en forældrekøbslejlighed er derfor 0 kr."}},
+ {"@type":"Question","name":"Hvor stort kan kapitalafkastet højst være?","acceptedAnswer":{"@type":"Answer","text":"Det kan ikke overstige den største af to størrelser: den positive personlige nettoindkomst fra virksomheden eller den negative nettokapitalindkomst. Det kan ikke være negativt. Er virksomheden drevet kortere eller længere end 12 måneder, beregnes afkastet forholdsmæssigt efter hele måneder."}},
+ {"@type":"Question","name":"Hvordan vælger man kapitalafkastordningen?","acceptedAnswer":{"@type":"Answer","text":"Valget træffes, når du afgiver oplysninger til Skattestyrelsen for indkomståret – i praksis på selvangivelsen – og kan ændres til og med 30. juni i det andet kalenderår efter indkomstårets udløb."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Kapital<span>·</span>afkast</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Kapitalafkastordningen – beregn kapitalafkastgrundlag og kapitalafkast</h1>
+    <p class="lead" data-i18n="lead">Indtast virksomhedens aktiver primo og årets indkomst. Værktøjet opgør <strong>kapitalafkastgrundlaget aktiv for aktiv</strong> efter virksomhedsskatteloven § 22 a, beregner <strong>kapitalafkastet</strong> med årets sats, anvender <strong>loftet</strong> efter personlig indkomst og negativ nettokapitalindkomst og viser, hvor meget der <strong>flyttes fra personlig indkomst til kapitalindkomst</strong>.</p>
+  </section>
+
+  <section class="card calc" id="calc">
+    <div class="row"><h2 data-i18n="calc-h">Virksomhed og indkomstår</h2>
+      <div class="actions"><button id="sample" class="btn ghost small" type="button" data-i18n="sample">Vis eksempel</button><button id="clear" class="link small" type="button" data-i18n="clear">Ryd</button></div></div>
+    <div class="grid">
+      <label><span data-i18n="l-co">Virksomhedens navn</span><input type="text" id="f-name" autocomplete="organization"></label>
+      <label><span data-i18n="l-cvr">CVR-nummer</span><input type="text" id="f-cvr" inputmode="numeric" placeholder="12345678" autocomplete="off"></label>
+      <label><span data-i18n="l-year">Indkomstår</span><select id="f-year"><option value="2026">2026 (2 %)</option><option value="2025">2025 (2 %)</option><option value="2024">2024 (4 %)</option><option value="2023">2023 (3 %)</option></select></label>
+      <label><span data-i18n="l-rate">Anden sats, % (tom = årets sats)</span><input type="text" id="f-rate" inputmode="decimal" placeholder="" autocomplete="off"></label>
+      <label><span data-i18n="l-months">Hele måneder med virksomhed i året</span><input type="text" id="f-months" inputmode="numeric" value="12" autocomplete="off"></label>
+      <label><span data-i18n="l-pni">Personlig nettoindkomst fra virksomheden, kr.</span><input type="text" id="f-pni" inputmode="decimal" placeholder="500.000" autocomplete="off"></label>
+      <label><span data-i18n="l-nki">Nettokapitalindkomst uden kapitalafkast, kr. (negativ med minus)</span><input type="text" id="f-nki" inputmode="decimal" placeholder="-20.000" autocomplete="off"></label>
+      <label><span data-i18n="l-kred">Varekreditorer primo, kr.</span><input type="text" id="f-kred" inputmode="decimal" placeholder="0" autocomplete="off"></label>
+      <label><span data-i18n="l-married">Gift og samlevende ved årets udgang</span><select id="f-married"><option value="" data-i18n="o-no">Nej</option><option value="1" data-i18n="o-yes">Ja</option></select></label>
+    </div>
+    <div id="spouse" class="grid" hidden>
+      <label><span data-i18n="l-spA">Ægtefællens erhvervsmæssige aktiver (grundlag), kr.</span><input type="text" id="f-spA" inputmode="decimal" placeholder="0" autocomplete="off"></label>
+      <label><span data-i18n="l-spP">Ægtefællens personlige nettoindkomst fra virksomhed, kr.</span><input type="text" id="f-spP" inputmode="decimal" placeholder="0" autocomplete="off"></label>
+      <label><span data-i18n="l-spN">Ægtefællens nettokapitalindkomst, kr.</span><input type="text" id="f-spN" inputmode="decimal" placeholder="0" autocomplete="off"></label>
+      <label><span data-i18n="l-spOwn">Driver ægtefællen sin egen virksomhed med aktiverne?</span><select id="f-spOwn"><option value="" data-i18n="o-no">Nej</option><option value="1" data-i18n="o-yes">Ja</option></select></label>
+    </div>
+    <div class="row people-h"><h3 data-i18n="a-h">Aktiver ved indkomstårets begyndelse</h3>
+      <button id="add" class="btn ghost small" type="button" data-i18n="add">Tilføj aktiv</button></div>
+    <div id="assets"></div>
+    <p class="hint" data-i18n="h-assets">Fast ejendom: kontant anskaffelsessum plus forbedringer. Driftsmidler: saldoværdien primo (delvis privat: den uafskrevne del og erhvervsandelen i %). Goodwill og andre aktiver: anskaffelsessum minus skattemæssige afskrivninger. Gælden skal ikke trækkes fra.</p>
+    <p class="muted small" data-i18n="saved">Oplysningerne gemmes kun i denne browser. Intet sendes nogen steder hen.</p>
+  </section>
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+
+  <section id="result" class="card" hidden>
+    <h2 id="r-title">Resultat</h2>
+    <p id="r-meta" class="muted small"></p>
+    <div id="check" class="check ok"></div>
+    <div class="stats" id="stats"></div>
+    <div id="flags" class="flags" hidden></div>
+    <h3 data-i18n="per-h">Kapitalafkastgrundlag aktiv for aktiv</h3>
+    <div class="tbl"><table id="per-t"><thead></thead><tbody></tbody><tfoot></tfoot></table></div>
+
+    <section id="paid">
+      <h2 data-i18n="paid-h">Opgørelse til skattemappen, CSV og Excel</h2>
+      <p class="small" data-i18n="paid-p">Få en <strong>skriftlig opgørelse af kapitalafkastgrundlaget og kapitalafkastet</strong> med lovhenvisninger, som du gemmer sammen med regnskabet, aktivlisten som <strong>CSV-fil</strong> og et <strong>Excel-ark</strong> med grundlag, loft og satser, som revisor kan arbejde videre i.</p>
+      <div class="row"><button id="paid-open" class="btn" type="button"><span data-i18n="open">Vis opgørelsen</span></button></div>
+      <div id="paid-out" hidden>
+        <h3 data-i18n="note-h">Opgørelse af kapitalafkast</h3>
+        <div id="note" class="besked"></div>
+        <div class="dlrow"><button id="csv" class="btn" type="button" data-i18n="csv">Hent aktivliste (CSV)</button><button id="xlsx" class="btn ghost" type="button" data-i18n="xlsx">Hent Excel-opgørelse</button><button id="print" class="btn ghost" type="button" data-i18n="print">Udskriv</button></div>
+        <p id="dl-msg" class="status"></p>
+      </div>
+    </section>
+  </section>
+
+  <aside class="cta card">
+    <p><strong data-i18n="cta-h">Har du aktier med udenlandsk udbytteskat?</strong> <span data-i18n="cta-p"><a href="../tilbagesoegning-udbytteskat/">Udbytteskat tilbage</a> viser, hvor meget du kan søge tilbage fra Norge, Tyskland, Schweiz, Finland og Sverige direkte fra Nordnet-filen.</span></p>
+  </aside>
+
+  <section class="prose">
+    <h2>Sådan virker kapitalafkastordningen</h2>
+    <p>Kapitalafkastordningen er et mellemting mellem at blive beskattet efter de almindelige regler og at bruge virksomhedsordningen. Selvstændige erhvervsdrivende kan beregne et <strong>kapitalafkast af de erhvervsmæssige aktiver</strong>. Beløbet trækkes fra den personlige indkomst og lægges til kapitalindkomsten (virksomhedsskatteloven § 22 a, stk. 1). Fordelen er, at beløbet beskattes som kapitalindkomst i stedet for personlig indkomst. Det giver typisk en lavere skat – især når du har renteudgifter, så din kapitalindkomst ellers er negativ og kun giver fradrag med en lav værdi. Ordningen kræver ikke, at privatøkonomi og virksomhedsøkonomi holdes adskilt, så den er langt enklere end virksomhedsordningen.</p>
+    <h3>Kapitalafkastgrundlaget – hvad tæller med?</h3>
+    <p>Grundlaget opgøres <strong>ved indkomstårets begyndelse</strong> (eller ved virksomhedens start) som værdien af de aktiver, der <strong>udelukkende bruges erhvervsmæssigt</strong> (§ 22 a, stk. 5). Værdierne er de samme som i virksomhedsordningen: <strong>fast ejendom til den kontante anskaffelsessum</strong> plus ombygning og forbedringer (§ 8, stk. 2), <strong>driftsmidler til den afskrivningsberettigede saldoværdi</strong> primo, hvor en negativ saldo ikke trækkes fra, varelager efter varelagerloven og øvrige aktiver til anskaffelsessummen minus skattemæssige afskrivninger (§ 3, stk. 4). Aktiver, der bruges både privat og erhvervsmæssigt, og som kan indgå i virksomhedsordningen – fx en varebil eller en ejendom med både bolig og erhverv – tæller med den erhvervsmæssige andel (stk. 6).</p>
+    <p>Til forskel fra virksomhedsordningen <strong>trækkes gælden ikke fra</strong>. Til gengæld er en række aktiver holdt ude (stk. 7): <strong>kontanter, bankindeståender, fordringer, aktier og andre finansielle aktiver</strong> tæller ikke med. Varelager, varedebitorer og igangværende arbejde for fremmed regning (netto) tæller kun med, i det omfang de tilsammen er større end <strong>varekreditorerne</strong>. Værktøjet laver den modregning automatisk.</p>
+    <h3>Forældrekøb: boligen tæller ikke med</h3>
+    <p>Kapitalafkastordningen nævnes ofte i forbindelse med forældrekøb, men <strong>fast ejendom, der stilles til rådighed som bolig for forældre, bedsteforældre, børn, børnebørn og deres ægtefæller, indgår ikke i kapitalafkastgrundlaget</strong> (§ 22 a, stk. 8). Lejer et barn forældrekøbslejligheden, giver den altså ikke noget kapitalafkast. Vælg typen »Bolig til familie (forældrekøb)«, så vises den i opgørelsen, men med 0 kr. Udlejning til andre end nærtstående er en anden sag – der indgår ejendommen til den kontante anskaffelsessum.</p>
+    <h3>Sats, måneder og loft</h3>
+    <p>Kapitalafkastet er grundlaget gange <strong>kapitalafkastsatsen</strong>, som fastsættes én gang om året efter § 9 og er den samme som i virksomhedsordningen. For 2026 er satsen <strong>2 %</strong> (SKM2026.414.SKTST), for 2025 2 %, for 2024 4 % og for 2023 3 %. Drives virksomheden kortere eller længere end 12 måneder i året, beregnes et forholdsmæssigt afkast efter antal <strong>hele måneder</strong> (stk. 2). Kapitalafkastet kan ikke være negativt og kan <strong>ikke overstige den største</strong> af den positive personlige nettoindkomst fra virksomheden og den negative nettokapitalindkomst (stk. 3). Har du store renteudgifter, kan loftet altså være højere end virksomhedens overskud.</p>
+    <h3>Ægtefæller og valg af ordningen</h3>
+    <p>Er du gift og samlevende ved årets udgang, opgøres kapitalafkastet på grundlag af <strong>ægtefællernes samlede erhvervsmæssige aktiver og samlede indkomst</strong>, og det fordeles efter aktiverne, hvis I driver hver jeres virksomhed (stk. 4). Ordningen vælges, når du afgiver oplysninger til Skattestyrelsen for året – i praksis på selvangivelsen – og valget kan ændres til og med 30. juni i det andet kalenderår efter indkomståret (§ 22 a, stk. 1, jf. § 2, stk. 2). Du kan derfor også regne efter på de to seneste år.</p>
+    <h3>Gratis og betalt</h3>
+    <p>Kapitalafkastgrundlaget, kapitalafkastet, loftet og fordelingen er gratis. Når du låser op, får du en skriftlig opgørelse med lovhenvisninger til skattemappen, aktivlisten som CSV og et Excel-ark med grundlag, loft og satser. Værktøjet er et hjælpemiddel, ikke rådgivning – spørg revisor, hvis du er i tvivl om, hvad der er erhvervsmæssige aktiver.</p>
+  </section>
+
+  <section class="prose faq">
+    <h2>Ofte stillede spørgsmål</h2>
+    <details><summary>Hvad er kapitalafkastsatsen for 2026?</summary><p>2 % (SKM2026.414.SKTST). 2025: 2 %, 2024: 4 %, 2023: 3 %.</p></details>
+    <details><summary>Hvordan opgøres kapitalafkastgrundlaget?</summary><p>Værdien primo af de udelukkende erhvervsmæssige aktiver – fast ejendom til kontant anskaffelsessum, driftsmidler til saldoværdi – uden fradrag af gæld og uden kontanter, fordringer og aktier.</p></details>
+    <details><summary>Kan jeg bruge kapitalafkastordningen ved forældrekøb?</summary><p>Ikke for boligen. En bolig, der stilles til rådighed for forældre, bedsteforældre, børn eller børnebørn, indgår ikke i grundlaget (§ 22 a, stk. 8).</p></details>
+    <details><summary>Hvor stort kan kapitalafkastet højst være?</summary><p>Den største af den positive personlige nettoindkomst fra virksomheden og den negative nettokapitalindkomst. Det kan ikke være negativt.</p></details>
+    <details><summary>Hvordan vælger man kapitalafkastordningen?</summary><p>På selvangivelsen for året. Valget kan ændres til og med 30. juni i det andet år efter indkomstårets udløb.</p></details>
+    <details><summary>Bliver mine oplysninger sendt nogen steder hen?</summary><p><strong>Nej.</strong> Alt beregnes i browseren og gemmes kun lokalt, indtil du rydder.</p></details>
+  </section>
+
+  <section class="prose src">
+    <h2>Kilder</h2>
+    <ul>
+      <li><a href="https://www.retsinformation.dk/eli/lta/2021/1836" rel="noopener">Virksomhedsskatteloven, LBK nr. 1836 af 16. september 2021</a>, §§ 2, 3, 8, 9 og 22 a</li>
+      <li><a href="https://info.skat.dk/data.aspx?oid=1948936" rel="noopener">Den juridiske vejledning C.C.5.3.1.2.3 – Kapitalafkastgrundlaget</a></li>
+      <li><a href="https://info.skat.dk/data.aspx?oid=1948937" rel="noopener">Den juridiske vejledning C.C.5.3.1.2.4 – Kapitalafkastsatsen</a></li>
+      <li><a href="https://info.skat.dk/data.aspx?oid=939" rel="noopener">SKM-meddelelser 2026: SKM2026.414.SKTST – Kapitalafkastsatsen og rentekorrektionssatsen for 2026</a></li>
+    </ul>
+  </section>
+</main>
+<footer class="wrap muted small foot">Uafhængigt værktøj – ikke tilknyttet Skattestyrelsen. Beregningen er et hjælpemiddel; stem af med revisor ved tvivl. Ingen sporing · ingen cookies. · <a href="../">Alle værktøjer</a> · <a href="../integritet/">Privatliv (på svensk)</a></footer>
+
+<dialog id="paywall">
+  <h2 data-i18n="pw-h">Opgørelse, CSV og Excel</h2>
+  <p data-i18n="pw-p">Lås den skriftlige opgørelse af kapitalafkastet, aktivlisten som CSV og Excel-opgørelsen op. Selve beregningen af kapitalafkastet er altid gratis.</p>
+</dialog>
+<div id="print-root"></div>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/kit.js"></script>
+<script src="js/xlsx-writer.js"></script>
+<script src="js/kapitalafkast.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

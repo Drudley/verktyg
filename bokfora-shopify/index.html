@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bokföra Shopify – utbetalningar, avgifter och moms till SIE-fil (2026)</title>
+<meta name="description" content="Läs in transaktionsfilen från Shopify Payments och få en verifikation per utbetalning: försäljning brutto med moms, returer, avgifter med omvänd skattskyldighet, tvister och utbetalning till banken – som SIE-fil. Allt i webbläsaren.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/bokfora-shopify/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/bokfora-shopify/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Bokföra Shopify – utbetalningar till SIE-fil">
+<meta property="og:description" content="Shopify Payments-utbetalningar konterade brutto: försäljning, moms, avgifter med omvänd skattskyldighet, returer och tvister – som SIE-fil. Filen lämnar aldrig webbläsaren.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#4d7c0f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%234d7c0f'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/bokfora-shopify/","name":"Bokföra Shopify – utbetalningar till SIE-fil","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Läser transaktionsexporten från Shopify Payments och konterar varje utbetalning brutto: försäljning och utgående moms, returer, Shopify-avgifter på 6040 med omvänd skattskyldighet (2645/2614), tvister på 1680, reserver och utbetalningen till banken via avräkningskontot 1686. Skapar en SIE-fil med en verifikation per utbetalning och en sammanställning till momsdeklarationen. Allt sker i webbläsaren.",
+ "offers":[{"@type":"Offer","price":"0","priceCurrency":"SEK","description":"Gratis grundfunktion"},{"@type":"Offer","price":"99","priceCurrency":"SEK","description":"SIE-fil per utbetalning, momsrutor och Excel","url":"https://drudley.gumroad.com/l/shopify"}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hur bokför man en utbetalning från Shopify?","acceptedAnswer":{"@type":"Answer","text":"Försäljningen bokförs brutto med moms mot ett avräkningskonto, till exempel 1686 Fordringar för kontokort och kuponger. Shopifys avgifter bokförs som kostnad, till exempel på 6040 Kontokortsavgifter, mot samma konto. När pengarna kommer bokförs bankinsättningen mot avräkningskontot, som då går jämnt ut."}},
+ {"@type":"Question","name":"Har Shopify-avgifterna moms?","acceptedAnswer":{"@type":"Answer","text":"Shopify skriver att avgifterna i Shopify Payments för butiker i EU utom Irland tas ut med 0 % moms och omvänd skattskyldighet. Köparen räknar då själv ut svensk moms, redovisar inköpet i ruta 21, momsen i ruta 30 och drar av den i ruta 48."}},
+ {"@type":"Question","name":"Var hittar jag filen med Shopify-transaktionerna?","acceptedAnswer":{"@type":"Answer","text":"I Shopify admin under Finans > Utbetalningar (Finance > Payouts). Klicka på en utbetalning och exportera transaktionerna, eller välj Visa transaktioner och exportera ett datumintervall. Filen e-postas som CSV."}},
+ {"@type":"Question","name":"Varför stämmer inte utbetalningen med försäljningen?","acceptedAnswer":{"@type":"Answer","text":"En utbetalning är nettot av flera ordrar minus avgifter, returer, tvister och reserverade belopp. Bokförs bara bankbeloppet blir både omsättningen, kostnaderna och momsen fel. Bokför i stället varje transaktion brutto mot avräkningskontot."}},
+ {"@type":"Question","name":"Hur bokförs en chargeback i Shopify?","acceptedAnswer":{"@type":"Answer","text":"Det omtvistade beloppet dras från utbetalningen och bokförs som en fordran, till exempel på 1680, och tvisteavgiften som en kostnad. Vinner du tvisten kommer beloppet tillbaka. Förlorar du den skrivs fordran bort och den utgående momsen kan korrigeras."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Shopify<span>·</span>SIE</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Bokföra Shopify – från utbetalningsfilen till SIE</h1>
+    <p class="lead" data-i18n="lead">Läs in transaktionsfilen från Shopify Payments. Varje utbetalning blir en <strong>verifikation</strong> med försäljningen <strong>brutto</strong>, utgående moms, returer, <strong>avgifter med omvänd skattskyldighet</strong>, tvister och insättningen på banken – och avräkningskontot <strong>går jämnt ut</strong>. Ladda ner allt som en <strong>SIE-fil</strong> och läs in den i bokföringsprogrammet.</p>
+  </section>
+
+  <section class="card calc" id="calc">
+    <div class="row"><h2 data-i18n="calc-h">Transaktionsfilen från Shopify</h2>
+      <div class="actions"><button id="sample" class="btn ghost small" type="button" data-i18n="sample">Visa exempel</button><button id="clear" class="link small" type="button" data-i18n="clear">Rensa</button></div></div>
+    <div id="drop" class="drop" tabindex="0" role="button" aria-label="Välj fil">
+      <p class="drop-main" data-i18n="drop">Släpp CSV-filen från Shopify Payments här eller klicka för att välja</p>
+      <p class="muted small" data-i18n="drop-p">Finance &gt; Payouts &gt; exportera transaktionerna för en utbetalning eller ett datumintervall.</p>
+      <input type="file" id="file" accept=".csv,.txt" hidden>
+    </div>
+    <div class="grid">
+      <label><span data-i18n="l-co">Företagets namn (till SIE-filen)</span><input type="text" id="f-co" autocomplete="organization"></label>
+      <label><span data-i18n="l-orgnr">Organisationsnummer</span><input type="text" id="f-orgnr" inputmode="numeric" placeholder="556677-8899" autocomplete="off"></label>
+      <label><span data-i18n="l-rate">Moms på försäljningen</span><select id="f-rate"><option value="25">25 %</option><option value="12">12 %</option><option value="6">6 %</option><option value="0" data-i18n="o-0">0 % / momsfritt</option></select></label>
+      <label><span data-i18n="l-rc">Omvänd skattskyldighet på avgifterna</span><select id="f-rc"><option value="1" data-i18n="o-yes">Ja (Shopify fakturerar från Irland)</option><option value="0" data-i18n="o-no">Nej</option></select></label>
+      <label><span data-i18n="l-paid">Vilka transaktioner</span><select id="f-paid"><option value="1" data-i18n="o-paid">Bara utbetalda (status paid)</option><option value="0" data-i18n="o-all">Alla, även väntande</option></select></label>
+      <label><span data-i18n="l-clr">Avräkningskonto Shopify</span><input type="text" id="f-clr" inputmode="numeric" value="1686"></label>
+      <label><span data-i18n="l-bank">Bankkonto</span><input type="text" id="f-bank" inputmode="numeric" value="1930"></label>
+      <label><span data-i18n="l-sales">Försäljningskonto (tomt = efter momssats)</span><input type="text" id="f-sales" inputmode="numeric" placeholder="3001"></label>
+      <label><span data-i18n="l-refund">Konto för returer (tomt = försäljningskontot)</span><input type="text" id="f-refund" inputmode="numeric" placeholder=""></label>
+      <label><span data-i18n="l-fee">Konto för Shopify-avgifter</span><input type="text" id="f-fee" inputmode="numeric" value="6040"></label>
+      <label><span data-i18n="l-serie">Verifikationsserie</span><input type="text" id="f-serie" value="A"></label>
+      <label><span data-i18n="l-nr">Första verifikationsnummer</span><input type="text" id="f-nr" inputmode="numeric" value="1"></label>
+    </div>
+    <p class="muted small" data-i18n="saved">Filen läses bara i den här webbläsaren. Ingenting skickas iväg.</p>
+  </section>
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+
+  <section id="result" class="card" hidden>
+    <h2 id="r-title">Resultat</h2>
+    <p id="r-meta" class="muted small"></p>
+    <div id="check" class="check ok"></div>
+    <div class="stats" id="stats"></div>
+    <div id="flags" class="flags" hidden></div>
+    <h3 data-i18n="po-h">Per utbetalning</h3>
+    <div class="tbl"><table id="po-t"><thead></thead><tbody></tbody><tfoot></tfoot></table></div>
+
+    <section id="paid">
+      <h2 data-i18n="paid-h">Verifikationer, SIE-fil, momsrutor och Excel</h2>
+      <p class="small" data-i18n="paid-p">Få <strong>en verifikation per utbetalning</strong> som SIE-fil att läsa in i Fortnox, Visma, Bokio eller andra program, <strong>beloppen till momsdeklarationen per månad</strong> (ruta 05, 10, 21, 30 och 48) och ett <strong>Excel-underlag</strong> med alla transaktioner och konteringar att spara med bokföringen.</p>
+      <div class="row"><button id="paid-open" class="btn" type="button"><span data-i18n="open">Visa verifikationer och filer</span></button></div>
+      <div id="paid-out" hidden>
+        <h3 data-i18n="ver-h">Verifikationer</h3>
+        <div id="ver" class="besked"></div>
+        <h3 data-i18n="moms-h">Till momsdeklarationen</h3>
+        <div id="moms" class="besked"></div>
+        <div class="dlrow"><button id="sie" class="btn" type="button" data-i18n="sie">Ladda ner SIE-fil</button><button id="xlsx" class="btn ghost" type="button" data-i18n="xlsx">Ladda ner Excel</button><button id="print" class="btn ghost" type="button" data-i18n="print">Skriv ut</button></div>
+        <p id="dl-msg" class="status"></p>
+      </div>
+    </section>
+  </section>
+
+  <aside class="cta card">
+    <p><strong data-i18n="cta-h">Fler filer till bokföringen:</strong> <span data-i18n="cta-p"><a href="../stripe-till-sie/">Stripe till SIE</a> gör samma sak med utbetalningsrapporten från Stripe, och <a href="../bokfora-skattekonto/">Bokföra skattekontot</a> konterar kontoutdraget från Skatteverket rad för rad.</span></p>
+  </aside>
+
+  <section class="prose">
+    <h2>Så bokförs Shopify-försäljning</h2>
+    <p>En utbetalning från <strong>Shopify Payments</strong> är aldrig en enda affärshändelse. Den är summan av flera ordrar, minus Shopifys avgifter, minus returer, ibland minus en tvist eller ett reserverat belopp. Bokförs bara beloppet som kommer in på banken blir omsättningen för låg, kostnaderna för låga och momsen räknas på fel underlag. Rätt sätt är <strong>bruttometoden</strong>: varje försäljning bokförs med hela beloppet och sin utgående moms, avgiften bokförs som en egen kostnad, och skillnaden ligger på ett <strong>avräkningskonto</strong> tills pengarna kommer. I BAS 2026 passar <strong>1686 Fordringar för kontokort och kuponger</strong> för det. När utbetalningen är bokförd ska 1686 gå jämnt ut – gör det inte det saknas något.</p>
+    <h3>Konteringen i varje verifikation</h3>
+    <ul>
+      <li><strong>Försäljning</strong> (charge) – kredit försäljning, till exempel 3001, och utgående moms 2611, beräknat per transaktion på bruttobeloppet.</li>
+      <li><strong>Retur</strong> (refund) – samma konton i debet. Shopify betalar inte tillbaka den ursprungliga avgiften.</li>
+      <li><strong>Avgifter</strong> (Fee) – debet 6040 Kontokortsavgifter.</li>
+      <li><strong>Tvist / chargeback</strong> – det omtvistade beloppet blir en fordran på 1680 och tvisteavgiften en kostnad. En vunnen tvist (dispute_reversal) bokas tillbaka.</li>
+      <li><strong>Reserv</strong> och övriga justeringar – 1689 Övriga kortfristiga fordringar, med en varning så att du kan kontrollera dem.</li>
+      <li><strong>Utbetalningen</strong> – debet bank 1930, kredit 1686 med summan av nettobeloppen.</li>
+    </ul>
+    <p>Varje verifikation dateras på <strong>utbetalningsdagen</strong> och har Shopifys utbetalnings-id i texten, så att den är lätt att stämma av mot bankkontot. Transaktioner som ännu inte ingår i en utbetalning (status pending) lämnas utanför och visas i en varning – de kommer med i nästa fil.</p>
+    <h3>Moms på Shopifys avgifter</h3>
+    <p>Avtalsparten för butiker i Europa är Shopify International Limited på Irland. Enligt Shopify tas avgifterna i Shopify Payments för butiker i EU utom Irland ut med <strong>0 % moms och omvänd skattskyldighet</strong> – köparen ska själv redovisa momsen. Med Skatteverkets regler för köp av tjänster från ett annat EU-land redovisas avgiften i <strong>ruta 21</strong>, den beräknade utgående momsen på 25 % i <strong>ruta 30</strong> och samma belopp som ingående moms i <strong>ruta 48</strong>. Verktyget bokför det som debet 2645 och kredit 2614 i samma verifikation. Med full avdragsrätt tar det ut sig självt, men det ska redovisas. Vill du hellre behandla avgifterna som en momsfri betaltjänst stänger du av omvänd skattskyldighet.</p>
+    <h3>Momssats och försäljning till andra länder</h3>
+    <p>Verktyget räknar med att all försäljning i filen har samma momssats. Säljer du både 25 %- och 12 %-varor, eller till privatpersoner i andra EU-länder över tröskeln där du redovisar kundlandets moms via OSS, behöver försäljningen delas upp med hjälp av orderrapporten – filen från Shopify Payments innehåller inte momsen per order. Rader i andra valutor än SEK lämnas utanför; ha utbetalningsvalutan i SEK eller gör en fil per valuta.</p>
+    <h3>Så hämtar du filen</h3>
+    <p>Gå till <strong>Finance &gt; Payouts</strong> i Shopify admin. Klicka på en utbetalning och välj <strong>Export payout transactions</strong>, eller välj <strong>View transactions</strong> och exportera ett datumintervall. Filen skickas till din e-post som CSV och kan läsas in här som den är – även om den har sparats om i Excel med semikolon och decimalkomma.</p>
+    <h3>Gratis och betalt</h3>
+    <p>Inläsningen, kontrollen av varje rad och summeringen per utbetalning är gratis. När du låser upp får du verifikationerna, SIE-filen, beloppen till momsdeklarationen per månad och ett Excel-underlag. Verktyget är ett hjälpmedel, inte redovisningsrådgivning – stäm av mot bankkontot och fråga din redovisningskonsult om något är oklart.</p>
+  </section>
+
+  <section class="prose faq">
+    <h2>Vanliga frågor</h2>
+    <details><summary>Hur bokför man en utbetalning från Shopify?</summary><p>Försäljningen brutto med moms mot avräkningskontot 1686, avgifterna på 6040 mot samma konto och bankinsättningen mot 1686, som då går jämnt ut.</p></details>
+    <details><summary>Har Shopify-avgifterna moms?</summary><p>Shopify tar ut dem med 0 % moms och omvänd skattskyldighet för butiker i EU utom Irland. Redovisa i ruta 21, 30 och 48.</p></details>
+    <details><summary>Var hittar jag filen?</summary><p>Finance &gt; Payouts i Shopify admin – exportera transaktionerna för en utbetalning eller ett datumintervall.</p></details>
+    <details><summary>Hur bokförs en chargeback?</summary><p>Beloppet som en fordran på 1680 och tvisteavgiften som kostnad. Förlorad tvist skrivs bort manuellt.</p></details>
+    <details><summary>Ingår Shopifys abonnemang och appar?</summary><p>Nej, de faktureras separat och finns inte i utbetalningsfilen. Bokför fakturan som ett tjänsteköp från EU med omvänd skattskyldighet.</p></details>
+    <details><summary>Skickas mina uppgifter någonstans?</summary><p><strong>Nej.</strong> Filen läses och räknas i webbläsaren och lämnar aldrig datorn.</p></details>
+  </section>
+
+  <section class="prose src">
+    <h2>Källor</h2>
+    <ul>
+      <li><a href="https://help.shopify.com/en/manual/payments/shopify-payments/payouts/view-details" rel="noopener">Shopify Help Center: Viewing and exporting your Shopify Payments payout details</a> (kolumnerna i filen)</li>
+      <li><a href="https://help.shopify.com/en/manual/payments/shopify-payments/payouts/pay-periods-and-fees" rel="noopener">Shopify Help Center: Viewing your Shopify Payments payout fees</a> (0 % och omvänd skattskyldighet i EU utom Irland)</li>
+      <li><a href="https://www.skatteverket.se/foretag/moms/sarskildamomsregler/omvandbetalningsskyldighet.4.47eb30f51122b1aaad28000258292.html" rel="noopener">Skatteverket: Omvänd betalningsskyldighet</a> (ruta 21, 30 och 48)</li>
+      <li><a href="https://www.bas.se/kontoplaner/" rel="noopener">BAS kontoplan 2026</a> (1680, 1686, 1689, 1930, 2611, 2614, 2645, 3001, 6040)</li>
+    </ul>
+  </section>
+</main>
+<footer class="wrap muted small foot">Fristående verktyg – inte anslutet till Shopify, Skatteverket eller något bokföringsprogram. Konteringen är ett hjälpmedel; stäm av mot er bokföring och redovisningskonsult. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
+
+<dialog id="paywall">
+  <h2 data-i18n="pw-h">SIE-fil, momsrutor och Excel</h2>
+  <p data-i18n="pw-p">Lås upp verifikationerna, SIE-filen med en verifikation per utbetalning, beloppen till momsdeklarationen och Excel-underlaget. Inläsning och summering per utbetalning är alltid gratis.</p>
+</dialog>
+<div id="print-root"></div>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/kit.js"></script>
+<script src="js/csv.js"></script>
+<script src="js/xlsx-writer.js"></script>
+<script src="js/sie-writer.js"></script>
+<script src="js/shopify.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bokföra lön – arbetsgivaravgifter, verifikationer och AGI från lönelistan (2026)</title>
+<meta name="description" content="Klistra in lönelistan och få arbetsgivaravgifter med rätt sats per person (även 20,81 % för 19–23 år), beloppen till arbetsgivardeklarationen med sista dag och verifikationerna för lönen som SIE-fil. Allt i webbläsaren.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/bokfora-lon/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/bokfora-lon/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Bokföra lön – lönelista till SIE och arbetsgivardeklaration">
+<meta property="og:description" content="Arbetsgivaravgifter per avgiftssats, AGI-belopp och lönens verifikationer som SIE-fil. Lönelistan lämnar aldrig webbläsaren.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1e40af">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231e40af'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3EL%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/bokfora-lon/","name":"Bokföra lön – lönelista till SIE och arbetsgivardeklaration","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Läser en lönelista (utbetalningsdag, namn, födelseår, bruttolön, förmåner och skatteavdrag) och räknar arbetsgivaravgifter per avgiftssats för 2026 – 31,42 %, 20,81 % för 19–23 år på upp till 25 000 kr i månaden, 10,21 % för 67 år och äldre – med beloppen till arbetsgivardeklarationen (ruta 487, 497 och fält 011, 012, 013, 001), sista dag att deklarera och verifikationerna för lön, avgifter och skattekontot som SIE-fil. Allt sker i webbläsaren.",
+ "offers":[{"@type":"Offer","price":"0","priceCurrency":"SEK","description":"Gratis grundfunktion"},{"@type":"Offer","price":"99","priceCurrency":"SEK","description":"AGI-belopp, SIE-fil och Excel","url":"https://drudley.gumroad.com/l/lon"}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hur bokför man lön i aktiebolag?","acceptedAnswer":{"@type":"Answer","text":"På utbetalningsdagen debiteras bruttolönen på ett lönekonto, till exempel 7210 eller 7220 för företagsledare, och avdragen skatt krediteras 2710 Personalskatt och nettolönen banken. Arbetsgivaravgifterna bokförs på 7510 mot 2731. När Skatteverket drar skatt och avgifter från skattekontot debiteras 2710 och 2731 mot 1630."}},
+ {"@type":"Question","name":"Hur mycket är arbetsgivaravgiften 2026?","acceptedAnswer":{"@type":"Answer","text":"Full avgift är 31,42 %. För den som fyllt 67 vid årets ingång (födda 1938–1958) betalas bara ålderspensionsavgiften, 10,21 %. För födda 1937 eller tidigare betalas ingen avgift. För ersättning som betalas ut 1 april 2026–30 september 2027 till födda 2003–2007 är avgiften 20,81 % på upp till 25 000 kr per kalendermånad och 31,42 % på resten."}},
+ {"@type":"Question","name":"Vad ska stå i ruta 487 och 497?","acceptedAnswer":{"@type":"Answer","text":"Ruta 487 är summan av arbetsgivaravgifterna. Avgiften räknas för varje avgiftssats för sig, ören tas bort och beloppen summeras. Ruta 497 är summan av skatteavdragen. Arbetsgivardeklarationen redovisas i hela kronor."}},
+ {"@type":"Question","name":"När ska arbetsgivardeklarationen lämnas?","acceptedAnswer":{"@type":"Answer","text":"Månaden efter löneutbetalningen, för de flesta den 12:e och den 17:e i januari och augusti. Lön utbetald i december 2026 deklareras senast 18 januari 2027. Skatt och avgifter ska vara betalda samma dag."}},
+ {"@type":"Question","name":"Bokförs förmåner?","acceptedAnswer":{"@type":"Answer","text":"Förmånsvärdet är ingen utbetalning, så det bokförs inte som lön. Det ingår i underlaget för arbetsgivaravgifter och skatteavdrag och redovisas i fält 012 eller 013. Kostnaden för själva förmånen bokförs när fakturan betalas."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Lön<span>·</span>SIE</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Bokföra lön – från lönelistan till SIE och arbetsgivardeklaration</h1>
+    <p class="lead" data-i18n="lead">Klistra in lönelistan (utbetalningsdag, namn, födelseår eller personnummer, bruttolön, förmåner och skatteavdrag). Du får <strong>arbetsgivaravgifterna med rätt sats per person</strong> – även den tillfälliga <strong>20,81 % för 19–23 år</strong> och 10,21 % för 67 år och äldre – <strong>beloppen till arbetsgivardeklarationen</strong> med sista dag, och <strong>verifikationerna som SIE-fil</strong>.</p>
+  </section>
+
+  <section class="card calc" id="calc">
+    <div class="row"><h2 data-i18n="calc-h">Lönelistan</h2>
+      <div class="actions"><button id="sample" class="btn ghost small" type="button" data-i18n="sample">Visa exempel</button><button id="clear" class="link small" type="button" data-i18n="clear">Rensa</button></div></div>
+    <label for="rows"><span data-i18n="l-rows">Klistra in från Excel eller läs in en CSV-fil (en rad per utbetalning)</span></label>
+    <textarea id="rows" spellcheck="false" autocomplete="off" placeholder="Utbetalningsdag;Namn;Personnummer;Typ;Bruttolön;Förmåner;Skatteavdrag&#10;2026-04-24;Anna Ägare;19800412-1234;företagsledare;40000;0;11000"></textarea>
+    <p class="muted small" data-i18n="rows-p">Kolumner: Utbetalningsdag (2026-04-25 eller 2026-04) · Namn · Födelseår eller personnummer · Typ (tjänsteman, kollektiv, företagsledare eller ett BAS-konto) · Bruttolön · Förmåner · Skatteavdrag. Rubrikrad är valfri; kolumnen Bilförmån läses om den finns.</p>
+    <div class="row"><button id="file-btn" class="btn ghost small" type="button" data-i18n="file">Läs in CSV-fil</button><input type="file" id="file" accept=".csv,.txt,.tsv" hidden></div>
+    <div class="grid">
+      <label><span data-i18n="l-co">Företagets namn (till SIE-filen)</span><input type="text" id="f-co" autocomplete="organization"></label>
+      <label><span data-i18n="l-orgnr">Organisationsnummer</span><input type="text" id="f-orgnr" inputmode="numeric" placeholder="556677-8899" autocomplete="off"></label>
+      <label><span data-i18n="l-day">Utbetalningsdag när bara månaden anges</span><input type="text" id="f-day" inputmode="numeric" value="25"></label>
+      <label><span data-i18n="l-lon">Lönekonto om typ saknas</span><input type="text" id="f-lon" inputmode="numeric" value="7210"></label>
+      <label><span data-i18n="l-bank">Bankkonto</span><input type="text" id="f-bank" inputmode="numeric" value="1930"></label>
+      <label><span data-i18n="l-tax">Personalskatt</span><input type="text" id="f-tax" inputmode="numeric" value="2710"></label>
+      <label><span data-i18n="l-fee">Arbetsgivaravgifter (kostnad)</span><input type="text" id="f-fee" inputmode="numeric" value="7510"></label>
+      <label><span data-i18n="l-feedebt">Arbetsgivaravgifter (skuld)</span><input type="text" id="f-feedebt" inputmode="numeric" value="2731"></label>
+      <label><span data-i18n="l-skvon">Bokför dragningen från skattekontot på deklarationsdagen</span><select id="f-skvon"><option value="1" data-i18n="o-yes">Ja</option><option value="0" data-i18n="o-no">Nej</option></select></label>
+      <label><span data-i18n="l-skv">Skattekonto</span><input type="text" id="f-skv" inputmode="numeric" value="1630"></label>
+      <label><span data-i18n="l-serie">Verifikationsserie</span><input type="text" id="f-serie" value="A"></label>
+      <label><span data-i18n="l-nr">Första verifikationsnummer</span><input type="text" id="f-nr" inputmode="numeric" value="1"></label>
+    </div>
+    <p class="muted small" data-i18n="saved">Lönelistan läses bara i den här webbläsaren. Ingenting skickas iväg – inte heller personnummer.</p>
+  </section>
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+
+  <section id="result" class="card" hidden>
+    <h2 id="r-title">Resultat</h2>
+    <p id="r-meta" class="muted small"></p>
+    <div id="check" class="check ok"></div>
+    <div class="stats" id="stats"></div>
+    <div id="flags" class="flags" hidden></div>
+    <h3 data-i18n="m-h">Per lönemånad</h3>
+    <div class="tbl"><table id="m-t"><thead></thead><tbody></tbody><tfoot></tfoot></table></div>
+
+    <section id="paid">
+      <h2 data-i18n="paid-h">Verifikationer, SIE-fil, AGI-belopp och Excel</h2>
+      <p class="small" data-i18n="paid-p">Få <strong>verifikationerna</strong> (lönen på utbetalningsdagen, avgifterna vid månadens slut och dragningen från skattekontot på deklarationsdagen) som SIE-fil till Fortnox, Visma, Bokio och andra program, <strong>beloppen till arbetsgivardeklarationen</strong> per månad – huvuduppgiftens 420/430, 7001/9001, 422/432, 487 och 497 och fälten 011, 012, 013 och 001 per anställd – och ett <strong>Excel-underlag</strong>.</p>
+      <div class="row"><button id="paid-open" class="btn" type="button"><span data-i18n="open">Visa verifikationer och filer</span></button></div>
+      <div id="paid-out" hidden>
+        <h3 data-i18n="agi-h">Till arbetsgivardeklarationen (AGI)</h3>
+        <div id="agi" class="besked"></div>
+        <h3 data-i18n="ver-h">Verifikationer</h3>
+        <div id="ver" class="besked"></div>
+        <div class="dlrow"><button id="sie" class="btn" type="button" data-i18n="sie">Ladda ner SIE-fil</button><button id="xlsx" class="btn ghost" type="button" data-i18n="xlsx">Ladda ner Excel</button><button id="print" class="btn ghost" type="button" data-i18n="print">Skriv ut</button></div>
+        <p id="dl-msg" class="status"></p>
+      </div>
+    </section>
+  </section>
+
+  <aside class="cta card">
+    <p><strong data-i18n="cta-h">Mer till bokslutet:</strong> <span data-i18n="cta-p"><a href="../semesterloneskuld/">Semesterlöneskuld</a> räknar ut skulden till bokslutet, och <a href="../bokfora-skattekonto/">Bokföra skattekontot</a> konterar kontoutdraget från Skatteverket rad för rad.</span></p>
+  </aside>
+
+  <section class="prose">
+    <h2>Så bokförs lön utan lönprogram</h2>
+    <p>Många små aktiebolag har en eller ett par anställda – ofta bara ägaren själv – och betalar ut lönen direkt från banken. Lönprogrammet kostar varje månad, men bokföringen och <strong>arbetsgivardeklarationen på individnivå</strong> måste ändå bli rätt. Det som brukar gå fel är inte själva lönen utan allt runt omkring: arbetsgivaravgiften för en anställd som är 19 år eller 67, förmåner som ska med i underlaget men inte bokföras som lön, ören som inte får finnas i deklarationen och skatteskulden som ska bort från 2710 och 2731 när Skatteverket drar pengarna. Det här verktyget tar lönelistan som du redan har i Excel och gör resten.</p>
+    <h3>Konteringen</h3>
+    <ul>
+      <li><strong>Utbetalningsdagen</strong> – debet lönekonto med bruttolönen: 7210 Löner till tjänstemän, 7010 Löner till kollektivanställda eller 7220 Löner till företagsledare. Kredit 2710 Personalskatt med skatteavdraget och kredit 1930 med nettolönen.</li>
+      <li><strong>Sista dagen i månaden</strong> – debet 7510 Arbetsgivaravgifter, kredit 2731 Avräkning lagstadgade sociala avgifter, med exakt det belopp som ska stå i ruta 487.</li>
+      <li><strong>Deklarationsdagen</strong> – debet 2710 och 2731, kredit 1630 Skattekontot. Då är skulderna nollställda och skattekontot stämmer med Skatteverkets kontoutdrag. Vill du hellre bokföra dragningen när den syns på kontoutdraget stänger du av den raden.</li>
+    </ul>
+    <p>Kontona kan ändras, och typen per rad kan vara ett eget BAS-konto. Alla verifikationer balanserar och numreras i datumordning.</p>
+    <h3>Arbetsgivaravgifter 2026</h3>
+    <p>Full avgift är <strong>31,42 %</strong> av bruttolön och förmåner. Från 2026 betalas bara ålderspensionsavgiften, <strong>10,21 %</strong>, för den som har fyllt 67 vid årets ingång – det vill säga födda 1938–1958. För födda 1937 eller tidigare betalas ingen avgift. För ersättning som betalas ut från <strong>1 april 2026 till 30 september 2027</strong> till anställda som är 19–23 år – under 2026 födda 2003–2007 – är avgiften tillfälligt <strong>20,81 %</strong> på upp till <strong>25 000 kr per kalendermånad</strong>; på det som överstiger 25 000 kr betalas full avgift. Verktyget räknar gränsen per person och månad, även om lönen betalas ut i flera omgångar, och använder utbetalningsdagen – inte intjänandemånaden – precis som Skatteverket.</p>
+    <p>I arbetsgivardeklarationen räknas avgiften <strong>för varje avgiftssats för sig</strong> på summan av underlagen, ören tas bort och beloppen läggs ihop i <strong>ruta 487</strong>. Skatteavdragen summeras i <strong>ruta 497</strong>. Per anställd redovisas kontant bruttolön i fält 011, övriga förmåner i 012, bilförmån i 013 och avdragen skatt i 001. Allt i hela kronor.</p>
+    <h3>Sista dag att deklarera och betala</h3>
+    <p>Lön som betalas ut en månad deklareras och betalas månaden efter. För företag med en omsättning upp till 40 miljoner kronor är det den 12:e, men den 17:e i januari och augusti, och dagen flyttas när den faller på en helg. Verktyget använder Skatteverkets tabell för 2026 – till exempel 13 april för mars, 17 augusti för juli och 18 januari 2027 för december. För 2027 räknas dagen fram enligt regeln och markeras så att du kan kontrollera den.</p>
+    <h3>Förmåner och skatteavdrag</h3>
+    <p>Ett förmånsvärde – till exempel friskvård över gränsen, fri kost eller bilförmån – är ingen utbetalning och bokförs inte som lön. Det ingår däremot i underlaget för arbetsgivaravgifter och skatteavdrag. Kostnaden för själva förmånen bokförs när fakturan kommer. Skatteavdraget räknar verktyget inte ut: ta det från Skatteverkets skattetabell eller den anställdes skattebesked och skriv in det i listan.</p>
+    <h3>Gratis och betalt</h3>
+    <p>Inläsningen, avgiften per person och sammanställningen per månad med sista dag är gratis. När du låser upp får du verifikationerna, SIE-filen, beloppen till arbetsgivardeklarationen per månad och anställd och ett Excel-underlag. Verktyget är ett hjälpmedel, inte lönerådgivning. Det hanterar inte sjuklön, semesterersättning, växa-stöd, regionalt stöd, utsända eller särskild löneskatt – kontrollera sådant separat och fråga din redovisningskonsult om något är oklart.</p>
+  </section>
+
+  <section class="prose faq">
+    <h2>Vanliga frågor</h2>
+    <details><summary>Hur bokför man lön i aktiebolag?</summary><p>Bruttolön på 7210 (7220 för företagsledare), skatteavdrag på 2710 och nettolönen från banken. Avgifterna på 7510 mot 2731. Dragningen från skattekontot: 2710 och 2731 mot 1630.</p></details>
+    <details><summary>Hur mycket är arbetsgivaravgiften 2026?</summary><p>31,42 %, 10,21 % för födda 1938–1958, 0 % för födda 1937 eller tidigare och 20,81 % på upp till 25 000 kr i månaden för födda 2003–2007 från 1 april.</p></details>
+    <details><summary>Vad ska stå i ruta 487 och 497?</summary><p>Summan av arbetsgivaravgifterna, räknade per avgiftssats utan ören, och summan av skatteavdragen.</p></details>
+    <details><summary>När ska arbetsgivardeklarationen lämnas?</summary><p>Den 12:e månaden efter utbetalningen, den 17:e i januari och augusti. Skatt och avgifter ska vara betalda samma dag.</p></details>
+    <details><summary>Räknar verktyget ut skatteavdraget?</summary><p>Nej. Ta skatten från skattetabellen eller skattebeskedet och skriv in den i listan.</p></details>
+    <details><summary>Skickas lönelistan någonstans?</summary><p><strong>Nej.</strong> Den läses och räknas i webbläsaren och sparas inte – bara kontoinställningarna sparas lokalt.</p></details>
+  </section>
+
+  <section class="prose src">
+    <h2>Källor</h2>
+    <ul>
+      <li><a href="https://www.skatteverket.se/foretag/arbetsgivare/arbetsgivaravgifterochskatteavdrag/arbetsgivaravgifter.4.233f91f71260075abe8800020817.html" rel="noopener">Skatteverket: Arbetsgivaravgifter</a> (avgiftssatser 2026, nedsättningen för 19–23 år, fält 420/430, 7001/9001, 422/432, 423/433)</li>
+      <li><a href="https://www.skatteverket.se/privat/skatter/beloppochprocent/2026/beloppochprocent2026kortversion.4.1522bf3f19aea8075ba89.html" rel="noopener">Skatteverket: Belopp och procent 2026</a></li>
+      <li><a href="https://www.skatteverket.se/foretag/etjansterochblanketter/blanketterbroschyrer/blanketter/info/4786.4.2cf1b5cd163796a5c8bc704.html" rel="noopener">Skatteverket: Arbetsgivardeklaration Huvuduppgift (SKV 4786)</a> (ruta 487 och 497, heltal, ören per avgiftssats)</li>
+      <li><a href="https://www.skatteverket.se/foretag/arbetsgivare/lamnaarbetsgivardeklaration/safyllerduiarbetsgivardeklarationen.4.2cf1b5cd163796a5c8b66a8.html" rel="noopener">Skatteverket: Så fyller du i arbetsgivardeklarationen</a> (fält 011, 012, 013 och 001)</li>
+      <li><a href="https://www.skatteverket.se/foretag/arbetsgivare/lamnaarbetsgivardeklaration/narskajaglamnaarbetsgivardeklaration.4.361dc8c15312eff6fd13c11.html" rel="noopener">Skatteverket: När ska jag lämna arbetsgivardeklarationen</a> (datum 2026)</li>
+      <li><a href="https://www.bas.se/kontoplaner/" rel="noopener">BAS kontoplan 2026</a> (1630, 1930, 2710, 2731, 7010, 7210, 7220, 7510)</li>
+    </ul>
+  </section>
+</main>
+<footer class="wrap muted small foot">Fristående verktyg – inte anslutet till Skatteverket eller något bokföringsprogram. Beräkningen är ett hjälpmedel; stäm av mot er bokföring och redovisningskonsult. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
+
+<dialog id="paywall">
+  <h2 data-i18n="pw-h">SIE-fil, AGI-belopp och Excel</h2>
+  <p data-i18n="pw-p">Lås upp verifikationerna, SIE-filen, beloppen till arbetsgivardeklarationen per månad och anställd och Excel-underlaget. Sammanställningen per månad är alltid gratis.</p>
+</dialog>
+<div id="print-root"></div>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/kit.js"></script>
+<script src="js/csv.js"></script>
+<script src="js/xlsx-writer.js"></script>
+<script src="js/sie-writer.js"></script>
+<script src="js/lon.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

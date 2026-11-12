@@ -28,7 +28,7 @@
     'c-sal': 'Salary/year (per month)', 'c-ag': 'Employer contrib.', 'c-ctax': 'Corporate tax', 'c-div': 'Dividend', 'c-tax': 'Your tax', 'c-net': 'Net to you', 'c-next': 'Wage-based allowance 2027',
     'o-assume': 'Simplified one-year model: everything that is not salary is paid out as a dividend the same year, you receive the whole dividend and the company has no other costs. The value of pension rights, sickness and parental benefit that salary gives is not included in the net. Salary earns state pension rights; dividends do not.',
     'pw-h': 'Salary or dividend – optimisation', 'pw-p': 'Unlock the optimiser: best salary and dividend for 2026 with exact tax rules, comparison table, chart and effect on next year\'s allowance.',
-    'pension-link': 'Is the company also contributing to occupational pension before year-end? <a href="../pensionsavsattning-aktiebolag/">Pension contribution in a limited company</a> calculates the deduction room, special payroll tax and a pack for the books and INK2.'
+    'pension-link': 'Is the company also contributing to occupational pension before year-end? <a href="../pensionsavsattning-aktiebolag/">Pension contribution in a limited company</a> calculates the deduction room, special payroll tax and a pack for the books and INK2.<span data-needs="bokfora-utdelning"> Once the dividend is decided, <a href="../bokfora-utdelning/">Dividends in a limited company</a> gives the meeting minutes, postings, KU31 and the SKV 3700 deadline.</span>'
   };
   var SV = {};
   var T = {

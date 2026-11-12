@@ -15,7 +15,7 @@
     'paid-h': 'SIE file, Excel and reconciliation',
     'paid-p': 'Get <strong>one journal entry per row</strong> as a SIE file to import into Fortnox, Visma, Bokio or other software, an <strong>Excel pack</strong> with postings and reconciliation, and a printout to keep with the books.',
     open: 'Show journal entries and files', 'ver-h': 'Journal entries', sie: 'Download SIE file', xlsx: 'Download Excel', print: 'Print reconciliation',
-    'cta-h': 'More files for the books:', 'cta-p': '<a href="../stripe-till-sie/">Stripe to SIE</a> does the same with the payout report from Stripe, and <a href="../sie-till-excel/">SIE to Excel</a> shows the whole ledger as a spreadsheet when you want to check that 1630 is right.',
+    'cta-h': 'More files for the books:', 'cta-p': '<a href="../stripe-till-sie/">Stripe to SIE</a> does the same with the payout report from Stripe, and <a href="../sie-till-excel/">SIE to Excel</a> shows the whole ledger as a spreadsheet when you want to check that 1630 is right. Employer contributions and personnel tax from payroll? <a href="../bokfora-lon/">Book payroll</a> works out the AGI amounts and books the debit against 1630.',
     'pw-h': 'SIE file, Excel and reconciliation', 'pw-p': 'Unlock the journal entries, the SIE file with one entry per row and the Excel pack. Reading, postings and the balance check are always free.'
   };
   var T = {

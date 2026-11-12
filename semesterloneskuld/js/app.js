@@ -17,7 +17,7 @@
     'paid-h': 'Journal entry, SIE file and Excel pack',
     'paid-p': 'Get the <strong>closing journal entry</strong> for the change against the booked liability (7290/2920 and 7519/2940), a <strong>SIE file</strong> to import into Fortnox, Visma, Bokio or other software and an <strong>Excel pack per employee</strong> to keep with the annual accounts.',
     open: 'Show journal entry and pack', 'ver-h': 'Closing journal entry', sie: 'Download SIE file', xlsx: 'Download Excel', print: 'Print closing appendix',
-    'cta-h': 'More for the closing:', 'cta-p': '<a href="../pensionsavsattning-aktiebolag/">Pension contribution in a limited company</a> works out the deduction room and special payroll tax before year-end, and <a href="../kontrollbalansrakning/">Kontrollbalansräkning from a SIE file</a> shows whether half the share capital has been used up.',
+    'cta-h': 'More for the closing:', 'cta-p': '<a href="../pensionsavsattning-aktiebolag/">Pension contribution in a limited company</a> works out the deduction room and special payroll tax before year-end, and <a href="../kontrollbalansrakning/">Kontrollbalansräkning from a SIE file</a> shows whether half the share capital has been used up. Book the year’s salaries with <a href="../bokfora-lon/">Book payroll</a> – employer contributions, AGI amounts and a SIE file from the pay list.',
     'pw-h': 'Journal entry, SIE file and Excel pack', 'pw-p': 'Unlock the closing journal entry, the SIE file and the Excel pack per employee. The liability per person and the employer contributions are always free.'
   };
   var T = {

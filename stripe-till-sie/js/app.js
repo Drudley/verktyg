@@ -14,6 +14,7 @@
   var MONTHS = ['januari', 'februari', 'mars', 'april', 'maj', 'juni', 'juli', 'augusti', 'september', 'oktober', 'november', 'december'];
   var EN = {
     /*needs:bokfora-skattekonto*/'link-sk': 'VAT and employer contributions are then charged to the tax account – <a href="../bokfora-skattekonto/">Book the tax account</a> turns Skatteverket’s statement into a SIE file the same way.',/*/needs*/
+    'link-shop': 'Selling through Shopify too? <a href="../bokfora-shopify/">Book Shopify</a> does the same with the Shopify Payments transactions file – one journal entry per payout, with VAT boxes.',
     /*needs:bokfora-inkop-eu*/'link-eu': 'More services and goods from the EU or outside it: <a href="../bokfora-inkop-eu/">Book purchases from the EU and abroad</a> works out reverse-charge VAT and boxes 20–24, 30–32 and 48 of the VAT return.',/*/needs*/
     h1: 'Book Stripe payouts in Swedish accounting', lead: 'Load Stripe\'s CSV export and get a balanced SIE file with sales, VAT and fees for every payout – ready to import into Swedish bookkeeping software. <strong>The file never leaves your computer.</strong>',
     drop: 'Drop your Stripe CSV here or <u>choose file</u>', dropsub: 'Payout reconciliation (itemized) or Balance transactions · comma or semicolon', sample: 'Try a sample file',

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Avräkning av utländsk skatt i aktiebolag – spärrbelopp och INK2</title>
+<meta name="description" content="Räkna hur mycket utländsk källskatt aktiebolaget får avräkna: avtalets 15 %, spärrbeloppet med 20,6 % och periodiseringsfond, sparad skatt i fem år och vad som ska sökas tillbaka i källlandet – med kontering på 6996/1680 och text till INK2. Allt i webbläsaren.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/avrakning-utlandsk-skatt/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/avrakning-utlandsk-skatt/">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Avräkning av utländsk skatt i aktiebolag – spärrbelopp och INK2">
+<meta property="og:description" content="Källskatt på utländska utdelningar i aktiebolaget: avräkningsbar del enligt skatteavtal, spärrbelopp, sparad skatt i fem år, återsökning i källlandet, kontering och SIE-fil. Allt i webbläsaren.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#6d28d9">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%236d28d9'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/avrakning-utlandsk-skatt/","name":"Avräkning av utländsk skatt i aktiebolag","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+ "description":"Räknar ut hur mycket utländsk källskatt på utdelningar ett svenskt aktiebolag får avräkna mot den statliga inkomstskatten enligt lagen (1986:468) om avräkning av utländsk skatt: avräkningsbar skatt enligt skatteavtalets skattesats, spärrbeloppet med 20,6 % justerat för periodiseringsfond, minst 500 kronor, sparad utländsk skatt från de fem föregående åren och den del som ska sökas tillbaka i källlandet. Ger kontering på 6996, 1680 och 8212 och en SIE-fil.",
+ "offers":[{"@type":"Offer","price":"0","priceCurrency":"SEK","description":"Gratis grundfunktion"},{"@type":"Offer","price":"99","priceCurrency":"SEK","description":"Kontering, SIE-fil, text till INK2 och Excel-specifikation","url":"https://drudley.gumroad.com/l/avrakning"}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hur räknas spärrbeloppet för ett aktiebolag?","acceptedAnswer":{"@type":"Answer","text":"Spärrbeloppet är den del av bolagets statliga inkomstskatt som hör till de utländska inkomsterna: skatten multipliceras med de utländska inkomsterna efter kostnader delat med bolagets sammanlagda inkomst. Beräkningen görs som om avsättning till eller återföring av periodiseringsfond inte hade gjorts. Spärrbeloppet är minst 500 kronor men aldrig mer än bolagets statliga inkomstskatt (2 kap. 9, 10 och 13 §§ avräkningslagen)."}},
+ {"@type":"Question","name":"Hur mycket utländsk källskatt får aktiebolaget avräkna?","acceptedAnswer":{"@type":"Answer","text":"Högst den skatt som skatteavtalet tillåter, för portföljutdelningar oftast 15 procent av bruttoutdelningen, och högst spärrbeloppet. Har källlandet dragit mer, till exempel 35 procent i Finland eller Schweiz, ska mellanskillnaden sökas tillbaka i källlandet."}},
+ {"@type":"Question","name":"Vad händer med utländsk skatt som inte kan avräknas?","acceptedAnswer":{"@type":"Answer","text":"Den del som inte ryms i årets spärrbelopp får sparas och avräknas efter begäran senast det femte beskattningsåret efter det år inkomsten beskattades. Sparad skatt avräknas före årets skatt, och äldst först (2 kap. 17 §)."}},
+ {"@type":"Question","name":"Ska bolaget dra av källskatten eller avräkna den?","acceptedAnswer":{"@type":"Answer","text":"Avräkning sänker skatten krona för krona, avdrag bara med 20,6 procent av den utländska skatten. Med skattepliktig vinst är avräkning därför nästan alltid bättre. Har bolaget underskott blir avräkningen noll i år, men skatten kan sparas i fem år."}},
+ {"@type":"Question","name":"Gäller avräkning för utdelning på näringsbetingade aktier?","acceptedAnswer":{"@type":"Answer","text":"Nej. Utdelning på näringsbetingade andelar är skattefri i Sverige, så det finns ingen svensk skatt att avräkna från. Verktyget gäller skattepliktiga utdelningar, till exempel på börsaktier som bolaget äger under 10 procent av."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Avräkning<span>·</span>AB</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Avräkning av utländsk skatt i aktiebolag</h1>
+    <p class="lead" data-i18n="lead">Har bolaget fått utdelningar från utländska aktier med källskatt? Lägg in utdelningarna och bolagets resultat. Verktyget räknar <strong>avräkningsbar skatt enligt skatteavtalet</strong>, <strong>spärrbeloppet</strong> med 20,6 % och periodiseringsfond, <strong>sparad skatt</strong> från fem år bakåt och vad som ska <strong>sökas tillbaka i källlandet</strong>.</p>
+  </section>
+
+  <section class="card calc" id="calc">
+    <div class="row"><h2 data-i18n="calc-h">Bolaget och beskattningsåret</h2>
+      <div class="actions"><button id="sample" class="btn ghost small" type="button" data-i18n="sample">Visa exempel</button><button id="clear" class="link small" type="button" data-i18n="clear">Rensa</button></div></div>
+    <div class="grid">
+      <label><span data-i18n="l-co">Bolagets namn</span><input type="text" id="f-name" autocomplete="organization"></label>
+      <label><span data-i18n="l-org">Organisationsnummer</span><input type="text" id="f-orgnr" inputmode="numeric" placeholder="559999-0000" autocomplete="off"></label>
+      <label><span data-i18n="l-end">Räkenskapsårets sista dag</span><input type="text" id="f-end" inputmode="numeric" placeholder="2026-12-31" autocomplete="off"></label>
+      <label><span data-i18n="l-overskott">Skattemässigt resultat, INK2 fält 1.1 (underskott minus), kr</span><input type="text" id="f-overskott" inputmode="decimal" placeholder="0" autocomplete="off"></label>
+      <label><span data-i18n="l-pfAvs">Avsättning till periodiseringsfond i år, kr</span><input type="text" id="f-pfAvs" inputmode="decimal" placeholder="0" autocomplete="off"></label>
+      <label><span data-i18n="l-pfAter">Återförd periodiseringsfond i år, kr</span><input type="text" id="f-pfAter" inputmode="decimal" placeholder="0" autocomplete="off"></label>
+      <label><span data-i18n="l-costs">Kostnader för de utländska inkomsterna, kr</span><input type="text" id="f-costs" inputmode="decimal" placeholder="0" autocomplete="off"></label>
+      <label><span data-i18n="l-deducted">Utländsk skatt som ändå dragits av i deklarationen, kr</span><input type="text" id="f-deducted" inputmode="decimal" placeholder="0" autocomplete="off"></label>
+    </div>
+    <h3 data-i18n="cf-h">Sparad utländsk skatt från tidigare år</h3>
+    <div class="grid" id="cf-grid">
+      <label><span id="cf1-l">År −5</span><input type="text" id="f-cf1" inputmode="decimal" placeholder="0" autocomplete="off"></label>
+      <label><span id="cf2-l">År −4</span><input type="text" id="f-cf2" inputmode="decimal" placeholder="0" autocomplete="off"></label>
+      <label><span id="cf3-l">År −3</span><input type="text" id="f-cf3" inputmode="decimal" placeholder="0" autocomplete="off"></label>
+      <label><span id="cf4-l">År −2</span><input type="text" id="f-cf4" inputmode="decimal" placeholder="0" autocomplete="off"></label>
+      <label><span id="cf5-l">År −1</span><input type="text" id="f-cf5" inputmode="decimal" placeholder="0" autocomplete="off"></label>
+    </div>
+    <h3 data-i18n="bk-h">Bokföring</h3>
+    <div class="grid">
+      <label><span data-i18n="l-divKonto">Utdelningen bokförs på konto</span><input type="text" id="f-divKonto" inputmode="numeric" value="8212"></label>
+      <label><span data-i18n="l-pay">Bank- eller depåkonto</span><input type="text" id="f-pay" inputmode="numeric" value="1930"></label>
+      <label><span data-i18n="l-serie">Verifikationsserie</span><input type="text" id="f-serie" value="A"></label>
+      <label><span data-i18n="l-nr">Första verifikationsnummer</span><input type="text" id="f-nr" inputmode="numeric" value="1"></label>
+    </div>
+    <div class="row people-h"><h3 data-i18n="r-h">Utdelningar med utländsk källskatt</h3>
+      <button id="add" class="btn ghost small" type="button" data-i18n="add">Lägg till utdelning</button></div>
+    <div id="people"></div>
+    <p class="hint" data-i18n="h-items">Ange bruttoutdelning och dragen källskatt i utdelningens valuta och kursen den dag utdelningen kom (eller valutan SEK och kurs 1). Avtalets skattesats är 15&nbsp;% för portföljutdelningar enligt de flesta av Sveriges skatteavtal, till exempel med USA, Finland, Norge, Danmark och Schweiz – kontrollera avtalet för andra länder.</p>
+    <p class="muted small" data-i18n="saved">Uppgifterna sparas bara i den här webbläsaren. Inget skickas iväg.</p>
+  </section>
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+
+  <section id="result" class="card" hidden>
+    <h2 id="r-title">Resultat</h2>
+    <p id="r-meta" class="muted small"></p>
+    <div id="check" class="check ok"></div>
+    <div class="stats" id="stats"></div>
+    <div id="flags" class="flags" hidden></div>
+    <h3 data-i18n="sp-h">Spärrbeloppet steg för steg</h3>
+    <div class="tbl"><table id="sp-t"><tbody></tbody></table></div>
+    <h3 data-i18n="per-h">Per utdelning</h3>
+    <div class="tbl"><table id="per-t"><thead></thead><tbody></tbody><tfoot></tfoot></table></div>
+    <h3 data-i18n="cfo-h">Sparad skatt efter i år</h3>
+    <div class="tbl"><table id="cf-t"><thead></thead><tbody></tbody></table></div>
+
+    <section id="paid">
+      <h2 data-i18n="paid-h">Kontering, SIE-fil, text till INK2 och specifikation</h2>
+      <p class="small" data-i18n="paid-p">Få <strong>konteringen per utdelning</strong> (bank, 6996 avräkningsbar källskatt, 1680 att söka tillbaka, 8212 utdelning) som <strong>SIE-fil</strong>, <strong>texten till begäran om avräkning</strong> i inkomstdeklarationen med justeringen på INK2S, och en <strong>Excel-specifikation</strong> med spärrbelopp och sparad skatt år för år att spara till nästa deklaration.</p>
+      <div class="row"><button id="paid-open" class="btn" type="button"><span data-i18n="open">Visa kontering och INK2-text</span></button></div>
+      <div id="paid-out" hidden>
+        <h3 data-i18n="ink-h">Underlag till begäran om avräkning (SKV 2706)</h3>
+        <div id="ink" class="besked"></div>
+        <h3 data-i18n="ver-h">Kontering</h3>
+        <div id="ver" class="besked"></div>
+        <div class="dlrow"><button id="sie" class="btn" type="button" data-i18n="sie">Ladda ner SIE-fil</button><button id="xlsx" class="btn ghost" type="button" data-i18n="xlsx">Ladda ner Excel-specifikation</button><button id="print" class="btn ghost" type="button" data-i18n="print">Skriv ut</button></div>
+        <p id="dl-msg" class="status"></p>
+      </div>
+    </section>
+  </section>
+
+  <aside class="cta card">
+    <p><strong data-i18n="cta-h">Äger du aktierna privat?</strong> <span data-i18n="cta-p"><a href="../aterbetalning-kallskatt/">Källskatt tillbaka</a> räknar vad du kan söka tillbaka från Finland, Norge, Danmark och Schweiz direkt från Avanza- eller Nordnet-filen. Ska bolaget dela ut vinsten, se <a href="../gransbelopp-utdelning/">Gränsbelopp 2026 – 3:12-kalkylator</a>.</span></p>
+  </aside>
+
+  <section class="prose">
+    <h2>Utländsk källskatt i ett aktiebolag – så fungerar avräkningen</h2>
+    <p>Många mindre aktiebolag äger börsaktier i en depå – amerikanska teknikbolag, Nordea, Equinor, Novo Nordisk eller Nestlé. När utdelningen kommer har källlandet redan dragit skatt – 15&nbsp;% i USA med rätt blankett, 35&nbsp;% i Schweiz och ofta mellan 20 och 35&nbsp;% i de nordiska grannländerna. Utdelningen är samtidigt skattepliktig i Sverige, eftersom börsaktier där bolaget har mindre än 10&nbsp;% av rösterna normalt inte är näringsbetingade. Utan avräkning skulle samma krona beskattas två gånger. Lagen (1986:468) om avräkning av utländsk skatt låter bolaget dra av den utländska skatten direkt från den svenska statliga inkomstskatten – men bara upp till två gränser.</p>
+    <h3>Gräns 1: skatteavtalets skattesats</h3>
+    <p>När det finns ett skatteavtal sker avräkningen enligt avtalet. För utdelningar på portföljaktier begränsar de flesta av Sveriges avtal källskatten till <strong>15&nbsp;% av bruttoutdelningen</strong>. Den del som källlandet har dragit utöver det kan inte avräknas i Sverige – den ska <strong>sökas tillbaka hos skattemyndigheten i källlandet</strong>, till exempel finska Skatteförvaltningen, norska Skatteetaten, danska Skattestyrelsen eller schweiziska ESTV. Har Schweiz dragit 35&nbsp;% avräknas 15&nbsp;% och 20&nbsp;% söks tillbaka. Verktyget delar varje utdelning i en avräkningsbar del och en del att söka tillbaka, och bokför den senare som en fordran på 1680 i stället för som kostnad.</p>
+    <h3>Gräns 2: spärrbeloppet</h3>
+    <p>Avräkningen får inte bli större än den svenska skatt som faller på de utländska inkomsterna – <strong>spärrbeloppet</strong> (2 kap. 9–10 §§). För ett aktiebolag räknas det så här: bolagets statliga inkomstskatt, 20,6&nbsp;% av det skattemässiga resultatet avrundat nedåt till helt tiotal kronor, gånger de <strong>utländska inkomsterna efter kostnader</strong> delat med bolagets <strong>sammanlagda inkomst</strong>. Kostnader som hör till de utländska inkomsterna, till exempel depåavgifter och en del av räntekostnaderna, ska alltså dras av först. Beräkningen görs <strong>som om periodiseringsfonden inte hade rörts</strong> (13 §) – en avsättning läggs tillbaka och en återföring dras bort. Spärrbeloppet är minst <strong>500 kronor</strong>, men aldrig mer än den statliga inkomstskatt bolaget faktiskt ska betala. Har bolaget underskott finns ingen skatt att avräkna från i år.</p>
+    <h3>Sparad utländsk skatt – fem år framåt</h3>
+    <p>Den utländska skatt som inte ryms i årets spärrbelopp går inte förlorad. Efter begäran får den avräknas <strong>senast det femte beskattningsåret</strong> efter det år då inkomsten beskattades (2 kap. 17 §). Sparad skatt från tidigare år avräknas <strong>före</strong> årets skatt och äldst först, men det sammanlagda beloppet får aldrig överstiga årets spärrbelopp. Verktyget håller reda på det: fyll i vad som sparats från de fem senaste åren så visar tabellen vad som används nu, vad som finns kvar och till vilket år.</p>
+    <h3>Avdrag i stället för avräkning?</h3>
+    <p>Bolaget kan i stället dra av den utländska skatten som kostnad (16 kap. 18–19 §§ inkomstskattelagen). Det sänker skatten med bara 20,6&nbsp;% av den utländska skatten, medan avräkning sänker den krona för krona. Har avdrag ändå gjorts ska spärrbeloppet räknas som om avdraget inte gjorts, och den avräkningsbara skatten minskas med den skattesänkning som avdraget gav (9 och 15 §§). Verktyget visar båda alternativen sida vid sida.</p>
+    <h3>Bokföring och deklaration</h3>
+    <p>Varje utdelning bokförs brutto på 8212 Utdelningar, andra företag. Det som kom in på kontot debiteras banken, den avräkningsbara källskatten 6996 Betald utländsk inkomstskatt och den del som ska sökas tillbaka 1680. Begär bolaget avräkning ska den bokförda kostnaden på 6996 läggas tillbaka som ej avdragsgill i INK2S, punkt 4.3 c. Bolaget ska själv begära avräkningen och lämna de uppgifter som behövs (1 kap. 6 §) – banken lämnar inga kontrolluppgifter för aktiebolag. Begäran görs på blanketten <strong>Avräkning av utländsk skatt – Juridiska personer (SKV 2706)</strong>, som bifogas Inkomstdeklaration 2; sätt då kryss i rutan för <em>Övriga upplysningar</em> på huvudblanketten. Verktyget ger beloppen till blanketten – utländska inkomster, kostnader, avdragen utländsk skatt och sparad skatt – och en specifikation per utdelning att bifoga.</p>
+    <h3>Gratis och betalt</h3>
+    <p>Uträkningen per utdelning, spärrbeloppet, årets avräkning och den sparade skatten är gratis. När du låser upp får du konteringen som SIE-fil, texten till begäran om avräkning, justeringen på INK2S och en Excel-specifikation med alla steg och sparad skatt år för år. Verktyget är ett hjälpmedel, inte skatterådgivning.</p>
+  </section>
+
+  <section class="prose faq">
+    <h2>Vanliga frågor</h2>
+    <details><summary>Vilken valutakurs ska jag använda?</summary><p>Kursen den dag utdelningen betalades ut, till exempel Riksbankens mittkurs eller bankens kurs på avräkningsnotan. Har du beloppen i kronor från depån, välj SEK och kurs 1.</p></details>
+    <details><summary>USA drog 30 % – vad gäller?</summary><p>Har bolaget inte lämnat blankett W-8BEN-E drar USA 30&nbsp;%. Bara 15&nbsp;% kan avräknas; resten får bolaget söka tillbaka från IRS eller undvika genom att lämna blanketten till banken.</p></details>
+    <details><summary>Gäller det fonder och räntor?</summary><p>Räntor och royalty med utländsk skatt följer samma regler. Lägg in dem som egna rader och sätt avtalets skattesats för den inkomsttypen.</p></details>
+    <details><summary>Skickas mina uppgifter någonstans?</summary><p><strong>Nej.</strong> Allt räknas i webbläsaren och sparas bara lokalt tills du rensar.</p></details>
+  </section>
+
+  <section class="prose src">
+    <h2>Källor</h2>
+    <ul>
+      <li><a href="https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-1986468-om-avrakning-av-utlandsk-skatt_sfs-1986-468/" rel="noopener">Lag (1986:468) om avräkning av utländsk skatt</a>, 1 kap. 6 §, 2 kap. 2, 7–10, 13, 15 och 17 §§</li>
+      <li><a href="https://www.skatteverket.se/foretag/etjansterochblanketter/blanketterbroschyrer/blanketter/info/2706.4.39f16f103821c58f680006568.html" rel="noopener">Skatteverket: Avräkning av utländsk skatt – Juridiska personer (SKV 2706)</a> och <a href="https://www.skatteverket.se/download/18.6491ed82199c4722daef0c/1761209691103/skatteregler-for-aktie-och-handelsbolag-skv294-utgava24.pdf" rel="noopener">Skatteregler för aktie- och handelsbolag (SKV 294)</a>, Övriga upplysningar och punkt 4.3 c</li>
+      <li><a href="https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/inkomstskattelag-19991229_sfs-1999-1229/" rel="noopener">Inkomstskattelag (1999:1229)</a>, 1 kap. 7 § (avrundning), 16 kap. 18–19 §§ (avdrag), 65 kap. 10 § (20,6 %)</li>
+      <li><a href="https://www.skatteverket.se/privat/internationellt/avrakningavutlandskskatt.4.7856a2b411550b99fb7800088114.html" rel="noopener">Skatteverket: Avräkning av utländsk skatt</a></li>
+      <li><a href="https://www.bas.se/kontoplaner/" rel="noopener">BAS kontoplan 2026</a> (6996, 1680, 8212, 2517)</li>
+    </ul>
+  </section>
+</main>
+<footer class="wrap muted small foot">Fristående verktyg – inte anslutet till Skatteverket eller något bokföringsprogram. Uträkningen är ett hjälpmedel; stäm av mot redovisningskonsult vid tveksamma fall. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
+
+<dialog id="paywall">
+  <h2 data-i18n="pw-h">Kontering, SIE-fil och INK2-text</h2>
+  <p data-i18n="pw-p">Lås upp konteringen per utdelning som SIE-fil, texten till begäran om avräkning med INK2S-justeringen och Excel-specifikationen. Spärrbeloppet och årets avräkning är alltid gratis.</p>
+</dialog>
+<div id="print-root"></div>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/kit.js"></script>
+<script src="js/xlsx-writer.js"></script>
+<script src="js/sie-writer.js"></script>
+<script src="js/avrakning.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

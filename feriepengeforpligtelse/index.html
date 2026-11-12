@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Feriepengeforpligtelse – beregning til årsregnskabet (ferieloven 2020)</title>
+<meta name="description" content="Beregn skyldige feriepenge pr. medarbejder på statusdagen: optjente og afholdte feriedage efter samtidighedsferie, ferietillæg på 1 %, feriegodtgørelse på 12,5 % til FerieKonto, ferie på forskud og regulering til bogføring og skat. Alt sker i browseren.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://drudley.github.io/verktyg/feriepengeforpligtelse/">
+<meta property="og:url" content="https://drudley.github.io/verktyg/feriepengeforpligtelse/">
+<meta property="og:locale" content="da_DK">
+<meta property="og:title" content="Feriepengeforpligtelse – beregning til årsregnskabet">
+<meta property="og:description" content="Skyldige feriepenge pr. medarbejder efter ferieloven 2020: feriedage, ferietillæg, feriegodtgørelse, forskudsferie og regulering til bogføring og skat. Filen forlader aldrig din computer.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#b45309">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23b45309'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3EF%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/feriepengeforpligtelse/","name":"Feriepengeforpligtelse – beregning til årsregnskabet","applicationCategory":"FinanceApplication","operatingSystem":"Browser","inLanguage":"da-DK",
+ "description":"Beregner en dansk virksomheds feriepengeforpligtelse på statusdagen efter ferieloven fra 2020: optjente feriedage med 2,08 dage pr. måned, afholdte og overførte dage, værdien pr. feriedag inklusive arbejdsgiverbetalt pension, ferietillæg på 1 %, feriegodtgørelse på 12,5 % for timelønnede, ferie afholdt på forskud og reguleringen til bogføring og skattemæssigt fradrag.",
+ "offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis grundfunktion"},{"@type":"Offer","price":"9","priceCurrency":"EUR","description":"Posteringer (CSV), notetekst og Excel-opgørelse pr. medarbejder","url":"https://drudley.gumroad.com/l/feriepenge"}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Hvordan beregnes feriepengeforpligtelsen?","acceptedAnswer":{"@type":"Answer","text":"For medarbejdere med løn under ferie er forpligtelsen de optjente, men ikke afholdte feriedage gange værdien af en feriedag, plus det ferietillæg på 1 %, der endnu ikke er udbetalt. For timelønnede er det feriegodtgørelsen på 12,5 % af den løn, der endnu ikke er afregnet til FerieKonto."}},
+ {"@type":"Question","name":"Hvor mange feriedage optjener en medarbejder?","acceptedAnswer":{"@type":"Answer","text":"2,08 dage for hver måneds ansættelse i ferieåret, som går fra 1. september til 31. august (ferieloven §§ 4 og 5). Er man ansat midt i en måned, optjenes 0,07 dag for hver dag i den måned, dog højst 2,08 dage."}},
+ {"@type":"Question","name":"Hvornår skal ferietillægget udbetales?","acceptedAnswer":{"@type":"Answer","text":"Enten når ferien begynder, eller for perioden 1. september til 31. maj sammen med lønnen for maj og for resten af ferieåret sammen med lønnen for august (ferieloven § 18). Ferietillæg optjent siden sidste udbetaling er derfor en del af forpligtelsen."}},
+ {"@type":"Question","name":"Kan feriepengeforpligtelsen trækkes fra i skat?","acceptedAnswer":{"@type":"Answer","text":"Ja. Arbejdsgiveren vælger mellem fradrag, når ferien betales (princip 1), og fradrag for stigningen i forpligtelsen i optjeningsåret, hvor et fald indtægtsføres (princip 2). Samme princip gælder hele indkomståret, og forpligtelsen skal opgøres konkret pr. lønmodtager."}},
+ {"@type":"Question","name":"Hvad gør jeg med ferie holdt på forskud?","acceptedAnswer":{"@type":"Answer","text":"Har en medarbejder holdt flere dage end optjent, er der et tilgodehavende, indtil dagene er optjent. Det modregnes som udgangspunkt ikke i de andre medarbejderes forpligtelse, men indregnes som et aktiv."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./">Feriepenge<span>·</span>forpligtelse</a>
+    <button id="lang" class="link" type="button" aria-label="Switch language">English</button>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Feriepengeforpligtelse – beregning til årsregnskabet</h1>
+    <p class="lead" data-i18n="lead">Indtast statusdagen og medarbejderne. Værktøjet beregner <strong>optjente og afholdte feriedage</strong> efter samtidighedsferie, <strong>værdien pr. feriedag</strong>, <strong>ferietillæg på 1 %</strong>, <strong>feriegodtgørelse på 12,5 %</strong> til FerieKonto, <strong>ferie på forskud</strong> og den <strong>regulering</strong>, der skal bogføres og trækkes fra i skat.</p>
+  </section>
+
+  <section class="card calc" id="calc">
+    <div class="row"><h2 data-i18n="calc-h">Virksomhed og statusdag</h2>
+      <div class="actions"><button id="sample" class="btn ghost small" type="button" data-i18n="sample">Vis eksempel</button><button id="clear" class="link small" type="button" data-i18n="clear">Ryd</button></div></div>
+    <div class="grid">
+      <label><span data-i18n="l-co">Virksomhedens navn</span><input type="text" id="f-name" autocomplete="organization"></label>
+      <label><span data-i18n="l-cvr">CVR-nummer</span><input type="text" id="f-cvr" inputmode="numeric" placeholder="12345678" autocomplete="off"></label>
+      <label><span data-i18n="l-end">Statusdag (sidste dag i regnskabsåret)</span><input type="text" id="f-end" inputmode="numeric" placeholder="2026-12-31" autocomplete="off"></label>
+      <label><span data-i18n="l-primo">Skyldige feriepenge primo (sidste års forpligtelse), kr.</span><input type="text" id="f-primo" inputmode="decimal" placeholder="0" autocomplete="off"></label>
+      <label><span data-i18n="l-dpm">Arbejdsdage pr. måned (dagsværdi = månedsløn ÷ dette tal)</span><input type="text" id="f-dpm" inputmode="decimal" value="21,67" autocomplete="off"></label>
+      <label><span data-i18n="l-social">Tillæg for øvrige lønomkostninger under ferie, % (valgfrit)</span><input type="text" id="f-social" inputmode="decimal" placeholder="0" autocomplete="off"></label>
+      <label><span data-i18n="l-princip">Skattemæssigt fradrag</span><select id="f-princip"><option value="2" data-i18n="o-p2">Princip 2 – fradrag for ændringen i forpligtelsen</option><option value="1" data-i18n="o-p1">Princip 1 – fradrag når ferien betales</option></select></label>
+    </div>
+    <h3 data-i18n="bk-h">Konti til posteringsforslaget (valgfrit – ellers bruges kontonavne)</h3>
+    <div class="grid">
+      <label><span data-i18n="l-kCost">Konto for feriepenge (omkostning)</span><input type="text" id="f-kCost" inputmode="numeric" placeholder="Feriepenge" autocomplete="off"></label>
+      <label><span data-i18n="l-kLiab">Konto for skyldige feriepenge (gæld)</span><input type="text" id="f-kLiab" inputmode="numeric" placeholder="Skyldige feriepenge" autocomplete="off"></label>
+      <label><span data-i18n="l-kAsset">Konto for forudbetalt ferie (aktiv)</span><input type="text" id="f-kAsset" inputmode="numeric" placeholder="Forudbetalt ferie" autocomplete="off"></label>
+    </div>
+    <div class="row people-h"><h3 data-i18n="p-h">Medarbejdere</h3>
+      <button id="add" class="btn ghost small" type="button" data-i18n="add">Tilføj medarbejder</button></div>
+    <div id="people"></div>
+    <p class="hint" data-i18n="h-people">Månedsløn er den ferieberettigede løn inklusive medarbejderens eget pensionsbidrag. Feriedage optjent beregnes fra 1. september (eller ansættelsesdatoen) til statusdagen – skriv tallet fra lønsystemet i feltet, hvis det afviger. Restferie fra forrige ferieår er dage, der stadig kan holdes eller er overført efter aftale.</p>
+    <p class="muted small" data-i18n="saved">Oplysningerne gemmes kun i denne browser. Intet sendes nogen steder hen.</p>
+  </section>
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+
+  <section id="result" class="card" hidden>
+    <h2 id="r-title">Resultat</h2>
+    <p id="r-meta" class="muted small"></p>
+    <div id="check" class="check ok"></div>
+    <div class="stats" id="stats"></div>
+    <div id="flags" class="flags" hidden></div>
+    <h3 data-i18n="per-h">Pr. medarbejder</h3>
+    <div class="tbl"><table id="per-t"><thead></thead><tbody></tbody><tfoot></tfoot></table></div>
+
+    <section id="paid">
+      <h2 data-i18n="paid-h">Posteringer, note til årsrapporten og Excel</h2>
+      <p class="small" data-i18n="paid-p">Få <strong>posteringsforslaget</strong> for reguleringen af skyldige feriepenge og forskudsferie som <strong>CSV-fil</strong> til import i bogføringsprogrammet, en <strong>tekst til anvendt regnskabspraksis og skattemæssig behandling</strong> og et <strong>Excel-ark</strong> med opgørelsen pr. medarbejder, som revisor eller bogholder kan gemme som dokumentation.</p>
+      <div class="row"><button id="paid-open" class="btn" type="button"><span data-i18n="open">Vis posteringer og notetekst</span></button></div>
+      <div id="paid-out" hidden>
+        <h3 data-i18n="note-h">Tekst til årsrapporten</h3>
+        <div id="note" class="besked"></div>
+        <h3 data-i18n="ver-h">Posteringsforslag</h3>
+        <div id="ver" class="besked"></div>
+        <div class="dlrow"><button id="csv" class="btn" type="button" data-i18n="csv">Hent posteringer (CSV)</button><button id="xlsx" class="btn ghost" type="button" data-i18n="xlsx">Hent Excel-opgørelse</button><button id="print" class="btn ghost" type="button" data-i18n="print">Udskriv</button></div>
+        <p id="dl-msg" class="status"></p>
+      </div>
+    </section>
+  </section>
+
+  <aside class="cta card">
+    <p><strong data-i18n="cta-h">Har du aktier med udenlandsk udbytteskat?</strong> <span data-i18n="cta-p"><a href="../tilbagesoegning-udbytteskat/">Udbytteskat tilbage</a> viser, hvor meget du kan søge tilbage fra Norge, Tyskland, Schweiz, Finland og Sverige direkte fra Nordnet-filen.</span></p>
+  </aside>
+
+  <section class="prose">
+    <h2>Feriepengeforpligtelsen efter ferieloven fra 2020</h2>
+    <p>Siden 1. september 2020 har Danmark haft <strong>samtidighedsferie</strong>: Medarbejderne optjener ferie og holder den i samme periode. Ferieåret går fra <strong>1. september til 31. august</strong>, og der optjenes <strong>2,08 feriedage for hver måneds ansættelse</strong> (ferieloven §§ 4 og 5). Ferien kan holdes i ferieafholdelsesperioden, der varer fra 1. september til 31. december året efter – altså 16 måneder (§ 6). Når regnskabsåret slutter, har de fleste medarbejdere derfor optjent nogle feriedage, som de endnu ikke har holdt. Det er en forpligtelse for virksomheden, og den skal med i balancen som <strong>skyldige feriepenge</strong>.</p>
+    <h3>Funktionærer: løn under ferie og ferietillæg</h3>
+    <p>En medarbejder, der er ansat månedsvis og har ret til fuld løn på helligdage og under sygdom, får <strong>løn under ferie</strong> og et <strong>ferietillæg på 1 %</strong> af lønnen (§ 16, stk. 1). Forpligtelsen for den medarbejder er de optjente, men ikke afholdte feriedage gange værdien af en feriedag. Værktøjet beregner dagsværdien som månedslønnen plus arbejdsgiverbetalt pension delt med antallet af arbejdsdage pr. måned – 21,67 ved en femdagesuge (260 ÷ 12). Bruger jeres lønsystem eller revisor et andet tal, fx 21, skriver du det i feltet. Ferietillægget udbetales enten, når ferien begynder, eller samlet med lønnen for maj (for september–maj) og august (for juni–august) (§ 18). På en statusdag 31. december er ferietillægget for september–december derfor typisk optjent, men ikke udbetalt.</p>
+    <h3>Timelønnede: feriegodtgørelse til FerieKonto</h3>
+    <p>Medarbejdere uden løn under ferie får <strong>feriegodtgørelse på 12,5 %</strong> af den ferieberettigede løn (§ 16, stk. 2), og den indbetales løbende til FerieKonto eller en feriekasse. Forpligtelsen er feriegodtgørelsen af den løn, som endnu ikke er afregnet på statusdagen – typisk den sidste måneds løn. Feriegodtgørelse beregnes også af medarbejderens eget pensionsbidrag og arbejdsmarkedsbidraget (§ 19, stk. 2), så brug bruttolønnen.</p>
+    <h3>Restferie, ferie på forskud og feriefridage</h3>
+    <p>Ligger statusdagen mellem 1. september og 31. december, kan medarbejderne stadig have dage tilbage fra det forrige ferieår. De dage kommer med i forpligtelsen sammen med de nye. Har en medarbejder efter aftale holdt <strong>ferie på forskud</strong> (§ 7), bliver saldoen negativ. Det giver et tilgodehavende, som efter årsregnskabspraksis normalt indregnes som et aktiv og ikke modregnes i de andre medarbejderes forpligtelse. Værktøjet viser det separat. Har medarbejderne en sjette ferieuge eller feriefridage efter kontrakt eller overenskomst, tæller ikke-afholdte dage med på samme måde.</p>
+    <h3>Bogføring og skat</h3>
+    <p>I regnskabet reguleres skyldige feriepenge til den beregnede forpligtelse: Stigningen bogføres som en omkostning til feriepenge, et fald som en indtægt. Skattemæssigt kan arbejdsgiveren vælge mellem to principper (Den juridiske vejledning C.C.2.2.2.1.3): <strong>princip 1</strong>, hvor der først er fradrag, når ferien betales, og <strong>princip 2</strong>, hvor der er fradrag for stigninger i feriepengeforpligtelsen i optjeningsåret, mens fald indtægtsføres. Samme princip skal bruges for hele indkomståret, og en virksomhed, der har valgt princip 2, kan ikke gå tilbage til princip 1. Forpligtelsen skal opgøres konkret for hver lønmodtager – præcis som værktøjet gør.</p>
+    <h3>Gratis og betalt</h3>
+    <p>Opgørelsen pr. medarbejder, de samlede skyldige feriepenge og reguleringen er gratis. Når du låser op, får du posteringsforslaget som CSV til import, en tekst til anvendt regnskabspraksis og skattemæssig behandling og et Excel-ark med opgørelsen pr. medarbejder. Værktøjet er et hjælpemiddel, ikke rådgivning – stem af med lønsystemets feriesaldi.</p>
+  </section>
+
+  <section class="prose faq">
+    <h2>Ofte stillede spørgsmål</h2>
+    <details><summary>Hvordan beregnes feriepengeforpligtelsen?</summary><p>For medarbejdere med løn under ferie: optjente, men ikke afholdte feriedage gange dagsværdien plus ikke-udbetalt ferietillæg. For timelønnede: 12,5 % af den løn, der endnu ikke er afregnet til FerieKonto.</p></details>
+    <details><summary>Hvor mange feriedage optjener en medarbejder?</summary><p>2,08 dage for hver måneds ansættelse i ferieåret 1. september–31. august. Er man ansat midt i en måned, optjenes 0,07 dag for hver dag i den måned, dog højst 2,08 dage.</p></details>
+    <details><summary>Hvornår skal ferietillægget udbetales?</summary><p>Når ferien begynder, eller samlet med lønnen for maj og august (ferieloven § 18).</p></details>
+    <details><summary>Kan feriepengeforpligtelsen trækkes fra i skat?</summary><p>Ja, efter princip 2 trækkes stigningen fra i optjeningsåret, og et fald indtægtsføres. Efter princip 1 er der først fradrag, når ferien betales.</p></details>
+    <details><summary>Hvad gør jeg med ferie holdt på forskud?</summary><p>Det giver et tilgodehavende, indtil dagene er optjent. Det vises separat og indregnes som et aktiv.</p></details>
+    <details><summary>Bliver mine oplysninger sendt nogen steder hen?</summary><p><strong>Nej.</strong> Alt beregnes i browseren og gemmes kun lokalt, indtil du rydder.</p></details>
+  </section>
+
+  <section class="prose src">
+    <h2>Kilder</h2>
+    <ul>
+      <li><a href="https://www.retsinformation.dk/eli/lta/2024/152" rel="noopener">Ferieloven, LBK nr. 152 af 20. februar 2024</a>, §§ 4–7, 16–19 og 21</li>
+      <li><a href="https://info.skat.dk/data.aspx?oid=2293197" rel="noopener">Den juridiske vejledning C.C.2.2.2.1.3 – Fradrag for udgifter til løn under ferie og feriegodtgørelse mv.</a></li>
+      <li><a href="https://www.borger.dk/arbejde-dagpenge-ferie/Oversigt-ferie/loenmodtager-og-ferie" rel="noopener">borger.dk: Lønmodtager og ferie</a></li>
+      <li><a href="https://oes.dk/media/wxyacokx/vejledning-om-den-regnskabsmaessige-haandtering-af-feriepengeforpligtelsen-2025.pdf" rel="noopener">Økonomistyrelsen: Vejledning om den regnskabsmæssige håndtering af feriepengeforpligtelsen 2025</a></li>
+    </ul>
+  </section>
+</main>
+<footer class="wrap muted small foot">Uafhængigt værktøj – ikke tilknyttet Skattestyrelsen, FerieKonto eller noget lønsystem. Beregningen er et hjælpemiddel; stem af med revisor ved tvivl. Ingen sporing · ingen cookies. · <a href="../">Alle værktøjer</a> · <a href="../integritet/">Privatliv (på svensk)</a></footer>
+
+<dialog id="paywall">
+  <h2 data-i18n="pw-h">Posteringer, notetekst og Excel</h2>
+  <p data-i18n="pw-p">Lås posteringsforslaget som CSV, teksten til årsrapporten og Excel-opgørelsen pr. medarbejder op. Beregningen af feriepengeforpligtelsen er altid gratis.</p>
+</dialog>
+<div id="print-root"></div>
+<script src="js/paywall.js"></script>
+<script src="js/config.js"></script>
+<script src="js/kit.js"></script>
+<script src="js/xlsx-writer.js"></script>
+<script src="js/feriepenge.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
