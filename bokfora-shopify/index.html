@@ -55,7 +55,7 @@
       <label><span data-i18n="l-orgnr">Organisationsnummer</span><input type="text" id="f-orgnr" inputmode="numeric" placeholder="556677-8899" autocomplete="off"></label>
       <label><span data-i18n="l-rate">Moms på försäljningen</span><select id="f-rate"><option value="25">25 %</option><option value="12">12 %</option><option value="6">6 %</option><option value="0" data-i18n="o-0">0 % / momsfritt</option></select></label>
       <label><span data-i18n="l-rc">Omvänd skattskyldighet på avgifterna</span><select id="f-rc"><option value="1" data-i18n="o-yes">Ja (Shopify fakturerar från Irland)</option><option value="0" data-i18n="o-no">Nej</option></select></label>
-      <label><span data-i18n="l-paid">Vilka transaktioner</span><select id="f-paid"><option value="1" data-i18n="o-paid">Bara utbetalda (status paid)</option><option value="0" data-i18n="o-all">Alla, även väntande</option></select></label>
+      <label><span data-i18n="l-paid">Vilka transaktioner</span><select id="f-paid"><option value="1" data-i18n="o-paid">Bara utbetalda (paid / deposited)</option><option value="0" data-i18n="o-all">Alla, även väntande</option></select></label>
       <label><span data-i18n="l-clr">Avräkningskonto Shopify</span><input type="text" id="f-clr" inputmode="numeric" value="1686"></label>
       <label><span data-i18n="l-bank">Bankkonto</span><input type="text" id="f-bank" inputmode="numeric" value="1930"></label>
       <label><span data-i18n="l-sales">Försäljningskonto (tomt = efter momssats)</span><input type="text" id="f-sales" inputmode="numeric" placeholder="3001"></label>
@@ -105,10 +105,11 @@
       <li><strong>Retur</strong> (refund) – samma konton i debet. Shopify betalar inte tillbaka den ursprungliga avgiften.</li>
       <li><strong>Avgifter</strong> (Fee) – debet 6040 Kontokortsavgifter.</li>
       <li><strong>Tvist / chargeback</strong> – det omtvistade beloppet blir en fordran på 1680 och tvisteavgiften en kostnad. En vunnen tvist (dispute_reversal) bokas tillbaka.</li>
-      <li><strong>Reserv</strong> och övriga justeringar – 1689 Övriga kortfristiga fordringar, med en varning så att du kan kontrollera dem.</li>
+      <li><strong>Tvisteavgift</strong> (chargeback_fee) och återbetalda avgifter (application_fee_refund) – 6040.</li>
+      <li><strong>Reserv</strong> (reserve, reserved_funds) – 1689 Övriga kortfristiga fordringar. Övriga typer som adjustment, credit, debit och payout_failure bokförs också på 1689, med en varning så att du kan kontrollera dem.</li>
       <li><strong>Utbetalningen</strong> – debet bank 1930, kredit 1686 med summan av nettobeloppen.</li>
     </ul>
-    <p>Varje verifikation dateras på <strong>utbetalningsdagen</strong> och har Shopifys utbetalnings-id i texten, så att den är lätt att stämma av mot bankkontot. Transaktioner som ännu inte ingår i en utbetalning (status pending) lämnas utanför och visas i en varning – de kommer med i nästa fil.</p>
+    <p>Varje verifikation dateras på <strong>utbetalningsdagen</strong> och har Shopifys utbetalnings-id i texten, så att den är lätt att stämma av mot bankkontot. Transaktioner som ännu inte är utbetalda (status pending eller scheduled) lämnas utanför och visas i en varning – de kommer med i nästa fil. Rader som hör till en misslyckad eller avbruten utbetalning (failed, canceled) lämnas också utanför. Typnamnen läses både som i CSV-filen (charge, refund) och som i Shopifys API (CHARGE, DISPUTE_WITHDRAWAL).</p>
     <h3>Moms på Shopifys avgifter</h3>
     <p>Avtalsparten för butiker i Europa är Shopify International Limited på Irland. Enligt Shopify tas avgifterna i Shopify Payments för butiker i EU utom Irland ut med <strong>0 % moms och omvänd skattskyldighet</strong> – köparen ska själv redovisa momsen. Med Skatteverkets regler för köp av tjänster från ett annat EU-land redovisas avgiften i <strong>ruta 21</strong>, den beräknade utgående momsen på 25 % i <strong>ruta 30</strong> och samma belopp som ingående moms i <strong>ruta 48</strong>. Verktyget bokför det som debet 2645 och kredit 2614 i samma verifikation. Med full avdragsrätt tar det ut sig självt, men det ska redovisas. Vill du hellre behandla avgifterna som en momsfri betaltjänst stänger du av omvänd skattskyldighet.</p>
     <h3>Momssats och försäljning till andra länder</h3>

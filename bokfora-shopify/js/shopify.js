@@ -13,7 +13,25 @@
   var ACCOUNTS = { '1686': 'Fordringar för kontokort och kuponger', '1680': 'Andra kortfristiga fordringar', '1689': 'Övriga kortfristiga fordringar', '1930': 'Företagskonto', '3001': 'Försäljning inom Sverige, 25 % moms', '3002': 'Försäljning inom Sverige, 12 % moms', '3003': 'Försäljning inom Sverige, 6 % moms', '3004': 'Försäljning inom Sverige, momsfri',
     '2611': 'Utgående moms på försäljning inom Sverige, 25 %', '2621': 'Utgående moms på försäljning inom Sverige, 12 %', '2631': 'Utgående moms på försäljning inom Sverige, 6 %', '6040': 'Kontokortsavgifter', '2614': 'Utgående moms omvänd betalningsskyldighet, 25 %', '2645': 'Beräknad ingående moms på förvärv från utlandet' };
   var VATACC = { 25: '2611', 12: '2621', 6: '2631', 0: '' }, SALESACC = { 25: '3001', 12: '3002', 6: '3003', 0: '3004' };
-  var KIND = { charge: 'sale', capture: 'sale', sale: 'sale', refund: 'refund', dispute: 'dispute', chargeback: 'dispute', dispute_reversal: 'dispreverse', chargeback_won: 'dispreverse', reserve: 'reserve', reserved_funds: 'reserve', payout: 'payout', payout_failure: 'payout', adjustment: 'other' };
+  // Type names: official REST balance-transaction types (shopify.dev admin-rest Transactions: charge, refund, dispute,
+  // reserve, adjustment, credit, debit, payout, payout_failure, payout_cancellation; examples also capture, advance) and
+  // the GraphQL ShopifyPaymentsTransactionType enum (CHARGE, REFUND, DISPUTE_WITHDRAWAL, RESERVED_FUNDS, TRANSFER, …),
+  // matched case-insensitively. sale / chargeback / chargeback_won are harmless third-party aliases.
+  // Anything not listed (adjustment, credit, debit, lending, Shop Cash, Collective, Markets, …) → 'other' = 1689 + warning.
+  var KIND = { charge: 'sale', capture: 'sale', sale: 'sale',
+    refund: 'refund', refund_failure: 'refund', refund_adjustment: 'refund',
+    dispute: 'dispute', dispute_withdrawal: 'dispute', chargeback: 'dispute', chargeback_hold: 'dispute',
+    dispute_reversal: 'dispreverse', chargeback_hold_release: 'dispreverse', chargeback_won: 'dispreverse',
+    chargeback_fee: 'feeitem', chargeback_fee_refund: 'feeitem', application_fee_refund: 'feeitem',
+    reserve: 'reserve', reserved_funds: 'reserve', reserved_funds_withdrawal: 'reserve', reserved_funds_reversal: 'reserve',
+    risk_withdrawal: 'reserve', risk_reversal: 'reserve', advance: 'reserve', advance_funding: 'reserve',
+    payout: 'payout', transfer: 'payout',
+    payout_failure: 'other', payout_cancellation: 'other', transfer_failure: 'other', transfer_cancel: 'other', transfer_refund: 'other',
+    adjustment: 'other', credit: 'other', debit: 'other' };
+  function normType(t) { return String(t || '').trim().toLowerCase().replace(/[\s-]+/g, '_'); }
+  // Payout Status: help.shopify.com lists Scheduled / Deposited / Failed / Withdrawn (+ Pending for transactions);
+  // REST payout_status uses paid / scheduled / pending; GraphQL ShopifyPaymentsPayoutStatus adds FAILED, CANCELED, IN_TRANSIT.
+  var PAIDST = { paid: 1, deposited: 1, withdrawn: 1 }, FAILST = { failed: 1, canceled: 1, cancelled: 1 };
   var COLS = { date: ['transaction date', 'date'], type: ['type'], order: ['order'], status: ['payout status'], pdate: ['payout date'], pid: ['payout id'], amount: ['amount'], fee: ['fee'], net: ['net'], currency: ['currency'], vat: ['vat', 'tax'] };
   function iso(s) { var m = /(\d{4})-(\d{2})-(\d{2})/.exec(String(s || '')); return m ? m[1] + '-' + m[2] + '-' + m[3] : ''; }
   function parseText(text) {
@@ -27,7 +45,7 @@
       var g = function (k) { return idx[k] >= 0 ? String(r[idx[k]] == null ? '' : r[idx[k]]).trim() : ''; };
       var date = iso(g('date')), a = CSV.toMinor(g('amount'), dc), fee = CSV.toMinor(g('fee'), dc), net = idx.net >= 0 ? CSV.toMinor(g('net'), dc) : NaN;
       if (!date || isNaN(a) || isNaN(fee)) { skipped++; return; }
-      rows.push({ date: date, type: g('type').toLowerCase(), order: g('order'), status: g('status').toLowerCase(), pdate: iso(g('pdate')), pid: g('pid'), amount: a, fee: fee, net: isNaN(net) ? a - fee : net, currency: (g('currency') || 'SEK').toUpperCase(), vat: idx.vat >= 0 ? CSV.toMinor(g('vat'), dc) || 0 : 0 });
+      rows.push({ date: date, type: normType(g('type')), order: g('order'), status: g('status').trim().toLowerCase(), pdate: iso(g('pdate')), pid: g('pid'), amount: a, fee: fee, net: isNaN(net) ? a - fee : net, currency: (g('currency') || 'SEK').toUpperCase(), vat: idx.vat >= 0 ? CSV.toMinor(g('vat'), dc) || 0 : 0 });
     });
     return { ok: rows.length > 0, missing: [], rows: rows, skipped: skipped };
   }
@@ -40,7 +58,7 @@
     if (rate && !A.vat) A.vat = VATACC[rate];
     var rc = opt.rc !== '' && opt.rc !== '0' && opt.rc !== false, onlyPaid = opt.onlyPaid !== '' && opt.onlyPaid !== '0' && opt.onlyPaid !== false;
     var serie = String(opt.serie || 'A').trim() || 'A', nr0 = parseInt(opt.nr, 10); if (!(nr0 > 0)) nr0 = 1;
-    var warn = { currency: {}, netDiff: 0, payoutRows: 0, other: 0, pending: 0, pendingSum: 0, dispute: 0, noPayout: 0, feeVat: 0, zero: rate === 0 };
+    var warn = { currency: {}, netDiff: 0, payoutRows: 0, other: 0, pending: 0, pendingSum: 0, failed: 0, failedSum: 0, dispute: 0, noPayout: 0, feeVat: 0, zero: rate === 0 };
     var groups = {}, order = [];
     (parsed.rows || []).forEach(function (r, i) {
       if (r.currency !== 'SEK') { warn.currency[r.currency] = (warn.currency[r.currency] || 0) + 1; return; }
@@ -49,7 +67,8 @@
       if (r.net !== r.amount - r.fee) warn.netDiff++;
       if (r.vat) warn.feeVat++;
       var st = r.status;
-      if (onlyPaid && st && st !== 'paid') { warn.pending++; warn.pendingSum += r.amount - r.fee; return; }
+      if (st && FAILST[st]) { warn.failed++; warn.failedSum += r.amount - r.fee; return; }
+      if (onlyPaid && st && !PAIDST[st]) { warn.pending++; warn.pendingSum += r.amount - r.fee; return; }
       if (!r.pdate) { warn.noPayout++; }
       var key = (r.pid || '') + '|' + (r.pdate || r.date);
       if (!groups[key]) { groups[key] = { key: key, pid: r.pid, date: r.pdate || r.date, rows: [] }; order.push(key); }
@@ -58,20 +77,21 @@
     order.sort(function (a, b) { return groups[a].date < groups[b].date ? -1 : groups[a].date > groups[b].date ? 1 : 0; });
     var vouchers = [], payouts = [], used = {};
     order.forEach(function (key, n) {
-      var g = groups[key], L = {}, s = { n: g.rows.length, sales: 0, refunds: 0, gross: 0, fee: 0, net: 0, vat: 0, salesNet: 0, disputes: 0, reserves: 0, other: 0, counts: {} };
+      var g = groups[key], L = {}, s = { n: g.rows.length, sales: 0, refunds: 0, gross: 0, fee: 0, net: 0, vat: 0, salesNet: 0, disputes: 0, reserves: 0, other: 0, rcBase: 0, counts: {} };
       function add(k, v) { if (!v) return; L[k] = (L[k] || 0) + v; used[k] = 1; }
       g.rows.forEach(function (r) {
         var net = r.amount - r.fee; s.counts[r.kind] = (s.counts[r.kind] || 0) + 1;
-        add(A.clr, net); add(A.fee, r.fee); s.fee += r.fee; s.net += net; s.gross += r.amount;
+        add(A.clr, net); add(A.fee, r.fee); s.fee += r.fee; s.rcBase += r.fee; s.net += net; s.gross += r.amount;
         if (r.kind === 'sale' || r.kind === 'refund') {
           var v = vatOf(r.amount, rate); add(r.kind === 'refund' && A.refund ? A.refund : A.sales, -(r.amount - v)); if (v) add(A.vat, -v);
           s.vat += v; s.salesNet += r.amount - v; if (r.kind === 'sale') s.sales += r.amount; else s.refunds += r.amount;
         } else if (r.kind === 'dispute' || r.kind === 'dispreverse') { add(A.disp, -r.amount); s.disputes += r.amount; if (r.kind === 'dispute') warn.dispute++; }
+        else if (r.kind === 'feeitem') { add(A.fee, -r.amount); s.fee -= r.amount; }
         else if (r.kind === 'reserve') { add(A.other, -r.amount); s.reserves += r.amount; }
         else { add(A.other, -r.amount); s.other += r.amount; warn.other++; }
       });
       add(A.bank, s.net); add(A.clr, -s.net);
-      var rcv = rc ? (s.fee < 0 ? -Math.round(-s.fee * 0.25) : Math.round(s.fee * 0.25)) : 0; if (rcv) { add(A.rcIn, rcv); add(A.rcOut, -rcv); }
+      var rcv = rc ? (s.rcBase < 0 ? -Math.round(-s.rcBase * 0.25) : Math.round(s.rcBase * 0.25)) : 0; if (rcv) { add(A.rcIn, rcv); add(A.rcOut, -rcv); }
       s.rc = rcv;
       var trans = Object.keys(L).filter(function (k) { return L[k] !== 0; }).sort().map(function (k) { return { konto: k, amount: L[k] }; });
       var desc = 'Shopify utbetalning ' + g.date + (g.pid ? ' ' + g.pid : '');
@@ -80,7 +100,7 @@
     });
     var tot = payouts.reduce(function (a, p) { ['n', 'sales', 'refunds', 'fee', 'net', 'vat', 'salesNet', 'disputes', 'reserves', 'other', 'rc'].forEach(function (k) { a[k] += p[k]; }); return a; }, { n: 0, sales: 0, refunds: 0, fee: 0, net: 0, vat: 0, salesNet: 0, disputes: 0, reserves: 0, other: 0, rc: 0 });
     var months = {};
-    payouts.forEach(function (p) { var m = p.date.slice(0, 7), o = months[m] || (months[m] = { month: m, r05: 0, rVat: 0, r21: 0, r30: 0, r48: 0 }); o.r05 += rate ? p.salesNet : 0; o.rVat += p.vat; o.r21 += rc ? p.fee : 0; o.r30 += p.rc; o.r48 += p.rc; });
+    payouts.forEach(function (p) { var m = p.date.slice(0, 7), o = months[m] || (months[m] = { month: m, r05: 0, rVat: 0, r21: 0, r30: 0, r48: 0 }); o.r05 += rate ? p.salesNet : 0; o.rVat += p.vat; o.r21 += rc ? p.rcBase : 0; o.r30 += p.rc; o.r48 += p.rc; });
     var accounts = {}; Object.keys(used).forEach(function (k) { accounts[k] = ACCOUNTS[k] || ('Konto ' + k); });
     if (A.sales !== SALESACC[rate] && !ACCOUNTS[A.sales]) accounts[A.sales] = 'Försäljning';
     return { ok: vouchers.length > 0, rate: rate, A: A, rc: rc, vouchers: vouchers, payouts: payouts, totals: tot, months: Object.keys(months).sort().map(function (k) { return months[k]; }), accounts: accounts, warn: warn,
@@ -99,5 +119,5 @@
       ['2026-10-09 20:45:00 +0200', 'charge', '#1006', 'visa', 'online', 'pending', '2026-10-13', '2026-10-13', '1500.00', '41.25', '1458.75', '', 'Shopify Payments', '1500.00', 'SEK', 'SEK', '']];
     return [H].concat(R.map(function (r) { return r.join(','); })).join('\n') + '\n';
   }
-  return { ACCOUNTS: ACCOUNTS, KIND: KIND, parseText: parseText, build: build, vatOf: vatOf, sampleCsv: sampleCsv };
+  return { ACCOUNTS: ACCOUNTS, KIND: KIND, normType: normType, PAIDST: PAIDST, parseText: parseText, build: build, vatOf: vatOf, sampleCsv: sampleCsv };
 });
