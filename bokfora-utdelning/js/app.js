@@ -4,7 +4,7 @@
   var K = window.KIT, $ = K.$, $$ = K.$$, CFG = window.APP_CONFIG, PW = window.APP_PAYWALL, U = window.UTD, fmt = K.fmt, esc = K.esc;
   var lang = 'sv';
   var EN = {
-    'bundle-p': '<a href="https://drudley.gumroad.com/l/byra" target="_blank" rel="noopener noreferrer">All tools for accounting firms – 990 SEK/year</a> incl. VAT. One licence key unlocks every tool, including the Danish ones and new tools as they are added.',
+    'bundle-p': '<a href="https://drudley.gumroad.com/l/byra" target="_blank" rel="noopener noreferrer">All tools for accounting firms – 990 SEK/year + VAT</a>. One licence key unlocks every tool, including the Danish ones and new tools as they are added.',
     'rel-h': 'Related tools', 'rel-all': 'All tools',
     h1: 'Dividends in a Swedish limited company – minutes, bookkeeping and KU31',
     lead: 'Enter the meeting date, the non-restricted equity and the shareholders. The tool splits the dividend per share, checks that it fits within <strong>non-restricted equity</strong>, works out <strong>Swedish dividend withholding tax (kupongskatt)</strong> for shareholders abroad and shows which forms are due and when – <strong>SKV 3700, 18a/18b and KU31</strong>. You get the postings on <strong>2091/2898</strong> and the meeting minutes as files.',

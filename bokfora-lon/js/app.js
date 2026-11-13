@@ -4,7 +4,7 @@
   var K = window.KIT, $ = K.$, $$ = K.$$, CFG = window.APP_CONFIG, PW = window.APP_PAYWALL, S = window.LON, fmt = K.fmt, esc = K.esc;
   var lang = 'sv';
   var EN = {
-    'bundle-p': '<a href="https://drudley.gumroad.com/l/byra" target="_blank" rel="noopener noreferrer">All tools for accounting firms – 990 SEK/year</a> incl. VAT. One licence key unlocks every tool, including the Danish ones and new tools as they are added.',
+    'bundle-p': '<a href="https://drudley.gumroad.com/l/byra" target="_blank" rel="noopener noreferrer">All tools for accounting firms – 990 SEK/year + VAT</a>. One licence key unlocks every tool, including the Danish ones and new tools as they are added.',
     'rel-h': 'Related tools', 'rel-all': 'All tools',
     h1: 'Book payroll – from a pay list to SIE and the employer declaration',
     lead: 'Paste the pay list (pay date, name, birth year or personal ID number, gross pay, benefits and tax withheld). You get <strong>employer contributions at the right rate per person</strong> – including the temporary <strong>20.81 % for ages 19–23</strong> and 10.21 % for 67+ – the <strong>amounts for the employer declaration (AGI)</strong> with deadlines, and the <strong>journal entries as a SIE file</strong>.',
