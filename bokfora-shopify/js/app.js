@@ -4,6 +4,7 @@
   var K = window.KIT, $ = K.$, $$ = K.$$, CFG = window.APP_CONFIG, PW = window.APP_PAYWALL, S = window.SHOPIFY, fmt = K.fmt, esc = K.esc;
   var lang = 'sv';
   var EN = {
+    'bundle-p': '<a href="https://drudley.gumroad.com/l/byra" target="_blank" rel="noopener noreferrer">All tools for accounting firms – 990 SEK/year</a> incl. VAT. One licence key unlocks every tool, including the Danish ones and new tools as they are added.',
     'rel-h': 'Related tools', 'rel-all': 'All tools',
     h1: 'Book Shopify in Sweden – from the payout file to SIE',
     lead: 'Load the transactions file from Shopify Payments. Every payout becomes a <strong>journal entry</strong> with sales booked <strong>gross</strong>, output VAT, refunds, <strong>fees with reverse-charge VAT</strong>, disputes and the bank deposit – and the clearing account <strong>nets to zero</strong>. Download it all as a <strong>SIE file</strong> and import it into your bookkeeping software.',
