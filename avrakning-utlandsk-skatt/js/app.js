@@ -4,6 +4,7 @@
   var K = window.KIT, $ = K.$, $$ = K.$$, CFG = window.APP_CONFIG, PW = window.APP_PAYWALL, A = window.AVR, fmt = K.fmt, esc = K.esc;
   var lang = 'sv';
   var EN = {
+    'rel-h': 'Related tools', 'rel-all': 'All tools',
     h1: 'Foreign tax credit in a Swedish limited company',
     lead: 'Has the company received dividends from foreign shares with withholding tax? Enter the dividends and the company\u2019s result. The tool works out the <strong>creditable tax under the tax treaty</strong>, the <strong>limitation amount (spärrbelopp)</strong> at 20.6 % with the tax allocation reserve, <strong>carried-forward tax</strong> from five years back and what to <strong>reclaim in the source country</strong>.',
     'calc-h': 'Company and tax year', sample: 'Show example', clear: 'Clear',

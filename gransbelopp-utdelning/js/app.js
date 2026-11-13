@@ -10,6 +10,7 @@
   var DEFAULTS = {};
 
   var EN = {
+    'rel-h': 'Related tools', 'rel-all': 'All tools',
     h1: 'Gränsbelopp 2026 – calculate your dividend allowance under the new Swedish 3:12 rules',
     lead: 'Enter a few facts about your closely held company (fåmansföretag) and get the 2026 gränsbelopp, the tax on your dividend and the saved allowance carried to next year – step by step, with the same parts as form K10. <strong>No account, nothing is stored on a server.</strong>',
     pill: 'Updated for income year 2026 (2027 tax return)', sample: 'Try Skatteverket\'s example',

@@ -4,6 +4,7 @@
   var K = window.KIT, $ = K.$, $$ = K.$$, CFG = window.APP_CONFIG, PW = window.APP_PAYWALL, O = window.OMVAND, fmt = K.fmt;
   var lang = 'sv';
   var EN = {
+    'rel-h': 'Related tools', 'rel-all': 'All tools',
     h1: 'Book purchases from the EU and abroad – reverse-charge VAT (Sweden)',
     lead: 'Add the invoices from foreign suppliers – ads and software from Ireland and the US, goods from Germany, imports from China – and construction services with domestic reverse charge. The tool works out <strong>reverse-charge and import VAT</strong>, posts to the right <strong>BAS accounts</strong> and totals the amounts for <strong>boxes 20–24, 30–32, 50, 60–62 and 48</strong> of the Swedish VAT return.',
     'calc-h': 'The company and the period', sample: 'Show example', clear: 'Clear',

@@ -4,6 +4,7 @@
   var K = window.KIT, $ = K.$, $$ = K.$$, CFG = window.APP_CONFIG, PW = window.APP_PAYWALL, U = window.UTD, fmt = K.fmt, esc = K.esc;
   var lang = 'sv';
   var EN = {
+    'rel-h': 'Related tools', 'rel-all': 'All tools',
     h1: 'Dividends in a Swedish limited company – minutes, bookkeeping and KU31',
     lead: 'Enter the meeting date, the non-restricted equity and the shareholders. The tool splits the dividend per share, checks that it fits within <strong>non-restricted equity</strong>, works out <strong>Swedish dividend withholding tax (kupongskatt)</strong> for shareholders abroad and shows which forms are due and when – <strong>SKV 3700, 18a/18b and KU31</strong>. You get the postings on <strong>2091/2898</strong> and the meeting minutes as files.',
     'calc-h': 'Company and decision', sample: 'Show example', clear: 'Clear',
@@ -136,7 +137,21 @@
     }).join('');
     $('#per-t tfoot').innerHTML = '<tr><td>' + t.sum + '</td><td class="num">' + fmt(T2.shares) + '</td><td class="num">100,0 %</td><td class="num">' + kr(T2.total) + '</td><td class="num">' + kr(T2.kupong) + '</td><td class="num">' + kr(T2.net) + '</td><td></td></tr>';
     $('#paid-open').classList.toggle('locked', !PW.isUnlocked());
+    renderTeaser(r);
     if (PW.isUnlocked() && !$('#paid-out').hidden) renderPaid(r);
+  }
+  // Free preview of the first journal entry + one buy CTA (shown only while locked; the licence-key flow stays in #paywall).
+  var TZ = { sv: { h: 'Gratis förhandsvisning – första verifikationen', more: function (n) { return n > 0 ? 'Den fullständiga versionen innehåller ' + n + (n === 1 ? ' verifikation till.' : ' verifikationer till.') : ''; }, lead: 'Lås upp stämmoprotokollet och styrelsens yttrande, all bokföring som SIE-fil, KU31-underlaget per person, Excel och utskrift.', buy: 'Köp för ', note: 'Engångsköp via Gumroad. Licensnyckeln kommer på e-post – klistra in den via knappen nedan.' },
+    en: { h: 'Free preview – the first journal entry', more: function (n) { return n > 0 ? 'The full version has ' + n + (n === 1 ? ' more entry.' : ' more entries.') : ''; }, lead: 'Unlock the meeting minutes and the board statement, all postings as a SIE file, the KU31 data per person, Excel and print.', buy: 'Buy for ', note: 'One-off purchase via Gumroad. The licence key arrives by e-mail – paste it via the button below.' } };
+  function renderTeaser(r) {
+    var box = $('#teaser'); if (!box) return;
+    var show = !PW.isUnlocked() && !!(r && r.vouchers && r.vouchers.length); box.hidden = !show; $('#paid-open').classList.toggle('ghost', show);
+    if (!show) { box.innerHTML = ''; return; }
+    var z = TZ[lang] || TZ.sv, t = L(), v = r.vouchers[0], url = /^https:\/\/[\w.-]*gumroad\.com\//.test(CFG.GUMROAD_PRODUCT_URL || '') ? CFG.GUMROAD_PRODUCT_URL : '';
+    box.innerHTML = '<h3>' + z.h + '</h3><div class="tbl"><table id="tz-t"><thead><tr><th>' + t.konto + '</th><th></th><th class="num">' + t.debit + '</th><th class="num">' + t.kredit + '</th></tr></thead><tbody><tr class="vh"><td colspan="4"><strong>' + esc(v.serie + v.nr) + '</strong> ' + v.date + ' – ' + esc(v.text || '') + '</td></tr>' +
+      v.trans.map(function (x) { return '<tr><td>' + x.konto + '</td><td>' + esc((r.accounts[x.konto] || '')) + '</td><td class="num">' + (x.amount > 0 ? fmt(x.amount / 100, 2) : '') + '</td><td class="num">' + (x.amount < 0 ? fmt(-x.amount / 100, 2) : '') + '</td></tr>'; }).join('') +
+      '</tbody></table></div><p class="muted small">' + z.more(r.vouchers.length - 1) + '</p><p class="tz-lead"><strong>' + z.lead + '</strong></p>' +
+      (url ? '<p><a class="btn" id="tz-buy" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + z.buy + esc(CFG.PRICE_LABEL) + '</a></p>' : '') + '<p class="muted small">' + z.note + '</p>';
   }
   function verTable(r, list) {
     var t = L();

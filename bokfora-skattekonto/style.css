@@ -79,3 +79,5 @@ textarea{font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;width:100%;pa
 #rows-t tr.unk td{background:#fef3c7}
 #rows-t tr.chg td:last-child select{border-color:var(--b)}
 details.paste{margin-top:8px}
+
+.related{margin:16px 0}.related h2{font-size:18px;margin:0 0 8px}.related ul{margin:0;padding-left:20px}.related li{margin:4px 0}

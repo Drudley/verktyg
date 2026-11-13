@@ -90,3 +90,5 @@ tr.hl td{background:#fef3c7;font-weight:600}
 .input-err{border-color:#dc2626!important}
 .stat strong{display:block;font-size:20px;font-variant-numeric:tabular-nums}.stat span{display:block}
 .hero{margin:18px 0 10px}
+
+.related{margin:16px 0}.related h2{font-size:18px;margin:0 0 8px}.related ul{margin:0;padding-left:20px}.related li{margin:4px 0}

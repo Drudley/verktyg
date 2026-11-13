@@ -7,6 +7,7 @@
   var lang = 'sv';
   var SV = {};
   var EN = {
+    'rel-h': 'Related tools', 'rel-all': 'All tools',
     h1: 'Pension contribution in a Swedish limited company – deduction room and special payroll tax',
     lead: 'Enter salaries for yourself and any employees – the tool calculates the <strong>deduction room under the main rule</strong> (35&nbsp;% of salary, at most 10 price base amounts), <strong>special payroll tax of 24.26&nbsp;%</strong> and what you can still contribute before year-end. Compare with extra salary or leaving the money in the company, and download a basis for the books and the corporate tax return.',
     'calc-h': 'The company and the contribution',

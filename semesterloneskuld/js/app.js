@@ -4,6 +4,7 @@
   var K = window.KIT, $ = K.$, $$ = K.$$, CFG = window.APP_CONFIG, PW = window.APP_PAYWALL, S = window.SEMESTER, fmt = K.fmt;
   var lang = 'sv';
   var EN = {
+    'rel-h': 'Related tools', 'rel-all': 'All tools',
     h1: 'Holiday pay liability at year-end – calculate it and book it (Sweden)',
     lead: 'Enter monthly salary and holiday days for each employee. The tool calculates the <strong>holiday pay liability per person</strong> – saved, untaken and accrued days under the <strong>same-salary rule</strong> or the <strong>12&nbsp;% percentage rule</strong> – plus <strong>employer contributions</strong>, and compares with last year’s balance. Download the journal entry as a SIE file and an Excel pack for the auditor.',
     'calc-h': 'The company and the closing', sample: 'Show example', clear: 'Clear',

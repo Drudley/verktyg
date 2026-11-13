@@ -74,3 +74,5 @@ dialog::backdrop{background:rgba(15,23,42,.45)}
 .person .grid.wide{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
 .person .res{font-size:13px;color:var(--mu);margin:6px 0 0}
 #per-t td:first-child{white-space:nowrap}
+
+.related{margin:16px 0}.related h2{font-size:18px;margin:0 0 8px}.related ul{margin:0;padding-left:20px}.related li{margin:4px 0}

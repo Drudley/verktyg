@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bokföra lön – arbetsgivaravgifter, verifikationer och AGI från lönelistan (2026)</title>
-<meta name="description" content="Klistra in lönelistan och få arbetsgivaravgifter med rätt sats per person (även 20,81 % för 19–23 år), beloppen till arbetsgivardeklarationen med sista dag och verifikationerna för lönen som SIE-fil. Allt i webbläsaren.">
+<title>Bokföra lön 2026 – arbetsgivaravgifter, AGI och SIE-fil</title>
+<meta name="description" content="Bokföra lön utan lönprogram: klistra in lönelistan och få arbetsgivaravgifter (även 20,81 % för 19–23 år), AGI-belopp och verifikationer som SIE-fil.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <link rel="canonical" href="https://drudley.github.io/verktyg/bokfora-lon/">
 <meta property="og:url" content="https://drudley.github.io/verktyg/bokfora-lon/">
 <meta property="og:locale" content="sv_SE">
-<meta property="og:title" content="Bokföra lön – lönelista till SIE och arbetsgivardeklaration">
-<meta property="og:description" content="Arbetsgivaravgifter per avgiftssats, AGI-belopp och lönens verifikationer som SIE-fil. Lönelistan lämnar aldrig webbläsaren.">
+<meta property="og:title" content="Bokföra lön 2026 – arbetsgivaravgifter, AGI och SIE-fil">
+<meta property="og:description" content="Bokföra lön utan lönprogram: klistra in lönelistan och få arbetsgivaravgifter (även 20,81 % för 19–23 år), AGI-belopp och verifikationer som SIE-fil.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#1e40af">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231e40af'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3EL%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="style.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/bokfora-lon/","name":"Bokföra lön – lönelista till SIE och arbetsgivardeklaration","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/bokfora-lon/","name":"Bokföra lön – arbetsgivaravgifter, AGI och SIE-fil","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
  "description":"Läser en lönelista (utbetalningsdag, namn, födelseår, bruttolön, förmåner och skatteavdrag) och räknar arbetsgivaravgifter per avgiftssats för 2026 – 31,42 %, 20,81 % för 19–23 år på upp till 25 000 kr i månaden, 10,21 % för 67 år och äldre – med beloppen till arbetsgivardeklarationen (ruta 487, 497 och fält 011, 012, 013, 001), sista dag att deklarera och verifikationerna för lön, avgifter och skattekontot som SIE-fil. Allt sker i webbläsaren.",
  "offers":[{"@type":"Offer","price":"0","priceCurrency":"SEK","description":"Gratis grundfunktion"},{"@type":"Offer","price":"99","priceCurrency":"SEK","description":"AGI-belopp, SIE-fil och Excel","url":"https://drudley.gumroad.com/l/lon"}]},
 {"@type":"FAQPage","mainEntity":[
@@ -79,6 +79,7 @@
     <section id="paid">
       <h2 data-i18n="paid-h">Verifikationer, SIE-fil, AGI-belopp och Excel</h2>
       <p class="small" data-i18n="paid-p">Få <strong>verifikationerna</strong> (lönen på utbetalningsdagen, avgifterna vid månadens slut och dragningen från skattekontot på deklarationsdagen) som SIE-fil till Fortnox, Visma, Bokio och andra program, <strong>beloppen till arbetsgivardeklarationen</strong> per månad – ruta 487 och 497, fälten 011, 012, 013 och 001 per anställd och Skatteverkets uträkning per avgiftssats (420/430, 7001/9001, 422/432) att stämma av mot – och ett <strong>Excel-underlag</strong>.</p>
+      <div id="teaser" class="teaser" hidden></div>
       <div class="row"><button id="paid-open" class="btn" type="button"><span data-i18n="open">Visa verifikationer och filer</span></button></div>
       <div id="paid-out" hidden>
         <h3 data-i18n="agi-h">Till arbetsgivardeklarationen (AGI)</h3>
@@ -138,6 +139,7 @@
       <li><a href="https://www.bas.se/kontoplaner/" rel="noopener">BAS kontoplan 2026</a> (1630, 1930, 2710, 2731, 7010, 7210, 7220, 7510)</li>
     </ul>
   </section>
+  <nav class="related card" aria-labelledby="rel-h"><h2 id="rel-h" data-i18n="rel-h">Relaterade verktyg</h2><ul><li><a href="../semesterloneskuld/">Semesterlöneskuld i bokslutet</a></li><li><a href="../bokfora-skattekonto/">Bokföra skattekontot</a></li><li><a href="../pensionsavsattning-aktiebolag/">Pensionsavsättning i aktiebolag</a></li></ul><p class="muted small"><a href="../" data-i18n="rel-all">Alla verktyg</a></p></nav>
 </main>
 <footer class="wrap muted small foot">Fristående verktyg – inte anslutet till Skatteverket eller något bokföringsprogram. Beräkningen är ett hjälpmedel; stäm av mot er bokföring och redovisningskonsult. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
 

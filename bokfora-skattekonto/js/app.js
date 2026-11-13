@@ -4,6 +4,7 @@
   var K = window.KIT, $ = K.$, $$ = K.$$, CFG = window.APP_CONFIG, PW = window.APP_PAYWALL, S = window.SKATTEKONTO, fmt = K.fmt;
   var lang = 'sv';
   var EN = {
+    'rel-h': 'Related tools', 'rel-all': 'All tools',
     h1: 'Book the Swedish tax account – from Skatteverket’s file to SIE',
     lead: 'Load the statement from the tax account (skattekonto). Every row gets its <strong>account</strong> – employer contributions, PAYE tax, VAT, preliminary tax, interest and payments – and the balance is <strong>reconciled</strong> against opening and closing balance. Download it all as a <strong>SIE file with one journal entry per row</strong> and import it into your bookkeeping software.',
     'calc-h': 'The statement', sample: 'Show example', clear: 'Clear',

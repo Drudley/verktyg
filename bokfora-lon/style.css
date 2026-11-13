@@ -82,3 +82,7 @@ details.paste{margin-top:8px}
 tr.vh td{background:#f8fafc;border-top:2px solid var(--ln)}
 textarea#rows{min-height:170px;white-space:pre;overflow:auto}textarea#rows.over{border-color:var(--b);background:#eff6ff}
 .agi-m{margin:10px 0 18px}.agi-m h4{margin:8px 0 6px;font-size:15px}
+
+.teaser{border:1px dashed var(--b);border-radius:10px;padding:12px 14px;margin:12px 0;background:#fff}.teaser h3{margin-top:0}.teaser .tz-lead{margin:10px 0 6px}
+
+.related{margin:16px 0}.related h2{font-size:18px;margin:0 0 8px}.related ul{margin:0;padding-left:20px}.related li{margin:4px 0}

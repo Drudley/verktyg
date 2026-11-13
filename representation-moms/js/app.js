@@ -4,6 +4,7 @@
   var K = window.KIT, $ = K.$, $$ = K.$$, CFG = window.APP_CONFIG, PW = window.APP_PAYWALL, R = window.REPR, fmt = K.fmt;
   var lang = 'sv';
   var EN = {
+    'rel-h': 'Related tools', 'rel-all': 'All tools',
     h1: 'Business entertainment in Sweden – deductible VAT and bookkeeping',
     lead: 'Add the receipts from business dinners, coffee meetings, golf, staff parties and client gifts. The tool works out <strong>deductible VAT</strong> (the SEK 300 cap, proportioning or the 46/33 kr standard amount) and <strong>deductible cost</strong> per occasion under the 2026 rules, and posts to <strong>6071/6072, 7631/7632 and 2641</strong>.',
     'calc-h': 'The company', sample: 'Show example', clear: 'Clear',

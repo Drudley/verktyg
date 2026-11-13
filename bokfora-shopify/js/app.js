@@ -4,6 +4,7 @@
   var K = window.KIT, $ = K.$, $$ = K.$$, CFG = window.APP_CONFIG, PW = window.APP_PAYWALL, S = window.SHOPIFY, fmt = K.fmt, esc = K.esc;
   var lang = 'sv';
   var EN = {
+    'rel-h': 'Related tools', 'rel-all': 'All tools',
     h1: 'Book Shopify in Sweden – from the payout file to SIE',
     lead: 'Load the transactions file from Shopify Payments. Every payout becomes a <strong>journal entry</strong> with sales booked <strong>gross</strong>, output VAT, refunds, <strong>fees with reverse-charge VAT</strong>, disputes and the bank deposit – and the clearing account <strong>nets to zero</strong>. Download it all as a <strong>SIE file</strong> and import it into your bookkeeping software.',
     'calc-h': 'The transactions file from Shopify', sample: 'Show example', clear: 'Clear',
@@ -67,7 +68,21 @@
     var X = b.totals;
     $('#po-t tfoot').innerHTML = '<tr><td>' + t.sum + '</td><td></td><td class="num">' + X.n + '</td><td class="num">' + kr(X.sales) + '</td><td class="num">' + kr(X.refunds) + '</td><td class="num">' + kr(X.fee) + '</td><td class="num">' + kr(X.disputes + X.reserves + X.other) + '</td><td class="num">' + kr(X.vat) + '</td><td class="num">' + kr(X.net) + '</td></tr>';
     $('#paid-open').classList.toggle('locked', !PW.isUnlocked());
+    renderTeaser(b);
     if (PW.isUnlocked() && !$('#paid-out').hidden) renderPaid(b);
+  }
+  // Free preview of the first journal entry + one buy CTA (shown only while locked; the licence-key flow stays in #paywall).
+  var TZ = { sv: { h: 'Gratis förhandsvisning – första verifikationen', more: function (n) { return n > 0 ? 'Den fullständiga versionen innehåller ' + n + (n === 1 ? ' verifikation till.' : ' verifikationer till.') : ''; }, lead: 'Lås upp en verifikation per utbetalning som SIE-fil, beloppen till momsdeklarationen per månad, Excel-underlaget och utskrift.', buy: 'Köp för ', note: 'Engångsköp via Gumroad. Licensnyckeln kommer på e-post – klistra in den via knappen nedan.' },
+    en: { h: 'Free preview – the first journal entry', more: function (n) { return n > 0 ? 'The full version has ' + n + (n === 1 ? ' more entry.' : ' more entries.') : ''; }, lead: 'Unlock one journal entry per payout as a SIE file, the VAT return amounts per month, the Excel pack and print.', buy: 'Buy for ', note: 'One-off purchase via Gumroad. The licence key arrives by e-mail – paste it via the button below.' } };
+  function renderTeaser(r) {
+    var box = $('#teaser'); if (!box) return;
+    var show = !PW.isUnlocked() && !!(r && r.vouchers && r.vouchers.length); box.hidden = !show; $('#paid-open').classList.toggle('ghost', show);
+    if (!show) { box.innerHTML = ''; return; }
+    var z = TZ[lang] || TZ.sv, t = L(), v = r.vouchers[0], url = /^https:\/\/[\w.-]*gumroad\.com\//.test(CFG.GUMROAD_PRODUCT_URL || '') ? CFG.GUMROAD_PRODUCT_URL : '';
+    box.innerHTML = '<h3>' + z.h + '</h3><div class="tbl"><table id="tz-t"><thead><tr><th>' + t.konto + '</th><th></th><th class="num">' + t.debit + '</th><th class="num">' + t.kredit + '</th></tr></thead><tbody><tr class="vh"><td colspan="4"><strong>' + esc(v.serie + v.nr) + '</strong> ' + v.date + ' – ' + esc(v.text || '') + '</td></tr>' +
+      v.trans.map(function (x) { return '<tr><td>' + x.konto + '</td><td>' + esc(accName(r, x.konto)) + '</td><td class="num">' + (x.amount > 0 ? kr(x.amount) : '') + '</td><td class="num">' + (x.amount < 0 ? kr(-x.amount) : '') + '</td></tr>'; }).join('') +
+      '</tbody></table></div><p class="muted small">' + z.more(r.vouchers.length - 1) + '</p><p class="tz-lead"><strong>' + z.lead + '</strong></p>' +
+      (url ? '<p><a class="btn" id="tz-buy" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + z.buy + esc(CFG.PRICE_LABEL) + '</a></p>' : '') + '<p class="muted small">' + z.note + '</p>';
   }
   function accName(b, k) { return b.accounts[k] || S.ACCOUNTS[k] || ''; }
   function verHtml(b) {

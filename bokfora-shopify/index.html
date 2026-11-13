@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bokföra Shopify – utbetalningar, avgifter och moms till SIE-fil (2026)</title>
-<meta name="description" content="Läs in transaktionsfilen från Shopify Payments och få en verifikation per utbetalning: försäljning brutto med moms, returer, avgifter med omvänd skattskyldighet, tvister och utbetalning till banken – som SIE-fil. Allt i webbläsaren.">
+<title>Bokföra Shopify – Shopify Payments till SIE-fil (2026)</title>
+<meta name="description" content="Bokföra Shopify: läs in exporten från Shopify Payments och få en SIE-fil med en verifikation per utbetalning – försäljning, moms, avgifter och returer.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.gumroad.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <link rel="canonical" href="https://drudley.github.io/verktyg/bokfora-shopify/">
 <meta property="og:url" content="https://drudley.github.io/verktyg/bokfora-shopify/">
 <meta property="og:locale" content="sv_SE">
-<meta property="og:title" content="Bokföra Shopify – utbetalningar till SIE-fil">
-<meta property="og:description" content="Shopify Payments-utbetalningar konterade brutto: försäljning, moms, avgifter med omvänd skattskyldighet, returer och tvister – som SIE-fil. Filen lämnar aldrig webbläsaren.">
+<meta property="og:title" content="Bokföra Shopify – Shopify Payments till SIE-fil (2026)">
+<meta property="og:description" content="Bokföra Shopify: läs in exporten från Shopify Payments och få en SIE-fil med en verifikation per utbetalning – försäljning, moms, avgifter och returer.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#4d7c0f">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%234d7c0f'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3ES%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="style.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/bokfora-shopify/","name":"Bokföra Shopify – utbetalningar till SIE-fil","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
+{"@type":"SoftwareApplication","url":"https://drudley.github.io/verktyg/bokfora-shopify/","name":"Bokföra Shopify – Shopify Payments till SIE-fil","applicationCategory":"FinanceApplication","operatingSystem":"Webbläsare","inLanguage":"sv-SE",
  "description":"Läser transaktionsexporten från Shopify Payments och konterar varje utbetalning brutto: försäljning och utgående moms, returer, Shopify-avgifter på 6040 med omvänd skattskyldighet (2645/2614), tvister på 1680, reserver och utbetalningen till banken via avräkningskontot 1686. Skapar en SIE-fil med en verifikation per utbetalning och en sammanställning till momsdeklarationen. Allt sker i webbläsaren.",
  "offers":[{"@type":"Offer","price":"0","priceCurrency":"SEK","description":"Gratis grundfunktion"},{"@type":"Offer","price":"99","priceCurrency":"SEK","description":"SIE-fil per utbetalning, momsrutor och Excel","url":"https://drudley.gumroad.com/l/shopify"}]},
 {"@type":"FAQPage","mainEntity":[
@@ -80,6 +80,7 @@
     <section id="paid">
       <h2 data-i18n="paid-h">Verifikationer, SIE-fil, momsrutor och Excel</h2>
       <p class="small" data-i18n="paid-p">Få <strong>en verifikation per utbetalning</strong> som SIE-fil att läsa in i Fortnox, Visma, Bokio eller andra program, <strong>beloppen till momsdeklarationen per månad</strong> (ruta 05, 10, 21, 30 och 48) och ett <strong>Excel-underlag</strong> med alla transaktioner och konteringar att spara med bokföringen.</p>
+      <div id="teaser" class="teaser" hidden></div>
       <div class="row"><button id="paid-open" class="btn" type="button"><span data-i18n="open">Visa verifikationer och filer</span></button></div>
       <div id="paid-out" hidden>
         <h3 data-i18n="ver-h">Verifikationer</h3>
@@ -139,6 +140,7 @@
       <li><a href="https://www.bas.se/kontoplaner/" rel="noopener">BAS kontoplan 2026</a> (1680, 1686, 1689, 1930, 2611, 2614, 2645, 3001, 6040)</li>
     </ul>
   </section>
+  <nav class="related card" aria-labelledby="rel-h"><h2 id="rel-h" data-i18n="rel-h">Relaterade verktyg</h2><ul><li><a href="../stripe-till-sie/">Stripe till SIE</a></li><li><a href="../bokfora-inkop-eu/">Bokföra inköp från EU – omvänd moms</a></li><li><a href="../representation-moms/">Representation – moms och avdrag</a></li></ul><p class="muted small"><a href="../" data-i18n="rel-all">Alla verktyg</a></p></nav>
 </main>
 <footer class="wrap muted small foot">Fristående verktyg – inte anslutet till Shopify, Skatteverket eller något bokföringsprogram. Konteringen är ett hjälpmedel; stäm av mot er bokföring och redovisningskonsult. Ingen spårning · inga cookies. · <a href="../">Alla verktyg</a> · <a href="../integritet/">Integritet</a></footer>
 

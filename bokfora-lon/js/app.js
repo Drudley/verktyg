@@ -4,6 +4,7 @@
   var K = window.KIT, $ = K.$, $$ = K.$$, CFG = window.APP_CONFIG, PW = window.APP_PAYWALL, S = window.LON, fmt = K.fmt, esc = K.esc;
   var lang = 'sv';
   var EN = {
+    'rel-h': 'Related tools', 'rel-all': 'All tools',
     h1: 'Book payroll – from a pay list to SIE and the employer declaration',
     lead: 'Paste the pay list (pay date, name, birth year or personal ID number, gross pay, benefits and tax withheld). You get <strong>employer contributions at the right rate per person</strong> – including the temporary <strong>20.81 % for ages 19–23</strong> and 10.21 % for 67+ – the <strong>amounts for the employer declaration (AGI)</strong> with deadlines, and the <strong>journal entries as a SIE file</strong>.',
     'calc-h': 'The pay list', sample: 'Show example', clear: 'Clear', 'l-rows': 'Paste from Excel or load a CSV file (one row per payment)',
@@ -68,7 +69,21 @@
     var X = b.totals;
     $('#m-t tfoot').innerHTML = '<tr><td>' + t.sum + '</td><td></td><td class="num">' + kr0(X.b) + '</td><td class="num">' + kr0(X.f + X.c) + '</td><td class="num">' + kr0(X.s) + '</td><td class="num">' + kr0(X.fee) + '</td><td class="num">' + fmt(X.cost, 0) + '</td><td></td></tr>';
     $('#paid-open').classList.toggle('locked', !PW.isUnlocked());
+    renderTeaser(b);
     if (PW.isUnlocked() && !$('#paid-out').hidden) renderPaid(b);
+  }
+  // Free preview of the first journal entry + one buy CTA (shown only while locked; the licence-key flow stays in #paywall).
+  var TZ = { sv: { h: 'Gratis förhandsvisning – första verifikationen', more: function (n) { return n > 0 ? 'Den fullständiga versionen innehåller ' + n + (n === 1 ? ' verifikation till.' : ' verifikationer till.') : ''; }, lead: 'Lås upp alla verifikationer som SIE-fil, beloppen till arbetsgivardeklarationen (ruta 487, 497 och fälten per anställd), Excel-underlaget och utskrift.', buy: 'Köp för ', note: 'Engångsköp via Gumroad. Licensnyckeln kommer på e-post – klistra in den via knappen nedan.' },
+    en: { h: 'Free preview – the first journal entry', more: function (n) { return n > 0 ? 'The full version has ' + n + (n === 1 ? ' more entry.' : ' more entries.') : ''; }, lead: 'Unlock every journal entry as a SIE file, the employer declaration amounts (boxes 487, 497 and the per-employee fields), the Excel pack and print.', buy: 'Buy for ', note: 'One-off purchase via Gumroad. The licence key arrives by e-mail – paste it via the button below.' } };
+  function renderTeaser(r) {
+    var box = $('#teaser'); if (!box) return;
+    var show = !PW.isUnlocked() && !!(r && r.vouchers && r.vouchers.length); box.hidden = !show; $('#paid-open').classList.toggle('ghost', show);
+    if (!show) { box.innerHTML = ''; return; }
+    var z = TZ[lang] || TZ.sv, t = L(), v = r.vouchers[0], url = /^https:\/\/[\w.-]*gumroad\.com\//.test(CFG.GUMROAD_PRODUCT_URL || '') ? CFG.GUMROAD_PRODUCT_URL : '';
+    box.innerHTML = '<h3>' + z.h + '</h3><div class="tbl"><table id="tz-t"><thead><tr><th>' + t.konto + '</th><th></th><th class="num">' + t.debit + '</th><th class="num">' + t.kredit + '</th></tr></thead><tbody><tr class="vh"><td colspan="4"><strong>' + esc(v.serie + v.nr) + '</strong> ' + v.date + ' – ' + esc(v.text || '') + '</td></tr>' +
+      v.trans.map(function (x) { return '<tr><td>' + x.konto + '</td><td>' + esc(accName(r, x.konto)) + '</td><td class="num">' + (x.amount > 0 ? kr(x.amount) : '') + '</td><td class="num">' + (x.amount < 0 ? kr(-x.amount) : '') + '</td></tr>'; }).join('') +
+      '</tbody></table></div><p class="muted small">' + z.more(r.vouchers.length - 1) + '</p><p class="tz-lead"><strong>' + z.lead + '</strong></p>' +
+      (url ? '<p><a class="btn" id="tz-buy" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + z.buy + esc(CFG.PRICE_LABEL) + '</a></p>' : '') + '<p class="muted small">' + z.note + '</p>';
   }
   function accName(b, k) { return b.accounts[k] || S.ACCOUNTS[k] || ''; }
   function verHtml(b) {

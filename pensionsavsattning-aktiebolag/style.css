@@ -69,3 +69,5 @@ dialog::backdrop{background:rgba(15,23,42,.45)}
   #print-root{display:none}
   body.printing #print-root{display:block}
 }
+
+.related{margin:16px 0}.related h2{font-size:18px;margin:0 0 8px}.related ul{margin:0;padding-left:20px}.related li{margin:4px 0}
